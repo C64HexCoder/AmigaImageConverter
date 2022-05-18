@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "ProjectMap": {
+    "9a166d5f-6c6e-41ad-aedc-f23b84949f0b": {
+      "ProjectGuid": "9a166d5f-6c6e-41ad-aedc-f23b84949f0b",
+      "DisplayName": "AmigaImageConverter",
+      "ColorIndex": 0
+    }
+  },
+  "NextColorIndex": 1
+}
