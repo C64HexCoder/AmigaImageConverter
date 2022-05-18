@@ -47,7 +47,7 @@
             this.fileToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1254, 48);
+            this.menuStrip1.Size = new System.Drawing.Size(1254, 40);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -85,7 +85,7 @@
             // 
             // openFileDialog
             // 
-            this.openFileDialog.Filter = "PNG Files|*.PNG|JPEG Files|*.JPG|All Files|*.*";
+            this.openFileDialog.Filter = "PNG Files|*.PNG|JPEG Files|*.JPG|BMP Files|*.bmp|All Files|*.*";
             // 
             // saveFileDialog
             // 
