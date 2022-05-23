@@ -7,12 +7,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Hexadecimal;  
 
 namespace AmigaImageConverter
 {
     public partial class MainForm : Form
     {
         Bitmap bmp = null;
+        Endian endian = new Endian();
+
         public MainForm()
         {
             InitializeComponent();
@@ -25,6 +28,23 @@ namespace AmigaImageConverter
             {
                 bmp = new Bitmap(openFileDialog.FileName);
                 pictureBox.Load(openFileDialog.FileName);
+                uint x = endian.ConvertToBigEndian(0x01020304);
+
+                switch (pictureBox.Image.PixelFormat)
+                {
+                    case System.Drawing.Imaging.PixelFormat.Format64bppArgb:
+                    case System.Drawing.Imaging.PixelFormat.Format32bppArgb:
+                    case System.Drawing.Imaging.PixelFormat.Format24bppRgb:
+
+                        break;
+
+                    case System.Drawing.Imaging.PixelFormat.Format4bppIndexed:
+                        break;
+
+                    case System.Drawing.Imaging.PixelFormat.Format1bppIndexed:
+                        break;
+
+                }
             }
         }
 
@@ -32,11 +52,13 @@ namespace AmigaImageConverter
         {
             if (saveFileDialog.ShowDialog() == DialogResult.OK)
             {
+            
                 switch (pictureBox.Image.PixelFormat)
                 {
                     case System.Drawing.Imaging.PixelFormat.Format64bppArgb:
                     case System.Drawing.Imaging.PixelFormat.Format32bppArgb:
                     case System.Drawing.Imaging.PixelFormat.Format24bppRgb:
+                     
                         break;
 
                     case System.Drawing.Imaging.PixelFormat.Format4bppIndexed:
