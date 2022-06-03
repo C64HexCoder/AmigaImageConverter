@@ -32,8 +32,8 @@ namespace AmigaImageConverter
             {
                 //bmp = new Bitmap(openFileDialog.FileName);
                 pictureBox.Load(openFileDialog.FileName);
-                uint x = endian.ConvertToBigEndian(0x01020304);
-                bitplane.LoadImage(saveFileDialog.FileName);
+               
+                bitplane.LoadImage(openFileDialog.FileName);
 
                 switch (pictureBox.Image.PixelFormat)
                 {
