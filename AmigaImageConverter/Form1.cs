@@ -19,6 +19,8 @@ namespace AmigaImageConverter
         Bitmap bmp = null;
         Endian endian = new Endian();
         Bitplane bitplane = new Bitplane();
+        Settings settings = new Settings();
+        About about = new About();
 
         public MainForm()
         {
@@ -64,6 +66,26 @@ namespace AmigaImageConverter
         private void saveFileDialog_FileOk(object sender, CancelEventArgs e)
         {
 
+        }
+
+        private void settingsMenuItem_Click(object sender, EventArgs e)
+        {
+            settings.ShowDialog();
+        }
+
+        private void aboutMenuItem_Click(object sender, EventArgs e)
+        {
+            about.ShowDialog();
+        }
+
+        private void savePallateToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SaveFileDialog pallateFileDialog = new SaveFileDialog();
+            pallateFileDialog.Filter = "Assembler Source|*.S";
+            if (pallateFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                bitplane.SavePallate(pallateFileDialog.FileName);
+            }
         }
     }
 }
