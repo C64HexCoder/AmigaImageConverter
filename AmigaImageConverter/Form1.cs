@@ -3,11 +3,14 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Drawing.Imaging;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using Hexadecimal;  
+using Hexadecimal;
+using AmigaBitplane;
+
 
 namespace AmigaImageConverter
 {
@@ -15,6 +18,7 @@ namespace AmigaImageConverter
     {
         Bitmap bmp = null;
         Endian endian = new Endian();
+        Bitplane bitplane = new Bitplane();
 
         public MainForm()
         {
@@ -26,9 +30,10 @@ namespace AmigaImageConverter
               
             if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
-                bmp = new Bitmap(openFileDialog.FileName);
+                //bmp = new Bitmap(openFileDialog.FileName);
                 pictureBox.Load(openFileDialog.FileName);
                 uint x = endian.ConvertToBigEndian(0x01020304);
+                bitplane.LoadImage(saveFileDialog.FileName);
 
                 switch (pictureBox.Image.PixelFormat)
                 {
@@ -52,23 +57,13 @@ namespace AmigaImageConverter
         {
             if (saveFileDialog.ShowDialog() == DialogResult.OK)
             {
-            
-                switch (pictureBox.Image.PixelFormat)
-                {
-                    case System.Drawing.Imaging.PixelFormat.Format64bppArgb:
-                    case System.Drawing.Imaging.PixelFormat.Format32bppArgb:
-                    case System.Drawing.Imaging.PixelFormat.Format24bppRgb:
-                     
-                        break;
-
-                    case System.Drawing.Imaging.PixelFormat.Format4bppIndexed:
-                        break;
-
-                    case System.Drawing.Imaging.PixelFormat.Format1bppIndexed:
-                        break;
-                    
-                }
+                bitplane.SaveBitmapsAsBinaryFile(saveFileDialog.FileName);  
             }
+        }
+
+        private void saveFileDialog_FileOk(object sender, CancelEventArgs e)
+        {
+
         }
     }
 }

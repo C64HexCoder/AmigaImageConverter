@@ -12,3 +12,5 @@ C:\Users\yossi\source\repos\AmigaImageConverter\AmigaImageConverter\obj\Debug\Am
 C:\Users\yossi\source\repos\AmigaImageConverter\AmigaImageConverter\obj\Debug\AmigaImageConverter.pdb
 C:\Users\yossi\source\repos\AmigaImageConverter\AmigaImageConverter\bin\Debug\Hexadecimal.dll
 C:\Users\yossi\source\repos\AmigaImageConverter\AmigaImageConverter\bin\Debug\Hexadecimal.pdb
+C:\Users\yossi\source\repos\AmigaImageConverter\AmigaImageConverter\bin\Debug\AmigaBitplane.dll
+C:\Users\yossi\source\repos\AmigaImageConverter\AmigaImageConverter\bin\Debug\AmigaBitplane.pdb
