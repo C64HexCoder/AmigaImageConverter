@@ -36,6 +36,9 @@ namespace AmigaImageConverter
                 pictureBox.Load(openFileDialog.FileName);
                
                 bitplane.LoadImage(openFileDialog.FileName);
+                toolStripFileName.Text = openFileDialog.FileName;
+                toolStripResolutionLabel.Text = $"{bitplane.Width}x{bitplane.Height}";
+                toolStripDepthLabel.Text = $"{bitplane.NumOfBitmaps} Bitmaps";
 
                 switch (pictureBox.Image.PixelFormat)
                 {
@@ -59,7 +62,10 @@ namespace AmigaImageConverter
         {
             if (saveFileDialog.ShowDialog() == DialogResult.OK)
             {
-                bitplane.SaveBitmapsAsBinaryFile(saveFileDialog.FileName);  
+                if (settings.sequentialRB.Checked == true)
+                    bitplane.SaveBitmapsAsBinaryFile(saveFileDialog.FileName);
+                else
+                    bitplane.SaveBitmapsAsInterleavedBinaryFile(saveFileDialog.FileName);
             }
         }
 

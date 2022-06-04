@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.radioButton1 = new System.Windows.Forms.RadioButton();
             this.radioButton2 = new System.Windows.Forms.RadioButton();
+            this.sequentialRB = new System.Windows.Forms.RadioButton();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -39,25 +39,13 @@
             // 
             this.groupBox1.AutoSize = true;
             this.groupBox1.Controls.Add(this.radioButton2);
-            this.groupBox1.Controls.Add(this.radioButton1);
+            this.groupBox1.Controls.Add(this.sequentialRB);
             this.groupBox1.Location = new System.Drawing.Point(13, 13);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(145, 106);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Image Format";
-            // 
-            // radioButton1
-            // 
-            this.radioButton1.AutoSize = true;
-            this.radioButton1.Checked = true;
-            this.radioButton1.Location = new System.Drawing.Point(7, 26);
-            this.radioButton1.Name = "radioButton1";
-            this.radioButton1.Size = new System.Drawing.Size(110, 24);
-            this.radioButton1.TabIndex = 0;
-            this.radioButton1.TabStop = true;
-            this.radioButton1.Text = "Sequential";
-            this.radioButton1.UseVisualStyleBackColor = true;
             // 
             // radioButton2
             // 
@@ -68,6 +56,18 @@
             this.radioButton2.TabIndex = 1;
             this.radioButton2.Text = "Interleaved";
             this.radioButton2.UseVisualStyleBackColor = true;
+            // 
+            // sequentialRB
+            // 
+            this.sequentialRB.AutoSize = true;
+            this.sequentialRB.Checked = true;
+            this.sequentialRB.Location = new System.Drawing.Point(7, 26);
+            this.sequentialRB.Name = "sequentialRB";
+            this.sequentialRB.Size = new System.Drawing.Size(110, 24);
+            this.sequentialRB.TabIndex = 0;
+            this.sequentialRB.TabStop = true;
+            this.sequentialRB.Text = "Sequential";
+            this.sequentialRB.UseVisualStyleBackColor = true;
             // 
             // checkBox1
             // 
@@ -100,7 +100,7 @@
 
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.RadioButton radioButton2;
-        private System.Windows.Forms.RadioButton radioButton1;
         private System.Windows.Forms.CheckBox checkBox1;
+        public System.Windows.Forms.RadioButton sequentialRB;
     }
 }
