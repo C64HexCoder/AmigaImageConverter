@@ -62,10 +62,18 @@ namespace AmigaImageConverter
         {
             if (saveFileDialog.ShowDialog() == DialogResult.OK)
             {
-                if (settings.sequentialRB.Checked == true)
-                    bitplane.SaveBitmapsAsBinaryFile(saveFileDialog.FileName);
-                else
-                    bitplane.SaveBitmapsAsInterleavedBinaryFile(saveFileDialog.FileName);
+                switch (saveFileDialog.FilterIndex)
+                {
+                    case 1:
+                        bitplane.SaveBitmapsAsAssemblerSourceCode(saveFileDialog.FileName);
+                        break;
+                    case 2:
+                    if (settings.sequentialRB.Checked == true)
+                        bitplane.SaveBitmapsAsBinaryFile(saveFileDialog.FileName);
+                    else
+                        bitplane.SaveBitmapsAsInterleavedBinaryFile(saveFileDialog.FileName);
+                        break;
+                }
             }
         }
 
