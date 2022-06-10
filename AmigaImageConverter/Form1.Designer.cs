@@ -60,7 +60,7 @@
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(4, 2, 0, 2);
-            this.menuStrip1.Size = new System.Drawing.Size(940, 36);
+            this.menuStrip1.Size = new System.Drawing.Size(940, 33);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -71,7 +71,7 @@
             this.saveImageAsToolStripMenuItem,
             this.savePallateToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
-            this.fileToolStripMenuItem.Size = new System.Drawing.Size(54, 32);
+            this.fileToolStripMenuItem.Size = new System.Drawing.Size(54, 29);
             this.fileToolStripMenuItem.Text = "File";
             // 
             // loadImageToolStripMenuItem
@@ -100,7 +100,7 @@
             this.settingsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.settingsMenuItem});
             this.settingsToolStripMenuItem.Name = "settingsToolStripMenuItem";
-            this.settingsToolStripMenuItem.Size = new System.Drawing.Size(92, 32);
+            this.settingsToolStripMenuItem.Size = new System.Drawing.Size(92, 29);
             this.settingsToolStripMenuItem.Text = "Settings";
             // 
             // settingsMenuItem
@@ -115,7 +115,7 @@
             this.aboutToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.aboutMenuItem});
             this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
-            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(78, 32);
+            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(78, 29);
             this.aboutToolStripMenuItem.Text = "About";
             // 
             // aboutMenuItem
@@ -179,6 +179,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoSize = true;
             this.ClientSize = new System.Drawing.Size(940, 762);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.pictureBox);

@@ -16,3 +16,5 @@ C:\Users\yossi\source\repos\AmigaImageConverter\AmigaImageConverter\bin\Debug\Am
 C:\Users\yossi\source\repos\AmigaImageConverter\AmigaImageConverter\bin\Debug\AmigaBitplane.pdb
 C:\Users\yossi\source\repos\AmigaImageConverter\AmigaImageConverter\obj\Debug\AmigaImageConverter.Settings.resources
 C:\Users\yossi\source\repos\AmigaImageConverter\AmigaImageConverter\obj\Debug\AmigaImageConverter.About.resources
+C:\Users\yossi\source\repos\AmigaImageConverter\AmigaImageConverter\bin\Debug\AmigaPallate.dll
+C:\Users\yossi\source\repos\AmigaImageConverter\AmigaImageConverter\bin\Debug\AmigaPallate.pdb

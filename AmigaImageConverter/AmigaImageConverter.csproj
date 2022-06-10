@@ -149,6 +149,10 @@
       <Project>{df29f0ec-2416-4e71-9073-d6b5c87d9239}</Project>
       <Name>AmigaBitplane</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\AmigaPallate\AmigaPallate\AmigaPallate.csproj">
+      <Project>{192a5e49-8e1b-4953-936e-f0feab5d50f9}</Project>
+      <Name>AmigaPallate</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -36,6 +36,10 @@ namespace AmigaImageConverter
                 pictureBox.Load(openFileDialog.FileName);
                
                 bitplane.LoadImage(openFileDialog.FileName);
+                pictureBox.Width = bitplane.Width;
+                pictureBox.Height = bitplane.Height;
+                this.Width = bitplane.Width;
+                this.Height = bitplane.Height + menuStrip1.Height + statusStrip1.Height;
                 toolStripFileName.Text = openFileDialog.FileName;
                 toolStripResolutionLabel.Text = $"{bitplane.Width}x{bitplane.Height}";
                 toolStripDepthLabel.Text = $"{bitplane.NumOfBitmaps} Bitmaps";

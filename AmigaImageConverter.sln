@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AmigaBitplane", "..\AmigaBi
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hexadecimal", "..\Hexadecimal\Hexadecimal\Hexadecimal.csproj", "{5BC31509-F3F8-4BD2-80F3-A0D64662951E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AmigaPallate", "..\AmigaPallate\AmigaPallate\AmigaPallate.csproj", "{192A5E49-8E1B-4953-936E-F0FEAB5D50F9}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{5BC31509-F3F8-4BD2-80F3-A0D64662951E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5BC31509-F3F8-4BD2-80F3-A0D64662951E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5BC31509-F3F8-4BD2-80F3-A0D64662951E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{192A5E49-8E1B-4953-936E-F0FEAB5D50F9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{192A5E49-8E1B-4953-936E-F0FEAB5D50F9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{192A5E49-8E1B-4953-936E-F0FEAB5D50F9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{192A5E49-8E1B-4953-936E-F0FEAB5D50F9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
