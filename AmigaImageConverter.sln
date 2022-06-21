@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hexadecimal", "..\Hexadecim
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AmigaPallate", "..\AmigaPallate\AmigaPallate\AmigaPallate.csproj", "{192A5E49-8E1B-4953-936E-F0FEAB5D50F9}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AmigaSprite", "..\AmigaSprite\AmigaSprite\AmigaSprite.csproj", "{772B6652-3263-4227-96CD-D70F45758F44}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{192A5E49-8E1B-4953-936E-F0FEAB5D50F9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{192A5E49-8E1B-4953-936E-F0FEAB5D50F9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{192A5E49-8E1B-4953-936E-F0FEAB5D50F9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{772B6652-3263-4227-96CD-D70F45758F44}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{772B6652-3263-4227-96CD-D70F45758F44}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{772B6652-3263-4227-96CD-D70F45758F44}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{772B6652-3263-4227-96CD-D70F45758F44}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

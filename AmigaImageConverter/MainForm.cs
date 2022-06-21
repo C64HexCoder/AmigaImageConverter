@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Hexadecimal;
 using AmigaBitplane;
+using AmigaSprite;
 
 
 namespace AmigaImageConverter
@@ -104,6 +105,11 @@ namespace AmigaImageConverter
             {
                 bitplane.SavePallate(pallateFileDialog.FileName);
             }
+        }
+
+        private void cutSpriteToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
