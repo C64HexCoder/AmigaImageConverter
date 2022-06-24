@@ -32,6 +32,7 @@
             this.radioButton2 = new System.Windows.Forms.RadioButton();
             this.sequentialRB = new System.Windows.Forms.RadioButton();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.wordAlienCB = new System.Windows.Forms.CheckBox();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -79,11 +80,22 @@
             this.checkBox1.Text = "Add info file";
             this.checkBox1.UseVisualStyleBackColor = true;
             // 
+            // wordAlienCB
+            // 
+            this.wordAlienCB.AutoSize = true;
+            this.wordAlienCB.Location = new System.Drawing.Point(204, 44);
+            this.wordAlienCB.Name = "wordAlienCB";
+            this.wordAlienCB.Size = new System.Drawing.Size(112, 24);
+            this.wordAlienCB.TabIndex = 2;
+            this.wordAlienCB.Text = "Word Alien";
+            this.wordAlienCB.UseVisualStyleBackColor = true;
+            // 
             // Settings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(342, 130);
+            this.Controls.Add(this.wordAlienCB);
             this.Controls.Add(this.checkBox1);
             this.Controls.Add(this.groupBox1);
             this.Name = "Settings";
@@ -102,5 +114,6 @@
         private System.Windows.Forms.RadioButton radioButton2;
         private System.Windows.Forms.CheckBox checkBox1;
         public System.Windows.Forms.RadioButton sequentialRB;
+        private System.Windows.Forms.CheckBox wordAlienCB;
     }
 }
