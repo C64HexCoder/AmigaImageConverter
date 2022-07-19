@@ -34,6 +34,8 @@
             this.loadImageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saveImageAsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.savePallateToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.cutSpriteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.settingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.settingsMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -45,8 +47,6 @@
             this.toolStripFileName = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripResolutionLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripDepthLabel = new System.Windows.Forms.ToolStripStatusLabel();
-            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.cutSpriteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).BeginInit();
             this.statusStrip1.SuspendLayout();
@@ -77,6 +77,7 @@
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
             this.fileToolStripMenuItem.Size = new System.Drawing.Size(54, 29);
             this.fileToolStripMenuItem.Text = "File";
+            this.fileToolStripMenuItem.Click += new System.EventHandler(this.fileToolStripMenuItem_Click);
             // 
             // loadImageToolStripMenuItem
             // 
@@ -99,6 +100,21 @@
             this.savePallateToolStripMenuItem.Text = "Save Pallate";
             this.savePallateToolStripMenuItem.Click += new System.EventHandler(this.savePallateToolStripMenuItem_Click);
             // 
+            // toolStripMenuItem1
+            // 
+            this.toolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.cutSpriteToolStripMenuItem});
+            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(74, 29);
+            this.toolStripMenuItem1.Text = "Sprite";
+            // 
+            // cutSpriteToolStripMenuItem
+            // 
+            this.cutSpriteToolStripMenuItem.Name = "cutSpriteToolStripMenuItem";
+            this.cutSpriteToolStripMenuItem.Size = new System.Drawing.Size(192, 34);
+            this.cutSpriteToolStripMenuItem.Text = "Cut Sprite";
+            this.cutSpriteToolStripMenuItem.Click += new System.EventHandler(this.cutSpriteToolStripMenuItem_Click);
+            // 
             // settingsToolStripMenuItem
             // 
             this.settingsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -110,7 +126,7 @@
             // settingsMenuItem
             // 
             this.settingsMenuItem.Name = "settingsMenuItem";
-            this.settingsMenuItem.Size = new System.Drawing.Size(270, 34);
+            this.settingsMenuItem.Size = new System.Drawing.Size(178, 34);
             this.settingsMenuItem.Text = "Settings";
             this.settingsMenuItem.Click += new System.EventHandler(this.settingsMenuItem_Click);
             // 
@@ -125,14 +141,14 @@
             // aboutMenuItem
             // 
             this.aboutMenuItem.Name = "aboutMenuItem";
-            this.aboutMenuItem.Size = new System.Drawing.Size(270, 34);
+            this.aboutMenuItem.Size = new System.Drawing.Size(164, 34);
             this.aboutMenuItem.Text = "About";
             this.aboutMenuItem.Click += new System.EventHandler(this.aboutMenuItem_Click);
             // 
             // pictureBox
             // 
             this.pictureBox.Location = new System.Drawing.Point(0, 34);
-            this.pictureBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pictureBox.Margin = new System.Windows.Forms.Padding(2);
             this.pictureBox.Name = "pictureBox";
             this.pictureBox.Size = new System.Drawing.Size(940, 727);
             this.pictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -179,21 +195,6 @@
             this.toolStripDepthLabel.Size = new System.Drawing.Size(61, 25);
             this.toolStripDepthLabel.Text = "Depth";
             // 
-            // toolStripMenuItem1
-            // 
-            this.toolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.cutSpriteToolStripMenuItem});
-            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(74, 29);
-            this.toolStripMenuItem1.Text = "Sprite";
-            // 
-            // cutSpriteToolStripMenuItem
-            // 
-            this.cutSpriteToolStripMenuItem.Name = "cutSpriteToolStripMenuItem";
-            this.cutSpriteToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
-            this.cutSpriteToolStripMenuItem.Text = "Cut Sprite";
-            this.cutSpriteToolStripMenuItem.Click += new System.EventHandler(this.cutSpriteToolStripMenuItem_Click);
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -204,7 +205,7 @@
             this.Controls.Add(this.menuStrip1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "MainForm";
             this.Text = "Amiga Image Converter";
             this.menuStrip1.ResumeLayout(false);
