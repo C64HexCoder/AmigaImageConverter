@@ -15,6 +15,7 @@ namespace AmigaImageConverter
         public Settings()
         {
             InitializeComponent();
+            wordRbox.Checked = true;
         }
     }
 }
