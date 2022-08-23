@@ -121,9 +121,14 @@ namespace AmigaImageConverter
         private void pallateToolStripMenuItem_Click(object sender, EventArgs e)
         {
             //ColorPalette colorPalette = bitplane.Pallate;
-            pallate.imagePallate.NumOfColors = bitplane.Pallate.Length;
-            pallate.imagePallate.Colors = bitplane.Pallate;
-            pallate.ShowDialog();
+            if (bitplane.Pallate != null)
+            {
+                pallate.imagePallate.NumOfColors = bitplane.Pallate.Length;
+                pallate.imagePallate.Colors = bitplane.Pallate;
+                pallate.ShowDialog();
+            }
+            else
+                MessageBox.Show("There is no pallate yet, try to load image first, or that the image you've loaded has no Pallate.", "Pallate Error",MessageBoxButtons.OK);
         }
     }
 }
