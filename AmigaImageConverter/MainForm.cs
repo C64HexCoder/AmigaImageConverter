@@ -22,7 +22,8 @@ namespace AmigaImageConverter
         Bitplane bitplane = new Bitplane();
         Settings settings = new Settings();
         About about = new About();
-
+        Pallate pallate = new Pallate();
+        PublicVariables vr = PublicVariables.instance;
         public MainForm()
         {
             InitializeComponent();
@@ -70,7 +71,7 @@ namespace AmigaImageConverter
                 switch (saveFileDialog.FilterIndex)
                 {
                     case 1:
-                        bitplane.SaveBitmapsAsAssemblerSourceCode(saveFileDialog.FileName);
+                        bitplane.SaveBitmapsAsAssemblerSourceCode(saveFileDialog.FileName,vr.outputSize,vr.NumInARow);
                         break;
                     case 2:
                     if (settings.sequentialRB.Checked == true)
@@ -103,7 +104,7 @@ namespace AmigaImageConverter
             pallateFileDialog.Filter = "Assembler Source|*.S";
             if (pallateFileDialog.ShowDialog() == DialogResult.OK)
             {
-                bitplane.SavePallate(pallateFileDialog.FileName);
+                bitplane.SavePallate(pallateFileDialog.FileName, vr.BaseColor);
             }
         }
 
@@ -115,6 +116,14 @@ namespace AmigaImageConverter
         private void fileToolStripMenuItem_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void pallateToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            //ColorPalette colorPalette = bitplane.Pallate;
+            pallate.imagePallate.NumOfColors = bitplane.Pallate.Length;
+            pallate.imagePallate.Colors = bitplane.Pallate;
+            pallate.ShowDialog();
         }
     }
 }
