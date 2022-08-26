@@ -71,7 +71,10 @@ namespace AmigaImageConverter
                 switch (saveFileDialog.FilterIndex)
                 {
                     case 1:
-                        bitplane.SaveBitmapsAsAssemblerSourceCode(saveFileDialog.FileName,vr.outputSize,vr.NumInARow);
+                        if (settings.sequentialRB.Checked == true)
+                            bitplane.SaveBitmapsAsAssemblerSourceCode(saveFileDialog.FileName,vr.outputSize,vr.NumInARow);
+                        else
+                            bitplane.SaveBitmapsAsInterleavedAssemblerSourceCode(saveFileDialog.FileName,vr.outputSize,vr.NumInARow);
                         break;
                     case 2:
                     if (settings.sequentialRB.Checked == true)
