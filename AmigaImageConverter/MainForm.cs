@@ -77,13 +77,16 @@ namespace AmigaImageConverter
                             bitplane.SaveBitmapsAsInterleavedAssemblerSourceCode(saveFileDialog.FileName,vr.outputSize,vr.NumInARow);
                         break;
                     case 2:
-                    if (settings.sequentialRB.Checked == true)
-                        bitplane.SaveBitmapsAsBinaryFile(saveFileDialog.FileName);
-                    else
-                        bitplane.SaveBitmapsAsInterleavedBinaryFile(saveFileDialog.FileName);
+                        if (settings.sequentialRB.Checked == true)
+                            bitplane.SaveBitmapsAsBinaryFile(saveFileDialog.FileName);
+                        else
+                            bitplane.SaveBitmapsAsInterleavedBinaryFile(saveFileDialog.FileName);
                         break;
                     case 3:
-                        bitplane.SaveBitmapsAsInterleavedCPPSourceCode(saveFileDialog.FileName, vr.outputSize,vr.NumInARow);
+                        if (settings.sequentialRB.Checked == true)
+                            bitplane.SaveBitmapsAsCPPSourceCode(saveFileDialog.FileName, vr.outputSize,vr.NumInARow);
+                        else
+                            bitplane.SaveBitmapsAsInterleavedCPPSourceCode(saveFileDialog.FileName, vr.outputSize,vr.NumInARow);
                         break;
                 }
             }
