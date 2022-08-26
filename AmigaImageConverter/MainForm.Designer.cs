@@ -82,21 +82,21 @@
             // loadImageToolStripMenuItem
             // 
             this.loadImageToolStripMenuItem.Name = "loadImageToolStripMenuItem";
-            this.loadImageToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
+            this.loadImageToolStripMenuItem.Size = new System.Drawing.Size(231, 34);
             this.loadImageToolStripMenuItem.Text = "Load Image";
             this.loadImageToolStripMenuItem.Click += new System.EventHandler(this.loadImageToolStripMenuItem_Click);
             // 
             // saveImageAsToolStripMenuItem
             // 
             this.saveImageAsToolStripMenuItem.Name = "saveImageAsToolStripMenuItem";
-            this.saveImageAsToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
+            this.saveImageAsToolStripMenuItem.Size = new System.Drawing.Size(231, 34);
             this.saveImageAsToolStripMenuItem.Text = "Save Image As";
             this.saveImageAsToolStripMenuItem.Click += new System.EventHandler(this.saveImageAsToolStripMenuItem_Click);
             // 
             // savePallateToolStripMenuItem
             // 
             this.savePallateToolStripMenuItem.Name = "savePallateToolStripMenuItem";
-            this.savePallateToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
+            this.savePallateToolStripMenuItem.Size = new System.Drawing.Size(231, 34);
             this.savePallateToolStripMenuItem.Text = "Save Pallate";
             this.savePallateToolStripMenuItem.Click += new System.EventHandler(this.savePallateToolStripMenuItem_Click);
             // 
@@ -169,8 +169,7 @@
             // 
             // saveFileDialog
             // 
-            this.saveFileDialog.Filter = "Aseembler Source File|*.S|Binary File|*.bin";
-            this.saveFileDialog.FileOk += new System.ComponentModel.CancelEventHandler(this.saveFileDialog_FileOk);
+            this.saveFileDialog.Filter = "Aseembler Source File|*.S;*.asm|Binary File|*.bin| C Source File |*.c";
             // 
             // statusStrip1
             // 

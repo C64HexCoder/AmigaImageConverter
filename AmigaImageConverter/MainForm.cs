@@ -82,14 +82,14 @@ namespace AmigaImageConverter
                     else
                         bitplane.SaveBitmapsAsInterleavedBinaryFile(saveFileDialog.FileName);
                         break;
+                    case 3:
+                        bitplane.SaveBitmapsAsInterleavedCPPSourceCode(saveFileDialog.FileName, vr.outputSize,vr.NumInARow);
+                        break;
                 }
             }
         }
 
-        private void saveFileDialog_FileOk(object sender, CancelEventArgs e)
-        {
-
-        }
+      
 
         private void settingsMenuItem_Click(object sender, EventArgs e)
         {
