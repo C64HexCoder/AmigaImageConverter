@@ -34,6 +34,9 @@
     <Reference Include="Hexadecimal">
       <HintPath>..\..\Hexadecimal\Hexadecimal\bin\Release\Hexadecimal.dll</HintPath>
     </Reference>
+    <Reference Include="Pallate Control">
+      <HintPath>..\..\Pallate Control\Pallate Control\bin\Debug\net6.0-windows\Pallate Control.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.7.2">

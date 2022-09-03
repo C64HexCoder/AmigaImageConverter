@@ -22,7 +22,8 @@ namespace AmigaImageConverter
         Bitplane bitplane = new Bitplane();
         Settings settings = new Settings();
         About about = new About();
-
+        Pallate pallate = new Pallate();
+        PublicVariables vr = PublicVariables.instance;
         public MainForm()
         {
             InitializeComponent();
@@ -35,6 +36,7 @@ namespace AmigaImageConverter
             {
                 //bmp = new Bitmap(openFileDialog.FileName);
                 pictureBox.Load(openFileDialog.FileName);
+                pictureBox.Scale (new SizeF ((float)settings.previewScalingNud.Value, (float)settings.previewScalingNud.Value));
                
                 bitplane.LoadImage(openFileDialog.FileName);
                 pictureBox.Width = bitplane.Width;
@@ -70,22 +72,28 @@ namespace AmigaImageConverter
                 switch (saveFileDialog.FilterIndex)
                 {
                     case 1:
-                        bitplane.SaveBitmapsAsAssemblerSourceCode(saveFileDialog.FileName);
+                        if (settings.sequentialRB.Checked == true)
+                            bitplane.SaveBitmapsAsAssemblerSourceCode(saveFileDialog.FileName,vr.outputSize,vr.NumInARow);
+                        else
+                            bitplane.SaveBitmapsAsInterleavedAssemblerSourceCode(saveFileDialog.FileName,vr.outputSize,vr.NumInARow);
                         break;
                     case 2:
-                    if (settings.sequentialRB.Checked == true)
-                        bitplane.SaveBitmapsAsBinaryFile(saveFileDialog.FileName);
-                    else
-                        bitplane.SaveBitmapsAsInterleavedBinaryFile(saveFileDialog.FileName);
+                        if (settings.sequentialRB.Checked == true)
+                            bitplane.SaveBitmapsAsBinaryFile(saveFileDialog.FileName);
+                        else
+                            bitplane.SaveBitmapsAsInterleavedBinaryFile(saveFileDialog.FileName);
+                        break;
+                    case 3:
+                        if (settings.sequentialRB.Checked == true)
+                            bitplane.SaveBitmapsAsCPPSourceCode(saveFileDialog.FileName, vr.outputSize,vr.NumInARow);
+                        else
+                            bitplane.SaveBitmapsAsInterleavedCPPSourceCode(saveFileDialog.FileName, vr.outputSize,vr.NumInARow);
                         break;
                 }
             }
         }
 
-        private void saveFileDialog_FileOk(object sender, CancelEventArgs e)
-        {
-
-        }
+      
 
         private void settingsMenuItem_Click(object sender, EventArgs e)
         {
@@ -103,7 +111,7 @@ namespace AmigaImageConverter
             pallateFileDialog.Filter = "Assembler Source|*.S";
             if (pallateFileDialog.ShowDialog() == DialogResult.OK)
             {
-                bitplane.SavePallate(pallateFileDialog.FileName);
+                bitplane.SavePallate(pallateFileDialog.FileName, vr.BaseColor);
             }
         }
 
@@ -116,5 +124,19 @@ namespace AmigaImageConverter
         {
 
         }
+
+        private void pallateToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            //ColorPalette colorPalette = bitplane.Pallate;
+            if (bitplane.Pallate != null)
+            {
+                pallate.imagePallate.NumOfColors = bitplane.Pallate.Length;
+                pallate.imagePallate.Colors = bitplane.Pallate;
+                pallate.ShowDialog();
+            }
+            else
+                MessageBox.Show("There is no pallate yet, try to load image first, or that the image you've loaded has no Pallate.", "Pallate Error",MessageBoxButtons.OK);
+        }
+
     }
 }

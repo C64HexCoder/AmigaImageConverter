@@ -3,15 +3,20 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.31919.166
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AmigaImageConverter", "AmigaImageConverter\AmigaImageConverter.csproj", "{9A166D5F-6C6E-41AD-AEDC-F23B84949F0B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AmigaImageConverter", "AmigaImageConverter\AmigaImageConverter.csproj", "{9A166D5F-6C6E-41AD-AEDC-F23B84949F0B}"
+	ProjectSection(ProjectDependencies) = postProject
+		{5BC31509-F3F8-4BD2-80F3-A0D64662951E} = {5BC31509-F3F8-4BD2-80F3-A0D64662951E}
+	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AmigaBitplane", "..\AmigaBitplane\AmigaBitplane\AmigaBitplane.csproj", "{DF29F0EC-2416-4E71-9073-D6B5C87D9239}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AmigaBitplane", "..\AmigaBitplane\AmigaBitplane\AmigaBitplane.csproj", "{DF29F0EC-2416-4E71-9073-D6B5C87D9239}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hexadecimal", "..\Hexadecimal\Hexadecimal\Hexadecimal.csproj", "{5BC31509-F3F8-4BD2-80F3-A0D64662951E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Hexadecimal", "..\Hexadecimal\Hexadecimal\Hexadecimal.csproj", "{5BC31509-F3F8-4BD2-80F3-A0D64662951E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AmigaPallate", "..\AmigaPallate\AmigaPallate\AmigaPallate.csproj", "{192A5E49-8E1B-4953-936E-F0FEAB5D50F9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AmigaPallate", "..\AmigaPallate\AmigaPallate\AmigaPallate.csproj", "{192A5E49-8E1B-4953-936E-F0FEAB5D50F9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AmigaSprite", "..\AmigaSprite\AmigaSprite\AmigaSprite.csproj", "{772B6652-3263-4227-96CD-D70F45758F44}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AmigaSprite", "..\AmigaSprite\AmigaSprite\AmigaSprite.csproj", "{772B6652-3263-4227-96CD-D70F45758F44}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Pallate Control", "..\Pallate Control\Pallate Control\Pallate Control.csproj", "{0A4BDB04-0EA1-4766-89F1-BDECC2EA7FDD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +44,10 @@ Global
 		{772B6652-3263-4227-96CD-D70F45758F44}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{772B6652-3263-4227-96CD-D70F45758F44}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{772B6652-3263-4227-96CD-D70F45758F44}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0A4BDB04-0EA1-4766-89F1-BDECC2EA7FDD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0A4BDB04-0EA1-4766-89F1-BDECC2EA7FDD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0A4BDB04-0EA1-4766-89F1-BDECC2EA7FDD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0A4BDB04-0EA1-4766-89F1-BDECC2EA7FDD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
