@@ -44,10 +44,13 @@
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.colorRegistersCombo = new System.Windows.Forms.ComboBox();
             this.bitsPpCombo = new System.Windows.Forms.ComboBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.previewScalingNud = new System.Windows.Forms.NumericUpDown();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numInARowNud)).BeginInit();
             this.groupBox3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.previewScalingNud)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -232,11 +235,44 @@
             this.bitsPpCombo.Tag = "bpp";
             this.bitsPpCombo.SelectedIndexChanged += new System.EventHandler(this.bitsPpCombo_SelectedIndexChanged);
             // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(557, 105);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(131, 25);
+            this.label2.TabIndex = 10;
+            this.label2.Text = "Preview scaling";
+            // 
+            // previewScalingNud
+            // 
+            this.previewScalingNud.Location = new System.Drawing.Point(557, 135);
+            this.previewScalingNud.Maximum = new decimal(new int[] {
+            20,
+            0,
+            0,
+            0});
+            this.previewScalingNud.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.previewScalingNud.Name = "previewScalingNud";
+            this.previewScalingNud.Size = new System.Drawing.Size(180, 31);
+            this.previewScalingNud.TabIndex = 9;
+            this.previewScalingNud.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            // 
             // Settings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(751, 379);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.previewScalingNud);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.numInARowNud);
@@ -256,6 +292,7 @@
             this.groupBox2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numInARowNud)).EndInit();
             this.groupBox3.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.previewScalingNud)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -279,5 +316,7 @@
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.ComboBox colorRegistersCombo;
         private System.Windows.Forms.ComboBox bitsPpCombo;
+        private System.Windows.Forms.Label label2;
+        public System.Windows.Forms.NumericUpDown previewScalingNud;
     }
 }

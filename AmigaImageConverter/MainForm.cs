@@ -36,6 +36,7 @@ namespace AmigaImageConverter
             {
                 //bmp = new Bitmap(openFileDialog.FileName);
                 pictureBox.Load(openFileDialog.FileName);
+                pictureBox.Scale (new SizeF ((float)settings.previewScalingNud.Value, (float)settings.previewScalingNud.Value));
                
                 bitplane.LoadImage(openFileDialog.FileName);
                 pictureBox.Width = bitplane.Width;
@@ -136,5 +137,6 @@ namespace AmigaImageConverter
             else
                 MessageBox.Show("There is no pallate yet, try to load image first, or that the image you've loaded has no Pallate.", "Pallate Error",MessageBoxButtons.OK);
         }
+
     }
 }
