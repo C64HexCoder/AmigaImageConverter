@@ -36,16 +36,19 @@ namespace AmigaImageConverter
             {
                 //bmp = new Bitmap(openFileDialog.FileName);
                 pictureBox.Load(openFileDialog.FileName);
-                pictureBox.Scale (new SizeF ((float)settings.previewScalingNud.Value, (float)settings.previewScalingNud.Value));
+                //pictureBox.Scale (new SizeF ((float)settings.previewScalingNud.Value, (float)settings.previewScalingNud.Value));
                
                 bitplane.LoadImage(openFileDialog.FileName);
                 pictureBox.Width = bitplane.Width;
                 pictureBox.Height = bitplane.Height;
-                Width = bitplane.Width+20;
-                Height = bitplane.Height + menuStrip1.Height + statusStrip1.Height+40;
+                if (bitplane.Width > Width || bitplane.Height > Height)
+                {
+                    Width = bitplane.Width + 20;
+                    Height = bitplane.Height + menuStrip1.Height + statusStrip1.Height + 60;
+                }
                 toolStripFileName.Text = openFileDialog.FileName;
                 toolStripResolutionLabel.Text = $"{bitplane.Width}x{bitplane.Height}";
-                toolStripDepthLabel.Text = $"{bitplane.NumOfBitmaps} Bitmaps, New Width: {bitplane.New32BitAllignedWidth}";
+                toolStripDepthLabel.Text = $"{bitplane.NumOfBitmaps} Bitmaps, new Width: {bitplane.actualWidth}";
 
                 switch (pictureBox.Image.PixelFormat)
                 {
