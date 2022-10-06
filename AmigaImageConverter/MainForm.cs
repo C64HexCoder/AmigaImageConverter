@@ -12,18 +12,18 @@ using Hexadecimal;
 using AmigaBitplane;
 
 
-
 namespace AmigaImageConverter
 {
     public partial class MainForm : Form
     {
         Bitmap bmp = null;
         Endian endian = new Endian();
-        Bitplane bitplane = new Bitplane();
+       
         Settings settings = new Settings();
         About about = new About();
         Pallate pallate = new Pallate();
         PublicVariables vr = PublicVariables.instance;
+        
         public MainForm()
         {
             InitializeComponent();
@@ -38,17 +38,17 @@ namespace AmigaImageConverter
                 pictureBox.Load(openFileDialog.FileName);
                 //pictureBox.Scale (new SizeF ((float)settings.previewScalingNud.Value, (float)settings.previewScalingNud.Value));
                
-                bitplane.LoadImage(openFileDialog.FileName);
-                pictureBox.Width = bitplane.Width;
-                pictureBox.Height = bitplane.Height;
-                if (bitplane.Width > Width || bitplane.Height > Height)
+                vr.bitplane.LoadImage(openFileDialog.FileName);
+                pictureBox.Width = vr.bitplane.Width;
+                pictureBox.Height = vr.bitplane.Height;
+                if (vr.bitplane.Width > Width || vr.bitplane.Height > Height)
                 {
-                    Width = bitplane.Width + 20;
-                    Height = bitplane.Height + menuStrip1.Height + statusStrip1.Height + 60;
+                    Width = vr.bitplane.Width + 20;
+                    Height = vr.bitplane.Height + menuStrip1.Height + statusStrip1.Height + 60;
                 }
                 toolStripFileName.Text = openFileDialog.FileName;
-                toolStripResolutionLabel.Text = $"{bitplane.Width}x{bitplane.Height}";
-                toolStripDepthLabel.Text = $"{bitplane.NumOfBitmaps} Bitmaps, new Width: {bitplane.actualWidth}";
+                toolStripResolutionLabel.Text = $"{vr.bitplane.Width}x{vr.bitplane.Height}";
+                toolStripDepthLabel.Text = $"{vr.bitplane.NumOfBitmaps} Bitmaps, new Width: {vr.bitplane.actualWidth}";
 
                 switch (pictureBox.Image.PixelFormat)
                 {
@@ -76,21 +76,21 @@ namespace AmigaImageConverter
                 {
                     case 1:
                         if (settings.sequentialRB.Checked == true)
-                            bitplane.SaveBitmapsAsAssemblerSourceCode(saveFileDialog.FileName,vr.outputSize,vr.NumInARow);
+                            vr.bitplane.SaveBitmapsAsAssemblerSourceCode(saveFileDialog.FileName,vr.outputSize,vr.NumInARow);
                         else
-                            bitplane.SaveBitmapsAsInterleavedAssemblerSourceCode(saveFileDialog.FileName,vr.outputSize,vr.NumInARow);
+                            vr.bitplane.SaveBitmapsAsInterleavedAssemblerSourceCode(saveFileDialog.FileName,vr.outputSize,vr.NumInARow);
                         break;
                     case 2:
                         if (settings.sequentialRB.Checked == true)
-                            bitplane.SaveBitmapsAsBinaryFile(saveFileDialog.FileName);
+                            vr.bitplane.SaveBitmapsAsBinaryFile(saveFileDialog.FileName);
                         else
-                            bitplane.SaveBitmapsAsInterleavedBinaryFile(saveFileDialog.FileName);
+                            vr.bitplane.SaveBitmapsAsInterleavedBinaryFile(saveFileDialog.FileName);
                         break;
                     case 3:
                         if (settings.sequentialRB.Checked == true)
-                            bitplane.SaveBitmapsAsCPPSourceCode(saveFileDialog.FileName, vr.outputSize,vr.NumInARow);
+                            vr.bitplane.SaveBitmapsAsCPPSourceCode(saveFileDialog.FileName, vr.outputSize,vr.NumInARow);
                         else
-                            bitplane.SaveBitmapsAsInterleavedCPPSourceCode(saveFileDialog.FileName, vr.outputSize,vr.NumInARow);
+                            vr.bitplane.SaveBitmapsAsInterleavedCPPSourceCode(saveFileDialog.FileName, vr.outputSize,vr.NumInARow);
                         break;
                 }
             }
@@ -114,7 +114,7 @@ namespace AmigaImageConverter
             pallateFileDialog.Filter = "Assembler Source|*.S";
             if (pallateFileDialog.ShowDialog() == DialogResult.OK)
             {
-                bitplane.SavePallate(pallateFileDialog.FileName, vr.BaseColor);
+                vr.bitplane.SavePallate(pallateFileDialog.FileName, vr.BaseColor);
             }
         }
 
@@ -131,15 +131,20 @@ namespace AmigaImageConverter
         private void pallateToolStripMenuItem_Click(object sender, EventArgs e)
         {
             //ColorPalette colorPalette = bitplane.Pallate;
-            if (bitplane.Pallate != null)
+            if (vr.bitplane.Pallate != null)
             {
-                pallate.imagePallate.NumOfColors = bitplane.Pallate.Length;
-                pallate.imagePallate.Colors = bitplane.Pallate;
+                pallate.imagePallate.NumOfColors = vr.bitplane.Pallate.Length;
+                pallate.imagePallate.Colors = vr.bitplane.Pallate;
                 pallate.ShowDialog();
             }
             else
                 MessageBox.Show("There is no pallate yet, try to load image first, or that the image you've loaded has no Pallate.", "Pallate Error",MessageBoxButtons.OK);
         }
 
+        private void selectBackgroundToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SelectBackgroundColor selectBGColor = new SelectBackgroundColor();
+            selectBGColor.ShowDialog();
+        }
     }
 }

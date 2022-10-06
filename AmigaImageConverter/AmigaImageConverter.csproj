@@ -52,7 +52,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\AmigaBitplane\AmigaBitplane\AmigaBitplane.csproj" />
-    <ProjectReference Include="..\..\AmigaPallate\AmigaPallate\AmigaPallate.csproj" />
+    <ProjectReference Include="..\..\Pallate Control\Pallate Control\Pallate Control.csproj" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.CSharp" Version="4.7.0" />

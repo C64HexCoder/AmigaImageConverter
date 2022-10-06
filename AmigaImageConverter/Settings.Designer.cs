@@ -42,29 +42,33 @@
             this.byteRbox = new System.Windows.Forms.RadioButton();
             this.OKBtn = new System.Windows.Forms.Button();
             this.cancelBtn = new System.Windows.Forms.Button();
-            this.numInARowNud = new System.Windows.Forms.NumericUpDown();
-            this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.previewScalingNud = new System.Windows.Forms.NumericUpDown();
-            this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.Aliment = new System.Windows.Forms.TabPage();
+            this.AligmentGb = new System.Windows.Forms.GroupBox();
+            this.alignLongRb = new System.Windows.Forms.RadioButton();
+            this.alignWordRb = new System.Windows.Forms.RadioButton();
+            this.alignByteRb = new System.Windows.Forms.RadioButton();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.label1 = new System.Windows.Forms.Label();
+            this.numInARowNud = new System.Windows.Forms.NumericUpDown();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
-            this.radioButton1 = new System.Windows.Forms.RadioButton();
-            this.radioButton3 = new System.Windows.Forms.RadioButton();
             this.radioButton4 = new System.Windows.Forms.RadioButton();
+            this.radioButton3 = new System.Windows.Forms.RadioButton();
+            this.radioButton1 = new System.Windows.Forms.RadioButton();
+            this.tabPage3 = new System.Windows.Forms.TabPage();
             this.groupBox1.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numInARowNud)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.previewScalingNud)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.Aliment.SuspendLayout();
+            this.AligmentGb.SuspendLayout();
             this.tabPage2.SuspendLayout();
-            this.tabPage3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numInARowNud)).BeginInit();
             this.groupBox5.SuspendLayout();
+            this.tabPage3.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -168,7 +172,7 @@
             this.groupBox2.Size = new System.Drawing.Size(159, 152);
             this.groupBox2.TabIndex = 3;
             this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Save As (A;ien)";
+            this.groupBox2.Text = "Save As";
             // 
             // longRbox
             // 
@@ -226,23 +230,6 @@
             this.cancelBtn.Text = "Cancel";
             this.cancelBtn.UseVisualStyleBackColor = true;
             // 
-            // numInARowNud
-            // 
-            this.numInARowNud.Location = new System.Drawing.Point(20, 49);
-            this.numInARowNud.Name = "numInARowNud";
-            this.numInARowNud.Size = new System.Drawing.Size(180, 31);
-            this.numInARowNud.TabIndex = 6;
-            this.numInARowNud.ValueChanged += new System.EventHandler(this.numInARowNud_ValueChanged);
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(20, 19);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(157, 25);
-            this.label1.TabIndex = 7;
-            this.label1.Text = "Numbers in a Row";
-            // 
             // label2
             // 
             this.label2.AutoSize = true;
@@ -274,15 +261,6 @@
             0,
             0});
             // 
-            // groupBox4
-            // 
-            this.groupBox4.Location = new System.Drawing.Point(188, 9);
-            this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(155, 152);
-            this.groupBox4.TabIndex = 11;
-            this.groupBox4.TabStop = false;
-            this.groupBox4.Text = "groupBox4";
-            // 
             // tabControl1
             // 
             this.tabControl1.Controls.Add(this.Aliment);
@@ -296,9 +274,9 @@
             // 
             // Aliment
             // 
+            this.Aliment.Controls.Add(this.AligmentGb);
             this.Aliment.Controls.Add(this.wordAlienCB);
             this.Aliment.Controls.Add(this.groupBox2);
-            this.Aliment.Controls.Add(this.groupBox4);
             this.Aliment.Location = new System.Drawing.Point(4, 34);
             this.Aliment.Name = "Aliment";
             this.Aliment.Padding = new System.Windows.Forms.Padding(3);
@@ -307,8 +285,55 @@
             this.Aliment.Text = "Aliment";
             this.Aliment.UseVisualStyleBackColor = true;
             // 
+            // AligmentGb
+            // 
+            this.AligmentGb.Controls.Add(this.alignLongRb);
+            this.AligmentGb.Controls.Add(this.alignWordRb);
+            this.AligmentGb.Controls.Add(this.alignByteRb);
+            this.AligmentGb.Location = new System.Drawing.Point(182, 9);
+            this.AligmentGb.Name = "AligmentGb";
+            this.AligmentGb.Size = new System.Drawing.Size(159, 152);
+            this.AligmentGb.TabIndex = 12;
+            this.AligmentGb.TabStop = false;
+            this.AligmentGb.Text = "Aligns As";
+            // 
+            // alignLongRb
+            // 
+            this.alignLongRb.AutoSize = true;
+            this.alignLongRb.Location = new System.Drawing.Point(11, 103);
+            this.alignLongRb.Name = "alignLongRb";
+            this.alignLongRb.Size = new System.Drawing.Size(77, 29);
+            this.alignLongRb.TabIndex = 2;
+            this.alignLongRb.Text = "Long";
+            this.alignLongRb.UseVisualStyleBackColor = true;
+            this.alignLongRb.CheckedChanged += new System.EventHandler(this.alignLongRb_CheckedChanged);
+            // 
+            // alignWordRb
+            // 
+            this.alignWordRb.AutoSize = true;
+            this.alignWordRb.Location = new System.Drawing.Point(11, 68);
+            this.alignWordRb.Name = "alignWordRb";
+            this.alignWordRb.Size = new System.Drawing.Size(81, 29);
+            this.alignWordRb.TabIndex = 1;
+            this.alignWordRb.Text = "Word";
+            this.alignWordRb.UseVisualStyleBackColor = true;
+            this.alignWordRb.CheckedChanged += new System.EventHandler(this.alignWordRb_CheckedChanged);
+            // 
+            // alignByteRb
+            // 
+            this.alignByteRb.AutoSize = true;
+            this.alignByteRb.Location = new System.Drawing.Point(11, 33);
+            this.alignByteRb.Name = "alignByteRb";
+            this.alignByteRb.Size = new System.Drawing.Size(71, 29);
+            this.alignByteRb.TabIndex = 0;
+            this.alignByteRb.Text = "Byte";
+            this.alignByteRb.UseVisualStyleBackColor = true;
+            this.alignByteRb.CheckedChanged += new System.EventHandler(this.alignByteRb_CheckedChanged);
+            // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.label1);
+            this.tabPage2.Controls.Add(this.numInARowNud);
             this.tabPage2.Controls.Add(this.groupBox5);
             this.tabPage2.Controls.Add(this.groupBox1);
             this.tabPage2.Controls.Add(this.groupBox3);
@@ -320,20 +345,21 @@
             this.tabPage2.Text = "Format";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
-            // tabPage3
+            // label1
             // 
-            this.tabPage3.Controls.Add(this.checkBox1);
-            this.tabPage3.Controls.Add(this.label1);
-            this.tabPage3.Controls.Add(this.label2);
-            this.tabPage3.Controls.Add(this.numInARowNud);
-            this.tabPage3.Controls.Add(this.previewScalingNud);
-            this.tabPage3.Location = new System.Drawing.Point(4, 34);
-            this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage3.Size = new System.Drawing.Size(739, 289);
-            this.tabPage3.TabIndex = 2;
-            this.tabPage3.Text = "tabPage3";
-            this.tabPage3.UseVisualStyleBackColor = true;
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(269, 181);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(157, 25);
+            this.label1.TabIndex = 11;
+            this.label1.Text = "Numbers in a Row";
+            // 
+            // numInARowNud
+            // 
+            this.numInARowNud.Location = new System.Drawing.Point(269, 211);
+            this.numInARowNud.Name = "numInARowNud";
+            this.numInARowNud.Size = new System.Drawing.Size(180, 31);
+            this.numInARowNud.TabIndex = 10;
             // 
             // groupBox5
             // 
@@ -347,16 +373,16 @@
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "Padding";
             // 
-            // radioButton1
+            // radioButton4
             // 
-            this.radioButton1.AutoSize = true;
-            this.radioButton1.Location = new System.Drawing.Point(6, 32);
-            this.radioButton1.Name = "radioButton1";
-            this.radioButton1.Size = new System.Drawing.Size(71, 29);
-            this.radioButton1.TabIndex = 0;
-            this.radioButton1.TabStop = true;
-            this.radioButton1.Text = "Byte";
-            this.radioButton1.UseVisualStyleBackColor = true;
+            this.radioButton4.AutoSize = true;
+            this.radioButton4.Location = new System.Drawing.Point(6, 101);
+            this.radioButton4.Name = "radioButton4";
+            this.radioButton4.Size = new System.Drawing.Size(77, 29);
+            this.radioButton4.TabIndex = 2;
+            this.radioButton4.TabStop = true;
+            this.radioButton4.Text = "Long";
+            this.radioButton4.UseVisualStyleBackColor = true;
             // 
             // radioButton3
             // 
@@ -369,16 +395,29 @@
             this.radioButton3.Text = "Word";
             this.radioButton3.UseVisualStyleBackColor = true;
             // 
-            // radioButton4
+            // radioButton1
             // 
-            this.radioButton4.AutoSize = true;
-            this.radioButton4.Location = new System.Drawing.Point(6, 101);
-            this.radioButton4.Name = "radioButton4";
-            this.radioButton4.Size = new System.Drawing.Size(77, 29);
-            this.radioButton4.TabIndex = 2;
-            this.radioButton4.TabStop = true;
-            this.radioButton4.Text = "Long";
-            this.radioButton4.UseVisualStyleBackColor = true;
+            this.radioButton1.AutoSize = true;
+            this.radioButton1.Location = new System.Drawing.Point(6, 32);
+            this.radioButton1.Name = "radioButton1";
+            this.radioButton1.Size = new System.Drawing.Size(71, 29);
+            this.radioButton1.TabIndex = 0;
+            this.radioButton1.TabStop = true;
+            this.radioButton1.Text = "Byte";
+            this.radioButton1.UseVisualStyleBackColor = true;
+            // 
+            // tabPage3
+            // 
+            this.tabPage3.Controls.Add(this.checkBox1);
+            this.tabPage3.Controls.Add(this.label2);
+            this.tabPage3.Controls.Add(this.previewScalingNud);
+            this.tabPage3.Location = new System.Drawing.Point(4, 34);
+            this.tabPage3.Name = "tabPage3";
+            this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage3.Size = new System.Drawing.Size(739, 289);
+            this.tabPage3.TabIndex = 2;
+            this.tabPage3.Text = "tabPage3";
+            this.tabPage3.UseVisualStyleBackColor = true;
             // 
             // Settings
             // 
@@ -396,17 +435,19 @@
             this.groupBox3.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numInARowNud)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.previewScalingNud)).EndInit();
             this.tabControl1.ResumeLayout(false);
             this.Aliment.ResumeLayout(false);
             this.Aliment.PerformLayout();
+            this.AligmentGb.ResumeLayout(false);
+            this.AligmentGb.PerformLayout();
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
-            this.tabPage3.ResumeLayout(false);
-            this.tabPage3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numInARowNud)).EndInit();
             this.groupBox5.ResumeLayout(false);
             this.groupBox5.PerformLayout();
+            this.tabPage3.ResumeLayout(false);
+            this.tabPage3.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -424,14 +465,11 @@
         public System.Windows.Forms.RadioButton longRbox;
         public System.Windows.Forms.RadioButton wordRbox;
         public System.Windows.Forms.RadioButton byteRbox;
-        private System.Windows.Forms.NumericUpDown numInARowNud;
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.ComboBox colorRegistersCombo;
         private System.Windows.Forms.ComboBox bitsPpCombo;
         private System.Windows.Forms.Label label2;
         public System.Windows.Forms.NumericUpDown previewScalingNud;
-        private System.Windows.Forms.GroupBox groupBox4;
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage Aliment;
         private System.Windows.Forms.TabPage tabPage2;
@@ -440,5 +478,11 @@
         private System.Windows.Forms.RadioButton radioButton4;
         private System.Windows.Forms.RadioButton radioButton3;
         private System.Windows.Forms.RadioButton radioButton1;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.NumericUpDown numInARowNud;
+        public System.Windows.Forms.GroupBox AligmentGb;
+        public System.Windows.Forms.RadioButton alignLongRb;
+        public System.Windows.Forms.RadioButton alignWordRb;
+        public System.Windows.Forms.RadioButton alignByteRb;
     }
 }

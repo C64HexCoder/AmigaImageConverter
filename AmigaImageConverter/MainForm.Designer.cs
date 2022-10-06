@@ -49,6 +49,7 @@
             this.toolStripFileName = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripResolutionLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripDepthLabel = new System.Windows.Forms.ToolStripStatusLabel();
+            this.selectBackgroundToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).BeginInit();
             this.statusStrip1.SuspendLayout();
@@ -119,7 +120,7 @@
             // cutSpriteToolStripMenuItem
             // 
             this.cutSpriteToolStripMenuItem.Name = "cutSpriteToolStripMenuItem";
-            this.cutSpriteToolStripMenuItem.Size = new System.Drawing.Size(192, 34);
+            this.cutSpriteToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
             this.cutSpriteToolStripMenuItem.Text = "Cut Sprite";
             this.cutSpriteToolStripMenuItem.Click += new System.EventHandler(this.cutSpriteToolStripMenuItem_Click);
             // 
@@ -127,7 +128,8 @@
             // 
             this.settingsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.settingsMenuItem,
-            this.pallateToolStripMenuItem});
+            this.pallateToolStripMenuItem,
+            this.selectBackgroundToolStripMenuItem});
             this.settingsToolStripMenuItem.Name = "settingsToolStripMenuItem";
             this.settingsToolStripMenuItem.Size = new System.Drawing.Size(92, 29);
             this.settingsToolStripMenuItem.Text = "Settings";
@@ -135,14 +137,14 @@
             // settingsMenuItem
             // 
             this.settingsMenuItem.Name = "settingsMenuItem";
-            this.settingsMenuItem.Size = new System.Drawing.Size(178, 34);
+            this.settingsMenuItem.Size = new System.Drawing.Size(270, 34);
             this.settingsMenuItem.Text = "Settings";
             this.settingsMenuItem.Click += new System.EventHandler(this.settingsMenuItem_Click);
             // 
             // pallateToolStripMenuItem
             // 
             this.pallateToolStripMenuItem.Name = "pallateToolStripMenuItem";
-            this.pallateToolStripMenuItem.Size = new System.Drawing.Size(178, 34);
+            this.pallateToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
             this.pallateToolStripMenuItem.Text = "Pallate";
             this.pallateToolStripMenuItem.Click += new System.EventHandler(this.pallateToolStripMenuItem_Click);
             // 
@@ -212,6 +214,13 @@
             this.toolStripDepthLabel.Size = new System.Drawing.Size(61, 25);
             this.toolStripDepthLabel.Text = "Depth";
             // 
+            // selectBackgroundToolStripMenuItem
+            // 
+            this.selectBackgroundToolStripMenuItem.Name = "selectBackgroundToolStripMenuItem";
+            this.selectBackgroundToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
+            this.selectBackgroundToolStripMenuItem.Text = "Select Background";
+            this.selectBackgroundToolStripMenuItem.Click += new System.EventHandler(this.selectBackgroundToolStripMenuItem_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 25F);
@@ -257,6 +266,7 @@
         private System.Windows.Forms.ToolStripMenuItem cutSpriteToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem pallateToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem saveImageAsSpriteToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem selectBackgroundToolStripMenuItem;
     }
 }
 
