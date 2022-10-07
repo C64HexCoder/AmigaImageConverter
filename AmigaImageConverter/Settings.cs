@@ -7,13 +7,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using AmigaBitplane;
+using Amiga;
 
 namespace AmigaImageConverter
 {
     public partial class Settings : Form
     {
         PublicVariables vr = PublicVariables.instance;
+        public Bitplane.OutputSize _Aligment;
         public Settings()
         {
             InitializeComponent();
@@ -21,6 +22,9 @@ namespace AmigaImageConverter
             numInARowNud.Value = vr.NumInARow;
             bitsPpCombo.SelectedIndex = 0;
             colorRegistersCombo.SelectedIndex = 0;
+            
+            Alignment = vr.Alignment;
+
         }
 
         public Bitplane.OutputSize outPutSize
@@ -48,6 +52,25 @@ namespace AmigaImageConverter
                         longRbox.Checked = true;
                         break;
 
+                }
+            }
+        }
+
+        public Bitplane.OutputSize Alignment
+        {
+            get { return vr.Alignment; } 
+            set { 
+                switch (value)
+                {
+                    case Bitplane.OutputSize.Byte:
+                        alignByteRb.Checked = true;
+                        break;
+                    case Bitplane.OutputSize.Word:
+                        alignWordRb.Checked = true;
+                        break;
+                    case Bitplane.OutputSize.Long:
+                        alignLongRb.Checked = true;
+                        break;
                 }
             }
         }
@@ -95,6 +118,21 @@ namespace AmigaImageConverter
                 else
                     vr.BaseColor = 0x1A0;
             }
+        }
+
+        private void alignByteRb_CheckedChanged(object sender, EventArgs e)
+        {
+            vr.Alignment = Bitplane.OutputSize.Byte;
+        }
+
+        private void alignWordRb_CheckedChanged(object sender, EventArgs e)
+        {
+            vr.Alignment = Bitplane.OutputSize.Word;
+        }
+
+        private void alignLongRb_CheckedChanged(object sender, EventArgs e)
+        {
+            vr.Alignment = Bitplane.OutputSize.Long;
         }
     }
 }
