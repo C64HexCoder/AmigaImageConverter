@@ -33,13 +33,19 @@ namespace AmigaImageConverter
               
             if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
-                //bmp = new Bitmap(openFileDialog.FileName);
-                pictureBox.Load(openFileDialog.FileName);
+                bmp = new Bitmap(openFileDialog.FileName);
+                image.Load(openFileDialog.FileName);
+                image.ScaleImage();
+                Width = image.Width+70;
+                Height = image.Height+statusStrip1.Height+20+menuStrip1.Height+30;
                 //pictureBox.Scale (new SizeF ((float)settings.previewScalingNud.Value, (float)settings.previewScalingNud.Value));
-               
+                //pictureBox.SizeMode = PictureBoxSizeMode.Zoom;
                 vr.bitplane.LoadImage(openFileDialog.FileName);
-                pictureBox.Width = vr.bitplane.Width;
-                pictureBox.Height = vr.bitplane.Height;
+                //imageGrid.Height = bmp.Height*8;
+
+                //Width = imageGrid.Width;
+                //Height = imageGrid.Height;
+
                 if (vr.bitplane.Width > Width || vr.bitplane.Height > Height)
                 {
                     Width = vr.bitplane.Width + 20;
@@ -49,7 +55,7 @@ namespace AmigaImageConverter
                 toolStripResolutionLabel.Text = $"{vr.bitplane.Width}x{vr.bitplane.Height}";
                 toolStripDepthLabel.Text = $"{vr.bitplane.NumOfBitmaps} Bitmaps, new Width: {vr.bitplane.actualWidth}";
 
-                switch (pictureBox.Image.PixelFormat)
+                switch (image.Image.PixelFormat)
                 {
                     case System.Drawing.Imaging.PixelFormat.Format64bppArgb:
                     case System.Drawing.Imaging.PixelFormat.Format32bppArgb:
@@ -144,6 +150,16 @@ namespace AmigaImageConverter
         {
             SelectBackgroundColor selectBGColor = new SelectBackgroundColor();
             selectBGColor.ShowDialog();
+        }
+
+        private void imageGrid_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void pictureBox_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
