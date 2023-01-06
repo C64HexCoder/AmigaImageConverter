@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.imagePallate = new Pallate_Control.Pallate();
+            this.imagePallate = new Amiga.Pallate();
             this.SuspendLayout();
             // 
             // imagePallate
@@ -54,6 +54,6 @@
 
         #endregion
 
-        public Pallate_Control.Pallate imagePallate;
+        public Amiga.Pallate imagePallate;
     }
 }

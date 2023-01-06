@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.pallete = new Pallate_Control.Pallate();
+            this.pallete = new Amiga.Pallate();
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.SuspendLayout();
@@ -44,7 +44,7 @@
             this.pallete.SelectedColorBox = true;
             this.pallete.Size = new System.Drawing.Size(397, 414);
             this.pallete.TabIndex = 0;
-            this.pallete.ColorSelected += new System.EventHandler<Pallate_Control.Pallate.SelectedColorEventArgs>(this.pallete_ColorSelected);
+            this.pallete.ColorSelected += new System.EventHandler<Amiga.Pallate.SelectedColorEventArgs>(this.pallete_ColorSelected);
             // 
             // button1
             // 
@@ -82,7 +82,7 @@
 
         #endregion
 
-        private Pallate_Control.Pallate pallete;
+        private Amiga.Pallate pallete;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
     }

@@ -19,7 +19,7 @@ namespace AmigaImageConverter
             pallete.Colors = vr.bitplane.Pallate;
         }
 
-        private void pallete_ColorSelected(object sender, Pallate_Control.Pallate.SelectedColorEventArgs e)
+        private void pallete_ColorSelected(object sender, Amiga.Pallate.SelectedColorEventArgs e)
         {
 
         }
