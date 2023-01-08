@@ -66,7 +66,7 @@
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(4, 2, 0, 2);
-            this.menuStrip1.Size = new System.Drawing.Size(572, 33);
+            this.menuStrip1.Size = new System.Drawing.Size(872, 33);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -187,10 +187,10 @@
             this.toolStripFileName,
             this.toolStripResolutionLabel,
             this.toolStripDepthLabel});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 537);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 612);
             this.statusStrip1.Name = "statusStrip1";
             this.statusStrip1.Padding = new System.Windows.Forms.Padding(1, 0, 16, 0);
-            this.statusStrip1.Size = new System.Drawing.Size(572, 32);
+            this.statusStrip1.Size = new System.Drawing.Size(872, 32);
             this.statusStrip1.TabIndex = 2;
             this.statusStrip1.Text = "statusStrip1";
             // 
@@ -214,11 +214,11 @@
             // 
             // image
             // 
-            this.image.Location = new System.Drawing.Point(12, 34);
-            this.image.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.image.Location = new System.Drawing.Point(5, 35);
+            this.image.Margin = new System.Windows.Forms.Padding(2);
             this.image.Name = "image";
             this.image.ScaleFactor = 4;
-            this.image.Size = new System.Drawing.Size(660, 579);
+            this.image.Size = new System.Drawing.Size(862, 575);
             this.image.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
             this.image.TabIndex = 3;
             this.image.TabStop = false;
@@ -227,7 +227,9 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(572, 569);
+            this.AutoSize = true;
+            this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.ClientSize = new System.Drawing.Size(872, 644);
             this.Controls.Add(this.image);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.menuStrip1);

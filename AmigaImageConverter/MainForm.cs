@@ -36,8 +36,8 @@ namespace AmigaImageConverter
                 bmp = new Bitmap(openFileDialog.FileName);
                 image.Load(openFileDialog.FileName);
                 image.ScaleImage();
-                Width = image.Width+70;
-                Height = image.Height+statusStrip1.Height+20+menuStrip1.Height+30;
+             //   Width = image.Width+70;
+           //     Height = image.Height+statusStrip1.Height+20+menuStrip1.Height+30;
                 //pictureBox.Scale (new SizeF ((float)settings.previewScalingNud.Value, (float)settings.previewScalingNud.Value));
                 //pictureBox.SizeMode = PictureBoxSizeMode.Zoom;
                 vr.bitplane.LoadImage(openFileDialog.FileName);
