@@ -21,7 +21,7 @@ namespace AmigaImageConverter
 
         private void pallete_ColorSelected(object sender, Amiga.Pallate.SelectedColorEventArgs e)
         {
-
+            selectedColorPB.BackColor = e.Color;
         }
     }
 }

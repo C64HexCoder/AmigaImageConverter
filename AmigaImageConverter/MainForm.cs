@@ -149,6 +149,8 @@ namespace AmigaImageConverter
         private void selectBackgroundToolStripMenuItem_Click(object sender, EventArgs e)
         {
             SelectBackgroundColor selectBGColor = new SelectBackgroundColor();
+            selectBGColor.pallete.NumOfColors = vr.bitplane.Pallate.Length;
+            selectBGColor.pallete.Colors = vr.bitplane.Pallate;
             selectBGColor.ShowDialog();
         }
 
@@ -158,6 +160,11 @@ namespace AmigaImageConverter
         }
 
         private void pictureBox_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void saveImageAsSpriteToolStripMenuItem_Click(object sender, EventArgs e)
         {
 
         }

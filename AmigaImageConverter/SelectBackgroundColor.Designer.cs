@@ -31,6 +31,8 @@
             this.pallete = new Amiga.Pallate();
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
+            this.selectedColorPB = new System.Windows.Forms.PictureBox();
+            ((System.ComponentModel.ISupportInitialize)(this.selectedColorPB)).BeginInit();
             this.SuspendLayout();
             // 
             // pallete
@@ -49,7 +51,7 @@
             // button1
             // 
             this.button1.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.button1.Location = new System.Drawing.Point(281, 491);
+            this.button1.Location = new System.Drawing.Point(281, 549);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(128, 34);
             this.button1.TabIndex = 1;
@@ -59,31 +61,41 @@
             // button2
             // 
             this.button2.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.button2.Location = new System.Drawing.Point(12, 491);
+            this.button2.Location = new System.Drawing.Point(12, 549);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(128, 34);
             this.button2.TabIndex = 2;
             this.button2.Text = "No Thanks";
             this.button2.UseVisualStyleBackColor = true;
             // 
+            // selectedColorPB
+            // 
+            this.selectedColorPB.Location = new System.Drawing.Point(12, 459);
+            this.selectedColorPB.Name = "selectedColorPB";
+            this.selectedColorPB.Size = new System.Drawing.Size(396, 75);
+            this.selectedColorPB.TabIndex = 3;
+            this.selectedColorPB.TabStop = false;
+            // 
             // SelectBackgroundColor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(428, 537);
+            this.ClientSize = new System.Drawing.Size(428, 595);
+            this.Controls.Add(this.selectedColorPB);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.pallete);
             this.Name = "SelectBackgroundColor";
             this.Text = "SelectBackgroundColor";
+            ((System.ComponentModel.ISupportInitialize)(this.selectedColorPB)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
-
-        private Amiga.Pallate pallete;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
+        public Amiga.Pallate pallete;
+        private System.Windows.Forms.PictureBox selectedColorPB;
     }
 }
