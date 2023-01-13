@@ -45,30 +45,30 @@
             this.label2 = new System.Windows.Forms.Label();
             this.previewScalingNud = new System.Windows.Forms.NumericUpDown();
             this.tabControl1 = new System.Windows.Forms.TabControl();
-            this.Aliment = new System.Windows.Forms.TabPage();
+            this.tabAliment = new System.Windows.Forms.TabPage();
             this.AligmentGb = new System.Windows.Forms.GroupBox();
             this.alignLongRb = new System.Windows.Forms.RadioButton();
             this.alignWordRb = new System.Windows.Forms.RadioButton();
             this.alignByteRb = new System.Windows.Forms.RadioButton();
-            this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.tabFormat = new System.Windows.Forms.TabPage();
             this.label1 = new System.Windows.Forms.Label();
             this.numInARowNud = new System.Windows.Forms.NumericUpDown();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.radioButton4 = new System.Windows.Forms.RadioButton();
             this.radioButton3 = new System.Windows.Forms.RadioButton();
             this.radioButton1 = new System.Windows.Forms.RadioButton();
-            this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.tabDisplay = new System.Windows.Forms.TabPage();
             this.groupBox1.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.previewScalingNud)).BeginInit();
             this.tabControl1.SuspendLayout();
-            this.Aliment.SuspendLayout();
+            this.tabAliment.SuspendLayout();
             this.AligmentGb.SuspendLayout();
-            this.tabPage2.SuspendLayout();
+            this.tabFormat.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numInARowNud)).BeginInit();
             this.groupBox5.SuspendLayout();
-            this.tabPage3.SuspendLayout();
+            this.tabDisplay.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -145,7 +145,7 @@
             // checkBox1
             // 
             this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(233, 49);
+            this.checkBox1.Location = new System.Drawing.Point(6, 87);
             this.checkBox1.Name = "checkBox1";
             this.checkBox1.Size = new System.Drawing.Size(136, 29);
             this.checkBox1.TabIndex = 1;
@@ -213,7 +213,7 @@
             // OKBtn
             // 
             this.OKBtn.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.OKBtn.Location = new System.Drawing.Point(626, 333);
+            this.OKBtn.Location = new System.Drawing.Point(633, 333);
             this.OKBtn.Name = "OKBtn";
             this.OKBtn.Size = new System.Drawing.Size(111, 33);
             this.OKBtn.TabIndex = 4;
@@ -223,7 +223,7 @@
             // 
             // cancelBtn
             // 
-            this.cancelBtn.Location = new System.Drawing.Point(14, 333);
+            this.cancelBtn.Location = new System.Drawing.Point(5, 333);
             this.cancelBtn.Name = "cancelBtn";
             this.cancelBtn.Size = new System.Drawing.Size(111, 33);
             this.cancelBtn.TabIndex = 5;
@@ -233,7 +233,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(20, 107);
+            this.label2.Location = new System.Drawing.Point(7, 6);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(131, 25);
             this.label2.TabIndex = 10;
@@ -241,14 +241,14 @@
             // 
             // previewScalingNud
             // 
-            this.previewScalingNud.Location = new System.Drawing.Point(20, 137);
+            this.previewScalingNud.Location = new System.Drawing.Point(7, 34);
             this.previewScalingNud.Maximum = new decimal(new int[] {
             20,
             0,
             0,
             0});
             this.previewScalingNud.Minimum = new decimal(new int[] {
-            1,
+            2,
             0,
             0,
             0});
@@ -256,34 +256,35 @@
             this.previewScalingNud.Size = new System.Drawing.Size(180, 31);
             this.previewScalingNud.TabIndex = 9;
             this.previewScalingNud.Value = new decimal(new int[] {
-            1,
+            4,
             0,
             0,
             0});
+            this.previewScalingNud.ValueChanged += new System.EventHandler(this.previewScalingNud_ValueChanged);
             // 
             // tabControl1
             // 
-            this.tabControl1.Controls.Add(this.Aliment);
-            this.tabControl1.Controls.Add(this.tabPage2);
-            this.tabControl1.Controls.Add(this.tabPage3);
+            this.tabControl1.Controls.Add(this.tabAliment);
+            this.tabControl1.Controls.Add(this.tabFormat);
+            this.tabControl1.Controls.Add(this.tabDisplay);
             this.tabControl1.Location = new System.Drawing.Point(1, 0);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(747, 327);
             this.tabControl1.TabIndex = 12;
             // 
-            // Aliment
+            // tabAliment
             // 
-            this.Aliment.Controls.Add(this.AligmentGb);
-            this.Aliment.Controls.Add(this.wordAlienCB);
-            this.Aliment.Controls.Add(this.groupBox2);
-            this.Aliment.Location = new System.Drawing.Point(4, 34);
-            this.Aliment.Name = "Aliment";
-            this.Aliment.Padding = new System.Windows.Forms.Padding(3);
-            this.Aliment.Size = new System.Drawing.Size(739, 289);
-            this.Aliment.TabIndex = 0;
-            this.Aliment.Text = "Aliment";
-            this.Aliment.UseVisualStyleBackColor = true;
+            this.tabAliment.Controls.Add(this.AligmentGb);
+            this.tabAliment.Controls.Add(this.wordAlienCB);
+            this.tabAliment.Controls.Add(this.groupBox2);
+            this.tabAliment.Location = new System.Drawing.Point(4, 34);
+            this.tabAliment.Name = "tabAliment";
+            this.tabAliment.Padding = new System.Windows.Forms.Padding(3);
+            this.tabAliment.Size = new System.Drawing.Size(739, 289);
+            this.tabAliment.TabIndex = 0;
+            this.tabAliment.Text = "Aliment";
+            this.tabAliment.UseVisualStyleBackColor = true;
             // 
             // AligmentGb
             // 
@@ -330,20 +331,20 @@
             this.alignByteRb.UseVisualStyleBackColor = true;
             this.alignByteRb.CheckedChanged += new System.EventHandler(this.alignByteRb_CheckedChanged);
             // 
-            // tabPage2
+            // tabFormat
             // 
-            this.tabPage2.Controls.Add(this.label1);
-            this.tabPage2.Controls.Add(this.numInARowNud);
-            this.tabPage2.Controls.Add(this.groupBox5);
-            this.tabPage2.Controls.Add(this.groupBox1);
-            this.tabPage2.Controls.Add(this.groupBox3);
-            this.tabPage2.Location = new System.Drawing.Point(4, 34);
-            this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(739, 289);
-            this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "Format";
-            this.tabPage2.UseVisualStyleBackColor = true;
+            this.tabFormat.Controls.Add(this.label1);
+            this.tabFormat.Controls.Add(this.numInARowNud);
+            this.tabFormat.Controls.Add(this.groupBox5);
+            this.tabFormat.Controls.Add(this.groupBox1);
+            this.tabFormat.Controls.Add(this.groupBox3);
+            this.tabFormat.Location = new System.Drawing.Point(4, 34);
+            this.tabFormat.Name = "tabFormat";
+            this.tabFormat.Padding = new System.Windows.Forms.Padding(3);
+            this.tabFormat.Size = new System.Drawing.Size(739, 289);
+            this.tabFormat.TabIndex = 1;
+            this.tabFormat.Text = "Format";
+            this.tabFormat.UseVisualStyleBackColor = true;
             // 
             // label1
             // 
@@ -406,18 +407,18 @@
             this.radioButton1.Text = "Byte";
             this.radioButton1.UseVisualStyleBackColor = true;
             // 
-            // tabPage3
+            // tabDisplay
             // 
-            this.tabPage3.Controls.Add(this.checkBox1);
-            this.tabPage3.Controls.Add(this.label2);
-            this.tabPage3.Controls.Add(this.previewScalingNud);
-            this.tabPage3.Location = new System.Drawing.Point(4, 34);
-            this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage3.Size = new System.Drawing.Size(739, 289);
-            this.tabPage3.TabIndex = 2;
-            this.tabPage3.Text = "tabPage3";
-            this.tabPage3.UseVisualStyleBackColor = true;
+            this.tabDisplay.Controls.Add(this.checkBox1);
+            this.tabDisplay.Controls.Add(this.label2);
+            this.tabDisplay.Controls.Add(this.previewScalingNud);
+            this.tabDisplay.Location = new System.Drawing.Point(4, 34);
+            this.tabDisplay.Name = "tabDisplay";
+            this.tabDisplay.Padding = new System.Windows.Forms.Padding(3);
+            this.tabDisplay.Size = new System.Drawing.Size(739, 289);
+            this.tabDisplay.TabIndex = 2;
+            this.tabDisplay.Text = "Display";
+            this.tabDisplay.UseVisualStyleBackColor = true;
             // 
             // Settings
             // 
@@ -437,17 +438,17 @@
             this.groupBox2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.previewScalingNud)).EndInit();
             this.tabControl1.ResumeLayout(false);
-            this.Aliment.ResumeLayout(false);
-            this.Aliment.PerformLayout();
+            this.tabAliment.ResumeLayout(false);
+            this.tabAliment.PerformLayout();
             this.AligmentGb.ResumeLayout(false);
             this.AligmentGb.PerformLayout();
-            this.tabPage2.ResumeLayout(false);
-            this.tabPage2.PerformLayout();
+            this.tabFormat.ResumeLayout(false);
+            this.tabFormat.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numInARowNud)).EndInit();
             this.groupBox5.ResumeLayout(false);
             this.groupBox5.PerformLayout();
-            this.tabPage3.ResumeLayout(false);
-            this.tabPage3.PerformLayout();
+            this.tabDisplay.ResumeLayout(false);
+            this.tabDisplay.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -471,9 +472,9 @@
         private System.Windows.Forms.Label label2;
         public System.Windows.Forms.NumericUpDown previewScalingNud;
         private System.Windows.Forms.TabControl tabControl1;
-        private System.Windows.Forms.TabPage Aliment;
-        private System.Windows.Forms.TabPage tabPage2;
-        private System.Windows.Forms.TabPage tabPage3;
+        private System.Windows.Forms.TabPage tabAliment;
+        private System.Windows.Forms.TabPage tabFormat;
+        private System.Windows.Forms.TabPage tabDisplay;
         private System.Windows.Forms.GroupBox groupBox5;
         private System.Windows.Forms.RadioButton radioButton4;
         private System.Windows.Forms.RadioButton radioButton3;

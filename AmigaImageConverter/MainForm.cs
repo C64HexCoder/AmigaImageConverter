@@ -35,7 +35,7 @@ namespace AmigaImageConverter
             {
                 bmp = new Bitmap(openFileDialog.FileName);
                 image.Load(openFileDialog.FileName);
-                image.ScaleImage();
+                image.ScaleImage((int)settings.previewScalingNud.Value);
              //   Width = image.Width+70;
            //     Height = image.Height+statusStrip1.Height+20+menuStrip1.Height+30;
                 //pictureBox.Scale (new SizeF ((float)settings.previewScalingNud.Value, (float)settings.previewScalingNud.Value));
@@ -105,7 +105,12 @@ namespace AmigaImageConverter
 
         private void settingsMenuItem_Click(object sender, EventArgs e)
         {
-            settings.ShowDialog();
+            if (settings.ShowDialog() == DialogResult.OK)
+            {
+                if (settings.valueChanged == true) { 
+                    image.ScaleImage((int)settings.previewScalingNud.Value);
+                }
+            }
         }
 
         private void aboutMenuItem_Click(object sender, EventArgs e)
@@ -167,6 +172,11 @@ namespace AmigaImageConverter
         private void saveImageAsSpriteToolStripMenuItem_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void image_LoadCompleted(object sender, AsyncCompletedEventArgs e)
+        {
+            Image OriginalImage = image.Image;
         }
     }
 }

@@ -15,6 +15,7 @@ namespace AmigaImageConverter
     {
         PublicVariables vr = PublicVariables.instance;
         public Bitplane.OutputSize _Aligment;
+        public bool valueChanged = false;
         public Settings()
         {
             InitializeComponent();
@@ -133,6 +134,11 @@ namespace AmigaImageConverter
         private void alignLongRb_CheckedChanged(object sender, EventArgs e)
         {
             vr.Alignment = Bitplane.OutputSize.Long;
+        }
+
+        private void previewScalingNud_ValueChanged(object sender, EventArgs e)
+        {
+            valueChanged = true;
         }
     }
 }
