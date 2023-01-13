@@ -36,15 +36,10 @@ namespace AmigaImageConverter
                 bmp = new Bitmap(openFileDialog.FileName);
                 image.Load(openFileDialog.FileName);
                 image.ScaleImage((int)settings.previewScalingNud.Value);
-             //   Width = image.Width+70;
-           //     Height = image.Height+statusStrip1.Height+20+menuStrip1.Height+30;
-                //pictureBox.Scale (new SizeF ((float)settings.previewScalingNud.Value, (float)settings.previewScalingNud.Value));
-                //pictureBox.SizeMode = PictureBoxSizeMode.Zoom;
-                vr.bitplane.LoadImage(openFileDialog.FileName);
-                //imageGrid.Height = bmp.Height*8;
 
-                //Width = imageGrid.Width;
-                //Height = imageGrid.Height;
+                CheckImageAlignment(bmp);
+  
+                vr.bitplane.LoadImage(openFileDialog.FileName);
 
                 if (vr.bitplane.Width > Width || vr.bitplane.Height > Height)
                 {
@@ -101,7 +96,24 @@ namespace AmigaImageConverter
             }
         }
 
-      
+      private void CheckImageAlignment (Bitmap bmp)
+        {
+            if (bmp.Width % 64 == 0)
+            {
+                alignWidthComboBox.SelectedIndex = 3;
+            }
+            else if (bmp.Width % 32 == 0)
+            {
+                alignWidthComboBox.SelectedIndex = 2;
+
+            }
+            else if (bmp.Width % 16 == 0)
+            {
+                alignWidthComboBox.SelectedIndex = 1;
+            }
+            else
+                alignWidthComboBox.SelectedIndex = 0;
+        }
 
         private void settingsMenuItem_Click(object sender, EventArgs e)
         {

@@ -36,9 +36,10 @@
             this.savePallateToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saveImageAsSpriteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
-            this.alianWidthToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripComboBox1 = new System.Windows.Forms.ToolStripComboBox();
+            this.alignWidthToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.alignWidthComboBox = new System.Windows.Forms.ToolStripComboBox();
             this.addWordToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripComboBox2 = new System.Windows.Forms.ToolStripComboBox();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.cutSpriteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.settingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -54,7 +55,6 @@
             this.toolStripResolutionLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripDepthLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.image = new Amiga.ImageBox();
-            this.toolStripComboBox2 = new System.Windows.Forms.ToolStripComboBox();
             this.menuStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.image)).BeginInit();
@@ -119,30 +119,30 @@
             // toolStripMenuItem2
             // 
             this.toolStripMenuItem2.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.alianWidthToolStripMenuItem,
+            this.alignWidthToolStripMenuItem,
             this.addWordToolStripMenuItem});
             this.toolStripMenuItem2.Name = "toolStripMenuItem2";
             this.toolStripMenuItem2.Size = new System.Drawing.Size(52, 22);
             this.toolStripMenuItem2.Text = "Image";
             // 
-            // alianWidthToolStripMenuItem
+            // alignWidthToolStripMenuItem
             // 
-            this.alianWidthToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripComboBox1});
-            this.alianWidthToolStripMenuItem.Name = "alianWidthToolStripMenuItem";
-            this.alianWidthToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.alianWidthToolStripMenuItem.Text = "Alian Width";
+            this.alignWidthToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.alignWidthComboBox});
+            this.alignWidthToolStripMenuItem.Name = "alignWidthToolStripMenuItem";
+            this.alignWidthToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.alignWidthToolStripMenuItem.Text = "Align Width";
             // 
-            // toolStripComboBox1
+            // alignWidthComboBox
             // 
-            this.toolStripComboBox1.Items.AddRange(new object[] {
+            this.alignWidthComboBox.Items.AddRange(new object[] {
             "Byte",
             "Word",
             "Long",
             "Double Long"});
-            this.toolStripComboBox1.Name = "toolStripComboBox1";
-            this.toolStripComboBox1.Size = new System.Drawing.Size(140, 23);
-            this.toolStripComboBox1.ToolTipText = "The width alignment Of the Image";
+            this.alignWidthComboBox.Name = "alignWidthComboBox";
+            this.alignWidthComboBox.Size = new System.Drawing.Size(140, 23);
+            this.alignWidthComboBox.ToolTipText = "The width alignment Of the Image";
             // 
             // addWordToolStripMenuItem
             // 
@@ -151,6 +151,15 @@
             this.addWordToolStripMenuItem.Name = "addWordToolStripMenuItem";
             this.addWordToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.addWordToolStripMenuItem.Text = "Add Blitter Word";
+            // 
+            // toolStripComboBox2
+            // 
+            this.toolStripComboBox2.Items.AddRange(new object[] {
+            "None",
+            "Left",
+            "Right"});
+            this.toolStripComboBox2.Name = "toolStripComboBox2";
+            this.toolStripComboBox2.Size = new System.Drawing.Size(121, 23);
             // 
             // toolStripMenuItem1
             // 
@@ -266,15 +275,6 @@
             this.image.TabStop = false;
             this.image.LoadCompleted += new System.ComponentModel.AsyncCompletedEventHandler(this.image_LoadCompleted);
             // 
-            // toolStripComboBox2
-            // 
-            this.toolStripComboBox2.Items.AddRange(new object[] {
-            "None",
-            "Left",
-            "Right"});
-            this.toolStripComboBox2.Name = "toolStripComboBox2";
-            this.toolStripComboBox2.Size = new System.Drawing.Size(121, 23);
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -324,9 +324,9 @@
         private System.Windows.Forms.ToolStripMenuItem selectBackgroundToolStripMenuItem;
         private Amiga.ImageBox image;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem2;
-        private System.Windows.Forms.ToolStripMenuItem alianWidthToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem alignWidthToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem addWordToolStripMenuItem;
-        private System.Windows.Forms.ToolStripComboBox toolStripComboBox1;
+        private System.Windows.Forms.ToolStripComboBox alignWidthComboBox;
         private System.Windows.Forms.ToolStripComboBox toolStripComboBox2;
     }
 }
