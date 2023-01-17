@@ -37,9 +37,10 @@ namespace AmigaImageConverter
                 image.Load(openFileDialog.FileName);
                 image.ScaleImage((int)settings.previewScalingNud.Value);
 
-                CheckImageAlignment(bmp);
+                
   
                 vr.bitplane.LoadImage(openFileDialog.FileName);
+      //          CheckImageAlignment();
 
                 if (vr.bitplane.Width > Width || vr.bitplane.Height > Height)
                 {
@@ -96,30 +97,34 @@ namespace AmigaImageConverter
             }
         }
 
-      private void CheckImageAlignment (Bitmap bmp)
+      private void CheckImageAlignment ()
         {
-            if (bmp.Width % 64 == 0)
-            {
-                alignWidthComboBox.SelectedIndex = 3;
-            }
-            else if (bmp.Width % 32 == 0)
-            {
-                alignWidthComboBox.SelectedIndex = 2;
 
-            }
-            else if (bmp.Width % 16 == 0)
+            switch (vr.bitplane.CheckImageAlignment())
             {
-                alignWidthComboBox.SelectedIndex = 1;
+                case Bitplane.Alignment.DoubleLong:
+                    alignWidthComboBox.SelectedIndex = 3;
+                    break;
+                case Bitplane.Alignment.Long:
+                    alignWidthComboBox.SelectedIndex = 2;
+                    break;
+                case Bitplane.Alignment.Word: 
+                    alignWidthComboBox.SelectedIndex = 1;
+                    break;
+
+                default:
+                    alignWidthComboBox.SelectedIndex = 0;
+                    break;
             }
-            else
-                alignWidthComboBox.SelectedIndex = 0;
+ 
         }
 
         private void settingsMenuItem_Click(object sender, EventArgs e)
         {
             if (settings.ShowDialog() == DialogResult.OK)
             {
-                if (settings.valueChanged == true) { 
+                if (settings.valueChanged == true) {
+                    image.Image = vr.bitplane.bmp;
                     image.ScaleImage((int)settings.previewScalingNud.Value);
                 }
             }
@@ -189,6 +194,29 @@ namespace AmigaImageConverter
         private void image_LoadCompleted(object sender, AsyncCompletedEventArgs e)
         {
             Image OriginalImage = image.Image;
+        }
+
+        private void alignWidthComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ToolStripComboBox alignmentCB = (ToolStripComboBox)sender;
+
+            switch (alignmentCB.SelectedIndex)
+            {
+                //case 0:
+                //    vr.bitplane.AlienWidth ()
+                  //  break; 
+                case 1:
+                    vr.bitplane.AlienWidth(Bitplane.Alignment.Word);
+                    break;
+                case 2:
+                    vr.bitplane.AlienWidth(Bitplane.Alignment.Long);
+                    break;
+                case 3:
+                    vr.bitplane.AlienWidth(Bitplane.Alignment.DoubleLong);
+                    break;
+
+
+            }
         }
     }
 }
