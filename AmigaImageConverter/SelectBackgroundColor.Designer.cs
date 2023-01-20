@@ -29,10 +29,8 @@
         private void InitializeComponent()
         {
             this.pallete = new Amiga.Pallate();
-            this.button1 = new System.Windows.Forms.Button();
+            this.swapBt = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
-            this.selectedColorPB = new System.Windows.Forms.PictureBox();
-            ((System.ComponentModel.ISupportInitialize)(this.selectedColorPB)).BeginInit();
             this.SuspendLayout();
             // 
             // pallete
@@ -41,22 +39,24 @@
             this.pallete.Location = new System.Drawing.Point(12, 24);
             this.pallete.Name = "pallete";
             this.pallete.NumOfColors = 4;
-            this.pallete.RGBVisible = false;
+            this.pallete.RGBVisible = true;
             this.pallete.SelectedColor = System.Drawing.Color.Empty;
             this.pallete.SelectedColorBox = true;
-            this.pallete.Size = new System.Drawing.Size(397, 414);
+            this.pallete.SelectedColorIdx = ((byte)(6));
+            this.pallete.Size = new System.Drawing.Size(397, 519);
             this.pallete.TabIndex = 0;
             this.pallete.ColorSelected += new System.EventHandler<Amiga.Pallate.SelectedColorEventArgs>(this.pallete_ColorSelected);
             // 
-            // button1
+            // swapBt
             // 
-            this.button1.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.button1.Location = new System.Drawing.Point(281, 549);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(128, 34);
-            this.button1.TabIndex = 1;
-            this.button1.Text = "I\'ve Selected";
-            this.button1.UseVisualStyleBackColor = true;
+            this.swapBt.DialogResult = System.Windows.Forms.DialogResult.OK;
+            this.swapBt.Location = new System.Drawing.Point(281, 549);
+            this.swapBt.Name = "swapBt";
+            this.swapBt.Size = new System.Drawing.Size(128, 34);
+            this.swapBt.TabIndex = 1;
+            this.swapBt.Text = "Swap";
+            this.swapBt.UseVisualStyleBackColor = true;
+            this.swapBt.Click += new System.EventHandler(this.swapBt_Click);
             // 
             // button2
             // 
@@ -68,34 +68,23 @@
             this.button2.Text = "No Thanks";
             this.button2.UseVisualStyleBackColor = true;
             // 
-            // selectedColorPB
-            // 
-            this.selectedColorPB.Location = new System.Drawing.Point(12, 459);
-            this.selectedColorPB.Name = "selectedColorPB";
-            this.selectedColorPB.Size = new System.Drawing.Size(396, 75);
-            this.selectedColorPB.TabIndex = 3;
-            this.selectedColorPB.TabStop = false;
-            // 
             // SelectBackgroundColor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(428, 595);
-            this.Controls.Add(this.selectedColorPB);
             this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.swapBt);
             this.Controls.Add(this.pallete);
             this.Name = "SelectBackgroundColor";
             this.Text = "SelectBackgroundColor";
-            ((System.ComponentModel.ISupportInitialize)(this.selectedColorPB)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button swapBt;
         private System.Windows.Forms.Button button2;
         public Amiga.Pallate pallete;
-        private System.Windows.Forms.PictureBox selectedColorPB;
     }
 }

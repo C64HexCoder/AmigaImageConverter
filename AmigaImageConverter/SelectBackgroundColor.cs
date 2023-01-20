@@ -1,4 +1,5 @@
 ﻿using System;
+using System.CodeDom.Compiler;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -21,7 +22,19 @@ namespace AmigaImageConverter
 
         private void pallete_ColorSelected(object sender, Amiga.Pallate.SelectedColorEventArgs e)
         {
-            selectedColorPB.BackColor = e.Color;
+           // selectedColorPB.BackColor = e.Color;
+        }
+
+        private void swapBt_Click(object sender, EventArgs e)
+        {
+            // for (int i = 0; i<vr.bitplane.Pallate.Length;i++)
+            //{
+            //  if (vr.bitplane.Pallate[i] == pallete.SelectedColor)
+
+            //            }
+            Color oldColorZero = vr.bitplane.Pallate[0];
+            vr.bitplane.Pallate[0] = pallete.SelectedColor;
+            vr.bitplane.Pallate[pallete.SelectedColorIdx] = oldColorZero;
         }
     }
 }

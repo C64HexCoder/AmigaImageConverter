@@ -32,6 +32,7 @@
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.loadImageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
             this.saveImageAsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.savePallateToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saveImageAsSpriteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -40,6 +41,8 @@
             this.alignWidthComboBox = new System.Windows.Forms.ToolStripComboBox();
             this.addWordToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripComboBox2 = new System.Windows.Forms.ToolStripComboBox();
+            this.autoCorpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.informationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.cutSpriteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.settingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -50,14 +53,13 @@
             this.aboutMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.saveFileDialog = new System.Windows.Forms.SaveFileDialog();
-            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+            this.statusStrip = new System.Windows.Forms.StatusStrip();
             this.toolStripFileName = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripResolutionLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripDepthLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.image = new Amiga.ImageBox();
-            this.autoCorpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
-            this.statusStrip1.SuspendLayout();
+            this.statusStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.image)).BeginInit();
             this.SuspendLayout();
             // 
@@ -81,6 +83,7 @@
             // 
             this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.loadImageToolStripMenuItem,
+            this.toolStripMenuItem3,
             this.saveImageAsToolStripMenuItem,
             this.savePallateToolStripMenuItem,
             this.saveImageAsSpriteToolStripMenuItem});
@@ -95,6 +98,12 @@
             this.loadImageToolStripMenuItem.Size = new System.Drawing.Size(282, 34);
             this.loadImageToolStripMenuItem.Text = "Load Image";
             this.loadImageToolStripMenuItem.Click += new System.EventHandler(this.loadImageToolStripMenuItem_Click);
+            // 
+            // toolStripMenuItem3
+            // 
+            this.toolStripMenuItem3.Name = "toolStripMenuItem3";
+            this.toolStripMenuItem3.Size = new System.Drawing.Size(282, 34);
+            this.toolStripMenuItem3.Text = "Save Image";
             // 
             // saveImageAsToolStripMenuItem
             // 
@@ -122,7 +131,8 @@
             this.toolStripMenuItem2.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.alignWidthToolStripMenuItem,
             this.addWordToolStripMenuItem,
-            this.autoCorpToolStripMenuItem});
+            this.autoCorpToolStripMenuItem,
+            this.informationToolStripMenuItem});
             this.toolStripMenuItem2.Name = "toolStripMenuItem2";
             this.toolStripMenuItem2.Size = new System.Drawing.Size(78, 29);
             this.toolStripMenuItem2.Text = "Image";
@@ -145,7 +155,7 @@
             this.alignWidthComboBox.Name = "alignWidthComboBox";
             this.alignWidthComboBox.Size = new System.Drawing.Size(140, 33);
             this.alignWidthComboBox.ToolTipText = "The width alignment Of the Image";
-            this.alignWidthComboBox.SelectedIndexChanged += new System.EventHandler(this.alignWidthComboBox_SelectedIndexChanged);
+            this.alignWidthComboBox.DropDownClosed += new System.EventHandler(this.alignWidthComboBox_DropDownClosed);
             // 
             // addWordToolStripMenuItem
             // 
@@ -163,6 +173,20 @@
             "Right"});
             this.toolStripComboBox2.Name = "toolStripComboBox2";
             this.toolStripComboBox2.Size = new System.Drawing.Size(121, 33);
+            // 
+            // autoCorpToolStripMenuItem
+            // 
+            this.autoCorpToolStripMenuItem.Name = "autoCorpToolStripMenuItem";
+            this.autoCorpToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
+            this.autoCorpToolStripMenuItem.Text = "Auto Corp";
+            this.autoCorpToolStripMenuItem.Click += new System.EventHandler(this.autoCorpToolStripMenuItem_Click);
+            // 
+            // informationToolStripMenuItem
+            // 
+            this.informationToolStripMenuItem.Name = "informationToolStripMenuItem";
+            this.informationToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
+            this.informationToolStripMenuItem.Text = "Information";
+            this.informationToolStripMenuItem.Click += new System.EventHandler(this.informationToolStripMenuItem_Click);
             // 
             // toolStripMenuItem1
             // 
@@ -234,19 +258,20 @@
             // 
             this.saveFileDialog.Filter = "Aseembler Source File|*.S;*.asm|Binary File|*.bin| C Source File |*.c";
             // 
-            // statusStrip1
+            // statusStrip
             // 
-            this.statusStrip1.ImageScalingSize = new System.Drawing.Size(24, 24);
-            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.statusStrip.AutoSize = false;
+            this.statusStrip.ImageScalingSize = new System.Drawing.Size(24, 24);
+            this.statusStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripFileName,
             this.toolStripResolutionLabel,
             this.toolStripDepthLabel});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 611);
-            this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Padding = new System.Windows.Forms.Padding(1, 0, 16, 0);
-            this.statusStrip1.Size = new System.Drawing.Size(871, 32);
-            this.statusStrip1.TabIndex = 2;
-            this.statusStrip1.Text = "statusStrip1";
+            this.statusStrip.Location = new System.Drawing.Point(0, 611);
+            this.statusStrip.Name = "statusStrip";
+            this.statusStrip.Padding = new System.Windows.Forms.Padding(1, 0, 16, 0);
+            this.statusStrip.Size = new System.Drawing.Size(871, 32);
+            this.statusStrip.TabIndex = 2;
+            this.statusStrip.Text = "statusStrip1";
             // 
             // toolStripFileName
             // 
@@ -268,7 +293,8 @@
             // 
             // image
             // 
-            this.image.Location = new System.Drawing.Point(6, 35);
+            this.image.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.image.Location = new System.Drawing.Point(0, 34);
             this.image.Margin = new System.Windows.Forms.Padding(1, 2, 1, 2);
             this.image.Name = "image";
             this.image.ScaleFactor = 4;
@@ -278,12 +304,6 @@
             this.image.TabStop = false;
             this.image.LoadCompleted += new System.ComponentModel.AsyncCompletedEventHandler(this.image_LoadCompleted);
             // 
-            // autoCorpToolStripMenuItem
-            // 
-            this.autoCorpToolStripMenuItem.Name = "autoCorpToolStripMenuItem";
-            this.autoCorpToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
-            this.autoCorpToolStripMenuItem.Text = "Auto Corp";
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 25F);
@@ -292,8 +312,9 @@
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.ClientSize = new System.Drawing.Size(871, 643);
             this.Controls.Add(this.image);
-            this.Controls.Add(this.statusStrip1);
+            this.Controls.Add(this.statusStrip);
             this.Controls.Add(this.menuStrip1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
             this.Margin = new System.Windows.Forms.Padding(1, 2, 1, 2);
@@ -301,8 +322,8 @@
             this.Text = "Amiga Image Converter";
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
-            this.statusStrip1.ResumeLayout(false);
-            this.statusStrip1.PerformLayout();
+            this.statusStrip.ResumeLayout(false);
+            this.statusStrip.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.image)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -322,7 +343,7 @@
         private System.Windows.Forms.ToolStripMenuItem settingsMenuItem;
         private System.Windows.Forms.ToolStripMenuItem aboutMenuItem;
         private System.Windows.Forms.ToolStripMenuItem savePallateToolStripMenuItem;
-        private System.Windows.Forms.StatusStrip statusStrip1;
+        private System.Windows.Forms.StatusStrip statusStrip;
         private System.Windows.Forms.ToolStripStatusLabel toolStripFileName;
         private System.Windows.Forms.ToolStripStatusLabel toolStripResolutionLabel;
         private System.Windows.Forms.ToolStripStatusLabel toolStripDepthLabel;
@@ -338,6 +359,8 @@
         private System.Windows.Forms.ToolStripComboBox alignWidthComboBox;
         private System.Windows.Forms.ToolStripComboBox toolStripComboBox2;
         private System.Windows.Forms.ToolStripMenuItem autoCorpToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem informationToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem3;
     }
 }
 

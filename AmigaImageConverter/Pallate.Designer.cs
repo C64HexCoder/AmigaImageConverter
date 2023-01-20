@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.imagePallate = new Amiga.Pallate();
+            this.button1 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // imagePallate
@@ -40,8 +41,18 @@
             this.imagePallate.RGBVisible = true;
             this.imagePallate.SelectedColor = System.Drawing.Color.Empty;
             this.imagePallate.SelectedColorBox = true;
-            this.imagePallate.Size = new System.Drawing.Size(533, 775);
+            this.imagePallate.SelectedColorIdx = ((byte)(0));
+            this.imagePallate.Size = new System.Drawing.Size(533, 644);
             this.imagePallate.TabIndex = 0;
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(433, 662);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(112, 34);
+            this.button1.TabIndex = 1;
+            this.button1.Text = "OK";
+            this.button1.UseVisualStyleBackColor = true;
             // 
             // Pallate
             // 
@@ -49,7 +60,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.ClientSize = new System.Drawing.Size(557, 895);
+            this.ClientSize = new System.Drawing.Size(557, 710);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.imagePallate);
             this.Name = "Pallate";
             this.Text = "Pallate";
@@ -60,5 +72,6 @@
         #endregion
 
         public Amiga.Pallate imagePallate;
+        private System.Windows.Forms.Button button1;
     }
 }

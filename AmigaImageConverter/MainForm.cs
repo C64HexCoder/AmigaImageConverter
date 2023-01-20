@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.Linq;
+using System.Media;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -36,16 +37,16 @@ namespace AmigaImageConverter
                 bmp = new Bitmap(openFileDialog.FileName);
                 image.Load(openFileDialog.FileName);
                 image.ScaleImage((int)settings.previewScalingNud.Value);
-
+                
                 
   
                 vr.bitplane.LoadImage(openFileDialog.FileName);
-      //          CheckImageAlignment();
+                CheckImageAlignment();
 
                 if (vr.bitplane.Width > Width || vr.bitplane.Height > Height)
                 {
                     Width = vr.bitplane.Width + 20;
-                    Height = vr.bitplane.Height + menuStrip1.Height + statusStrip1.Height + 60;
+                    Height = vr.bitplane.Height + menuStrip1.Height + statusStrip.Height + 60;
                 }
                 toolStripFileName.Text = openFileDialog.FileName;
                 toolStripResolutionLabel.Text = $"{vr.bitplane.Width}x{vr.bitplane.Height}";
@@ -160,8 +161,7 @@ namespace AmigaImageConverter
             //ColorPalette colorPalette = bitplane.Pallate;
             if (vr.bitplane.Pallate != null)
             {
-                pallate.imagePallate.NumOfColors = vr.bitplane.Pallate.Length;
-                pallate.imagePallate.Colors = vr.bitplane.Pallate;
+                pallate.imagePallate.SetPalette(vr.bitplane.Pallate);
                 pallate.ShowDialog();
             }
             else
@@ -196,15 +196,59 @@ namespace AmigaImageConverter
             Image OriginalImage = image.Image;
         }
 
-        private void alignWidthComboBox_SelectedIndexChanged(object sender, EventArgs e)
+
+        private void autoCorpToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            Point StartPos = new Point(vr.bitplane.bmp.Width, vr.bitplane.Height), StopPos = new Point (0,0);
+
+            for (int y = vr.bitplane.Height-1; y>=0;y--)
+                for (int x = vr.bitplane.Width-1;x>=0;x--)
+                {
+                    Color pixel = vr.bitplane.bmp.GetPixel(x, y),backgroundColor = vr.bitplane.Pallate[0];
+                    if ( pixel.R != backgroundColor.R || pixel.G != backgroundColor.G || pixel.B != backgroundColor.B)
+                    {
+                        if (x < StartPos.X)
+                            StartPos.X = x;
+
+                        if (y < StartPos.Y)
+                            StartPos.Y = y;
+
+                        if (x > StopPos.X) StopPos.X = x;
+                        if (y > StopPos.Y) StopPos.Y = y;
+                    }
+                }
+
+            int NewWidth = StopPos.X - StartPos.X+1, NewHeight = StopPos.Y - StartPos.Y+1;
+            Bitmap corpedImage = new Bitmap (NewWidth,NewHeight);
+            
+            Graphics g = Graphics.FromImage(corpedImage);
+            Rectangle destRec = new Rectangle(0,0,NewWidth,NewHeight);
+            g.DrawImage(bmp,destRec, StartPos.X, StartPos.Y, NewWidth, NewHeight,GraphicsUnit.Pixel);
+           
+            
+            g.Dispose();
+            vr.bitplane.bmp= corpedImage;
+
+            image.Image = vr.bitplane.bmp;
+            image.ScaleImage((int)settings.previewScalingNud.Value);
+        }
+
+        private void informationToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            InfoForm ImageInfo = new InfoForm();
+            ImageInfo.Show();
+        }
+
+        private void alignWidthComboBox_DropDownClosed(object sender, EventArgs e)
+        {
+
             ToolStripComboBox alignmentCB = (ToolStripComboBox)sender;
 
             switch (alignmentCB.SelectedIndex)
             {
                 //case 0:
                 //    vr.bitplane.AlienWidth ()
-                  //  break; 
+                //  break; 
                 case 1:
                     vr.bitplane.AlienWidth(Bitplane.Alignment.Word);
                     break;
@@ -217,6 +261,8 @@ namespace AmigaImageConverter
 
 
             }
+            image.Image = vr.bitplane.bmp;
+            image.ScaleImage((int)settings.previewScalingNud.Value);
         }
     }
 }
