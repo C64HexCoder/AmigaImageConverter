@@ -124,7 +124,6 @@
             this.saveImageAsSpriteToolStripMenuItem.Name = "saveImageAsSpriteToolStripMenuItem";
             this.saveImageAsSpriteToolStripMenuItem.Size = new System.Drawing.Size(282, 34);
             this.saveImageAsSpriteToolStripMenuItem.Text = "Save Image As Sprite";
-            this.saveImageAsSpriteToolStripMenuItem.Click += new System.EventHandler(this.saveImageAsSpriteToolStripMenuItem_Click);
             // 
             // toolStripMenuItem2
             // 
@@ -142,7 +141,7 @@
             this.alignWidthToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.alignWidthComboBox});
             this.alignWidthToolStripMenuItem.Name = "alignWidthToolStripMenuItem";
-            this.alignWidthToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
+            this.alignWidthToolStripMenuItem.Size = new System.Drawing.Size(247, 34);
             this.alignWidthToolStripMenuItem.Text = "Align Width";
             // 
             // alignWidthComboBox
@@ -162,7 +161,7 @@
             this.addWordToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripComboBox2});
             this.addWordToolStripMenuItem.Name = "addWordToolStripMenuItem";
-            this.addWordToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
+            this.addWordToolStripMenuItem.Size = new System.Drawing.Size(247, 34);
             this.addWordToolStripMenuItem.Text = "Add Blitter Word";
             // 
             // toolStripComboBox2
@@ -177,14 +176,14 @@
             // autoCorpToolStripMenuItem
             // 
             this.autoCorpToolStripMenuItem.Name = "autoCorpToolStripMenuItem";
-            this.autoCorpToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
+            this.autoCorpToolStripMenuItem.Size = new System.Drawing.Size(247, 34);
             this.autoCorpToolStripMenuItem.Text = "Auto Corp";
             this.autoCorpToolStripMenuItem.Click += new System.EventHandler(this.autoCorpToolStripMenuItem_Click);
             // 
             // informationToolStripMenuItem
             // 
             this.informationToolStripMenuItem.Name = "informationToolStripMenuItem";
-            this.informationToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
+            this.informationToolStripMenuItem.Size = new System.Drawing.Size(247, 34);
             this.informationToolStripMenuItem.Text = "Information";
             this.informationToolStripMenuItem.Click += new System.EventHandler(this.informationToolStripMenuItem_Click);
             // 
@@ -260,13 +259,13 @@
             // 
             // statusStrip
             // 
-            this.statusStrip.AutoSize = false;
+            this.statusStrip.Dock = System.Windows.Forms.DockStyle.Top;
             this.statusStrip.ImageScalingSize = new System.Drawing.Size(24, 24);
             this.statusStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripFileName,
             this.toolStripResolutionLabel,
             this.toolStripDepthLabel});
-            this.statusStrip.Location = new System.Drawing.Point(0, 611);
+            this.statusStrip.Location = new System.Drawing.Point(0, 33);
             this.statusStrip.Name = "statusStrip";
             this.statusStrip.Padding = new System.Windows.Forms.Padding(1, 0, 16, 0);
             this.statusStrip.Size = new System.Drawing.Size(871, 32);
@@ -314,7 +313,7 @@
             this.Controls.Add(this.image);
             this.Controls.Add(this.statusStrip);
             this.Controls.Add(this.menuStrip1);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.SizableToolWindow;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
             this.Margin = new System.Windows.Forms.Padding(1, 2, 1, 2);

@@ -34,6 +34,7 @@ namespace AmigaImageConverter
               
             if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
+                toolStripFileName.Text = openFileDialog.FileName;
                 bmp = new Bitmap(openFileDialog.FileName);
                 image.Load(openFileDialog.FileName);
                 image.ScaleImage((int)settings.previewScalingNud.Value);
@@ -176,20 +177,6 @@ namespace AmigaImageConverter
             selectBGColor.ShowDialog();
         }
 
-        private void imageGrid_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        private void pictureBox_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void saveImageAsSpriteToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-
-        }
 
         private void image_LoadCompleted(object sender, AsyncCompletedEventArgs e)
         {
@@ -231,6 +218,8 @@ namespace AmigaImageConverter
 
             image.Image = vr.bitplane.bmp;
             image.ScaleImage((int)settings.previewScalingNud.Value);
+
+            CheckImageAlignment();
         }
 
         private void informationToolStripMenuItem_Click(object sender, EventArgs e)
