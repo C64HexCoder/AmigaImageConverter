@@ -34,6 +34,7 @@
             // 
             // imagePallate
             // 
+            this.imagePallate.AlphChennel = true;
             this.imagePallate.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.imagePallate.Location = new System.Drawing.Point(12, 12);
             this.imagePallate.Name = "imagePallate";
@@ -42,7 +43,7 @@
             this.imagePallate.SelectedColor = System.Drawing.Color.Empty;
             this.imagePallate.SelectedColorBox = true;
             this.imagePallate.SelectedColorIdx = ((byte)(0));
-            this.imagePallate.Size = new System.Drawing.Size(533, 644);
+            this.imagePallate.Size = new System.Drawing.Size(533, 628);
             this.imagePallate.TabIndex = 0;
             // 
             // button1

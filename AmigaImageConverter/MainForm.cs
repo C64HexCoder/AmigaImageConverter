@@ -32,16 +32,16 @@ namespace AmigaImageConverter
         private void loadImageToolStripMenuItem_Click(object sender, EventArgs e)
         {
               
-            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            if (openImageFileDialog.ShowDialog() == DialogResult.OK)
             {
-                toolStripFileName.Text = openFileDialog.FileName;
-                bmp = new Bitmap(openFileDialog.FileName);
-                image.Load(openFileDialog.FileName);
+                toolStripFileName.Text = openImageFileDialog.FileName;
+                bmp = new Bitmap(openImageFileDialog.FileName);
+                image.Load(openImageFileDialog.FileName);
                 image.ScaleImage((int)settings.previewScalingNud.Value);
                 
                 
   
-                vr.bitplane.LoadImage(openFileDialog.FileName);
+                vr.bitplane.LoadImage(openImageFileDialog.FileName);
                 CheckImageAlignment();
 
                 if (vr.bitplane.Width > Width || vr.bitplane.Height > Height)
@@ -49,7 +49,7 @@ namespace AmigaImageConverter
                     Width = vr.bitplane.Width + 20;
                     Height = vr.bitplane.Height + menuStrip1.Height + statusStrip.Height + 60;
                 }
-                toolStripFileName.Text = openFileDialog.FileName;
+                toolStripFileName.Text = openImageFileDialog.FileName;
                 toolStripResolutionLabel.Text = $"{vr.bitplane.Width}x{vr.bitplane.Height}";
                 toolStripDepthLabel.Text = $"{vr.bitplane.NumOfBitmaps} Bitmaps, new Width: {vr.bitplane.actualWidth}";
 
@@ -73,27 +73,27 @@ namespace AmigaImageConverter
 
         private void saveImageAsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (saveFileDialog.ShowDialog() == DialogResult.OK)
+            if (saveSourceFileDialog.ShowDialog() == DialogResult.OK)
             {
-                switch (saveFileDialog.FilterIndex)
+                switch (saveSourceFileDialog.FilterIndex)
                 {
                     case 1:
                         if (settings.sequentialRB.Checked == true)
-                            vr.bitplane.SaveBitmapsAsAssemblerSourceCode(saveFileDialog.FileName,vr.outputSize,vr.NumInARow);
+                            vr.bitplane.SaveBitmapsAsAssemblerSourceCode(saveSourceFileDialog.FileName,vr.outputSize,vr.NumInARow);
                         else
-                            vr.bitplane.SaveBitmapsAsInterleavedAssemblerSourceCode(saveFileDialog.FileName,vr.outputSize,vr.NumInARow);
+                            vr.bitplane.SaveBitmapsAsInterleavedAssemblerSourceCode(saveSourceFileDialog.FileName,vr.outputSize,vr.NumInARow);
                         break;
                     case 2:
                         if (settings.sequentialRB.Checked == true)
-                            vr.bitplane.SaveBitmapsAsBinaryFile(saveFileDialog.FileName);
+                            vr.bitplane.SaveBitmapsAsBinaryFile(saveSourceFileDialog.FileName);
                         else
-                            vr.bitplane.SaveBitmapsAsInterleavedBinaryFile(saveFileDialog.FileName);
+                            vr.bitplane.SaveBitmapsAsInterleavedBinaryFile(saveSourceFileDialog.FileName);
                         break;
                     case 3:
                         if (settings.sequentialRB.Checked == true)
-                            vr.bitplane.SaveBitmapsAsCPPSourceCode(saveFileDialog.FileName, vr.outputSize,vr.NumInARow);
+                            vr.bitplane.SaveBitmapsAsCPPSourceCode(saveSourceFileDialog.FileName, vr.outputSize,vr.NumInARow);
                         else
-                            vr.bitplane.SaveBitmapsAsInterleavedCPPSourceCode(saveFileDialog.FileName, vr.outputSize,vr.NumInARow);
+                            vr.bitplane.SaveBitmapsAsInterleavedCPPSourceCode(saveSourceFileDialog.FileName, vr.outputSize,vr.NumInARow);
                         break;
                 }
             }
@@ -152,11 +152,6 @@ namespace AmigaImageConverter
 
         }
 
-        private void fileToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void pallateToolStripMenuItem_Click(object sender, EventArgs e)
         {
             //ColorPalette colorPalette = bitplane.Pallate;
@@ -172,9 +167,14 @@ namespace AmigaImageConverter
         private void selectBackgroundToolStripMenuItem_Click(object sender, EventArgs e)
         {
             SelectBackgroundColor selectBGColor = new SelectBackgroundColor();
-            selectBGColor.pallete.NumOfColors = vr.bitplane.Pallate.Length;
-            selectBGColor.pallete.Colors = vr.bitplane.Pallate;
-            selectBGColor.ShowDialog();
+            if (vr.bitplane.bmp != null)
+            {
+                pallate.imagePallate.SetPalette(vr.bitplane.Pallate);
+                selectBGColor.ShowDialog();
+            }
+            else
+                MessageBox.Show("There is no pallate yet, try to load image first, or that the image you've loaded has no Pallate.", "Pallate Error", MessageBoxButtons.OK);
+
         }
 
 
@@ -187,12 +187,14 @@ namespace AmigaImageConverter
         private void autoCorpToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Point StartPos = new Point(vr.bitplane.bmp.Width, vr.bitplane.Height), StopPos = new Point (0,0);
+            Color backgroundColor = vr.bitplane.Pallate[0];
 
             for (int y = vr.bitplane.Height-1; y>=0;y--)
                 for (int x = vr.bitplane.Width-1;x>=0;x--)
                 {
-                    Color pixel = vr.bitplane.bmp.GetPixel(x, y),backgroundColor = vr.bitplane.Pallate[0];
+                    Color pixel = vr.bitplane.bmp.GetPixel(x, y);
                     if ( pixel.R != backgroundColor.R || pixel.G != backgroundColor.G || pixel.B != backgroundColor.B)
+                    //if (pixel != backgroundColor) // Dont have a clue why its not working
                     {
                         if (x < StartPos.X)
                             StartPos.X = x;
@@ -207,15 +209,15 @@ namespace AmigaImageConverter
 
             int NewWidth = StopPos.X - StartPos.X+1, NewHeight = StopPos.Y - StartPos.Y+1;
             Bitmap corpedImage = new Bitmap (NewWidth,NewHeight);
-            
             Graphics g = Graphics.FromImage(corpedImage);
             Rectangle destRec = new Rectangle(0,0,NewWidth,NewHeight);
+            g.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.None;
             g.DrawImage(bmp,destRec, StartPos.X, StartPos.Y, NewWidth, NewHeight,GraphicsUnit.Pixel);
            
             
             g.Dispose();
             vr.bitplane.bmp= corpedImage;
-
+            vr.bitplane.ConvertImageToBitmaps();
             image.Image = vr.bitplane.bmp;
             image.ScaleImage((int)settings.previewScalingNud.Value);
 
@@ -252,6 +254,43 @@ namespace AmigaImageConverter
             }
             image.Image = vr.bitplane.bmp;
             image.ScaleImage((int)settings.previewScalingNud.Value);
+        }
+
+        private void saveImageToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            saveSourceFileDialog.Filter = "PNG (*.PNG)|*.png";
+            if (saveSourceFileDialog.ShowDialog () == DialogResult.OK)
+            {
+                vr.bitplane.bmp.Save(saveSourceFileDialog.FileName);
+            }
+        }
+
+        private void saveImageAsSpriteToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (vr.bitplane.bmp == null)
+            {
+                MessageBox.Show("Load Image First!","You Drunk Or Something?");
+                return;
+            }
+
+            Sprite sprite = new Sprite();
+            sprite.ImportImage(vr.bitplane.bmp);
+
+            if (saveSourceFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                switch (saveSourceFileDialog.FilterIndex) { 
+                case 0:
+                        sprite.SaveAsAssemblerSourceFile(saveSourceFileDialog.FileName);
+                    break; 
+                case 1:
+                        sprite.SaveAsBinaryFile(saveSourceFileDialog.FileName);
+                    break;
+                case 2:
+                        sprite.SaveAsCPPSourceFile(saveSourceFileDialog.FileName);
+                    break;
+                }
+            }
+
         }
     }
 }

@@ -35,6 +35,8 @@ namespace AmigaImageConverter
             Color oldColorZero = vr.bitplane.Pallate[0];
             vr.bitplane.Pallate[0] = pallete.SelectedColor;
             vr.bitplane.Pallate[pallete.SelectedColorIdx] = oldColorZero;
+            vr.bitplane.ConvertImageToBitmaps();
+
         }
     }
 }
