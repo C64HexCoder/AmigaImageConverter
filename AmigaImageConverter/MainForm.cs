@@ -10,6 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Amiga;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 
 namespace AmigaImageConverter
@@ -23,10 +24,15 @@ namespace AmigaImageConverter
         About about = new About();
         Pallate pallate = new Pallate();
         PublicVariables vr = PublicVariables.instance;
-        
+        Panel ButtomPanel = new Panel();
         public MainForm()
         {
             InitializeComponent();
+            SlicingPanel.Visible= false;
+            
+            ButtomPanel.Size = new Size(image.Width, statusStrip.Height);
+            ButtomPanel.Top = image.Bottom + 2;
+            Controls.Add(ButtomPanel);
         }
 
         private void loadImageToolStripMenuItem_Click(object sender, EventArgs e)
@@ -34,13 +40,15 @@ namespace AmigaImageConverter
               
             if (openImageFileDialog.ShowDialog() == DialogResult.OK)
             {
+      
                 toolStripFileName.Text = openImageFileDialog.FileName;
                 bmp = new Bitmap(openImageFileDialog.FileName);
                 image.Load(openImageFileDialog.FileName);
                 image.ScaleImage((int)settings.previewScalingNud.Value);
-                
-                
-  
+                SlicingPanel.Left = image.Right + 2;
+                SlicingPanel.Height= SlicingGb.Height;
+                ButtomPanel.Top = image.Bottom + 2;
+                ButtomPanel.Width= image.Width;
                 vr.bitplane.LoadImage(openImageFileDialog.FileName);
                 CheckImageAlignment();
 
@@ -147,11 +155,7 @@ namespace AmigaImageConverter
             }
         }
 
-        private void cutSpriteToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-
-        }
-
+      
         private void pallateToolStripMenuItem_Click(object sender, EventArgs e)
         {
             //ColorPalette colorPalette = bitplane.Pallate;
@@ -290,6 +294,19 @@ namespace AmigaImageConverter
                     break;
                 }
             }
+
+        }
+
+        private void sprireSheetCutterToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SlicingPanel.Visible= true;
+   
+        }
+
+
+  
+        private void SliceBtn_Click(object sender, EventArgs e)
+        {
 
         }
     }

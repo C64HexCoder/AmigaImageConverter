@@ -30,5 +30,8 @@
     <Compile Update="Settings.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="SpiteSheetCutter.cs">
+      <SubType>Form</SubType>
+    </Compile>
   </ItemGroup>
 </Project>
