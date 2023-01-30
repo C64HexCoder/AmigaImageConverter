@@ -256,7 +256,7 @@
             this.previewScalingNud.Size = new System.Drawing.Size(180, 31);
             this.previewScalingNud.TabIndex = 9;
             this.previewScalingNud.Value = new decimal(new int[] {
-            4,
+            2,
             0,
             0,
             0});
