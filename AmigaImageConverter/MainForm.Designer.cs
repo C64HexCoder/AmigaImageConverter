@@ -464,6 +464,7 @@
             this.MainMenuStrip = this.menuStrip1;
             this.Margin = new System.Windows.Forms.Padding(1, 2, 1, 2);
             this.Name = "MainForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Amiga Image Converter";
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();

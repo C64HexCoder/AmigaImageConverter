@@ -119,7 +119,7 @@ namespace AmigaImageConverter
                     for (i = SaveRange.From; i <= SaveRange.To; i++)
                     {
                         NewFileName = fileName + i + ".C";
-                        sprites[i].SaveAsCPPSourceFile(fileName+i);
+                        sprites[i].SaveAsCPPSourceFile(NewFileName);
                     }
                     break;
                 case SaveType.All:
@@ -149,7 +149,7 @@ namespace AmigaImageConverter
                     for (i = SaveRange.From; i <= SaveRange.To; i++)
                     {
                         NewFileName = fileName + i + ".Asm";
-                        sprites[i].SaveAsAssemblerSourceFile(fileName + i);
+                        sprites[i].SaveAsAssemblerSourceFile(NewFileName);
                     }
                     break;
                 case SaveType.All:
@@ -179,7 +179,7 @@ namespace AmigaImageConverter
                     for (i = SaveRange.From; i <= SaveRange.To; i++)
                     {
                         NewFileName = fileName + i + ".Bin";
-                        sprites[i].SaveAsBinaryFile(fileName + i);
+                        sprites[i].SaveAsBinaryFile(NewFileName);
                     }
                     break;
                 case SaveType.All:
