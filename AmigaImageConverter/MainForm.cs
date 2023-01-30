@@ -28,7 +28,7 @@ namespace AmigaImageConverter
         PublicVariables vr = PublicVariables.instance;
         Panel ButtomPanel = new Panel();
         List<Sprite> sprites = new List<Sprite>();
-        List<Bitmap> bitmaps = new List<Bitmap>();
+        //List<Bitmap> bitmaps = new List<Bitmap>();
 
         public MainForm()
         {
@@ -363,7 +363,7 @@ namespace AmigaImageConverter
                             SprWidth = Sprite.SpriteWidth._16Pixels;
                             break;
                     }
-                    bitmaps.Add(SprBmp);
+                    //bitmaps.Add(SprBmp);
                     sprite.ImportImage(SprBmp, SprWidth);
                     sprites.Add(sprite);
                 }
@@ -375,7 +375,7 @@ namespace AmigaImageConverter
 
             Bitmap SelectedSpriteImage = new Bitmap(vr.bitplane.bmp);
             Graphics SSI = Graphics.FromImage(SelectedSpriteImage);
-            Pen p = new Pen(Color.Black, 1);
+            Pen p = new Pen(Color.Black, 2);
             SSI.DrawRectangle(p, 0, 0, SprireWidth, SpriteHeight);
             SSI.Dispose();
             image.Image = SelectedSpriteImage;
@@ -383,11 +383,15 @@ namespace AmigaImageConverter
             spriteSelectNud.Maximum = sprites.Count - 1;
             SliceBtn.Enabled = false;
             SpriteSaveBtn.Enabled = true;
+            spriteSelectNud.Value = 0;
         }
 
 
         private void spriteSelectNud_ValueChanged(object sender, EventArgs e)
         {
+            int SprireWidth = (int)(vr.bitplane.bmp.Width / SpritesPerRawNud.Value);
+            int SpriteHeight = (int)(vr.bitplane.bmp.Height / numOfRawsNud.Value);
+
             NumericUpDown Nud = (NumericUpDown)sender;
             int SpriteNumber = (int)Nud.Value;
             sprImageBox.Image = sprites[(int)(Nud.Value)].bitmap;
@@ -395,8 +399,8 @@ namespace AmigaImageConverter
 
             Bitmap SelectedSpriteImage = new Bitmap(vr.bitplane.bmp);
             Graphics SSI = Graphics.FromImage(SelectedSpriteImage);
-            Pen p = new Pen(Color.Black, 1);
-            SSI.DrawRectangle(p, SpriteXPos * sprImageBox.Image.Width, SpriteYPos * sprImageBox.Image.Height, sprImageBox.Image.Width, sprImageBox.Image.Height);
+            Pen p = new Pen(Color.Black, 2);
+            SSI.DrawRectangle(p, SpriteXPos * SprireWidth, SpriteYPos * SpriteHeight, SprireWidth, SpriteHeight);
             SSI.Dispose();
             image.Image = SelectedSpriteImage;
             image.ScaleImage((int)(settings.previewScalingNud.Value));
