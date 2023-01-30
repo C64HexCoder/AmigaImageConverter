@@ -118,7 +118,7 @@ namespace AmigaImageConverter
                     fileName = Path.ChangeExtension(fileName, null);
                     for (i = SaveRange.From; i <= SaveRange.To; i++)
                     {
-                        NewFileName = fileName + i++ + ".C";
+                        NewFileName = fileName + i + ".C";
                         sprites[i].SaveAsCPPSourceFile(fileName+i);
                     }
                     break;
@@ -148,7 +148,7 @@ namespace AmigaImageConverter
                     fileName = Path.ChangeExtension(fileName, null);
                     for (i = SaveRange.From; i <= SaveRange.To; i++)
                     {
-                        NewFileName = fileName + i++ + ".C";
+                        NewFileName = fileName + i + ".Asm";
                         sprites[i].SaveAsAssemblerSourceFile(fileName + i);
                     }
                     break;
@@ -157,7 +157,7 @@ namespace AmigaImageConverter
                     fileName = Path.ChangeExtension(fileName, null);
                     foreach (Sprite sprite in sprites)
                     {
-                        NewFileName = fileName + i++ + ".C";
+                        NewFileName = fileName + i++ + ".Asm";
                         sprite.SaveAsAssemblerSourceFile(NewFileName);
                     }
                     break;
@@ -178,7 +178,7 @@ namespace AmigaImageConverter
                     fileName = Path.ChangeExtension(fileName, null);
                     for (i = SaveRange.From; i <= SaveRange.To; i++)
                     {
-                        NewFileName = fileName + i++ + ".C";
+                        NewFileName = fileName + i + ".Bin";
                         sprites[i].SaveAsBinaryFile(fileName + i);
                     }
                     break;
@@ -187,7 +187,7 @@ namespace AmigaImageConverter
                     fileName = Path.ChangeExtension(fileName, null);
                     foreach (Sprite sprite in sprites)
                     {
-                        NewFileName = fileName + i++ + ".C";
+                        NewFileName = fileName + i++ + ".Bin";
                         sprite.SaveAsBinaryFile(NewFileName);
                     }
                     break;
