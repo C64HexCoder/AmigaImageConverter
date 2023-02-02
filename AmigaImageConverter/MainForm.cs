@@ -28,6 +28,16 @@ namespace AmigaImageConverter
         PublicVariables vr = PublicVariables.instance;
         Panel ButtomPanel = new Panel();
         List<Sprite> sprites = new List<Sprite>();
+
+        enum BlitWord
+        {
+            None,
+            Left,
+            Right,
+            Both
+        }
+
+        BlitWord AddedBlitWord = BlitWord.None;
         //List<Bitmap> bitmaps = new List<Bitmap>();
 
         public MainForm()
@@ -38,6 +48,7 @@ namespace AmigaImageConverter
             ButtomPanel.Size = new Size(image.Width, statusStrip.Height);
             ButtomPanel.Top = image.Bottom + 2;
             Controls.Add(ButtomPanel);
+            addBlitWordComboBox.SelectedIndex = 0;
         }
 
         private void loadImageToolStripMenuItem_Click(object sender, EventArgs e)
@@ -183,7 +194,7 @@ namespace AmigaImageConverter
             SelectBackgroundColor selectBGColor = new SelectBackgroundColor();
             if (vr.bitplane.bmp != null)
             {
-                pallate.imagePallate.SetPalette(vr.bitplane.Pallate);
+                selectBGColor.pallete.SetPalette(vr.bitplane.Pallate);
                 selectBGColor.ShowDialog();
             }
             else
@@ -268,6 +279,8 @@ namespace AmigaImageConverter
             }
             image.Image = vr.bitplane.bmp;
             image.ScaleImage((int)settings.previewScalingNud.Value);
+
+            toolStripResolutionLabel.Text = vr.bitplane.bmp.Width + "x" + vr.bitplane.bmp.Height;
         }
 
         private void saveImageToolStripMenuItem_Click(object sender, EventArgs e)
@@ -358,7 +371,6 @@ namespace AmigaImageConverter
                         case 2:
                             SprWidth = Sprite.SpriteWidth._64Pixels;
                             break;
-
                         default:
                             SprWidth = Sprite.SpriteWidth._16Pixels;
                             break;
@@ -417,5 +429,99 @@ namespace AmigaImageConverter
         {
             SliceBtn.Enabled = true;
         }
+
+        private void image_MouseClick(object sender, MouseEventArgs e)
+        {
+            int MouseX = e.X, MouseY = e.Y;
+
+            int SprireWidth = (int)(image.Width / SpritesPerRawNud.Value);
+            int SpriteHeight = (int)(image.Height / numOfRawsNud.Value);
+
+        
+            int SpriteXPos = (int)MouseX / SprireWidth, SpriteYPos = (int)MouseY / SpriteHeight;
+            image.Image = vr.bitplane.bmp;
+            image.ScaleImage((int)(settings.previewScalingNud.Value));
+            Bitmap SelectedSpriteImage = new Bitmap(image.Image);
+            Graphics SSI = Graphics.FromImage(SelectedSpriteImage);
+            Pen p = new Pen(Color.Black, 2*(int)(settings.previewScalingNud.Value));
+            SSI.DrawRectangle(p, SpriteXPos * SprireWidth, SpriteYPos * SpriteHeight, SprireWidth, SpriteHeight);
+            SSI.Dispose();
+            image.Image = SelectedSpriteImage;
+            spriteSelectNud.Value = SpriteXPos + SpriteYPos*SpritesPerRawNud.Value;
+        }
+
+        private void addBlitWordComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ToolStripComboBox tscb = (ToolStripComboBox)sender;
+            Bitmap NewBitmap; 
+            Graphics g;
+
+            switch (tscb.SelectedIndex)
+            {
+                case 1:
+                    if (AddedBlitWord != BlitWord.Left && AddedBlitWord != BlitWord.Both)
+                    {
+                        NewBitmap = new Bitmap(vr.bitplane.bmp.Width + 16, vr.bitplane.bmp.Height);
+                        g = Graphics.FromImage(NewBitmap);
+                        g.Clear(vr.bitplane.Pallate[0]);
+                        g.DrawImage(vr.bitplane.bmp, 16, 0, vr.bitplane.bmp.Width, vr.bitplane.bmp.Height);
+                        g.Dispose();
+                        vr.bitplane.bmp = NewBitmap;
+                        image.Image = NewBitmap;
+                        image.ScaleImage((int)settings.previewScalingNud.Value);
+                        toolStripResolutionLabel.Text = vr.bitplane.Width + "x" + vr.bitplane.bmp.Height;
+                        if (AddedBlitWord == BlitWord.None)
+                            AddedBlitWord = BlitWord.Left;
+                        else // if no left then its right
+                            AddedBlitWord = BlitWord.Both;
+
+
+                    }
+                    else
+                        MessageBox.Show("Left Word already added to the image.","Silly you...",MessageBoxButtons.OK);
+                    break;
+                case 2:
+                    if (AddedBlitWord != BlitWord.Right && AddedBlitWord != BlitWord.Both)
+                    {
+                        NewBitmap = new Bitmap(vr.bitplane.bmp.Width + 16, vr.bitplane.bmp.Height);
+                        g = Graphics.FromImage(NewBitmap);
+                        g.Clear(vr.bitplane.Pallate[0]);
+                        g.DrawImage(vr.bitplane.bmp, 0, 0, vr.bitplane.bmp.Width, vr.bitplane.bmp.Height);
+                        g.Dispose();
+                        vr.bitplane.bmp = NewBitmap;
+                        image.Image = NewBitmap;
+                        image.ScaleImage((int)settings.previewScalingNud.Value);
+                        toolStripResolutionLabel.Text = vr.bitplane.Width + "x" + vr.bitplane.bmp.Height;
+                        if (AddedBlitWord == BlitWord.None)
+                            AddedBlitWord = BlitWord.Right;
+                        else // if no left then its right
+                            AddedBlitWord = BlitWord.Both;
+                    }
+                    else
+                        MessageBox.Show("Right Word already added to the image.", "Silly you...", MessageBoxButtons.OK);
+                    break;
+                case 3:
+                    if (AddedBlitWord != BlitWord.Both)
+                    {
+                        NewBitmap = new Bitmap(vr.bitplane.bmp.Width + 32, vr.bitplane.bmp.Height);
+                        g = Graphics.FromImage(NewBitmap);
+                        g.Clear(vr.bitplane.Pallate[0]);
+                        g.DrawImage(vr.bitplane.bmp, 16, 0, vr.bitplane.bmp.Width, vr.bitplane.bmp.Height);
+                        g.Dispose();
+                        vr.bitplane.bmp = NewBitmap;
+                        image.Image = NewBitmap;
+                        image.ScaleImage((int)settings.previewScalingNud.Value);
+                        toolStripResolutionLabel.Text = vr.bitplane.Width + "x" + vr.bitplane.bmp.Height;
+
+                        AddedBlitWord = BlitWord.Both;
+                    }
+                    else
+                        MessageBox.Show("Right Word already added to the image.", "Silly you...", MessageBoxButtons.OK);
+                    break;
+                    break;
+            }
+        }
+
+       
     }
 }

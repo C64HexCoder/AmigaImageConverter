@@ -26,5 +26,9 @@ namespace AmigaImageConverter
             }
         }
 
+        private void OKbtn_Click(object sender, EventArgs e)
+        {
+            Dispose();
+        }
     }
 }

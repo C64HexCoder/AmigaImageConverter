@@ -40,7 +40,7 @@
             this.alignWidthToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.alignWidthComboBox = new System.Windows.Forms.ToolStripComboBox();
             this.addWordToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripComboBox2 = new System.Windows.Forms.ToolStripComboBox();
+            this.addBlitWordComboBox = new System.Windows.Forms.ToolStripComboBox();
             this.autoCorpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.informationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
@@ -58,7 +58,7 @@
             this.toolStripFileName = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripResolutionLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripDepthLabel = new System.Windows.Forms.ToolStripStatusLabel();
-            this.toolStripProgressBar1 = new System.Windows.Forms.ToolStripProgressBar();
+            this.toolStripProgressBar = new System.Windows.Forms.ToolStripProgressBar();
             this.image = new Amiga.ImageBox();
             this.SlicingPanel = new System.Windows.Forms.Panel();
             this.SlicingGb = new System.Windows.Forms.GroupBox();
@@ -71,6 +71,7 @@
             this.numOfRawsNud = new System.Windows.Forms.NumericUpDown();
             this.label1 = new System.Windows.Forms.Label();
             this.SpritesPerRawNud = new System.Windows.Forms.NumericUpDown();
+            this.removeBlitterWorldToolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.statusStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.image)).BeginInit();
@@ -150,6 +151,7 @@
             this.toolStripMenuItem2.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.alignWidthToolStripMenuItem,
             this.addWordToolStripMenuItem,
+            this.removeBlitterWorldToolStripMenuItem3,
             this.autoCorpToolStripMenuItem,
             this.informationToolStripMenuItem});
             this.toolStripMenuItem2.Name = "toolStripMenuItem2";
@@ -161,7 +163,7 @@
             this.alignWidthToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.alignWidthComboBox});
             this.alignWidthToolStripMenuItem.Name = "alignWidthToolStripMenuItem";
-            this.alignWidthToolStripMenuItem.Size = new System.Drawing.Size(247, 34);
+            this.alignWidthToolStripMenuItem.Size = new System.Drawing.Size(277, 34);
             this.alignWidthToolStripMenuItem.Text = "Align Width";
             // 
             // alignWidthComboBox
@@ -179,31 +181,33 @@
             // addWordToolStripMenuItem
             // 
             this.addWordToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripComboBox2});
+            this.addBlitWordComboBox});
             this.addWordToolStripMenuItem.Name = "addWordToolStripMenuItem";
-            this.addWordToolStripMenuItem.Size = new System.Drawing.Size(247, 34);
+            this.addWordToolStripMenuItem.Size = new System.Drawing.Size(277, 34);
             this.addWordToolStripMenuItem.Text = "Add Blitter Word";
             // 
-            // toolStripComboBox2
+            // addBlitWordComboBox
             // 
-            this.toolStripComboBox2.Items.AddRange(new object[] {
+            this.addBlitWordComboBox.Items.AddRange(new object[] {
             "None",
             "Left",
-            "Right"});
-            this.toolStripComboBox2.Name = "toolStripComboBox2";
-            this.toolStripComboBox2.Size = new System.Drawing.Size(121, 33);
+            "Right",
+            "Both"});
+            this.addBlitWordComboBox.Name = "addBlitWordComboBox";
+            this.addBlitWordComboBox.Size = new System.Drawing.Size(121, 33);
+            this.addBlitWordComboBox.SelectedIndexChanged += new System.EventHandler(this.addBlitWordComboBox_SelectedIndexChanged);
             // 
             // autoCorpToolStripMenuItem
             // 
             this.autoCorpToolStripMenuItem.Name = "autoCorpToolStripMenuItem";
-            this.autoCorpToolStripMenuItem.Size = new System.Drawing.Size(247, 34);
+            this.autoCorpToolStripMenuItem.Size = new System.Drawing.Size(277, 34);
             this.autoCorpToolStripMenuItem.Text = "Auto Corp";
             this.autoCorpToolStripMenuItem.Click += new System.EventHandler(this.autoCorpToolStripMenuItem_Click);
             // 
             // informationToolStripMenuItem
             // 
             this.informationToolStripMenuItem.Name = "informationToolStripMenuItem";
-            this.informationToolStripMenuItem.Size = new System.Drawing.Size(247, 34);
+            this.informationToolStripMenuItem.Size = new System.Drawing.Size(277, 34);
             this.informationToolStripMenuItem.Text = "Information";
             this.informationToolStripMenuItem.Click += new System.EventHandler(this.informationToolStripMenuItem_Click);
             // 
@@ -219,13 +223,13 @@
             // cutSpriteToolStripMenuItem
             // 
             this.cutSpriteToolStripMenuItem.Name = "cutSpriteToolStripMenuItem";
-            this.cutSpriteToolStripMenuItem.Size = new System.Drawing.Size(262, 34);
+            this.cutSpriteToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
             this.cutSpriteToolStripMenuItem.Text = "Cut Sprite";
             // 
             // spriteSheetCutterToolStripMenuItem
             // 
             this.spriteSheetCutterToolStripMenuItem.Name = "spriteSheetCutterToolStripMenuItem";
-            this.spriteSheetCutterToolStripMenuItem.Size = new System.Drawing.Size(262, 34);
+            this.spriteSheetCutterToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
             this.spriteSheetCutterToolStripMenuItem.Text = "Sprite Sheet Cutter";
             this.spriteSheetCutterToolStripMenuItem.Click += new System.EventHandler(this.sprireSheetCutterToolStripMenuItem_Click);
             // 
@@ -291,7 +295,7 @@
             this.toolStripFileName,
             this.toolStripResolutionLabel,
             this.toolStripDepthLabel,
-            this.toolStripProgressBar1});
+            this.toolStripProgressBar});
             this.statusStrip.Location = new System.Drawing.Point(0, 611);
             this.statusStrip.Name = "statusStrip";
             this.statusStrip.Padding = new System.Windows.Forms.Padding(1, 0, 16, 0);
@@ -317,10 +321,10 @@
             this.toolStripDepthLabel.Size = new System.Drawing.Size(61, 25);
             this.toolStripDepthLabel.Text = "Depth";
             // 
-            // toolStripProgressBar1
+            // toolStripProgressBar
             // 
-            this.toolStripProgressBar1.Name = "toolStripProgressBar1";
-            this.toolStripProgressBar1.Size = new System.Drawing.Size(100, 24);
+            this.toolStripProgressBar.Name = "toolStripProgressBar";
+            this.toolStripProgressBar.Size = new System.Drawing.Size(100, 24);
             // 
             // image
             // 
@@ -334,6 +338,7 @@
             this.image.TabIndex = 3;
             this.image.TabStop = false;
             this.image.LoadCompleted += new System.ComponentModel.AsyncCompletedEventHandler(this.image_LoadCompleted);
+            this.image.MouseClick += new System.Windows.Forms.MouseEventHandler(this.image_MouseClick);
             // 
             // SlicingPanel
             // 
@@ -448,6 +453,12 @@
             this.SpritesPerRawNud.TabIndex = 0;
             this.SpritesPerRawNud.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
+            // removeBlitterWorldToolStripMenuItem3
+            // 
+            this.removeBlitterWorldToolStripMenuItem3.Name = "removeBlitterWorldToolStripMenuItem3";
+            this.removeBlitterWorldToolStripMenuItem3.Size = new System.Drawing.Size(277, 34);
+            this.removeBlitterWorldToolStripMenuItem3.Text = "Remove Blitter Word";
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 25F);
@@ -510,7 +521,7 @@
         private System.Windows.Forms.ToolStripMenuItem alignWidthToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem addWordToolStripMenuItem;
         private System.Windows.Forms.ToolStripComboBox alignWidthComboBox;
-        private System.Windows.Forms.ToolStripComboBox toolStripComboBox2;
+        private System.Windows.Forms.ToolStripComboBox addBlitWordComboBox;
         private System.Windows.Forms.ToolStripMenuItem autoCorpToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem informationToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem saveImageToolStripMenuItem;
@@ -526,7 +537,8 @@
         private System.Windows.Forms.ComboBox spriteWidthCb;
         private System.Windows.Forms.Button SpriteSaveBtn;
         private Amiga.ImageBox sprImageBox;
-        private System.Windows.Forms.ToolStripProgressBar toolStripProgressBar1;
+        private System.Windows.Forms.ToolStripProgressBar toolStripProgressBar;
+        private System.Windows.Forms.ToolStripMenuItem removeBlitterWorldToolStripMenuItem3;
     }
 }
 

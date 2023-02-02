@@ -49,6 +49,7 @@
             this.OKbtn.TabIndex = 0;
             this.OKbtn.Text = "OK";
             this.OKbtn.UseVisualStyleBackColor = true;
+            this.OKbtn.Click += new System.EventHandler(this.OKbtn_Click);
             // 
             // groupBox1
             // 
