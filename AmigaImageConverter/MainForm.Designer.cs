@@ -41,15 +41,19 @@
             this.alignWidthComboBox = new System.Windows.Forms.ToolStripComboBox();
             this.addWordToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.addBlitWordComboBox = new System.Windows.Forms.ToolStripComboBox();
+            this.removeBlitterWorldToolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
+            this.removeBlitterWordToolStripComboBox = new System.Windows.Forms.ToolStripComboBox();
+            this.addedWordNoneToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.autoCorpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.informationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.cutSpriteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.spriteSheetCutterToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.settingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.settingsMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.colorsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pallateToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.selectBackgroundToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.settingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.settingsMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openImageFileDialog = new System.Windows.Forms.OpenFileDialog();
@@ -71,7 +75,6 @@
             this.numOfRawsNud = new System.Windows.Forms.NumericUpDown();
             this.label1 = new System.Windows.Forms.Label();
             this.SpritesPerRawNud = new System.Windows.Forms.NumericUpDown();
-            this.removeBlitterWorldToolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.statusStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.image)).BeginInit();
@@ -90,6 +93,7 @@
             this.fileToolStripMenuItem,
             this.toolStripMenuItem2,
             this.toolStripMenuItem1,
+            this.colorsToolStripMenuItem,
             this.settingsToolStripMenuItem,
             this.aboutToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
@@ -197,6 +201,33 @@
             this.addBlitWordComboBox.Size = new System.Drawing.Size(121, 33);
             this.addBlitWordComboBox.SelectedIndexChanged += new System.EventHandler(this.addBlitWordComboBox_SelectedIndexChanged);
             // 
+            // removeBlitterWorldToolStripMenuItem3
+            // 
+            this.removeBlitterWorldToolStripMenuItem3.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.removeBlitterWordToolStripComboBox,
+            this.addedWordNoneToolStripMenuItem});
+            this.removeBlitterWorldToolStripMenuItem3.Name = "removeBlitterWorldToolStripMenuItem3";
+            this.removeBlitterWorldToolStripMenuItem3.Size = new System.Drawing.Size(277, 34);
+            this.removeBlitterWorldToolStripMenuItem3.Text = "Remove Blitter Word";
+            this.removeBlitterWorldToolStripMenuItem3.MouseHover += new System.EventHandler(this.removeBlitterWorldToolStripMenuItem3_MouseHover);
+            // 
+            // removeBlitterWordToolStripComboBox
+            // 
+            this.removeBlitterWordToolStripComboBox.Items.AddRange(new object[] {
+            "None",
+            "Left",
+            "Right",
+            "Both"});
+            this.removeBlitterWordToolStripComboBox.Name = "removeBlitterWordToolStripComboBox";
+            this.removeBlitterWordToolStripComboBox.Size = new System.Drawing.Size(121, 33);
+            this.removeBlitterWordToolStripComboBox.SelectedIndexChanged += new System.EventHandler(this.removeBlitterWordToolStripComboBox_SelectedIndexChanged);
+            // 
+            // addedWordNoneToolStripMenuItem
+            // 
+            this.addedWordNoneToolStripMenuItem.Name = "addedWordNoneToolStripMenuItem";
+            this.addedWordNoneToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
+            this.addedWordNoneToolStripMenuItem.Text = "Added Word: None";
+            // 
             // autoCorpToolStripMenuItem
             // 
             this.autoCorpToolStripMenuItem.Name = "autoCorpToolStripMenuItem";
@@ -223,32 +254,24 @@
             // cutSpriteToolStripMenuItem
             // 
             this.cutSpriteToolStripMenuItem.Name = "cutSpriteToolStripMenuItem";
-            this.cutSpriteToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
+            this.cutSpriteToolStripMenuItem.Size = new System.Drawing.Size(262, 34);
             this.cutSpriteToolStripMenuItem.Text = "Cut Sprite";
             // 
             // spriteSheetCutterToolStripMenuItem
             // 
             this.spriteSheetCutterToolStripMenuItem.Name = "spriteSheetCutterToolStripMenuItem";
-            this.spriteSheetCutterToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
+            this.spriteSheetCutterToolStripMenuItem.Size = new System.Drawing.Size(262, 34);
             this.spriteSheetCutterToolStripMenuItem.Text = "Sprite Sheet Cutter";
             this.spriteSheetCutterToolStripMenuItem.Click += new System.EventHandler(this.sprireSheetCutterToolStripMenuItem_Click);
             // 
-            // settingsToolStripMenuItem
+            // colorsToolStripMenuItem
             // 
-            this.settingsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.settingsMenuItem,
+            this.colorsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.pallateToolStripMenuItem,
             this.selectBackgroundToolStripMenuItem});
-            this.settingsToolStripMenuItem.Name = "settingsToolStripMenuItem";
-            this.settingsToolStripMenuItem.Size = new System.Drawing.Size(92, 29);
-            this.settingsToolStripMenuItem.Text = "Settings";
-            // 
-            // settingsMenuItem
-            // 
-            this.settingsMenuItem.Name = "settingsMenuItem";
-            this.settingsMenuItem.Size = new System.Drawing.Size(260, 34);
-            this.settingsMenuItem.Text = "Settings";
-            this.settingsMenuItem.Click += new System.EventHandler(this.settingsMenuItem_Click);
+            this.colorsToolStripMenuItem.Name = "colorsToolStripMenuItem";
+            this.colorsToolStripMenuItem.Size = new System.Drawing.Size(79, 29);
+            this.colorsToolStripMenuItem.Text = "Colors";
             // 
             // pallateToolStripMenuItem
             // 
@@ -263,6 +286,21 @@
             this.selectBackgroundToolStripMenuItem.Size = new System.Drawing.Size(260, 34);
             this.selectBackgroundToolStripMenuItem.Text = "Select Background";
             this.selectBackgroundToolStripMenuItem.Click += new System.EventHandler(this.selectBackgroundToolStripMenuItem_Click);
+            // 
+            // settingsToolStripMenuItem
+            // 
+            this.settingsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.settingsMenuItem});
+            this.settingsToolStripMenuItem.Name = "settingsToolStripMenuItem";
+            this.settingsToolStripMenuItem.Size = new System.Drawing.Size(92, 29);
+            this.settingsToolStripMenuItem.Text = "Settings";
+            // 
+            // settingsMenuItem
+            // 
+            this.settingsMenuItem.Name = "settingsMenuItem";
+            this.settingsMenuItem.Size = new System.Drawing.Size(178, 34);
+            this.settingsMenuItem.Text = "Settings";
+            this.settingsMenuItem.Click += new System.EventHandler(this.settingsMenuItem_Click);
             // 
             // aboutToolStripMenuItem
             // 
@@ -453,12 +491,6 @@
             this.SpritesPerRawNud.TabIndex = 0;
             this.SpritesPerRawNud.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
-            // removeBlitterWorldToolStripMenuItem3
-            // 
-            this.removeBlitterWorldToolStripMenuItem3.Name = "removeBlitterWorldToolStripMenuItem3";
-            this.removeBlitterWorldToolStripMenuItem3.Size = new System.Drawing.Size(277, 34);
-            this.removeBlitterWorldToolStripMenuItem3.Text = "Remove Blitter Word";
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 25F);
@@ -470,6 +502,7 @@
             this.Controls.Add(this.image);
             this.Controls.Add(this.menuStrip1);
             this.Controls.Add(this.statusStrip);
+            this.DoubleBuffered = true;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.SizableToolWindow;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
@@ -513,9 +546,7 @@
         private System.Windows.Forms.ToolStripStatusLabel toolStripDepthLabel;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem cutSpriteToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem pallateToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem saveImageAsSpriteToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem selectBackgroundToolStripMenuItem;
         private Amiga.ImageBox image;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem2;
         private System.Windows.Forms.ToolStripMenuItem alignWidthToolStripMenuItem;
@@ -539,6 +570,11 @@
         private Amiga.ImageBox sprImageBox;
         private System.Windows.Forms.ToolStripProgressBar toolStripProgressBar;
         private System.Windows.Forms.ToolStripMenuItem removeBlitterWorldToolStripMenuItem3;
+        private System.Windows.Forms.ToolStripMenuItem colorsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem pallateToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem selectBackgroundToolStripMenuItem;
+        private System.Windows.Forms.ToolStripComboBox removeBlitterWordToolStripComboBox;
+        private System.Windows.Forms.ToolStripMenuItem addedWordNoneToolStripMenuItem;
     }
 }
 

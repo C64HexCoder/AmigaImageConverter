@@ -16,7 +16,7 @@ namespace AmigaImageConverter
         public InfoForm()
         {
             InitializeComponent();
-            if (vr.bitplane.bmp != null)
+            if (vr.bitplane.bitmap != null)
             {
                 WidthLbl.Text = "Width: " + vr.bitplane.Width.ToString();
                 HeightLbl.Text = "Height: " + vr.bitplane.Height.ToString();

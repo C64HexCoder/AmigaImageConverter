@@ -28,6 +28,7 @@ namespace AmigaImageConverter
         PublicVariables vr = PublicVariables.instance;
         Panel ButtomPanel = new Panel();
         List<Sprite> sprites = new List<Sprite>();
+        bool SlicedSpriteSheet = false;
 
         enum BlitWord
         {
@@ -49,6 +50,7 @@ namespace AmigaImageConverter
             ButtomPanel.Top = image.Bottom + 2;
             Controls.Add(ButtomPanel);
             addBlitWordComboBox.SelectedIndex = 0;
+ 
         }
 
         private void loadImageToolStripMenuItem_Click(object sender, EventArgs e)
@@ -152,7 +154,7 @@ namespace AmigaImageConverter
             {
                 if (settings.valueChanged == true)
                 {
-                    image.Image = vr.bitplane.bmp;
+                    image.Image = vr.bitplane.bitmap;
                     image.ScaleImage((int)settings.previewScalingNud.Value);
                     SlicingPanel.Left = image.Right + 2;
                     ButtomPanel.Width = image.Width;
@@ -192,7 +194,7 @@ namespace AmigaImageConverter
         private void selectBackgroundToolStripMenuItem_Click(object sender, EventArgs e)
         {
             SelectBackgroundColor selectBGColor = new SelectBackgroundColor();
-            if (vr.bitplane.bmp != null)
+            if (vr.bitplane.bitmap != null)
             {
                 selectBGColor.pallete.SetPalette(vr.bitplane.Pallate);
                 selectBGColor.ShowDialog();
@@ -211,13 +213,13 @@ namespace AmigaImageConverter
 
         private void autoCorpToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Point StartPos = new Point(vr.bitplane.bmp.Width, vr.bitplane.Height), StopPos = new Point(0, 0);
+            Point StartPos = new Point(vr.bitplane.bitmap.Width, vr.bitplane.Height), StopPos = new Point(0, 0);
             Color backgroundColor = vr.bitplane.Pallate[0];
 
             for (int y = vr.bitplane.Height - 1; y >= 0; y--)
                 for (int x = vr.bitplane.Width - 1; x >= 0; x--)
                 {
-                    Color pixel = vr.bitplane.bmp.GetPixel(x, y);
+                    Color pixel = vr.bitplane.bitmap.GetPixel(x, y);
                     if (pixel.R != backgroundColor.R || pixel.G != backgroundColor.G || pixel.B != backgroundColor.B)
                     //if (pixel != backgroundColor) // Dont have a clue why its not working
                     {
@@ -238,15 +240,14 @@ namespace AmigaImageConverter
             Rectangle destRec = new Rectangle(0, 0, NewWidth, NewHeight);
             g.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.None;
             g.DrawImage(bmp, destRec, StartPos.X, StartPos.Y, NewWidth, NewHeight, GraphicsUnit.Pixel);
-
-
             g.Dispose();
-            vr.bitplane.bmp = corpedImage;
-            vr.bitplane.ConvertImageToBitmaps();
-            image.Image = vr.bitplane.bmp;
+            vr.bitplane.bitmap = corpedImage;
+            image.Image = vr.bitplane.bitmap;
             image.ScaleImage((int)settings.previewScalingNud.Value);
-
+            ButtomPanel.Top = image.Bottom+1;
+            ButtomPanel.Width = image.Width < 500 ? 500 : image.Width;
             CheckImageAlignment();
+            toolStripResolutionLabel.Text = vr.bitplane.Width.ToString() + "x" + vr.bitplane.Height.ToString();
         }
 
         private void informationToolStripMenuItem_Click(object sender, EventArgs e)
@@ -277,10 +278,10 @@ namespace AmigaImageConverter
 
 
             }
-            image.Image = vr.bitplane.bmp;
+            image.Image = vr.bitplane.bitmap;
             image.ScaleImage((int)settings.previewScalingNud.Value);
 
-            toolStripResolutionLabel.Text = vr.bitplane.bmp.Width + "x" + vr.bitplane.bmp.Height;
+            toolStripResolutionLabel.Text = vr.bitplane.bitmap.Width + "x" + vr.bitplane.bitmap.Height;
         }
 
         private void saveImageToolStripMenuItem_Click(object sender, EventArgs e)
@@ -288,20 +289,20 @@ namespace AmigaImageConverter
             saveSourceFileDialog.Filter = "PNG (*.PNG)|*.png";
             if (saveSourceFileDialog.ShowDialog() == DialogResult.OK)
             {
-                vr.bitplane.bmp.Save(saveSourceFileDialog.FileName);
+                vr.bitplane.bitmap.Save(saveSourceFileDialog.FileName);
             }
         }
 
         private void saveImageAsSpriteToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (vr.bitplane.bmp == null)
+            if (vr.bitplane.bitmap == null)
             {
                 MessageBox.Show("Load Image First!", "You Drunk Or Something?");
                 return;
             }
 
             Sprite sprite = new Sprite();
-            sprite.ImportImage(vr.bitplane.bmp);
+            sprite.ImportImage(vr.bitplane.bitmap);
 
             if (saveSourceFileDialog.ShowDialog() == DialogResult.OK)
             {
@@ -338,8 +339,8 @@ namespace AmigaImageConverter
             }
             sprites.Clear();
 
-            int SprireWidth = (int)(vr.bitplane.bmp.Width / SpritesPerRawNud.Value);
-            int SpriteHeight = (int)(vr.bitplane.bmp.Height / numOfRawsNud.Value);
+            int SprireWidth = (int)(vr.bitplane.bitmap.Width / SpritesPerRawNud.Value);
+            int SpriteHeight = (int)(vr.bitplane.bitmap.Height / numOfRawsNud.Value);
 
             int NumOfSprites = (int)(SpritesPerRawNud.Value * numOfRawsNud.Value);
 
@@ -349,12 +350,12 @@ namespace AmigaImageConverter
                 {
 
                     Bitmap SprBmp = new Bitmap(SprireWidth, SpriteHeight);
-                    SprBmp.SetResolution(vr.bitplane.bmp.HorizontalResolution, vr.bitplane.bmp.VerticalResolution);
+                    SprBmp.SetResolution(vr.bitplane.bitmap.HorizontalResolution, vr.bitplane.  bitmap.VerticalResolution);
                     Sprite sprite = new Sprite();
 
                     Graphics gr = Graphics.FromImage(SprBmp);
                     Rectangle sourceRec = new Rectangle(x * SprireWidth, y * SpriteHeight, SprireWidth, SpriteHeight);
-                    gr.DrawImage(vr.bitplane.bmp, 0, 0, sourceRec, GraphicsUnit.Pixel);
+                    gr.DrawImage(vr.bitplane.bitmap, 0, 0, sourceRec, GraphicsUnit.Pixel);
 
                     //pictureBox1.Update();
                     gr.Dispose();
@@ -385,7 +386,7 @@ namespace AmigaImageConverter
             //sprImageBox.ScaleImage(4);
             //sprImageBox.Location= new Point((int)((SlicingGb.Width - sprImageBox.Width)/2),sprImageBox.Top);
 
-            Bitmap SelectedSpriteImage = new Bitmap(vr.bitplane.bmp);
+            Bitmap SelectedSpriteImage = new Bitmap(vr.bitplane.bitmap);
             Graphics SSI = Graphics.FromImage(SelectedSpriteImage);
             Pen p = new Pen(Color.Black, 2);
             SSI.DrawRectangle(p, 0, 0, SprireWidth, SpriteHeight);
@@ -396,20 +397,21 @@ namespace AmigaImageConverter
             SliceBtn.Enabled = false;
             SpriteSaveBtn.Enabled = true;
             spriteSelectNud.Value = 0;
+            SlicedSpriteSheet = true;
         }
 
 
         private void spriteSelectNud_ValueChanged(object sender, EventArgs e)
         {
-            int SprireWidth = (int)(vr.bitplane.bmp.Width / SpritesPerRawNud.Value);
-            int SpriteHeight = (int)(vr.bitplane.bmp.Height / numOfRawsNud.Value);
+            int SprireWidth = (int)(vr.bitplane.bitmap.Width / SpritesPerRawNud.Value);
+            int SpriteHeight = (int)(vr.bitplane.bitmap.Height / numOfRawsNud.Value);
 
             NumericUpDown Nud = (NumericUpDown)sender;
             int SpriteNumber = (int)Nud.Value;
             sprImageBox.Image = sprites[(int)(Nud.Value)].bitmap;
             int SpriteXPos = (int)Nud.Value % (int)SpritesPerRawNud.Value, SpriteYPos = (int)Nud.Value / (int)SpritesPerRawNud.Value;
 
-            Bitmap SelectedSpriteImage = new Bitmap(vr.bitplane.bmp);
+            Bitmap SelectedSpriteImage = new Bitmap(vr.bitplane.bitmap);
             Graphics SSI = Graphics.FromImage(SelectedSpriteImage);
             Pen p = new Pen(Color.Black, 2);
             SSI.DrawRectangle(p, SpriteXPos * SprireWidth, SpriteYPos * SpriteHeight, SprireWidth, SpriteHeight);
@@ -432,22 +434,25 @@ namespace AmigaImageConverter
 
         private void image_MouseClick(object sender, MouseEventArgs e)
         {
-            int MouseX = e.X, MouseY = e.Y;
+            if (SlicedSpriteSheet)
+            {
+                int MouseX = e.X, MouseY = e.Y;
 
-            int SprireWidth = (int)(image.Width / SpritesPerRawNud.Value);
-            int SpriteHeight = (int)(image.Height / numOfRawsNud.Value);
+                int SprireWidth = (int)(image.Width / SpritesPerRawNud.Value);
+                int SpriteHeight = (int)(image.Height / numOfRawsNud.Value);
 
-        
-            int SpriteXPos = (int)MouseX / SprireWidth, SpriteYPos = (int)MouseY / SpriteHeight;
-            image.Image = vr.bitplane.bmp;
-            image.ScaleImage((int)(settings.previewScalingNud.Value));
-            Bitmap SelectedSpriteImage = new Bitmap(image.Image);
-            Graphics SSI = Graphics.FromImage(SelectedSpriteImage);
-            Pen p = new Pen(Color.Black, 2*(int)(settings.previewScalingNud.Value));
-            SSI.DrawRectangle(p, SpriteXPos * SprireWidth, SpriteYPos * SpriteHeight, SprireWidth, SpriteHeight);
-            SSI.Dispose();
-            image.Image = SelectedSpriteImage;
-            spriteSelectNud.Value = SpriteXPos + SpriteYPos*SpritesPerRawNud.Value;
+
+                int SpriteXPos = (int)MouseX / SprireWidth, SpriteYPos = (int)MouseY / SpriteHeight;
+                image.Image = vr.bitplane.bitmap;
+                image.ScaleImage((int)(settings.previewScalingNud.Value));
+                Bitmap SelectedSpriteImage = new Bitmap(image.Image);
+                Graphics SSI = Graphics.FromImage(SelectedSpriteImage);
+                Pen p = new Pen(Color.Black, 2 * (int)(settings.previewScalingNud.Value));
+                SSI.DrawRectangle(p, SpriteXPos * SprireWidth, SpriteYPos * SpriteHeight, SprireWidth, SpriteHeight);
+                SSI.Dispose();
+                image.Image = SelectedSpriteImage;
+                spriteSelectNud.Value = SpriteXPos + SpriteYPos * SpritesPerRawNud.Value;
+            }
         }
 
         private void addBlitWordComboBox_SelectedIndexChanged(object sender, EventArgs e)
@@ -461,21 +466,14 @@ namespace AmigaImageConverter
                 case 1:
                     if (AddedBlitWord != BlitWord.Left && AddedBlitWord != BlitWord.Both)
                     {
-                        NewBitmap = new Bitmap(vr.bitplane.bmp.Width + 16, vr.bitplane.bmp.Height);
-                        g = Graphics.FromImage(NewBitmap);
-                        g.Clear(vr.bitplane.Pallate[0]);
-                        g.DrawImage(vr.bitplane.bmp, 16, 0, vr.bitplane.bmp.Width, vr.bitplane.bmp.Height);
-                        g.Dispose();
-                        vr.bitplane.bmp = NewBitmap;
-                        image.Image = NewBitmap;
+                        vr.bitplane.AddBlitterWord(Bitplane.BlitWord.Left);
+                        image.Image = vr.bitplane.bitmap;
                         image.ScaleImage((int)settings.previewScalingNud.Value);
-                        toolStripResolutionLabel.Text = vr.bitplane.Width + "x" + vr.bitplane.bmp.Height;
+                        toolStripResolutionLabel.Text = vr.bitplane.Width + "x" + vr.bitplane.bitmap.Height;
                         if (AddedBlitWord == BlitWord.None)
                             AddedBlitWord = BlitWord.Left;
                         else // if no left then its right
                             AddedBlitWord = BlitWord.Both;
-
-
                     }
                     else
                         MessageBox.Show("Left Word already added to the image.","Silly you...",MessageBoxButtons.OK);
@@ -483,15 +481,10 @@ namespace AmigaImageConverter
                 case 2:
                     if (AddedBlitWord != BlitWord.Right && AddedBlitWord != BlitWord.Both)
                     {
-                        NewBitmap = new Bitmap(vr.bitplane.bmp.Width + 16, vr.bitplane.bmp.Height);
-                        g = Graphics.FromImage(NewBitmap);
-                        g.Clear(vr.bitplane.Pallate[0]);
-                        g.DrawImage(vr.bitplane.bmp, 0, 0, vr.bitplane.bmp.Width, vr.bitplane.bmp.Height);
-                        g.Dispose();
-                        vr.bitplane.bmp = NewBitmap;
-                        image.Image = NewBitmap;
+                        vr.bitplane.AddBlitterWord(Bitplane.BlitWord.Right);
+                        image.Image = vr.bitplane.bitmap;
                         image.ScaleImage((int)settings.previewScalingNud.Value);
-                        toolStripResolutionLabel.Text = vr.bitplane.Width + "x" + vr.bitplane.bmp.Height;
+                        toolStripResolutionLabel.Text = vr.bitplane.Width + "x" + vr.bitplane.bitmap.Height;
                         if (AddedBlitWord == BlitWord.None)
                             AddedBlitWord = BlitWord.Right;
                         else // if no left then its right
@@ -503,25 +496,41 @@ namespace AmigaImageConverter
                 case 3:
                     if (AddedBlitWord != BlitWord.Both)
                     {
-                        NewBitmap = new Bitmap(vr.bitplane.bmp.Width + 32, vr.bitplane.bmp.Height);
-                        g = Graphics.FromImage(NewBitmap);
-                        g.Clear(vr.bitplane.Pallate[0]);
-                        g.DrawImage(vr.bitplane.bmp, 16, 0, vr.bitplane.bmp.Width, vr.bitplane.bmp.Height);
-                        g.Dispose();
-                        vr.bitplane.bmp = NewBitmap;
-                        image.Image = NewBitmap;
+                        vr.bitplane.AddBlitterWord(Bitplane.BlitWord.Both);
+                        image.Image = vr.bitplane.bitmap;
                         image.ScaleImage((int)settings.previewScalingNud.Value);
-                        toolStripResolutionLabel.Text = vr.bitplane.Width + "x" + vr.bitplane.bmp.Height;
+                        toolStripResolutionLabel.Text = vr.bitplane.Width + "x" + vr.bitplane.bitmap.Height;
 
                         AddedBlitWord = BlitWord.Both;
                     }
                     else
                         MessageBox.Show("Right Word already added to the image.", "Silly you...", MessageBoxButtons.OK);
                     break;
-                    break;
             }
         }
 
-       
+        private void removeBlitterWorldToolStripMenuItem3_MouseHover(object sender, EventArgs e)
+        {
+            removeBlitterWordToolStripComboBox.SelectedIndex = 0;
+        }
+
+        private void removeBlitterWordToolStripComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            switch (removeBlitterWordToolStripComboBox.SelectedIndex)
+            {
+                case 0:         // None
+                    break; 
+                case 1:         // Left
+                    if (AddedBlitWord == BlitWord.Left || AddedBlitWord == BlitWord.Both)
+                    {
+
+                    }
+                    break;
+                case 2:         // Right
+                    break;
+                case 3:         // Both
+                    break;
+            }
+        }
     }
 }
