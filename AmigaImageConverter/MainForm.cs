@@ -532,5 +532,35 @@ namespace AmigaImageConverter
                     break;
             }
         }
+
+        private void setImageWidthToolStripMenuItem_MouseHover(object sender, EventArgs e)
+        {
+            toolStripChangeWidthTextBox.Text = vr.bitplane.Width.ToString();
+        }
+
+        private void toolStripChangeWidthTextBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            ToolStripTextBox tstb = (ToolStripTextBox)sender;
+
+            if (e.KeyCode == Keys.Enter)
+            {
+                vr.bitplane.ChangeWidth(int.Parse(tstb.Text));
+                image.Image = vr.bitplane.bitmap;
+                image.ScaleImage((int)settings.previewScalingNud.Value);
+            }
+        }
+
+        private void alignWidthToolStripMenuItem_MouseHover(object sender, EventArgs e)
+        {
+            CheckImageAlignment();
+        }
+
+        private void displayMaskToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            DisplayMask dm = new DisplayMask();
+            //vr.bitplane.CreateMask();
+            vr.bitplane.CreateMaskBitmap();
+            dm.ShowDialog(); ;
+        }
     }
 }

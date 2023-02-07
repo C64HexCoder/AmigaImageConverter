@@ -32,10 +32,7 @@ namespace AmigaImageConverter
             //  if (vr.bitplane.Pallate[i] == pallete.SelectedColor)
 
             //            }
-            Color oldColorZero = vr.bitplane.Pallate[0];
-            vr.bitplane.Pallate[0] = pallete.SelectedColor;
-            vr.bitplane.Pallate[pallete.SelectedColorIdx] = oldColorZero;
-            vr.bitplane.ConvertImageToBitmaps();
+            vr.bitplane.SelectBackgroundColor(pallete.SelectedColorIdx);
 
         }
     }

@@ -34,6 +34,7 @@
             this.loadImageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saveImageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saveImageAsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.saveMaskToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.savePallateToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saveImageAsSpriteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
@@ -44,7 +45,10 @@
             this.removeBlitterWorldToolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
             this.removeBlitterWordToolStripComboBox = new System.Windows.Forms.ToolStripComboBox();
             this.addedWordNoneToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.setImageWidthToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripChangeWidthTextBox = new System.Windows.Forms.ToolStripTextBox();
             this.autoCorpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.displayMaskToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.informationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.cutSpriteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -109,6 +113,7 @@
             this.loadImageToolStripMenuItem,
             this.saveImageToolStripMenuItem,
             this.saveImageAsToolStripMenuItem,
+            this.saveMaskToolStripMenuItem,
             this.savePallateToolStripMenuItem,
             this.saveImageAsSpriteToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
@@ -136,6 +141,12 @@
             this.saveImageAsToolStripMenuItem.Text = "Save Image As";
             this.saveImageAsToolStripMenuItem.Click += new System.EventHandler(this.saveImageAsToolStripMenuItem_Click);
             // 
+            // saveMaskToolStripMenuItem
+            // 
+            this.saveMaskToolStripMenuItem.Name = "saveMaskToolStripMenuItem";
+            this.saveMaskToolStripMenuItem.Size = new System.Drawing.Size(282, 34);
+            this.saveMaskToolStripMenuItem.Text = "Save Mask";
+            // 
             // savePallateToolStripMenuItem
             // 
             this.savePallateToolStripMenuItem.Name = "savePallateToolStripMenuItem";
@@ -156,7 +167,9 @@
             this.alignWidthToolStripMenuItem,
             this.addWordToolStripMenuItem,
             this.removeBlitterWorldToolStripMenuItem3,
+            this.setImageWidthToolStripMenuItem,
             this.autoCorpToolStripMenuItem,
+            this.displayMaskToolStripMenuItem,
             this.informationToolStripMenuItem});
             this.toolStripMenuItem2.Name = "toolStripMenuItem2";
             this.toolStripMenuItem2.Size = new System.Drawing.Size(78, 29);
@@ -169,6 +182,7 @@
             this.alignWidthToolStripMenuItem.Name = "alignWidthToolStripMenuItem";
             this.alignWidthToolStripMenuItem.Size = new System.Drawing.Size(277, 34);
             this.alignWidthToolStripMenuItem.Text = "Align Width";
+            this.alignWidthToolStripMenuItem.MouseHover += new System.EventHandler(this.alignWidthToolStripMenuItem_MouseHover);
             // 
             // alignWidthComboBox
             // 
@@ -225,8 +239,24 @@
             // addedWordNoneToolStripMenuItem
             // 
             this.addedWordNoneToolStripMenuItem.Name = "addedWordNoneToolStripMenuItem";
-            this.addedWordNoneToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
+            this.addedWordNoneToolStripMenuItem.Size = new System.Drawing.Size(269, 34);
             this.addedWordNoneToolStripMenuItem.Text = "Added Word: None";
+            // 
+            // setImageWidthToolStripMenuItem
+            // 
+            this.setImageWidthToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripChangeWidthTextBox});
+            this.setImageWidthToolStripMenuItem.Name = "setImageWidthToolStripMenuItem";
+            this.setImageWidthToolStripMenuItem.Size = new System.Drawing.Size(277, 34);
+            this.setImageWidthToolStripMenuItem.Text = "Change Width";
+            this.setImageWidthToolStripMenuItem.MouseHover += new System.EventHandler(this.setImageWidthToolStripMenuItem_MouseHover);
+            // 
+            // toolStripChangeWidthTextBox
+            // 
+            this.toolStripChangeWidthTextBox.Name = "toolStripChangeWidthTextBox";
+            this.toolStripChangeWidthTextBox.Size = new System.Drawing.Size(100, 31);
+            this.toolStripChangeWidthTextBox.TextBoxTextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.toolStripChangeWidthTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.toolStripChangeWidthTextBox_KeyDown);
             // 
             // autoCorpToolStripMenuItem
             // 
@@ -234,6 +264,13 @@
             this.autoCorpToolStripMenuItem.Size = new System.Drawing.Size(277, 34);
             this.autoCorpToolStripMenuItem.Text = "Auto Corp";
             this.autoCorpToolStripMenuItem.Click += new System.EventHandler(this.autoCorpToolStripMenuItem_Click);
+            // 
+            // displayMaskToolStripMenuItem
+            // 
+            this.displayMaskToolStripMenuItem.Name = "displayMaskToolStripMenuItem";
+            this.displayMaskToolStripMenuItem.Size = new System.Drawing.Size(277, 34);
+            this.displayMaskToolStripMenuItem.Text = "Create Mask";
+            this.displayMaskToolStripMenuItem.Click += new System.EventHandler(this.displayMaskToolStripMenuItem_Click);
             // 
             // informationToolStripMenuItem
             // 
@@ -276,14 +313,14 @@
             // pallateToolStripMenuItem
             // 
             this.pallateToolStripMenuItem.Name = "pallateToolStripMenuItem";
-            this.pallateToolStripMenuItem.Size = new System.Drawing.Size(260, 34);
+            this.pallateToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
             this.pallateToolStripMenuItem.Text = "Pallate";
             this.pallateToolStripMenuItem.Click += new System.EventHandler(this.pallateToolStripMenuItem_Click);
             // 
             // selectBackgroundToolStripMenuItem
             // 
             this.selectBackgroundToolStripMenuItem.Name = "selectBackgroundToolStripMenuItem";
-            this.selectBackgroundToolStripMenuItem.Size = new System.Drawing.Size(260, 34);
+            this.selectBackgroundToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
             this.selectBackgroundToolStripMenuItem.Text = "Select Background";
             this.selectBackgroundToolStripMenuItem.Click += new System.EventHandler(this.selectBackgroundToolStripMenuItem_Click);
             // 
@@ -495,7 +532,6 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.AutoSize = true;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.ClientSize = new System.Drawing.Size(1100, 643);
             this.Controls.Add(this.SlicingPanel);
@@ -575,6 +611,10 @@
         private System.Windows.Forms.ToolStripMenuItem selectBackgroundToolStripMenuItem;
         private System.Windows.Forms.ToolStripComboBox removeBlitterWordToolStripComboBox;
         private System.Windows.Forms.ToolStripMenuItem addedWordNoneToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem setImageWidthToolStripMenuItem;
+        private System.Windows.Forms.ToolStripTextBox toolStripChangeWidthTextBox;
+        private System.Windows.Forms.ToolStripMenuItem saveMaskToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem displayMaskToolStripMenuItem;
     }
 }
 
