@@ -16,33 +16,19 @@ namespace AmigaImageConverter
         public DisplayMask()
         {
             InitializeComponent();
-            imageGrid.SetResolution(vr.bitplane.Width, vr.bitplane.Height, 5,5);
-            Width= imageGrid.Width;
-            Height= imageGrid.Height;
+      
         }
 
         private void DisplayMask_Activated(object sender, EventArgs e)
         {
-            imageGrid.DrawImage(vr.bitplane.Mask);
 
+            pictureBox.Image = vr.bitplane.Mask;
         }
 
-        private void imageGrid_Load(object sender, EventArgs e)
+        private void pictureBox_Paint(object sender, PaintEventArgs e)
         {
-   
-        }
-
-        private void imageGrid_Paint(object sender, PaintEventArgs e)
-        {
-   /*         for (int y = 0; y < vr.bitplane.Height; y++)
-            {
-                for (int x = 0; x < vr.bitplane.Width; x++)
-                {
-                    byte imageBit = vr.bitplane.GetMaskBit(x, y);
-                    if (imageBit != 0)
-                        imageGrid.SetPixel(x, y, Color.Blue);
-                }
-            } */
+            Graphics g = e.Graphics;
+            g.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.None;
         }
     }
 }
