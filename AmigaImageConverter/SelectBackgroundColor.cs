@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Amiga;
+using System;
 using System.CodeDom.Compiler;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -18,6 +19,12 @@ namespace AmigaImageConverter
         {
             InitializeComponent();
             pallete.Colors = vr.bitplane.Pallate;
+            imageBox.Image = vr.bitplane.bitmap;
+            float multiFactor = pallete.Height/imageBox.Image.Height;
+            imageBox.ScaleFactor = (int) Math.Round(multiFactor);
+            imageBox.ScaleImage();
+            pallete.Left = imageBox.Right + 2;
+            swapBt.Left = pallete.Right-swapBt.Width;
         }
 
         private void pallete_ColorSelected(object sender, Amiga.Pallate.SelectedColorEventArgs e)
@@ -34,6 +41,17 @@ namespace AmigaImageConverter
             //            }
             vr.bitplane.SelectBackgroundColor(pallete.SelectedColorIdx);
 
+        }
+
+        private void imageBox_MouseClick(object sender, MouseEventArgs e)
+        {
+            ImageBox imageBox = ((ImageBox)sender);
+            int x = e.X, y = e.Y;
+            Bitmap bitmap = (Bitmap)imageBox.Image;
+            //x /= imageBox.ScaleFactor; y /= imageBox.ScaleFactor;
+            Color SelectedColor = bitmap.GetPixel(x, y);
+
+            pallete.SelectedColor = SelectedColor; 
         }
     }
 }
