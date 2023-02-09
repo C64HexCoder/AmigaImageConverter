@@ -94,7 +94,7 @@
             this.Controls.Add(this.swapBt);
             this.Controls.Add(this.pallete);
             this.Name = "SelectBackgroundColor";
-            this.Text = "SelectBackgroundColor";
+            this.Text = "Select Background Color";
             ((System.ComponentModel.ISupportInitialize)(this.imageBox)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
