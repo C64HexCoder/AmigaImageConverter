@@ -52,6 +52,7 @@ namespace AmigaImageConverter
             Color SelectedColor = bitmap.GetPixel(x, y);
 
             pallete.SelectedColor = SelectedColor; 
+            pallete.SelectedColorIdx = pallete.FindColorInPallate (SelectedColor);
         }
     }
 }
