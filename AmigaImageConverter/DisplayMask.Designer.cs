@@ -28,49 +28,55 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.button1 = new System.Windows.Forms.Button();
-            this.pictureBox = new System.Windows.Forms.PictureBox();
+            this.saveBtn = new System.Windows.Forms.Button();
+            this.pictureBox = new Amiga.ImageBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).BeginInit();
             this.SuspendLayout();
             // 
-            // button1
+            // saveBtn
             // 
-            this.button1.Location = new System.Drawing.Point(824, 464);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(112, 34);
-            this.button1.TabIndex = 1;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
+            this.saveBtn.AutoSize = true;
+            this.saveBtn.Location = new System.Drawing.Point(565, 365);
+            this.saveBtn.Margin = new System.Windows.Forms.Padding(2);
+            this.saveBtn.Name = "saveBtn";
+            this.saveBtn.Size = new System.Drawing.Size(88, 25);
+            this.saveBtn.TabIndex = 1;
+            this.saveBtn.Text = "Save Mask As";
+            this.saveBtn.UseVisualStyleBackColor = true;
+            this.saveBtn.Click += new System.EventHandler(this.saveBtn_Click);
             // 
             // pictureBox
             // 
-            this.pictureBox.Location = new System.Drawing.Point(12, 12);
+            this.pictureBox.Location = new System.Drawing.Point(11, 11);
+            this.pictureBox.Margin = new System.Windows.Forms.Padding(2);
             this.pictureBox.Name = "pictureBox";
-            this.pictureBox.Size = new System.Drawing.Size(924, 437);
-            this.pictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox.ScaleFactor = 2;
+            this.pictureBox.ScaleFactorFloat = 1F;
+            this.pictureBox.Size = new System.Drawing.Size(642, 350);
             this.pictureBox.TabIndex = 2;
             this.pictureBox.TabStop = false;
-            this.pictureBox.Paint += new System.Windows.Forms.PaintEventHandler(this.pictureBox_Paint);
             // 
             // DisplayMask
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 25F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.ClientSize = new System.Drawing.Size(948, 518);
+            this.ClientSize = new System.Drawing.Size(664, 399);
             this.Controls.Add(this.pictureBox);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.saveBtn);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "DisplayMask";
             this.Text = "Mask";
             this.Activated += new System.EventHandler(this.DisplayMask_Activated);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
         #endregion
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.PictureBox pictureBox;
+        private System.Windows.Forms.Button saveBtn;
+        private Amiga.ImageBox pictureBox;
     }
 }

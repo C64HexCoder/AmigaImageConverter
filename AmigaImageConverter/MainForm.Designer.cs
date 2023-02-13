@@ -79,6 +79,9 @@
             this.numOfRawsNud = new System.Windows.Forms.NumericUpDown();
             this.label1 = new System.Windows.Forms.Label();
             this.SpritesPerRawNud = new System.Windows.Forms.NumericUpDown();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.LoadIFFToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.menuStrip1.SuspendLayout();
             this.statusStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.image)).BeginInit();
@@ -113,6 +116,9 @@
             this.loadImageToolStripMenuItem,
             this.saveImageToolStripMenuItem,
             this.saveImageAsToolStripMenuItem,
+            this.toolStripSeparator1,
+            this.LoadIFFToolStripMenuItem,
+            this.toolStripSeparator2,
             this.saveMaskToolStripMenuItem,
             this.savePallateToolStripMenuItem,
             this.saveImageAsSpriteToolStripMenuItem});
@@ -408,6 +414,7 @@
             this.image.Margin = new System.Windows.Forms.Padding(1, 2, 1, 2);
             this.image.Name = "image";
             this.image.ScaleFactor = 4;
+            this.image.ScaleFactorFloat = 1F;
             this.image.Size = new System.Drawing.Size(862, 575);
             this.image.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
             this.image.TabIndex = 3;
@@ -446,6 +453,7 @@
             this.sprImageBox.Location = new System.Drawing.Point(6, 176);
             this.sprImageBox.Name = "sprImageBox";
             this.sprImageBox.ScaleFactor = 1;
+            this.sprImageBox.ScaleFactorFloat = 1F;
             this.sprImageBox.Size = new System.Drawing.Size(213, 234);
             this.sprImageBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.sprImageBox.TabIndex = 7;
@@ -527,6 +535,23 @@
             this.SpritesPerRawNud.Size = new System.Drawing.Size(106, 31);
             this.SpritesPerRawNud.TabIndex = 0;
             this.SpritesPerRawNud.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(279, 6);
+            // 
+            // LoadIFFToolStripMenuItem
+            // 
+            this.LoadIFFToolStripMenuItem.Name = "LoadIFFToolStripMenuItem";
+            this.LoadIFFToolStripMenuItem.Size = new System.Drawing.Size(282, 34);
+            this.LoadIFFToolStripMenuItem.Text = "Load IFF";
+            this.LoadIFFToolStripMenuItem.Click += new System.EventHandler(this.LoadIFFToolStripMenuItem_Click);
+            // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(279, 6);
             // 
             // MainForm
             // 
@@ -616,6 +641,9 @@
         private System.Windows.Forms.ToolStripTextBox toolStripChangeWidthTextBox;
         private System.Windows.Forms.ToolStripMenuItem saveMaskToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem displayMaskToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+        private System.Windows.Forms.ToolStripMenuItem LoadIFFToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
     }
 }
 

@@ -29,6 +29,7 @@ namespace AmigaImageConverter
         Panel ButtomPanel = new Panel();
         List<Sprite> sprites = new List<Sprite>();
         bool SlicedSpriteSheet = false;
+        IFF iffImage = new IFF();
 
         enum BlitWord
         {
@@ -558,9 +559,19 @@ namespace AmigaImageConverter
         private void displayMaskToolStripMenuItem_Click(object sender, EventArgs e)
         {
             DisplayMask dm = new DisplayMask();
-            //vr.bitplane.CreateMask();
-            vr.bitplane.CreateMaskBitmap();
+            vr.bitplane.CreateMask();
+            //vr.bitplane.CreateMaskBitmap();
             dm.ShowDialog(); ;
+        }
+
+        private void LoadIFFToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog iffFile = new OpenFileDialog();
+            iffFile.Filter = "Amiga IFF|*.iff";
+            if (iffFile.ShowDialog() == DialogResult.OK )
+            {
+                iffImage.Load (iffFile.FileName);
+            }
         }
     }
 }
