@@ -183,9 +183,13 @@ namespace AmigaImageConverter
         private void pallateToolStripMenuItem_Click(object sender, EventArgs e)
         {
             //ColorPalette colorPalette = bitplane.Pallate;
-            if (vr.bitplane.Pallate != null)
+            if (vr.bitplane.Pallate != null || iffImage.bitmap != null)
             {
-                pallate.imagePallate.SetPalette(vr.bitplane.Pallate);
+                if (iffImage.bitmap != null)
+                    pallate.imagePallate.SetPalette(iffImage.palette);
+                else
+                    pallate.imagePallate.SetPalette(vr.bitplane.Pallate);
+                
                 pallate.ShowDialog();
             }
             else
@@ -567,10 +571,13 @@ namespace AmigaImageConverter
         private void LoadIFFToolStripMenuItem_Click(object sender, EventArgs e)
         {
             OpenFileDialog iffFile = new OpenFileDialog();
-            iffFile.Filter = "Amiga IFF|*.iff";
+            iffFile.Filter = "Amiga IFF|*.iff;*.ilbm;*.pbm;*.acbm";
             if (iffFile.ShowDialog() == DialogResult.OK )
             {
                 iffImage.Load (iffFile.FileName);
+                image.Image = iffImage.CreateBitmap();
+                image.ScaleImage((int)settings.previewScalingNud.Value);
+                
             }
         }
     }
