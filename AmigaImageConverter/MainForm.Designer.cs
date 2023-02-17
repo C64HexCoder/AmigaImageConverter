@@ -34,6 +34,9 @@
             this.loadImageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saveImageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saveImageAsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.LoadIFFToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.saveMaskToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.savePallateToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saveImageAsSpriteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -79,9 +82,7 @@
             this.numOfRawsNud = new System.Windows.Forms.NumericUpDown();
             this.label1 = new System.Windows.Forms.Label();
             this.SpritesPerRawNud = new System.Windows.Forms.NumericUpDown();
-            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.LoadIFFToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.saveIFFToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.statusStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.image)).BeginInit();
@@ -119,6 +120,7 @@
             this.toolStripSeparator1,
             this.LoadIFFToolStripMenuItem,
             this.toolStripSeparator2,
+            this.saveIFFToolStripMenuItem,
             this.saveMaskToolStripMenuItem,
             this.savePallateToolStripMenuItem,
             this.saveImageAsSpriteToolStripMenuItem});
@@ -146,6 +148,23 @@
             this.saveImageAsToolStripMenuItem.Size = new System.Drawing.Size(282, 34);
             this.saveImageAsToolStripMenuItem.Text = "Save Image As";
             this.saveImageAsToolStripMenuItem.Click += new System.EventHandler(this.saveImageAsToolStripMenuItem_Click);
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(279, 6);
+            // 
+            // LoadIFFToolStripMenuItem
+            // 
+            this.LoadIFFToolStripMenuItem.Name = "LoadIFFToolStripMenuItem";
+            this.LoadIFFToolStripMenuItem.Size = new System.Drawing.Size(282, 34);
+            this.LoadIFFToolStripMenuItem.Text = "Load IFF";
+            this.LoadIFFToolStripMenuItem.Click += new System.EventHandler(this.LoadIFFToolStripMenuItem_Click);
+            // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(279, 6);
             // 
             // saveMaskToolStripMenuItem
             // 
@@ -536,22 +555,12 @@
             this.SpritesPerRawNud.TabIndex = 0;
             this.SpritesPerRawNud.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
-            // toolStripSeparator1
+            // saveIFFToolStripMenuItem
             // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(279, 6);
-            // 
-            // LoadIFFToolStripMenuItem
-            // 
-            this.LoadIFFToolStripMenuItem.Name = "LoadIFFToolStripMenuItem";
-            this.LoadIFFToolStripMenuItem.Size = new System.Drawing.Size(282, 34);
-            this.LoadIFFToolStripMenuItem.Text = "Load IFF";
-            this.LoadIFFToolStripMenuItem.Click += new System.EventHandler(this.LoadIFFToolStripMenuItem_Click);
-            // 
-            // toolStripSeparator2
-            // 
-            this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(279, 6);
+            this.saveIFFToolStripMenuItem.Name = "saveIFFToolStripMenuItem";
+            this.saveIFFToolStripMenuItem.Size = new System.Drawing.Size(282, 34);
+            this.saveIFFToolStripMenuItem.Text = "Save IFF";
+            this.saveIFFToolStripMenuItem.Click += new System.EventHandler(this.saveIFFToolStripMenuItem_Click);
             // 
             // MainForm
             // 
@@ -644,6 +653,7 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripMenuItem LoadIFFToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
+        private System.Windows.Forms.ToolStripMenuItem saveIFFToolStripMenuItem;
     }
 }
 

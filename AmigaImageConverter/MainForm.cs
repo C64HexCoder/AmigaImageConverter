@@ -574,11 +574,22 @@ namespace AmigaImageConverter
             iffFile.Filter = "Amiga IFF|*.iff;*.ilbm;*.pbm;*.acbm";
             if (iffFile.ShowDialog() == DialogResult.OK )
             {
-                iffImage.Load (iffFile.FileName);
-                image.Image = iffImage.CreateBitmap();
-                image.ScaleImage((int)settings.previewScalingNud.Value);
-                
+                vr.bitplane.LoadIFF (iffFile.FileName);
+                image.Image = vr.bitplane.bitmap;
+                image.ScaleImage ((int)settings.previewScalingNud.Value);
             }
+        }
+
+        private void saveIFFToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SaveFileDialog iffFile = new SaveFileDialog();
+            iffFile.Filter = "Amiga IFF|*.iff;*.ilbm;*.pbm;*.acbm";
+
+            if (iffFile.ShowDialog() == DialogResult.OK)
+            {
+                vr.bitplane.IFFImage.Save(iffFile.FileName);
+            }
+            
         }
     }
 }
