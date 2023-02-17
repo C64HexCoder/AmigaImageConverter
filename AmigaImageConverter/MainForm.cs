@@ -587,7 +587,7 @@ namespace AmigaImageConverter
 
             if (iffFile.ShowDialog() == DialogResult.OK)
             {
-                vr.bitplane.IFFImage.Save(iffFile.FileName);
+                vr.bitplane.SaveIFF(iffFile.FileName);
             }
             
         }
