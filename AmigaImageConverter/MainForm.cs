@@ -587,7 +587,7 @@ namespace AmigaImageConverter
 
             if (iffFile.ShowDialog() == DialogResult.OK)
             {
-                vr.bitplane.Save(iffFile.FileName);
+                vr.bitplane.SaveACBM(iffFile.FileName);
             }
             
         }
