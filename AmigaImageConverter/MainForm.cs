@@ -183,9 +183,9 @@ namespace AmigaImageConverter
         private void pallateToolStripMenuItem_Click(object sender, EventArgs e)
         {
             //ColorPalette colorPalette = bitplane.Pallate;
-            if (vr.bitplane.Pallate != null || iffImage.bitmap != null)
+            if (vr.bitplane.Pallate != null || iffImage.bmp != null)
             {
-                if (iffImage.bitmap != null)
+                if (iffImage.bmp != null)
                     pallate.imagePallate.SetPalette(iffImage.palette);
                 else
                     pallate.imagePallate.SetPalette(vr.bitplane.Pallate);
@@ -244,7 +244,7 @@ namespace AmigaImageConverter
             Graphics g = Graphics.FromImage(corpedImage);
             Rectangle destRec = new Rectangle(0, 0, NewWidth, NewHeight);
             g.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.None;
-            g.DrawImage(bmp, destRec, StartPos.X, StartPos.Y, NewWidth, NewHeight, GraphicsUnit.Pixel);
+            g.DrawImage(vr.bitplane.bmp, destRec, StartPos.X, StartPos.Y, NewWidth, NewHeight, GraphicsUnit.Pixel);
             g.Dispose();
             vr.bitplane.bitmap = corpedImage;
             image.Image = vr.bitplane.bitmap;
@@ -587,7 +587,7 @@ namespace AmigaImageConverter
 
             if (iffFile.ShowDialog() == DialogResult.OK)
             {
-                vr.bitplane.IFFImage.Save(iffFile.FileName);
+                vr.bitplane.Save(iffFile.FileName);
             }
             
         }
