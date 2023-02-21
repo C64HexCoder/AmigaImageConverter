@@ -36,6 +36,9 @@
             this.saveImageAsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.LoadIFFToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.saveIFFToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.iLBMToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.aCBMToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.saveMaskToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.savePallateToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -82,7 +85,6 @@
             this.numOfRawsNud = new System.Windows.Forms.NumericUpDown();
             this.label1 = new System.Windows.Forms.Label();
             this.SpritesPerRawNud = new System.Windows.Forms.NumericUpDown();
-            this.saveIFFToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.statusStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.image)).BeginInit();
@@ -119,8 +121,8 @@
             this.saveImageAsToolStripMenuItem,
             this.toolStripSeparator1,
             this.LoadIFFToolStripMenuItem,
-            this.toolStripSeparator2,
             this.saveIFFToolStripMenuItem,
+            this.toolStripSeparator2,
             this.saveMaskToolStripMenuItem,
             this.savePallateToolStripMenuItem,
             this.saveImageAsSpriteToolStripMenuItem});
@@ -160,6 +162,31 @@
             this.LoadIFFToolStripMenuItem.Size = new System.Drawing.Size(282, 34);
             this.LoadIFFToolStripMenuItem.Text = "Load IFF";
             this.LoadIFFToolStripMenuItem.Click += new System.EventHandler(this.LoadIFFToolStripMenuItem_Click);
+            // 
+            // saveIFFToolStripMenuItem
+            // 
+            this.saveIFFToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.iLBMToolStripMenuItem,
+            this.aCBMToolStripMenuItem});
+            this.saveIFFToolStripMenuItem.Name = "saveIFFToolStripMenuItem";
+            this.saveIFFToolStripMenuItem.Size = new System.Drawing.Size(282, 34);
+            this.saveIFFToolStripMenuItem.Text = "Save IFF";
+            // 
+            // iLBMToolStripMenuItem
+            // 
+            this.iLBMToolStripMenuItem.Name = "iLBMToolStripMenuItem";
+            this.iLBMToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
+            this.iLBMToolStripMenuItem.Text = "ILBM";
+            this.iLBMToolStripMenuItem.ToolTipText = "Widly Supported";
+            this.iLBMToolStripMenuItem.Click += new System.EventHandler(this.iLBMToolStripMenuItem_Click);
+            // 
+            // aCBMToolStripMenuItem
+            // 
+            this.aCBMToolStripMenuItem.Name = "aCBMToolStripMenuItem";
+            this.aCBMToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
+            this.aCBMToolStripMenuItem.Text = "ACBM";
+            this.aCBMToolStripMenuItem.ToolTipText = "Faster, Less popular";
+            this.aCBMToolStripMenuItem.Click += new System.EventHandler(this.aCBMToolStripMenuItem_Click);
             // 
             // toolStripSeparator2
             // 
@@ -555,13 +582,6 @@
             this.SpritesPerRawNud.TabIndex = 0;
             this.SpritesPerRawNud.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
-            // saveIFFToolStripMenuItem
-            // 
-            this.saveIFFToolStripMenuItem.Name = "saveIFFToolStripMenuItem";
-            this.saveIFFToolStripMenuItem.Size = new System.Drawing.Size(282, 34);
-            this.saveIFFToolStripMenuItem.Text = "Save IFF";
-            this.saveIFFToolStripMenuItem.Click += new System.EventHandler(this.saveIFFToolStripMenuItem_Click);
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 25F);
@@ -652,8 +672,10 @@
         private System.Windows.Forms.ToolStripMenuItem displayMaskToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripMenuItem LoadIFFToolStripMenuItem;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
         private System.Windows.Forms.ToolStripMenuItem saveIFFToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem iLBMToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem aCBMToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
     }
 }
 

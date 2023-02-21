@@ -580,7 +580,19 @@ namespace AmigaImageConverter
             }
         }
 
-        private void saveIFFToolStripMenuItem_Click(object sender, EventArgs e)
+
+        private void iLBMToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SaveFileDialog iffFile = new SaveFileDialog();
+            iffFile.Filter = "Amiga IFF|*.iff;*.ilbm;*.pbm;*.acbm";
+
+            if (iffFile.ShowDialog() == DialogResult.OK)
+            {
+                vr.bitplane.SaveILBM(iffFile.FileName);
+            }
+        }
+
+        private void aCBMToolStripMenuItem_Click(object sender, EventArgs e)
         {
             SaveFileDialog iffFile = new SaveFileDialog();
             iffFile.Filter = "Amiga IFF|*.iff;*.ilbm;*.pbm;*.acbm";
@@ -589,7 +601,6 @@ namespace AmigaImageConverter
             {
                 vr.bitplane.SaveACBM(iffFile.FileName);
             }
-            
         }
     }
 }
