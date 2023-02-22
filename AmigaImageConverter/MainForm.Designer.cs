@@ -175,7 +175,7 @@
             // iLBMToolStripMenuItem
             // 
             this.iLBMToolStripMenuItem.Name = "iLBMToolStripMenuItem";
-            this.iLBMToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
+            this.iLBMToolStripMenuItem.Size = new System.Drawing.Size(163, 34);
             this.iLBMToolStripMenuItem.Text = "ILBM";
             this.iLBMToolStripMenuItem.ToolTipText = "Widly Supported";
             this.iLBMToolStripMenuItem.Click += new System.EventHandler(this.iLBMToolStripMenuItem_Click);
@@ -183,7 +183,7 @@
             // aCBMToolStripMenuItem
             // 
             this.aCBMToolStripMenuItem.Name = "aCBMToolStripMenuItem";
-            this.aCBMToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
+            this.aCBMToolStripMenuItem.Size = new System.Drawing.Size(163, 34);
             this.aCBMToolStripMenuItem.Text = "ACBM";
             this.aCBMToolStripMenuItem.ToolTipText = "Faster, Less popular";
             this.aCBMToolStripMenuItem.Click += new System.EventHandler(this.aCBMToolStripMenuItem_Click);
@@ -462,7 +462,6 @@
             this.image.ScaleFactor = 4;
             this.image.ScaleFactorFloat = 1F;
             this.image.Size = new System.Drawing.Size(862, 575);
-            this.image.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
             this.image.TabIndex = 3;
             this.image.TabStop = false;
             this.image.LoadCompleted += new System.ComponentModel.AsyncCompletedEventHandler(this.image_LoadCompleted);
