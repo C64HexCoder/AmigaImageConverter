@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Drawing.Imaging;
+using System.Formats.Asn1;
 using System.IO;
 using System.Linq;
 using System.Media;
@@ -56,20 +57,21 @@ namespace AmigaImageConverter
 
         private void loadImageToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            
             if (openImageFileDialog.ShowDialog() == DialogResult.OK)
             {
 
                 toolStripFileName.Text = openImageFileDialog.FileName;
-                bmp = new Bitmap(openImageFileDialog.FileName);
-                image.Load(openImageFileDialog.FileName);
-                image.ScaleImage((int)settings.previewScalingNud.Value);
+       
                 SlicingPanel.Left = image.Right + 2;
                 SlicingPanel.Height = SlicingGb.Height;
                 ButtomPanel.Top = image.Bottom + 2;
                 ButtomPanel.Width = image.Width;
                 vr.bitplane.LoadImage(openImageFileDialog.FileName);
                 CheckImageAlignment();
+                image.Image = vr.bitplane.bitmap;
+                image.ScaleImage((int)settings.previewScalingNud.Value);
+
 
                 if (vr.bitplane.Width > Width || vr.bitplane.Height > Height)
                 {
@@ -81,7 +83,7 @@ namespace AmigaImageConverter
                 toolStripResolutionLabel.Text = $"{vr.bitplane.Width}x{vr.bitplane.Height}";
                 toolStripDepthLabel.Text = $"{vr.bitplane.NumOfBitmaps} Bitmaps, new Width: {vr.bitplane.actualWidth}";
 
-                switch (image.Image.PixelFormat)
+                switch (vr.bitplane.bitmap.PixelFormat)
                 {
                     case System.Drawing.Imaging.PixelFormat.Format64bppArgb:
                     case System.Drawing.Imaging.PixelFormat.Format32bppArgb:
@@ -540,7 +542,16 @@ namespace AmigaImageConverter
 
         private void setImageWidthToolStripMenuItem_MouseHover(object sender, EventArgs e)
         {
-            toolStripChangeWidthTextBox.Text = vr.bitplane.Width.ToString();
+            if (vr.bitplane.bitmap != null)
+            {
+                toolStripChangeWidthTextBox.Enabled = true;
+                toolStripChangeWidthTextBox.Text = vr.bitplane.Width.ToString();
+
+            }
+            else
+            {
+                toolStripChangeWidthTextBox.Enabled = false;
+            }
         }
 
         private void toolStripChangeWidthTextBox_KeyDown(object sender, KeyEventArgs e)
@@ -557,7 +568,15 @@ namespace AmigaImageConverter
 
         private void alignWidthToolStripMenuItem_MouseHover(object sender, EventArgs e)
         {
-            CheckImageAlignment();
+            ToolStripMenuItem tsmi = (ToolStripMenuItem)sender;
+            
+            if (vr.bitplane.bitmap != null)
+            {
+                alignWidthComboBox.Enabled = true;
+                CheckImageAlignment();
+            }
+            else
+                alignWidthComboBox.Enabled = false;
         }
 
         private void displayMaskToolStripMenuItem_Click(object sender, EventArgs e)
@@ -602,5 +621,7 @@ namespace AmigaImageConverter
                 vr.bitplane.SaveACBM(iffFile.FileName);
             }
         }
+
+     
     }
 }
