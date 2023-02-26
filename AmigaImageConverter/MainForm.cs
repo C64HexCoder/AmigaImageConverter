@@ -67,7 +67,11 @@ namespace AmigaImageConverter
                 SlicingPanel.Height = SlicingGb.Height;
                 ButtomPanel.Top = image.Bottom + 2;
                 ButtomPanel.Width = image.Width;
-                vr.bitplane.LoadImage(openImageFileDialog.FileName);
+                bmp = new Bitmap(openImageFileDialog.FileName);
+
+                vr.bitplane.bitmap = KMeansQuant.DecreaseColors(bmp);
+    
+                //vr.bitplane.LoadImage(openImageFileDialog.FileName);
                 CheckImageAlignment();
                 image.Image = vr.bitplane.bitmap;
                 image.ScaleImage((int)settings.previewScalingNud.Value);
