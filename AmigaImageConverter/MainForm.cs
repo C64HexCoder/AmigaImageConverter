@@ -626,6 +626,17 @@ namespace AmigaImageConverter
             }
         }
 
-     
+        private void resizeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Resize resize = new Resize();
+            if (resize.ShowDialog() == DialogResult.OK)
+            {
+                if (vr.bitplane.Width != image.Image.Width || vr.bitplane.Height != image.Image.Height)
+                {
+                    image.Image = vr.bitplane.bitmap;
+                    image.ScaleImage((float)settings.previewScalingNud.Value);
+                }
+            }
+        }
     }
 }

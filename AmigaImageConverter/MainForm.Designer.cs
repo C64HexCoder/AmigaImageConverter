@@ -85,6 +85,7 @@
             this.numOfRawsNud = new System.Windows.Forms.NumericUpDown();
             this.label1 = new System.Windows.Forms.Label();
             this.SpritesPerRawNud = new System.Windows.Forms.NumericUpDown();
+            this.resizeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.statusStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.image)).BeginInit();
@@ -216,6 +217,7 @@
             // imageToolStripMenuItem
             // 
             this.imageToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.resizeToolStripMenuItem,
             this.alignWidthToolStripMenuItem,
             this.addWordToolStripMenuItem,
             this.removeBlitterWorldToolStripMenuItem3,
@@ -464,6 +466,7 @@
             this.image.ScaleFactor = 4;
             this.image.ScaleFactorFloat = 1F;
             this.image.Size = new System.Drawing.Size(862, 575);
+            this.image.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
             this.image.TabIndex = 3;
             this.image.TabStop = false;
             this.image.LoadCompleted += new System.ComponentModel.AsyncCompletedEventHandler(this.image_LoadCompleted);
@@ -583,6 +586,13 @@
             this.SpritesPerRawNud.TabIndex = 0;
             this.SpritesPerRawNud.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
+            // resizeToolStripMenuItem
+            // 
+            this.resizeToolStripMenuItem.Name = "resizeToolStripMenuItem";
+            this.resizeToolStripMenuItem.Size = new System.Drawing.Size(277, 34);
+            this.resizeToolStripMenuItem.Text = "Resize";
+            this.resizeToolStripMenuItem.Click += new System.EventHandler(this.resizeToolStripMenuItem_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 25F);
@@ -677,6 +687,7 @@
         private System.Windows.Forms.ToolStripMenuItem iLBMToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem aCBMToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
+        private System.Windows.Forms.ToolStripMenuItem resizeToolStripMenuItem;
     }
 }
 
