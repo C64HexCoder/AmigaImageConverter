@@ -69,7 +69,7 @@ namespace AmigaImageConverter
                 ButtomPanel.Width = image.Width;
                 bmp = new Bitmap(openImageFileDialog.FileName);
 
-                vr.bitplane.bitmap = KMeansQuant.DecreaseColors(bmp);
+                vr.bitplane.bitmap = KMeansQuant.DecreaseColors(bmp,32);
     
                 //vr.bitplane.LoadImage(openImageFileDialog.FileName);
                 CheckImageAlignment();
