@@ -69,8 +69,26 @@ namespace AmigaImageConverter
                 ButtomPanel.Width = image.Width;
                 bmp = new Bitmap(openImageFileDialog.FileName);
 
-                if (bmp.PixelFormat!= PixelFormat.Format8bppIndexed && bmp.PixelFormat != PixelFormat.Format4bppIndexed && bmp.PixelFormat != PixelFormat.Format1bppIndexed)
-                    vr.bitplane.bitmap = KMeansQuant.DecreaseColors(bmp,32);
+                if (bmp.PixelFormat != PixelFormat.Format8bppIndexed && bmp.PixelFormat != PixelFormat.Format4bppIndexed && bmp.PixelFormat != PixelFormat.Format1bppIndexed)
+                {
+                    LoadImageDialog loadImageDlg = new LoadImageDialog(bmp);
+                    if (loadImageDlg.ShowDialog() == DialogResult.OK)
+                    {
+                        if (loadImageDlg.ImageWidth != bmp.Width || loadImageDlg.ImageHeight != bmp.Height)
+                        {
+                            Bitmap NewBitmap = new Bitmap(loadImageDlg.ImageWidth, loadImageDlg.ImageHeight);
+                            Graphics g = Graphics.FromImage(NewBitmap);
+                            g.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.None;
+                            g.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.NearestNeighbor;
+                            g.DrawImage(bmp, 0, 0, loadImageDlg.ImageWidth, loadImageDlg.ImageHeight);
+                            g.Dispose();
+                            bmp = NewBitmap;
+                        }
+                    }
+                    else return;
+
+                    vr.bitplane.bitmap = KMeansQuant.DecreaseColors(bmp, loadImageDlg.ImageNumOfColors);
+                }
                 else
                     vr.bitplane.LoadImage(openImageFileDialog.FileName);
 

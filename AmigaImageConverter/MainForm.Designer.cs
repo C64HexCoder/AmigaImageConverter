@@ -44,6 +44,7 @@
             this.savePallateToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saveImageAsSpriteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.imageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.resizeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.alignWidthToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.alignWidthComboBox = new System.Windows.Forms.ToolStripComboBox();
             this.addWordToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -85,7 +86,6 @@
             this.numOfRawsNud = new System.Windows.Forms.NumericUpDown();
             this.label1 = new System.Windows.Forms.Label();
             this.SpritesPerRawNud = new System.Windows.Forms.NumericUpDown();
-            this.resizeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.statusStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.image)).BeginInit();
@@ -228,6 +228,13 @@
             this.imageToolStripMenuItem.Name = "imageToolStripMenuItem";
             this.imageToolStripMenuItem.Size = new System.Drawing.Size(78, 29);
             this.imageToolStripMenuItem.Text = "Image";
+            // 
+            // resizeToolStripMenuItem
+            // 
+            this.resizeToolStripMenuItem.Name = "resizeToolStripMenuItem";
+            this.resizeToolStripMenuItem.Size = new System.Drawing.Size(277, 34);
+            this.resizeToolStripMenuItem.Text = "Resize";
+            this.resizeToolStripMenuItem.Click += new System.EventHandler(this.resizeToolStripMenuItem_Click);
             // 
             // alignWidthToolStripMenuItem
             // 
@@ -585,13 +592,6 @@
             this.SpritesPerRawNud.Size = new System.Drawing.Size(106, 31);
             this.SpritesPerRawNud.TabIndex = 0;
             this.SpritesPerRawNud.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // resizeToolStripMenuItem
-            // 
-            this.resizeToolStripMenuItem.Name = "resizeToolStripMenuItem";
-            this.resizeToolStripMenuItem.Size = new System.Drawing.Size(277, 34);
-            this.resizeToolStripMenuItem.Text = "Resize";
-            this.resizeToolStripMenuItem.Click += new System.EventHandler(this.resizeToolStripMenuItem_Click);
             // 
             // MainForm
             // 
