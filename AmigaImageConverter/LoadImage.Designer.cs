@@ -42,7 +42,7 @@
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.transparentCheckBox = new System.Windows.Forms.CheckBox();
             this.bgColorPictureBox = new System.Windows.Forms.PictureBox();
-            this.button1 = new System.Windows.Forms.Button();
+            this.doItButton = new System.Windows.Forms.Button();
             this.toolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.statusStrip = new System.Windows.Forms.StatusStrip();
             this.imageBox = new Amiga.ImageBox();
@@ -204,15 +204,15 @@
             this.bgColorPictureBox.TabIndex = 0;
             this.bgColorPictureBox.TabStop = false;
             // 
-            // button1
+            // doItButton
             // 
-            this.button1.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.button1.Location = new System.Drawing.Point(158, 501);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(112, 34);
-            this.button1.TabIndex = 4;
-            this.button1.Text = "Do it!";
-            this.button1.UseVisualStyleBackColor = true;
+            this.doItButton.Location = new System.Drawing.Point(158, 501);
+            this.doItButton.Name = "doItButton";
+            this.doItButton.Size = new System.Drawing.Size(112, 34);
+            this.doItButton.TabIndex = 4;
+            this.doItButton.Text = "Do it!";
+            this.doItButton.UseVisualStyleBackColor = true;
+            this.doItButton.Click += new System.EventHandler(this.doItButton_Click);
             // 
             // toolStripStatusLabel
             // 
@@ -248,7 +248,7 @@
             this.sidePael.Controls.Add(this.resizeGroupBox);
             this.sidePael.Controls.Add(this.groupBox1);
             this.sidePael.Controls.Add(this.groupBox2);
-            this.sidePael.Controls.Add(this.button1);
+            this.sidePael.Controls.Add(this.doItButton);
             this.sidePael.Location = new System.Drawing.Point(712, 12);
             this.sidePael.Name = "sidePael";
             this.sidePael.Size = new System.Drawing.Size(273, 538);
@@ -299,7 +299,7 @@
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.PictureBox bgColorPictureBox;
         private System.Windows.Forms.CheckBox transparentCheckBox;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button doItButton;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel;
         private System.Windows.Forms.StatusStrip statusStrip;
         private Amiga.ImageBox imageBox;

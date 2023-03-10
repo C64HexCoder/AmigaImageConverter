@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.Formats.Asn1;
@@ -86,8 +87,11 @@ namespace AmigaImageConverter
                         }
                     }
                     else return;
-
+                    Stopwatch sw = Stopwatch.StartNew();
+                    sw.Start();
                     vr.bitplane.bitmap = KMeansQuant.DecreaseColors(bmp, loadImageDlg.ImageNumOfColors);
+                    sw.Stop();
+                    Debug.WriteLine($"KMeans: {sw.ElapsedMilliseconds}");
                 }
                 else
                     vr.bitplane.LoadImage(openImageFileDialog.FileName);

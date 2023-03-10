@@ -34,10 +34,7 @@ namespace AmigaImageConverter
             
             ImageNumOfColors = 16;
             float ScaleFactor;
-            //float HeightToWidth = (float)bmp.Height / (float)bmp.Width;
-            //if (bmp.Width >= bmp.Height)
-        //        ScaleFactor = (float)imageBox.Width / (float)bmp.Width;
-      //      else
+    
             ScaleFactor = (float)imageBox.Height / (float)bmp.Height;
 
             imageBox.ScaleImage(ScaleFactor);
@@ -114,6 +111,7 @@ namespace AmigaImageConverter
             {
                 float HeightToWidth = (float)bmp.Height / (float)bmp.Width;
                 heightNumericUpDown.Value = (int)Math.Round(widthNumericUpDown.Value * (decimal)HeightToWidth);
+                heightNumericUpDown.Refresh();
             }
         }
 
@@ -140,6 +138,16 @@ namespace AmigaImageConverter
                 TextOut += " Transparent";
 
             toolTip.Show(TextOut , imageBox);
+        }
+
+        private void doItButton_Click(object sender, EventArgs e)
+        {
+            if (ImageWidth >= 640 || ImageWidth > 480)
+            {
+                MessageBox.Show("The image is too big to fit the amigaa. Please chane the size of the image and try again.");
+            }
+            else
+                DialogResult = DialogResult.OK;
         }
     }
 }
