@@ -214,12 +214,8 @@ namespace AmigaImageConverter
         {
             //ColorPalette colorPalette = bitplane.Pallate;
             if (vr.bitplane.Pallate != null || iffImage.bmp != null)
-            {
-                if (iffImage.bmp != null)
-                    pallate.imagePallate.SetPalette(iffImage.palette);
-                else
-                    pallate.imagePallate.SetPalette(vr.bitplane.Pallate);
-                
+            { 
+                pallate.imagePallate.SetPalette(vr.bitplane.Pallate);   
                 pallate.ShowDialog();
             }
             else
