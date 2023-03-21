@@ -58,7 +58,9 @@ namespace AmigaImageConverter
 
         private void loadImageToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            
+            DeepCycle dc = new Amiga.DeepCycle();
+
+
             if (openImageFileDialog.ShowDialog() == DialogResult.OK)
             {
 
@@ -89,6 +91,7 @@ namespace AmigaImageConverter
                     else return;
                     Stopwatch sw = Stopwatch.StartNew();
                     sw.Start();
+                    //vr.bitplane.bitmap = dc.ReduceColors(bmp);
                     vr.bitplane.bitmap = KMeansQuant.DecreaseColors(bmp, loadImageDlg.ImageNumOfColors);
                     sw.Stop();
                     Debug.WriteLine($"KMeans: {sw.ElapsedMilliseconds}");
