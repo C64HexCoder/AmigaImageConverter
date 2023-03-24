@@ -17,6 +17,8 @@ namespace AmigaImageConverter
         public LoadImageDialog()
         {
             InitializeComponent();
+            int width = DesktopBounds.Width;
+            int height = DesktopBounds.Height;
         }
 
         public LoadImageDialog (Bitmap bitmap)
@@ -41,6 +43,9 @@ namespace AmigaImageConverter
             imageBox.SizeMode = PictureBoxSizeMode.AutoSize;
 
             sidePael.Left = imageBox.Right + 2;
+
+            int width = DesktopBounds.Width;
+            int height = DesktopBounds.Height;
 
         }
 

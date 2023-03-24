@@ -28,116 +28,104 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.OKbtn = new System.Windows.Forms.Button();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.HeightLbl = new System.Windows.Forms.Label();
-            this.WidthLbl = new System.Windows.Forms.Label();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.ColorUsedLbl = new System.Windows.Forms.Label();
-            this.PaletteSizeLbl = new System.Windows.Forms.Label();
-            this.BitplanesLbl = new System.Windows.Forms.Label();
-            this.groupBox1.SuspendLayout();
-            this.groupBox2.SuspendLayout();
-            this.SuspendLayout();
+            OKbtn = new System.Windows.Forms.Button();
+            groupBox1 = new System.Windows.Forms.GroupBox();
+            HeightLbl = new System.Windows.Forms.Label();
+            WidthLbl = new System.Windows.Forms.Label();
+            groupBox2 = new System.Windows.Forms.GroupBox();
+            PaletteSizeLbl = new System.Windows.Forms.Label();
+            BitplanesLbl = new System.Windows.Forms.Label();
+            groupBox1.SuspendLayout();
+            groupBox2.SuspendLayout();
+            SuspendLayout();
             // 
             // OKbtn
             // 
-            this.OKbtn.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.OKbtn.Location = new System.Drawing.Point(154, 249);
-            this.OKbtn.Name = "OKbtn";
-            this.OKbtn.Size = new System.Drawing.Size(112, 34);
-            this.OKbtn.TabIndex = 0;
-            this.OKbtn.Text = "OK";
-            this.OKbtn.UseVisualStyleBackColor = true;
-            this.OKbtn.Click += new System.EventHandler(this.OKbtn_Click);
+            OKbtn.DialogResult = System.Windows.Forms.DialogResult.OK;
+            OKbtn.Location = new System.Drawing.Point(154, 249);
+            OKbtn.Name = "OKbtn";
+            OKbtn.Size = new System.Drawing.Size(112, 34);
+            OKbtn.TabIndex = 0;
+            OKbtn.Text = "OK";
+            OKbtn.UseVisualStyleBackColor = true;
+            OKbtn.Click += OKbtn_Click;
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.HeightLbl);
-            this.groupBox1.Controls.Add(this.WidthLbl);
-            this.groupBox1.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.groupBox1.Location = new System.Drawing.Point(12, 12);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(246, 95);
-            this.groupBox1.TabIndex = 2;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Resolution";
+            groupBox1.Controls.Add(HeightLbl);
+            groupBox1.Controls.Add(WidthLbl);
+            groupBox1.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            groupBox1.Location = new System.Drawing.Point(12, 12);
+            groupBox1.Name = "groupBox1";
+            groupBox1.Size = new System.Drawing.Size(246, 95);
+            groupBox1.TabIndex = 2;
+            groupBox1.TabStop = false;
+            groupBox1.Text = "Resolution";
             // 
             // HeightLbl
             // 
-            this.HeightLbl.AutoSize = true;
-            this.HeightLbl.Location = new System.Drawing.Point(130, 37);
-            this.HeightLbl.Name = "HeightLbl";
-            this.HeightLbl.Size = new System.Drawing.Size(110, 25);
-            this.HeightLbl.TabIndex = 1;
-            this.HeightLbl.Text = "Height: 200";
+            HeightLbl.AutoSize = true;
+            HeightLbl.Location = new System.Drawing.Point(130, 37);
+            HeightLbl.Name = "HeightLbl";
+            HeightLbl.Size = new System.Drawing.Size(110, 25);
+            HeightLbl.TabIndex = 1;
+            HeightLbl.Text = "Height: 200";
             // 
             // WidthLbl
             // 
-            this.WidthLbl.AutoSize = true;
-            this.WidthLbl.Location = new System.Drawing.Point(6, 37);
-            this.WidthLbl.Name = "WidthLbl";
-            this.WidthLbl.Size = new System.Drawing.Size(104, 25);
-            this.WidthLbl.TabIndex = 0;
-            this.WidthLbl.Text = "Width: 320";
+            WidthLbl.AutoSize = true;
+            WidthLbl.Location = new System.Drawing.Point(6, 37);
+            WidthLbl.Name = "WidthLbl";
+            WidthLbl.Size = new System.Drawing.Size(104, 25);
+            WidthLbl.TabIndex = 0;
+            WidthLbl.Text = "Width: 320";
             // 
             // groupBox2
             // 
-            this.groupBox2.Controls.Add(this.ColorUsedLbl);
-            this.groupBox2.Controls.Add(this.PaletteSizeLbl);
-            this.groupBox2.Controls.Add(this.BitplanesLbl);
-            this.groupBox2.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.groupBox2.Location = new System.Drawing.Point(12, 103);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(246, 128);
-            this.groupBox2.TabIndex = 3;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Depth";
-            // 
-            // ColorUsedLbl
-            // 
-            this.ColorUsedLbl.AutoSize = true;
-            this.ColorUsedLbl.Location = new System.Drawing.Point(6, 86);
-            this.ColorUsedLbl.Name = "ColorUsedLbl";
-            this.ColorUsedLbl.Size = new System.Drawing.Size(124, 25);
-            this.ColorUsedLbl.TabIndex = 2;
-            this.ColorUsedLbl.Text = "Color Used: 8";
+            groupBox2.Controls.Add(PaletteSizeLbl);
+            groupBox2.Controls.Add(BitplanesLbl);
+            groupBox2.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            groupBox2.Location = new System.Drawing.Point(12, 103);
+            groupBox2.Name = "groupBox2";
+            groupBox2.Size = new System.Drawing.Size(246, 102);
+            groupBox2.TabIndex = 3;
+            groupBox2.TabStop = false;
+            groupBox2.Text = "Depth";
             // 
             // PaletteSizeLbl
             // 
-            this.PaletteSizeLbl.AutoSize = true;
-            this.PaletteSizeLbl.Location = new System.Drawing.Point(6, 61);
-            this.PaletteSizeLbl.Name = "PaletteSizeLbl";
-            this.PaletteSizeLbl.Size = new System.Drawing.Size(141, 25);
-            this.PaletteSizeLbl.TabIndex = 1;
-            this.PaletteSizeLbl.Text = "Palette Size: 16";
+            PaletteSizeLbl.AutoSize = true;
+            PaletteSizeLbl.Location = new System.Drawing.Point(6, 61);
+            PaletteSizeLbl.Name = "PaletteSizeLbl";
+            PaletteSizeLbl.Size = new System.Drawing.Size(141, 25);
+            PaletteSizeLbl.TabIndex = 1;
+            PaletteSizeLbl.Text = "Palette Size: 16";
             // 
             // BitplanesLbl
             // 
-            this.BitplanesLbl.AutoSize = true;
-            this.BitplanesLbl.Location = new System.Drawing.Point(6, 36);
-            this.BitplanesLbl.Name = "BitplanesLbl";
-            this.BitplanesLbl.Size = new System.Drawing.Size(111, 25);
-            this.BitplanesLbl.TabIndex = 0;
-            this.BitplanesLbl.Text = "Bitplanes: 4";
+            BitplanesLbl.AutoSize = true;
+            BitplanesLbl.Location = new System.Drawing.Point(6, 36);
+            BitplanesLbl.Name = "BitplanesLbl";
+            BitplanesLbl.Size = new System.Drawing.Size(111, 25);
+            BitplanesLbl.TabIndex = 0;
+            BitplanesLbl.Text = "Bitplanes: 4";
             // 
             // InfoForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 25F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(278, 298);
-            this.Controls.Add(this.groupBox2);
-            this.Controls.Add(this.groupBox1);
-            this.Controls.Add(this.OKbtn);
-            this.Name = "InfoForm";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "Information";
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
-            this.groupBox2.ResumeLayout(false);
-            this.groupBox2.PerformLayout();
-            this.ResumeLayout(false);
-
+            AutoScaleDimensions = new System.Drawing.SizeF(10F, 25F);
+            AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            ClientSize = new System.Drawing.Size(278, 298);
+            Controls.Add(groupBox2);
+            Controls.Add(groupBox1);
+            Controls.Add(OKbtn);
+            Name = "InfoForm";
+            StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+            Text = "Information";
+            groupBox1.ResumeLayout(false);
+            groupBox1.PerformLayout();
+            groupBox2.ResumeLayout(false);
+            groupBox2.PerformLayout();
+            ResumeLayout(false);
         }
 
         #endregion
@@ -147,7 +135,6 @@
         private System.Windows.Forms.Label WidthLbl;
         private System.Windows.Forms.Label HeightLbl;
         private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.Label ColorUsedLbl;
         private System.Windows.Forms.Label PaletteSizeLbl;
         private System.Windows.Forms.Label BitplanesLbl;
     }

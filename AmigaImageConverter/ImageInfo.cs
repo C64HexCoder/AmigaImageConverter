@@ -22,7 +22,7 @@ namespace AmigaImageConverter
                 HeightLbl.Text = "Height: " + vr.bitplane.Height.ToString();
                 BitplanesLbl.Text = "Bitplanes: " + vr.bitplane.NumOfBitmaps.ToString();
                 PaletteSizeLbl.Text = "Palette Size: " + vr.bitplane.PaletteSize.ToString();
-                //ColorUsedLbl.Text = "Color Used"+vr.bitplane.
+                //ColorUsedLbl.Text = "Color Used: "+vr.bitplane.palette.Length.ToString();
             }
         }
 
