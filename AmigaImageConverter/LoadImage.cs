@@ -21,8 +21,8 @@ namespace AmigaImageConverter
             int height = DesktopBounds.Height;
         }
 
-        public LoadImageDialog (Bitmap bitmap)
-        {          
+        public LoadImageDialog(Bitmap bitmap)
+        {
             InitializeComponent();
             imageBox.Image = bitmap;
             widthNumericUpDown.Value = bitmap.Width;
@@ -33,20 +33,39 @@ namespace AmigaImageConverter
                 toolStripStatusLabel.Text = "Found Transprent color in Image and is used as Background";
                 ImageTransparent = true;
             }
-            
+
             ImageNumOfColors = 16;
             float ScaleFactor;
-    
+
             ScaleFactor = (float)imageBox.Height / (float)bmp.Height;
 
-            imageBox.ScaleImage(ScaleFactor);
-            imageBox.SizeMode = PictureBoxSizeMode.AutoSize;
+   
+
+            
+
+            if (bitmap.Width < ScreenWidth * 0.8)
+            {
+                imageBox.SizeMode = PictureBoxSizeMode.AutoSize;
+            }
+            else
+            {
+                imageBox.ScaleImage(ScaleFactor);
+                //imageBox.SizeMode = PictureBoxSizeMode.AutoSize;
+                imageBox.Width = (int)(ScreenWidth * 0.8);
+            }
 
             sidePael.Left = imageBox.Right + 2;
 
-            int width = DesktopBounds.Width;
-            int height = DesktopBounds.Height;
 
+        }
+        private int ScreenWidth
+        {
+            get { return SystemInformation.VirtualScreen.Width; }
+        } 
+
+        private int ScreenHeight
+        {
+            get { return SystemInformation.VirtualScreen.Height; }
         }
 
         public int ImageWidth

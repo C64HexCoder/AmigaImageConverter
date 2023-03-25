@@ -89,6 +89,7 @@ namespace AmigaImageConverter
                         }
                     }
                     else return;
+
                     Stopwatch sw = Stopwatch.StartNew();
                     sw.Start();
                     //vr.bitplane.bitmap = dc.ReduceColors(bmp);
