@@ -53,7 +53,7 @@ namespace AmigaImageConverter
             ButtomPanel.Top = image.Bottom + 2;
             Controls.Add(ButtomPanel);
             addBlitWordComboBox.SelectedIndex = 0;
- 
+
         }
 
         private void loadImageToolStripMenuItem_Click(object sender, EventArgs e)
@@ -65,11 +65,8 @@ namespace AmigaImageConverter
             {
 
                 toolStripFileName.Text = openImageFileDialog.FileName;
-       
-                SlicingPanel.Left = image.Right + 2;
-                SlicingPanel.Height = SlicingGb.Height;
-                ButtomPanel.Top = image.Bottom + 2;
-                ButtomPanel.Width = image.Width;
+
+    
                 bmp = new Bitmap(openImageFileDialog.FileName);
 
                 if (bmp.PixelFormat != PixelFormat.Format8bppIndexed && bmp.PixelFormat != PixelFormat.Format4bppIndexed && bmp.PixelFormat != PixelFormat.Format1bppIndexed)
@@ -105,15 +102,27 @@ namespace AmigaImageConverter
                 image.ScaleImage((int)settings.previewScalingNud.Value);
 
 
+
                 if (vr.bitplane.Width > Width || vr.bitplane.Height > Height)
                 {
                     Width = vr.bitplane.Width + 20;
                     Height = vr.bitplane.Height + menuStrip1.Height + statusStrip.Height + 60;
                 }
                 String name = Path.GetFileName(openImageFileDialog.FileName);
+
+                SlicingPanel.Left = image.Right + 2;
+                SlicingPanel.Height = SlicingGb.Height;
+                hScrollBar.Top = image.Bottom + 2;
+                hScrollBar.Left = image.Left;
+                hScrollBar.Width = image.Width;
+                ButtomPanel.Top = hScrollBar.Bottom + 2;
+                ButtomPanel.Width = image.Width;
+
                 toolStripFileName.Text = name;
                 toolStripResolutionLabel.Text = $"{vr.bitplane.Width}x{vr.bitplane.Height}";
                 toolStripDepthLabel.Text = $"{vr.bitplane.NumOfBitmaps} Bitmaps, new Width: {vr.bitplane.actualWidth}";
+
+
 
                 switch (vr.bitplane.bitmap.PixelFormat)
                 {
@@ -218,8 +227,8 @@ namespace AmigaImageConverter
         {
             //ColorPalette colorPalette = bitplane.Pallate;
             if (vr.bitplane.Pallate != null || iffImage.bmp != null)
-            { 
-                pallate.imagePallate.SetPalette(vr.bitplane.Pallate);   
+            {
+                pallate.imagePallate.SetPalette(vr.bitplane.Pallate);
                 pallate.ShowDialog();
             }
             else
@@ -279,7 +288,7 @@ namespace AmigaImageConverter
             vr.bitplane.bitmap = corpedImage;
             image.Image = vr.bitplane.bitmap;
             image.ScaleImage((int)settings.previewScalingNud.Value);
-            ButtomPanel.Top = image.Bottom+1;
+            ButtomPanel.Top = image.Bottom + 1;
             ButtomPanel.Width = image.Width < 500 ? 500 : image.Width;
             CheckImageAlignment();
             toolStripResolutionLabel.Text = vr.bitplane.Width.ToString() + "x" + vr.bitplane.Height.ToString();
@@ -385,7 +394,7 @@ namespace AmigaImageConverter
                 {
 
                     Bitmap SprBmp = new Bitmap(SprireWidth, SpriteHeight);
-                    SprBmp.SetResolution(vr.bitplane.bitmap.HorizontalResolution, vr.bitplane.  bitmap.VerticalResolution);
+                    SprBmp.SetResolution(vr.bitplane.bitmap.HorizontalResolution, vr.bitplane.bitmap.VerticalResolution);
                     Sprite sprite = new Sprite();
 
                     Graphics gr = Graphics.FromImage(SprBmp);
@@ -493,7 +502,7 @@ namespace AmigaImageConverter
         private void addBlitWordComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             ToolStripComboBox tscb = (ToolStripComboBox)sender;
-            Bitmap NewBitmap; 
+            Bitmap NewBitmap;
             Graphics g;
 
             switch (tscb.SelectedIndex)
@@ -511,7 +520,7 @@ namespace AmigaImageConverter
                             AddedBlitWord = BlitWord.Both;
                     }
                     else
-                        MessageBox.Show("Left Word already added to the image.","Silly you...",MessageBoxButtons.OK);
+                        MessageBox.Show("Left Word already added to the image.", "Silly you...", MessageBoxButtons.OK);
                     break;
                 case 2:
                     if (AddedBlitWord != BlitWord.Right && AddedBlitWord != BlitWord.Both)
@@ -554,7 +563,7 @@ namespace AmigaImageConverter
             switch (removeBlitterWordToolStripComboBox.SelectedIndex)
             {
                 case 0:         // None
-                    break; 
+                    break;
                 case 1:         // Left
                     if (AddedBlitWord == BlitWord.Left || AddedBlitWord == BlitWord.Both)
                     {
@@ -597,7 +606,7 @@ namespace AmigaImageConverter
         private void alignWidthToolStripMenuItem_MouseHover(object sender, EventArgs e)
         {
             ToolStripMenuItem tsmi = (ToolStripMenuItem)sender;
-            
+
             if (vr.bitplane.bitmap != null)
             {
                 alignWidthComboBox.Enabled = true;
@@ -619,11 +628,11 @@ namespace AmigaImageConverter
         {
             OpenFileDialog iffFile = new OpenFileDialog();
             iffFile.Filter = "Amiga IFF|*.iff;*.ilbm;*.pbm;*.acbm";
-            if (iffFile.ShowDialog() == DialogResult.OK )
+            if (iffFile.ShowDialog() == DialogResult.OK)
             {
-                vr.bitplane.LoadIFF (iffFile.FileName);
+                vr.bitplane.LoadIFF(iffFile.FileName);
                 image.Image = vr.bitplane.bitmap;
-                image.ScaleImage ((int)settings.previewScalingNud.Value);
+                image.ScaleImage((int)settings.previewScalingNud.Value);
             }
         }
 
