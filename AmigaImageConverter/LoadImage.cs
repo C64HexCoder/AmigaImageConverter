@@ -34,6 +34,10 @@ namespace AmigaImageConverter
                 toolStripStatusLabel.Text = "Found Transprent color in Image and is used as Background";
                 ImageTransparent = true;
             }
+            else
+            {
+                toolStripStatusLabel.Text = "No Transparent color found in the Image.";
+            }
 
             ImageNumOfColors = 16;
             float ScaleFactor;
