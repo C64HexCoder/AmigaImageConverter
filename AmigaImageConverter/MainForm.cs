@@ -58,15 +58,13 @@ namespace AmigaImageConverter
 
         private void loadImageToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            DeepCycle dc = new Amiga.DeepCycle();
-
 
             if (openImageFileDialog.ShowDialog() == DialogResult.OK)
             {
 
                 toolStripFileName.Text = openImageFileDialog.FileName;
 
-    
+
                 bmp = new Bitmap(openImageFileDialog.FileName);
 
                 if (bmp.PixelFormat != PixelFormat.Format8bppIndexed && bmp.PixelFormat != PixelFormat.Format4bppIndexed && bmp.PixelFormat != PixelFormat.Format1bppIndexed)
@@ -87,12 +85,9 @@ namespace AmigaImageConverter
                     }
                     else return;
 
-                    Stopwatch sw = Stopwatch.StartNew();
-                    sw.Start();
-                    //vr.bitplane.bitmap = dc.ReduceColors(bmp);
+
                     vr.bitplane.bitmap = KMeansQuant.DecreaseColors(bmp, loadImageDlg.ImageNumOfColors);
-                    sw.Stop();
-                    Debug.WriteLine($"KMeans: {sw.ElapsedMilliseconds}");
+
                 }
                 else
                     vr.bitplane.LoadImage(openImageFileDialog.FileName);
@@ -117,6 +112,18 @@ namespace AmigaImageConverter
                 hScrollBar.Width = image.Width;
                 ButtomPanel.Top = hScrollBar.Bottom + 2;
                 ButtomPanel.Width = image.Width;
+
+
+
+                if (image.ImageWidth > image.Width)
+                {
+                    hScrollBar.Maximum = image.ImageWidth - image.Width;
+                    hScrollBar.Visible = true;
+                }
+                else
+                {
+                    hScrollBar.Visible = false;
+                }
 
                 toolStripFileName.Text = name;
                 toolStripResolutionLabel.Text = $"{vr.bitplane.Width}x{vr.bitplane.Height}";
@@ -671,5 +678,14 @@ namespace AmigaImageConverter
                 }
             }
         }
+
+        private void hScrollBar_ValueChanged(object sender, EventArgs e)
+        {
+            HScrollBar hScrollBar = (HScrollBar)sender;
+
+            image.DrawImagePart(hScrollBar.Value, 0);
+        }
+
+
     }
 }

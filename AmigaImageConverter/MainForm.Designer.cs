@@ -420,7 +420,6 @@
             image.ScaleFactor = 4;
             image.ScaleFactorFloat = 1F;
             image.Size = new System.Drawing.Size(862, 534);
-            image.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
             image.TabIndex = 3;
             image.TabStop = false;
             image.LoadCompleted += image_LoadCompleted;
@@ -543,6 +542,8 @@
             hScrollBar.Name = "hScrollBar";
             hScrollBar.Size = new System.Drawing.Size(862, 34);
             hScrollBar.TabIndex = 5;
+            hScrollBar.Visible = false;
+            hScrollBar.ValueChanged += hScrollBar_ValueChanged;
             // 
             // MainForm
             // 
