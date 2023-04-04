@@ -67,6 +67,7 @@ namespace AmigaImageConverter
 
                 bmp = new Bitmap(openImageFileDialog.FileName);
 
+                // If image is not Pallate base (True Color)
                 if (bmp.PixelFormat != PixelFormat.Format8bppIndexed && bmp.PixelFormat != PixelFormat.Format4bppIndexed && bmp.PixelFormat != PixelFormat.Format1bppIndexed)
                 {
                     LoadImageDialog loadImageDlg = new LoadImageDialog(bmp);
@@ -98,11 +99,12 @@ namespace AmigaImageConverter
 
 
 
-                if (vr.bitplane.Width > Width || vr.bitplane.Height > Height)
+              /*  if (vr.bitplane.Width > Width || vr.bitplane.Height > Height)
                 {
                     Width = vr.bitplane.Width + 20;
                     Height = vr.bitplane.Height + menuStrip1.Height + statusStrip.Height + 60;
-                }
+                }*/
+
                 String name = Path.GetFileName(openImageFileDialog.FileName);
 
                 SlicingPanel.Left = image.Right + 2;
