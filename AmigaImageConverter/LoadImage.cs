@@ -49,7 +49,7 @@ namespace AmigaImageConverter
             {
                 imageBox.ScaleImage(ScaleFactor);
                 imageBox.SizeMode = PictureBoxSizeMode.AutoSize;
-                hScrollBar.Enabled = false;
+                hScrollBar.Visible = false;
             }
             else
             {
@@ -59,7 +59,7 @@ namespace AmigaImageConverter
                 //imageBox.SizeMode = PictureBoxSizeMode.AutoSize;
                 imageBox.Width = (int)(ScreenWidth * 0.8);
                 imageBox.Image = new Bitmap(imageBox.Width, imageBox.Height);
-                hScrollBar.Enabled = true;
+                hScrollBar.Visible = true;
                 hScrollBar.Maximum = ScaledBitmap.Width - imageBox.Width; //(int)((float)imageBox.Width / (float)imageBox.Image.Width * 100);
 
                 DrawImagePart(0);

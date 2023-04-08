@@ -44,6 +44,15 @@ namespace AmigaImageConverter
         BlitWord AddedBlitWord = BlitWord.None;
         //List<Bitmap> bitmaps = new List<Bitmap>();
 
+        int ScreenWidth
+        {
+            get { return SystemInformation.VirtualScreen.Width; }
+        }
+
+        int ScreenHeight
+        {
+            get { return SystemInformation.VirtualScreen.Height; }
+        }
         public MainForm()
         {
             InitializeComponent();
@@ -90,42 +99,77 @@ namespace AmigaImageConverter
                     vr.bitplane.bitmap = KMeansQuant.DecreaseColors(bmp, loadImageDlg.ImageNumOfColors);
 
                 }
-                else
+                else  // The image is not true color (24 or 32 bit)
                     vr.bitplane.LoadImage(openImageFileDialog.FileName);
 
+                // check if the image is 8bit/16bit/32bit alignment
                 CheckImageAlignment();
+
+                // copy the image that we have losded in bitplane class into the imageBox to display it
                 image.Image = vr.bitplane.bitmap;
+
+                int ScalingFactor = (int)settings.previewScalingNud.Value;
+
+                if (vr.bitplane.Width * ScalingFactor > 0.8 * SystemInformation.VirtualScreen.Width || vr.bitplane.Height * ScalingFactor > 0.8 * SystemInformation.VirtualScreen.Height)
+                {
+                    // if image width is bigger then it's height
+                    if (vr.bitplane.Width > vr.bitplane.Height)
+                    {
+                        if (settings.ScalingType == Settings.ScaleType.Auto)
+                        {
+                            float MaxFormWidth = ((float)ScreenWidth) * 0.8f;
+
+                            //float ScalingFactor = MaxFormWidth / (float)vr.bitplane.Width;
+                        }
+                        else
+                        {
+
+                        }
+                    }
+                    else // if image height is bigger then it's width or equal
+                    {
+
+                    }
+                    {
+
+                    }
+                }
+
                 image.ScaleImage((int)settings.previewScalingNud.Value);
 
 
-
-              /*  if (vr.bitplane.Width > Width || vr.bitplane.Height > Height)
-                {
-                    Width = vr.bitplane.Width + 20;
-                    Height = vr.bitplane.Height + menuStrip1.Height + statusStrip.Height + 60;
-                }*/
 
                 String name = Path.GetFileName(openImageFileDialog.FileName);
 
                 SlicingPanel.Left = image.Right + 2;
                 SlicingPanel.Height = SlicingGb.Height;
-                hScrollBar.Top = image.Bottom + 2;
+                hScrollBar.Top = image.Bottom;
                 hScrollBar.Left = image.Left;
                 hScrollBar.Width = image.Width;
+                vScrollBar.Left = image.Right;
+                vScrollBar.Height = image.Height;
                 ButtomPanel.Top = hScrollBar.Bottom + 2;
                 ButtomPanel.Width = image.Width;
 
 
 
-                if (image.ImageWidth > image.Width)
+                if (image.Image.Width > image.Width)
                 {
-                    hScrollBar.Maximum = image.ImageWidth - image.Width;
+                    hScrollBar.Maximum = image.Image.Width - image.Width;
                     hScrollBar.Visible = true;
                 }
                 else
                 {
                     hScrollBar.Visible = false;
                 }
+
+                if (image.Image.Height > image.Height)
+                {
+                    vScrollBar.Maximum = image.Image.Height - image.Height;
+                    vScrollBar.Visible = true;
+                }
+                else { hScrollBar.Visible = false; }
+
 
                 toolStripFileName.Text = name;
                 toolStripResolutionLabel.Text = $"{vr.bitplane.Width}x{vr.bitplane.Height}";
@@ -685,9 +729,13 @@ namespace AmigaImageConverter
         {
             HScrollBar hScrollBar = (HScrollBar)sender;
 
-            image.DrawImagePart(hScrollBar.Value, 0);
+            image.DrawImagePart(hScrollBar.Value, vScrollBar.Value);
         }
 
-
+        private void vScrollBar_ValueChanged(object sender, EventArgs e)
+        {
+            VScrollBar vScrollBar = (VScrollBar)sender;
+            image.DrawImagePart(hScrollBar.Value, vScrollBar.Value);
+        }
     }
 }

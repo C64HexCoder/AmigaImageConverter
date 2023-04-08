@@ -87,6 +87,7 @@
             label1 = new System.Windows.Forms.Label();
             SpritesPerRawNud = new System.Windows.Forms.NumericUpDown();
             hScrollBar = new System.Windows.Forms.HScrollBar();
+            vScrollBar = new System.Windows.Forms.VScrollBar();
             menuStrip1.SuspendLayout();
             statusStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)image).BeginInit();
@@ -414,12 +415,13 @@
             // image
             // 
             image.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            image.Image = null;
             image.Location = new System.Drawing.Point(0, 34);
             image.Margin = new System.Windows.Forms.Padding(1, 2, 1, 2);
             image.Name = "image";
             image.ScaleFactor = 4;
             image.ScaleFactorFloat = 1F;
-            image.Size = new System.Drawing.Size(862, 534);
+            image.Size = new System.Drawing.Size(831, 534);
             image.TabIndex = 3;
             image.TabStop = false;
             image.LoadCompleted += image_LoadCompleted;
@@ -453,6 +455,7 @@
             // 
             // sprImageBox
             // 
+            sprImageBox.Image = null;
             sprImageBox.Location = new System.Drawing.Point(6, 176);
             sprImageBox.Name = "sprImageBox";
             sprImageBox.ScaleFactor = 1;
@@ -540,10 +543,19 @@
             // 
             hScrollBar.Location = new System.Drawing.Point(0, 572);
             hScrollBar.Name = "hScrollBar";
-            hScrollBar.Size = new System.Drawing.Size(862, 34);
+            hScrollBar.Size = new System.Drawing.Size(862, 30);
             hScrollBar.TabIndex = 5;
             hScrollBar.Visible = false;
             hScrollBar.ValueChanged += hScrollBar_ValueChanged;
+            // 
+            // vScrollBar
+            // 
+            vScrollBar.Location = new System.Drawing.Point(832, 37);
+            vScrollBar.Name = "vScrollBar";
+            vScrollBar.Size = new System.Drawing.Size(30, 531);
+            vScrollBar.TabIndex = 6;
+            vScrollBar.Visible = false;
+            vScrollBar.ValueChanged += vScrollBar_ValueChanged;
             // 
             // MainForm
             // 
@@ -552,6 +564,7 @@
             AutoSize = true;
             AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             ClientSize = new System.Drawing.Size(1100, 643);
+            Controls.Add(vScrollBar);
             Controls.Add(hScrollBar);
             Controls.Add(SlicingPanel);
             Controls.Add(image);
@@ -641,6 +654,7 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
         private System.Windows.Forms.ToolStripMenuItem resizeToolStripMenuItem;
         private System.Windows.Forms.HScrollBar hScrollBar;
+        private System.Windows.Forms.VScrollBar vScrollBar;
     }
 }
 

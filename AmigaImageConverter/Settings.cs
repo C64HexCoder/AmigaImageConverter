@@ -23,10 +23,43 @@ namespace AmigaImageConverter
             numInARowNud.Value = vr.NumInARow;
             bitsPpCombo.SelectedIndex = 0;
             colorRegistersCombo.SelectedIndex = 0;
-            
+
             Alignment = vr.Alignment;
 
         }
+
+        public enum ScaleType
+        {
+            Auto,
+            Manual
+        }
+
+        public ScaleType ScalingType
+        {
+            get { return autoCheckBox.Checked == true ? ScaleType.Auto : ScaleType.Manual;}
+
+            set
+            {
+                if (value == ScaleType.Auto)
+                {
+                    autoCheckBox.Checked = true;
+                    previewScalingNud.Enabled = false;
+                }
+                else
+                {
+                    autoCheckBox.Checked = false;
+                    previewScalingNud.Enabled = true;
+                }
+            }
+        }
+
+        public decimal PrevScaleFactor
+        {
+            get
+            {
+                return previewScalingNud.Value;
+            }
+        } 
 
         public Bitplane.OutputSize outPutSize
         {
@@ -59,8 +92,9 @@ namespace AmigaImageConverter
 
         public Bitplane.OutputSize Alignment
         {
-            get { return vr.Alignment; } 
-            set { 
+            get { return vr.Alignment; }
+            set
+            {
                 switch (value)
                 {
                     case Bitplane.OutputSize.Byte:
@@ -78,12 +112,12 @@ namespace AmigaImageConverter
 
         private void OKBtn_Click(object sender, EventArgs e)
         {
-            
+
         }
 
         private void byteRbox_CheckedChanged(object sender, EventArgs e)
         {
-           vr.outputSize = Bitplane.OutputSize.Byte;
+            vr.outputSize = Bitplane.OutputSize.Byte;
         }
 
         private void wordRbox_CheckedChanged(object sender, EventArgs e)
