@@ -39,7 +39,7 @@ namespace AmigaImageConverter
                 toolStripStatusLabel.Text = "No Transparent color found in the Image.";
             }
 
-            ImageNumOfColors = 16;
+            ImageNumOfColors = 16;  // The default num of color to reduce to
             float ScaleFactor;
 
             ScaleFactor = (float)imageBox.Height / (float)bmp.Height;

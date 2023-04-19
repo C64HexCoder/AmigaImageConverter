@@ -56,6 +56,7 @@ namespace AmigaImageConverter
         public MainForm()
         {
             InitializeComponent();
+
             SlicingPanel.Visible = false;
 
             ButtomPanel.Size = new Size(image.Width, statusStrip.Height);
@@ -67,6 +68,7 @@ namespace AmigaImageConverter
 
         private void loadImageToolStripMenuItem_Click(object sender, EventArgs e)
         {
+
 
             if (openImageFileDialog.ShowDialog() == DialogResult.OK)
             {
@@ -108,38 +110,54 @@ namespace AmigaImageConverter
                 // copy the image that we have losded in bitplane class into the imageBox to display it
                 image.Image = vr.bitplane.bitmap;
 
-                int ScalingFactor = (int)settings.previewScalingNud.Value;
+                float ScalingFactor = (int)settings.PrevScaleFactor;
 
+                // if image after scaling using ScalingFactor is to bit to fit on screen then....
+
+                if (settings.ScalingType == Settings.ScaleType.Auto)
+                {
+                    image.SizeMode = PictureBoxSizeMode.AutoSize;
                 if (vr.bitplane.Width * ScalingFactor > 0.8 * SystemInformation.VirtualScreen.Width || vr.bitplane.Height * ScalingFactor > 0.8 * SystemInformation.VirtualScreen.Height)
                 {
                     // if image width is bigger then it's height
                     if (vr.bitplane.Width > vr.bitplane.Height)
                     {
-                        if (settings.ScalingType == Settings.ScaleType.Auto)
-                        {
-                            float MaxFormWidth = ((float)ScreenWidth) * 0.8f;
 
-                            //float ScalingFactor = MaxFormWidth / (float)vr.bitplane.Width;
+                            float MaxFormWidth = ((float)ScreenWidth) * 0.8f;
+                            ScalingFactor = MaxFormWidth / (float)vr.bitplane.Width;
+                            image.ScaleImage(ScalingFactor);
+
+
                         }
+                        else // if image height is bigger then it's width or equal
+                        {
+                            float MaxFormHeight = ((float)ScreenHeight) * 0.8f;
+                            ScalingFactor = MaxFormHeight / (float)vr.bitplane.Height;
+                            image.ScaleImage(ScalingFactor);
+                        }
+                    }
                         else
                         {
-
+                        image.ScaleImage((int)settings.PrevScaleFactor);
                         }
                     }
-                    else // if image height is bigger then it's width or equal
+                else
                     {
-
+                    image.Width = image.defaultWidth;
+                    image.Height = image.defaultHeight;
+                    image.SizeMode = PictureBoxSizeMode.Normal;
+                    image.ScaleImage((int)settings.PrevScaleFactor);
                     }
-                    {
 
-                    }
-                }
 
-                image.ScaleImage((int)settings.previewScalingNud.Value);
 
 
 
                 String name = Path.GetFileName(openImageFileDialog.FileName);
+
+                toolStripFileName.Text = name;
+                toolStripResolutionLabel.Text = $"{vr.bitplane.Width}x{vr.bitplane.Height}";
+                toolStripDepthLabel.Text = $"{vr.bitplane.NumOfBitmaps} Bitmaps, new Width: {vr.bitplane.actualWidth}";
 
                 SlicingPanel.Left = image.Right + 2;
                 SlicingPanel.Height = SlicingGb.Height;
@@ -148,8 +166,12 @@ namespace AmigaImageConverter
                 hScrollBar.Width = image.Width;
                 vScrollBar.Left = image.Right;
                 vScrollBar.Height = image.Height;
-                ButtomPanel.Top = hScrollBar.Bottom + 2;
-                ButtomPanel.Width = image.Width;
+                statusStrip.Top = hScrollBar.Bottom;
+                statusStrip.Left = hScrollBar.Left;
+                statusStrip.Width = hScrollBar.Width;
+                //ButtomPanel.Top = hScrollBar.Bottom + 2;
+                //ButtomPanel.Width = image.Width;
+                //ButtomPanel.Height = statusStrip.Height;
 
 
 
@@ -171,9 +193,7 @@ namespace AmigaImageConverter
                 else { hScrollBar.Visible = false; }
 
 
-                toolStripFileName.Text = name;
-                toolStripResolutionLabel.Text = $"{vr.bitplane.Width}x{vr.bitplane.Height}";
-                toolStripDepthLabel.Text = $"{vr.bitplane.NumOfBitmaps} Bitmaps, new Width: {vr.bitplane.actualWidth}";
+
 
 
 
