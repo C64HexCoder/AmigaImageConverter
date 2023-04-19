@@ -32,7 +32,7 @@ namespace AmigaImageConverter
         List<Sprite> sprites = new List<Sprite>();
         bool SlicedSpriteSheet = false;
         IFF iffImage = new IFF();
-
+        int defaultimageWidth,defaultimageHeight;
         enum BlitWord
         {
             None,
@@ -56,7 +56,8 @@ namespace AmigaImageConverter
         public MainForm()
         {
             InitializeComponent();
-
+            defaultimageWidth = image.Width;
+            defaultimageHeight = image.Height;
             SlicingPanel.Visible = false;
 
             ButtomPanel.Size = new Size(image.Width, statusStrip.Height);
@@ -143,8 +144,8 @@ namespace AmigaImageConverter
                     }
                 else
                     {
-                    image.Width = image.defaultWidth;
-                    image.Height = image.defaultHeight;
+                    image.Width = defaultimageWidth;
+                    image.Height = defaultimageHeight;
                     image.SizeMode = PictureBoxSizeMode.Normal;
                     image.ScaleImage((int)settings.PrevScaleFactor);
                     }
