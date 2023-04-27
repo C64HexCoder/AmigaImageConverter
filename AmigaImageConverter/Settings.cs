@@ -19,6 +19,7 @@ namespace AmigaImageConverter
         public Settings()
         {
             InitializeComponent();
+
             outPutSize = vr.outputSize;
             numInARowNud.Value = vr.NumInARow;
             bitsPpCombo.SelectedIndex = 0;
@@ -36,7 +37,7 @@ namespace AmigaImageConverter
 
         public ScaleType ScalingType
         {
-            get { return autoCheckBox.Checked == true ? ScaleType.Auto : ScaleType.Manual;}
+            get { return autoCheckBox.Checked == true ? ScaleType.Auto : ScaleType.Manual; }
 
             set
             {
@@ -59,7 +60,7 @@ namespace AmigaImageConverter
             {
                 return previewScalingNud.Value;
             }
-        } 
+        }
 
         public Bitplane.OutputSize outPutSize
         {
@@ -173,6 +174,11 @@ namespace AmigaImageConverter
         private void previewScalingNud_ValueChanged(object sender, EventArgs e)
         {
             valueChanged = true;
+        }
+
+        private void autoCheckBox_CheckStateChanged(object sender, EventArgs e)
+        {
+            previewScalingNud.Enabled = !((CheckBox)sender).Checked;
         }
     }
 }

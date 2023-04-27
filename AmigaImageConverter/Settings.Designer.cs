@@ -419,6 +419,7 @@
             autoCheckBox.TabIndex = 0;
             autoCheckBox.Text = "Auto";
             autoCheckBox.UseVisualStyleBackColor = true;
+            autoCheckBox.CheckStateChanged += autoCheckBox_CheckStateChanged;
             // 
             // Settings
             // 
