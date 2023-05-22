@@ -32,7 +32,7 @@ namespace AmigaImageConverter
         List<Sprite> sprites = new List<Sprite>();
         bool SlicedSpriteSheet = false;
         IFF iffImage = new IFF();
-        int defaultimageWidth,defaultimageHeight;
+        int defaultimageWidth, defaultimageHeight;
         enum BlitWord
         {
             None,
@@ -115,14 +115,15 @@ namespace AmigaImageConverter
 
                 // if image after scaling using ScalingFactor is to bit to fit on screen then....
 
+                // Auto scaling
                 if (settings.ScalingType == Settings.ScaleType.Auto)
                 {
                     image.SizeMode = PictureBoxSizeMode.AutoSize;
-                if (vr.bitplane.Width * ScalingFactor > 0.8 * SystemInformation.VirtualScreen.Width || vr.bitplane.Height * ScalingFactor > 0.8 * SystemInformation.VirtualScreen.Height)
-                {
-                    // if image width is bigger then it's height
-                    if (vr.bitplane.Width > vr.bitplane.Height)
+                    if (vr.bitplane.Width * ScalingFactor > 0.8 * SystemInformation.VirtualScreen.Width || vr.bitplane.Height * ScalingFactor > 0.8 * SystemInformation.VirtualScreen.Height)
                     {
+                        // if image width is bigger then it's height
+                        if (vr.bitplane.Width > vr.bitplane.Height)
+                        {
 
                             float MaxFormWidth = ((float)ScreenWidth) * 0.8f;
                             ScalingFactor = MaxFormWidth / (float)vr.bitplane.Width;
@@ -137,20 +138,21 @@ namespace AmigaImageConverter
                             image.ScaleImage(ScalingFactor);
                         }
                     }
-                        else
-                        {
-                        image.ScaleImage((int)settings.PrevScaleFactor);
-                        }
-                    }
-                else
+                    else
                     {
+                        image.ScaleImage((int)settings.PrevScaleFactor);
+                    }
+                }
+                // Manual scalling
+                else
+                {
                     image.Width = defaultimageWidth;
                     image.Height = defaultimageHeight;
                     image.SizeMode = PictureBoxSizeMode.Normal;
                     image.ScaleImage((int)settings.PrevScaleFactor);
-                    }
+                }
 
-
+                toolStripScalingFactorLabel.Text += ScalingFactor.ToString();
 
 
 

@@ -58,7 +58,8 @@ namespace AmigaImageConverter
 
                 //imageBox.SizeMode = PictureBoxSizeMode.AutoSize;
                 imageBox.Width = (int)(ScreenWidth * 0.8);
-                imageBox.Image = new Bitmap(imageBox.Width, imageBox.Height);
+                imageBox.Image = new Bitmap(imageBox.Width, imageBox.Height,Graphics.FromImage (bitmap));
+                
                 hScrollBar.Visible = true;
                 hScrollBar.Maximum = ScaledBitmap.Width - imageBox.Width; //(int)((float)imageBox.Width / (float)imageBox.Image.Width * 100);
 
@@ -91,13 +92,15 @@ namespace AmigaImageConverter
         {
             if (bitmap != null)
             {
-                Bitmap scaledImage = new Bitmap((int)(bitmap.Width * scaleFactor), (int)(bitmap.Height * scaleFactor));
-                scaledImage.SetResolution(bitmap.HorizontalResolution, bitmap.VerticalResolution);
+                Graphics sg = Graphics.FromImage(bitmap);
+                Bitmap scaledImage = new Bitmap((int)(bitmap.Width * scaleFactor), (int)(bitmap.Height * scaleFactor),sg);                  //     scaledImage.SetResolution(bitmap.HorizontalResolution, bitmap.VerticalResolution);
+                //Bitmap scaledImage = new Bitmap(bitmap, (int)(bitmap.Width * scaleFactor), (int)(bitmap.Height * scaleFactor));
                 Graphics g = Graphics.FromImage(scaledImage);
-                g.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.NearestNeighbor;
-                g.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.None;
-                g.DrawImage(bitmap, 0, 0, scaledImage.Width, scaledImage.Height);
-                g.Dispose();
+                       g.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.NearestNeighbor;
+                       g.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.None;
+                       g.DrawImage(bitmap, 0, 0, scaledImage.Width, scaledImage.Height);
+                       g.Dispose(); 
+              //  Bitmap scaledImage = new Bitmap(bitmap, (int)(bitmap.Width * scaleFactor), (int)(bitmap.Height * scaleFactor));
                 return scaledImage;
                 //Refresh();
 
@@ -213,9 +216,9 @@ namespace AmigaImageConverter
 
         private void doItButton_Click(object sender, EventArgs e)
         {
-            if ((ImageWidth * ImageHeight/8) > 0x2000000 )
+            if ((ImageWidth * ImageHeight / 8) > 0x2000000)
             {
-                if (MessageBox.Show("The image is too big to fit into 2M chip memory, are you sure you want to continue?","Image too big",MessageBoxButtons.OKCancel) == DialogResult.OK)
+                if (MessageBox.Show("The image is too big to fit into 2M chip memory, are you sure you want to continue?", "Image too big", MessageBoxButtons.OKCancel) == DialogResult.OK)
                     DialogResult = DialogResult.OK;
             }
             else

@@ -73,6 +73,7 @@
             toolStripFileName = new System.Windows.Forms.ToolStripStatusLabel();
             toolStripResolutionLabel = new System.Windows.Forms.ToolStripStatusLabel();
             toolStripDepthLabel = new System.Windows.Forms.ToolStripStatusLabel();
+            toolStripScalingFactorLabel = new System.Windows.Forms.ToolStripStatusLabel();
             toolStripProgressBar = new System.Windows.Forms.ToolStripProgressBar();
             image = new Amiga.ImageBox();
             SlicingPanel = new System.Windows.Forms.Panel();
@@ -218,7 +219,8 @@
             alignWidthToolStripMenuItem.Name = "alignWidthToolStripMenuItem";
             alignWidthToolStripMenuItem.Size = new System.Drawing.Size(277, 34);
             alignWidthToolStripMenuItem.Tag = "Image";
-            alignWidthToolStripMenuItem.Text = "Align Width";
+            alignWidthToolStripMenuItem.Text = "Align Width To";
+            alignWidthToolStripMenuItem.ToolTipText = " Round image width to Byte/Word/Long/Double long and align it";
             alignWidthToolStripMenuItem.MouseHover += alignWidthToolStripMenuItem_MouseHover;
             // 
             // alignWidthComboBox
@@ -381,7 +383,7 @@
             // statusStrip
             // 
             statusStrip.ImageScalingSize = new System.Drawing.Size(24, 24);
-            statusStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] { toolStripFileName, toolStripResolutionLabel, toolStripDepthLabel, toolStripProgressBar });
+            statusStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] { toolStripFileName, toolStripResolutionLabel, toolStripDepthLabel, toolStripScalingFactorLabel, toolStripProgressBar });
             statusStrip.Location = new System.Drawing.Point(0, 611);
             statusStrip.Name = "statusStrip";
             statusStrip.Padding = new System.Windows.Forms.Padding(1, 0, 16, 0);
@@ -406,6 +408,12 @@
             toolStripDepthLabel.Name = "toolStripDepthLabel";
             toolStripDepthLabel.Size = new System.Drawing.Size(61, 25);
             toolStripDepthLabel.Text = "Depth";
+            // 
+            // toolStripScalingFactorLabel
+            // 
+            toolStripScalingFactorLabel.Name = "toolStripScalingFactorLabel";
+            toolStripScalingFactorLabel.Size = new System.Drawing.Size(121, 25);
+            toolStripScalingFactorLabel.Text = "Scaling Factor";
             // 
             // toolStripProgressBar
             // 
@@ -607,7 +615,6 @@
         private System.Windows.Forms.ToolStripMenuItem settingsMenuItem;
         private System.Windows.Forms.ToolStripMenuItem aboutMenuItem;
         private System.Windows.Forms.ToolStripMenuItem savePallateToolStripMenuItem;
-        private System.Windows.Forms.StatusStrip statusStrip;
         private System.Windows.Forms.ToolStripStatusLabel toolStripFileName;
         private System.Windows.Forms.ToolStripStatusLabel toolStripResolutionLabel;
         private System.Windows.Forms.ToolStripStatusLabel toolStripDepthLabel;
@@ -655,6 +662,8 @@
         private System.Windows.Forms.ToolStripMenuItem resizeToolStripMenuItem;
         private System.Windows.Forms.HScrollBar hScrollBar;
         private System.Windows.Forms.VScrollBar vScrollBar;
+        private System.Windows.Forms.ToolStripStatusLabel toolStripScalingFactorLabel;
+        public System.Windows.Forms.StatusStrip statusStrip;
     }
 }
 
