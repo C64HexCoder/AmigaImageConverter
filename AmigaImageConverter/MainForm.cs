@@ -117,10 +117,11 @@ namespace AmigaImageConverter
 
                 // Auto scaling
                 if (settings.ScalingType == Settings.ScaleType.Auto)
-                {
+                {       // Auto scaling modde
                     image.SizeMode = PictureBoxSizeMode.AutoSize;
                     if (vr.bitplane.Width * ScalingFactor > 0.8 * SystemInformation.VirtualScreen.Width || vr.bitplane.Height * ScalingFactor > 0.8 * SystemInformation.VirtualScreen.Height)
-                    {
+                    {   // Scaled image bigger then the screen
+
                         // if image width is bigger then it's height
                         if (vr.bitplane.Width > vr.bitplane.Height)
                         {
@@ -139,7 +140,7 @@ namespace AmigaImageConverter
                             image.ScaleImage(ScalingFactor);
                         }
                     }
-                    else
+                    else // Scaled picture fits on screen
                     {
                         image.ScaleImage((int)settings.PrevScaleFactor);
                     }
