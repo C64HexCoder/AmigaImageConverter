@@ -130,6 +130,7 @@ namespace AmigaImageConverter
                             image.ScaleImage(ScalingFactor);
 
 
+
                         }
                         else // if image height is bigger then it's width or equal
                         {
@@ -193,7 +194,7 @@ namespace AmigaImageConverter
                     vScrollBar.Maximum = image.Image.Height - image.Height;
                     vScrollBar.Visible = true;
                 }
-                else { hScrollBar.Visible = false; }
+                //else { hScrollBar.Visible = false; }
 
 
 
