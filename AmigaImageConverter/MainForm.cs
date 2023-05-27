@@ -281,6 +281,8 @@ namespace AmigaImageConverter
                     SlicingPanel.Left = image.Right + 2;
                     ButtomPanel.Width = image.Width;
                     ButtomPanel.Top = image.Bottom + 2;
+                    hScrollBar.Maximum = image.Image.Width - image.Width;
+
                 }
             }
         }
