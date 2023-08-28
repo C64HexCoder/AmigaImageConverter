@@ -32,9 +32,10 @@
             cancelBtn = new System.Windows.Forms.Button();
             tabDisplay = new System.Windows.Forms.TabPage();
             groupBox4 = new System.Windows.Forms.GroupBox();
-            autoCheckBox = new System.Windows.Forms.CheckBox();
+            scaleToMaxCheckBox = new System.Windows.Forms.CheckBox();
             previewScalingNud = new System.Windows.Forms.NumericUpDown();
             tabFormat = new System.Windows.Forms.TabPage();
+            checkBox1 = new System.Windows.Forms.CheckBox();
             AligmentGb = new System.Windows.Forms.GroupBox();
             alignLongRb = new System.Windows.Forms.RadioButton();
             alignWordRb = new System.Windows.Forms.RadioButton();
@@ -52,7 +53,6 @@
             colorRegistersCombo = new System.Windows.Forms.ComboBox();
             bitsPpCombo = new System.Windows.Forms.ComboBox();
             tabControl1 = new System.Windows.Forms.TabControl();
-            checkBox1 = new System.Windows.Forms.CheckBox();
             tabDisplay.SuspendLayout();
             groupBox4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)previewScalingNud).BeginInit();
@@ -98,7 +98,7 @@
             // 
             // groupBox4
             // 
-            groupBox4.Controls.Add(autoCheckBox);
+            groupBox4.Controls.Add(scaleToMaxCheckBox);
             groupBox4.Controls.Add(previewScalingNud);
             groupBox4.Location = new System.Drawing.Point(7, 6);
             groupBox4.Name = "groupBox4";
@@ -107,18 +107,18 @@
             groupBox4.TabStop = false;
             groupBox4.Text = "Preview Scaling";
             // 
-            // autoCheckBox
+            // scaleToMaxCheckBox
             // 
-            autoCheckBox.AutoSize = true;
-            autoCheckBox.Checked = true;
-            autoCheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
-            autoCheckBox.Location = new System.Drawing.Point(6, 30);
-            autoCheckBox.Name = "autoCheckBox";
-            autoCheckBox.Size = new System.Drawing.Size(77, 29);
-            autoCheckBox.TabIndex = 0;
-            autoCheckBox.Text = "Auto";
-            autoCheckBox.UseVisualStyleBackColor = true;
-            autoCheckBox.CheckStateChanged += autoCheckBox_CheckStateChanged;
+            scaleToMaxCheckBox.AutoSize = true;
+            scaleToMaxCheckBox.Checked = true;
+            scaleToMaxCheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
+            scaleToMaxCheckBox.Location = new System.Drawing.Point(6, 30);
+            scaleToMaxCheckBox.Name = "scaleToMaxCheckBox";
+            scaleToMaxCheckBox.Size = new System.Drawing.Size(139, 29);
+            scaleToMaxCheckBox.TabIndex = 0;
+            scaleToMaxCheckBox.Text = "Scale To Max";
+            scaleToMaxCheckBox.UseVisualStyleBackColor = true;
+            scaleToMaxCheckBox.CheckStateChanged += autoCheckBox_CheckStateChanged;
             // 
             // previewScalingNud
             // 
@@ -148,6 +148,16 @@
             tabFormat.TabIndex = 1;
             tabFormat.Text = "Save Format";
             tabFormat.UseVisualStyleBackColor = true;
+            // 
+            // checkBox1
+            // 
+            checkBox1.AutoSize = true;
+            checkBox1.Location = new System.Drawing.Point(473, 211);
+            checkBox1.Name = "checkBox1";
+            checkBox1.Size = new System.Drawing.Size(136, 29);
+            checkBox1.TabIndex = 14;
+            checkBox1.Text = "Add info file";
+            checkBox1.UseVisualStyleBackColor = true;
             // 
             // AligmentGb
             // 
@@ -330,16 +340,6 @@
             tabControl1.Size = new System.Drawing.Size(747, 327);
             tabControl1.TabIndex = 12;
             // 
-            // checkBox1
-            // 
-            checkBox1.AutoSize = true;
-            checkBox1.Location = new System.Drawing.Point(473, 211);
-            checkBox1.Name = "checkBox1";
-            checkBox1.Size = new System.Drawing.Size(136, 29);
-            checkBox1.TabIndex = 14;
-            checkBox1.Text = "Add info file";
-            checkBox1.UseVisualStyleBackColor = true;
-            // 
             // Settings
             // 
             AutoScaleDimensions = new System.Drawing.SizeF(10F, 25F);
@@ -374,7 +374,7 @@
         private System.Windows.Forms.Button cancelBtn;
         private System.Windows.Forms.TabPage tabDisplay;
         private System.Windows.Forms.GroupBox groupBox4;
-        private System.Windows.Forms.CheckBox autoCheckBox;
+        private System.Windows.Forms.CheckBox scaleToMaxCheckBox;
         public System.Windows.Forms.NumericUpDown previewScalingNud;
         private System.Windows.Forms.TabPage tabFormat;
         private System.Windows.Forms.GroupBox groupBox2;

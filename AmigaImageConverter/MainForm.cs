@@ -116,42 +116,14 @@ namespace AmigaImageConverter
                 // if image after scaling using ScalingFactor is to bit to fit on screen then....
 
                 // Auto scaling
-                if (settings.ScalingType == Settings.ScaleType.Auto)
+                if (settings.ScalingType == Settings.ScaleType.ScaleToMax)
                 {       // Auto scaling modde
-                    image.SizeMode = PictureBoxSizeMode.AutoSize;
-                    if (vr.bitplane.Width * ScalingFactor > 0.8 * SystemInformation.VirtualScreen.Width || vr.bitplane.Height * ScalingFactor > 0.8 * SystemInformation.VirtualScreen.Height)
-                    {   // Scaled image bigger then the screen
-
-                        // if image width is bigger then it's height
-                        if (vr.bitplane.Width > vr.bitplane.Height)
-                        {
-
-                            float MaxFormWidth = ((float)ScreenWidth) * 0.8f;
-                            ScalingFactor = MaxFormWidth / (float)vr.bitplane.Width;
-                            image.ScaleImage(ScalingFactor);
-
-
-
-                        }
-                        else // if image height is bigger then it's width or equal
-                        {
-                            float MaxFormHeight = ((float)ScreenHeight) * 0.8f;
-                            ScalingFactor = MaxFormHeight / (float)vr.bitplane.Height;
-                            image.ScaleImage(ScalingFactor);
-                        }
-                    }
-                    else // Scaled picture fits on screen
-                    {
-                        image.ScaleImage((int)settings.PrevScaleFactor);
-                    }
+                    ScaleToMax();
                 }
                 // Manual scalling
                 else
                 {
-                    image.Width = defaultimageWidth;
-                    image.Height = defaultimageHeight;
-                    image.SizeMode = PictureBoxSizeMode.Normal;
-                    image.ScaleImage((int)settings.PrevScaleFactor);
+                    PredefinedScale();
                 }
 
                 toolStripScalingFactorLabel.Text += ScalingFactor.ToString();
@@ -764,5 +736,129 @@ namespace AmigaImageConverter
             VScrollBar vScrollBar = (VScrollBar)sender;
             image.DrawImagePart(hScrollBar.Value, vScrollBar.Value);
         }
+
+        private void ScaleToMax()
+        {
+            float ScalingFactor = (int)settings.PrevScaleFactor;
+
+            image.SizeMode = PictureBoxSizeMode.AutoSize;
+            if (vr.bitplane.Width * ScalingFactor > 0.8 * SystemInformation.VirtualScreen.Width || vr.bitplane.Height * ScalingFactor > 0.8 * SystemInformation.VirtualScreen.Height)
+            {   // Scaled image bigger then the screen
+
+                // if image width is bigger then it's height
+                if (vr.bitplane.Width > vr.bitplane.Height)
+                {
+
+                    float MaxFormWidth = ((float)ScreenWidth) * 0.8f;
+                    ScalingFactor = MaxFormWidth / (float)vr.bitplane.Width;
+                    image.ScaleImage(ScalingFactor);
+
+
+
+                }
+                else // if image height is bigger then it's width or equal
+                {
+                    float MaxFormHeight = ((float)ScreenHeight) * 0.8f;
+                    ScalingFactor = MaxFormHeight / (float)vr.bitplane.Height;
+                    image.ScaleImage(ScalingFactor);
+                }
+            }
+            else // Scaled picture fits on screen
+            {
+                image.ScaleImage((int)settings.PrevScaleFactor);
+            }
+        }
+
+        private void PredefinedScale()
+        {
+            float scaleFactor = (int)settings.PrevScaleFactor;
+
+            if (image.Width > image.Height)
+            {
+                if (settings.PrevScaleFactor * image.Image.Width > ScreenWidth)
+                {
+                    //  scaleFactor =      
+                }
+
+            }
+            else
+            {
+
+            }
+
+            image.SizeMode = PictureBoxSizeMode.AutoSize;
+            image.ScaleImage((int)settings.PrevScaleFactor);
+        }
+
+        private void NoScaleing()
+        {
+            image.Width = defaultimageWidth;
+            image.Height = defaultimageHeight;
+            image.SizeMode = PictureBoxSizeMode.Normal;
+            image.ScaleImage((int)settings.PrevScaleFactor);
+        }
+
+        private void SaveLinkFileToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            LinkObjectConfig linkObjectConfig = new LinkObjectConfig();
+
+            uint MemoryType;
+            int NumOfLongs = vr.bitplane.Bitplanes.Length % 4 == 0 ? vr.bitplane.Bitplanes.Length / 4 : vr.bitplane.Bitplanes.Length / 4 + 1;
+
+            SaveFileDialog ObjSaveFileDialog = new SaveFileDialog();
+            ObjSaveFileDialog.Filter = "Linkable File (Obj)|*.obj";
+
+            if (linkObjectConfig.ShowDialog() == DialogResult.OK)
+            {
+
+            }
+            int NumOfLongsInExtarnalDescriptor = linkObjectConfig.ExternalDescriptor.Length % 4 == 0 ? linkObjectConfig.ExternalDescriptor.Length / 4 : linkObjectConfig.ExternalDescriptor.Length / 4 + 1;
+            int BytesToPad = 4 - linkObjectConfig.ExternalDescriptor.Length % 4;
+
+            MemoryType = (uint)linkObjectConfig.MemoryType;
+
+            if (ObjSaveFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                Stream sw = new FileStream(ObjSaveFileDialog.FileName, FileMode.Create);
+                BinaryWriter bw = new BinaryWriter(sw);
+
+                bw.Write(endian.Convert(0x000003e7));
+                bw.Write(0x00000000);
+
+                bw.Write(endian.Convert(0x000003E8));
+                bw.Write(endian.Convert(0x00000002));
+                bw.Write(endian.Convert(0x64617461));
+                bw.Write(endian.Convert(0x73656300));
+                uint OutLong = MemoryType << 24 | 0x03EA;
+                bw.Write(endian.Convert(OutLong));
+                bw.Write((uint)endian.Convert(NumOfLongs));
+
+                vr.bitplane.SaveBitmapsAsLongBinaryFile(bw);
+
+                bw.Write(endian.Convert(0x000003ef));
+                int LongOut = 0x01000000 | NumOfLongsInExtarnalDescriptor;
+                bw.Write(endian.Convert(LongOut));
+
+                foreach (char c in linkObjectConfig.ExternalDescriptor)
+                {
+                    bw.Write((Char)c);
+                }
+
+                for (int i = 0; i < BytesToPad; i++)
+                {
+                    bw.Write((byte)0x00);
+                }
+
+                bw.Write(0x00000000);
+                bw.Write(0x00000000);
+                bw.Write(endian.Convert(0x000003f2));
+
+                sw.Flush();
+                sw.Close();
+            }
+        }
+
+
+
     }
 }

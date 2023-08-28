@@ -58,8 +58,8 @@ namespace AmigaImageConverter
 
                 //imageBox.SizeMode = PictureBoxSizeMode.AutoSize;
                 imageBox.Width = (int)(ScreenWidth * 0.8);
-                imageBox.Image = new Bitmap(imageBox.Width, imageBox.Height,Graphics.FromImage (bitmap));
-                
+                imageBox.Image = new Bitmap(imageBox.Width, imageBox.Height, Graphics.FromImage(bitmap));
+
                 hScrollBar.Visible = true;
                 hScrollBar.Maximum = ScaledBitmap.Width - imageBox.Width; //(int)((float)imageBox.Width / (float)imageBox.Image.Width * 100);
 
@@ -93,14 +93,14 @@ namespace AmigaImageConverter
             if (bitmap != null)
             {
                 Graphics sg = Graphics.FromImage(bitmap);
-                Bitmap scaledImage = new Bitmap((int)(bitmap.Width * scaleFactor), (int)(bitmap.Height * scaleFactor),sg);                  //     scaledImage.SetResolution(bitmap.HorizontalResolution, bitmap.VerticalResolution);
+                Bitmap scaledImage = new Bitmap((int)(bitmap.Width * scaleFactor), (int)(bitmap.Height * scaleFactor), sg);                  //     scaledImage.SetResolution(bitmap.HorizontalResolution, bitmap.VerticalResolution);
                 //Bitmap scaledImage = new Bitmap(bitmap, (int)(bitmap.Width * scaleFactor), (int)(bitmap.Height * scaleFactor));
                 Graphics g = Graphics.FromImage(scaledImage);
-                       g.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.NearestNeighbor;
-                       g.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.None;
-                       g.DrawImage(bitmap, 0, 0, scaledImage.Width, scaledImage.Height);
-                       g.Dispose(); 
-              //  Bitmap scaledImage = new Bitmap(bitmap, (int)(bitmap.Width * scaleFactor), (int)(bitmap.Height * scaleFactor));
+                g.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.NearestNeighbor;
+                g.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.None;
+                g.DrawImage(bitmap, 0, 0, scaledImage.Width, scaledImage.Height);
+                g.Dispose();
+                //  Bitmap scaledImage = new Bitmap(bitmap, (int)(bitmap.Width * scaleFactor), (int)(bitmap.Height * scaleFactor));
                 return scaledImage;
                 //Refresh();
 

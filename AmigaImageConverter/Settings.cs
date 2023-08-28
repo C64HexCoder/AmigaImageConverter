@@ -31,24 +31,24 @@ namespace AmigaImageConverter
 
         public enum ScaleType
         {
-            Auto,
-            Manual
+            ScaleToMax,
+            Predefined
         }
 
         public ScaleType ScalingType
         {
-            get { return autoCheckBox.Checked == true ? ScaleType.Auto : ScaleType.Manual; }
+            get { return scaleToMaxCheckBox.Checked == true ? ScaleType.ScaleToMax : ScaleType.Predefined; }
 
             set
             {
-                if (value == ScaleType.Auto)
+                if (value == ScaleType.ScaleToMax)
                 {
-                    autoCheckBox.Checked = true;
+                    scaleToMaxCheckBox.Checked = true;
                     previewScalingNud.Enabled = false;
                 }
                 else
                 {
-                    autoCheckBox.Checked = false;
+                    scaleToMaxCheckBox.Checked = false;
                     previewScalingNud.Enabled = true;
                 }
             }

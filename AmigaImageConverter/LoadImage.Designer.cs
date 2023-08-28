@@ -219,7 +219,6 @@
             // imageBox
             // 
             imageBox.AutoScaleImageBox = false;
-            imageBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             imageBox.Image = null;
             imageBox.Location = new System.Drawing.Point(19, 15);
             imageBox.Name = "imageBox";
