@@ -253,7 +253,9 @@ namespace AmigaImageConverter
                     SlicingPanel.Left = image.Right + 2;
                     ButtomPanel.Width = image.Width;
                     ButtomPanel.Top = image.Bottom + 2;
-                    hScrollBar.Maximum = image.Image.Width - image.Width;
+                    
+                    if (image.Image != null) 
+                        hScrollBar.Maximum = image.Image.Width - image.Width;
 
                 }
             }
@@ -742,51 +744,31 @@ namespace AmigaImageConverter
             float ScalingFactor = (int)settings.PrevScaleFactor;
 
             image.SizeMode = PictureBoxSizeMode.AutoSize;
-            if (vr.bitplane.Width * ScalingFactor > 0.8 * SystemInformation.VirtualScreen.Width || vr.bitplane.Height * ScalingFactor > 0.8 * SystemInformation.VirtualScreen.Height)
-            {   // Scaled image bigger then the screen
+            //       if (vr.bitplane.Width * ScalingFactor > 0.8 * SystemInformation.VirtualScreen.Width || vr.bitplane.Height * ScalingFactor > 0.8 * SystemInformation.VirtualScreen.Height)
+            //     {   // Scaled image bigger then the screen
 
-                // if image width is bigger then it's height
-                if (vr.bitplane.Width > vr.bitplane.Height)
-                {
+            float XscaleFactor = (float)ScreenWidth *0.8f / (float) vr.bitplane.Width;
+            float YscaleFactor = (float)ScreenHeight * 0.8f / (float) vr.bitplane.Height;
 
-                    float MaxFormWidth = ((float)ScreenWidth) * 0.8f;
-                    ScalingFactor = MaxFormWidth / (float)vr.bitplane.Width;
-                    image.ScaleImage(ScalingFactor);
+            ScalingFactor = XscaleFactor > YscaleFactor ? YscaleFactor : XscaleFactor;
 
-
-
-                }
-                else // if image height is bigger then it's width or equal
-                {
-                    float MaxFormHeight = ((float)ScreenHeight) * 0.8f;
-                    ScalingFactor = MaxFormHeight / (float)vr.bitplane.Height;
-                    image.ScaleImage(ScalingFactor);
-                }
-            }
-            else // Scaled picture fits on screen
-            {
-                image.ScaleImage((int)settings.PrevScaleFactor);
-            }
+            image.ScaleImage(ScalingFactor);
+    
         }
 
         private void PredefinedScale()
         {
             float scaleFactor = (int)settings.PrevScaleFactor;
 
-            if (image.Width > image.Height)
+         
+            if (settings.PrevScaleFactor * image.Image.Width > ScreenWidth || settings.PrevScaleFactor * image.Image.Height > ScreenHeight)
             {
-                if (settings.PrevScaleFactor * image.Image.Width > ScreenWidth)
-                {
-                    //  scaleFactor =      
-                }
-
-            }
-            else
-            {
-
+                ScaleToMax();      
             }
 
-            image.SizeMode = PictureBoxSizeMode.AutoSize;
+  
+
+            image.SizeMode = PictureBoxSizeMode.Normal;
             image.ScaleImage((int)settings.PrevScaleFactor);
         }
 
