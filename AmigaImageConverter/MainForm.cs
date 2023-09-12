@@ -33,6 +33,7 @@ namespace AmigaImageConverter
         bool SlicedSpriteSheet = false;
         IFF iffImage = new IFF();
         int defaultimageWidth, defaultimageHeight;
+ 
         enum BlitWord
         {
             None,
@@ -154,8 +155,8 @@ namespace AmigaImageConverter
 
                 if (image.Image.Width > image.Width)
                 {
-                    hScrollBar.Maximum = image.Image.Width - image.Width;
-                    hScrollBar.Visible = true;
+                    //     hScrollBar.Maximum = image.Image.Width - image.Width;
+                    //     hScrollBar.Visible = true;
                 }
                 else
                 {
@@ -164,10 +165,10 @@ namespace AmigaImageConverter
 
                 if (image.Image.Height > image.Height)
                 {
-                    vScrollBar.Maximum = image.Image.Height - image.Height;
-                    vScrollBar.Visible = true;
+                    //vScrollBar.Maximum = image.Image.Height - image.Height;
+                    //vScrollBar.Visible = true;
                 }
-                //else { hScrollBar.Visible = false; }
+                else { hScrollBar.Visible = false; }
 
 
 
@@ -248,14 +249,43 @@ namespace AmigaImageConverter
             {
                 if (settings.valueChanged == true)
                 {
-                    image.Image = vr.bitplane.bitmap;
-                    image.ScaleImage((int)settings.previewScalingNud.Value);
-                    SlicingPanel.Left = image.Right + 2;
-                    ButtomPanel.Width = image.Width;
-                    ButtomPanel.Top = image.Bottom + 2;
-                    
-                    if (image.Image != null) 
-                        hScrollBar.Maximum = image.Image.Width - image.Width;
+                    if (settings.ScaleToMax)
+                    {
+                        image.SizeMode = PictureBoxSizeMode.AutoSize;
+
+                        image.ScaleToMax(0.8f);
+                    }
+                    else
+                    {
+                        image.Width = defaultimageWidth;
+                        image.Height = defaultimageHeight;
+                        // setting to autosize just for now.
+                        //image.SizeMode = PictureBoxSizeMode.AutoSize;
+                        image.Image = vr.bitplane.bitmap;
+                        image.ScaleImage((int)settings.previewScalingNud.Value);
+
+                        SlicingPanel.Left = image.Right + 2;
+                        SlicingPanel.Height = SlicingGb.Height;
+
+                        hScrollBar.Top = image.Bottom;
+                        hScrollBar.Left = image.Left;
+                        hScrollBar.Width = image.Width;
+                        vScrollBar.Left = image.Right;
+                        vScrollBar.Height = image.Height;
+                        statusStrip.Top = hScrollBar.Bottom;
+                        statusStrip.Left = hScrollBar.Left;
+                        statusStrip.Width = hScrollBar.Width;
+                        //ButtomPanel.Top = hScrollBar.Bottom + 2;
+                        //ButtomPanel.Width = image.Width;
+                        //ButtomPanel.Height = statusStrip.Height;
+
+                        SlicingPanel.Left = image.Right + 2;
+                        ButtomPanel.Width = image.Width;
+                        ButtomPanel.Top = image.Bottom + 2;
+
+                        // if (image.Image != null)
+                        //   hScrollBar.Maximum = image.Image.Width - image.Width;
+                    }
 
                 }
             }
@@ -393,10 +423,21 @@ namespace AmigaImageConverter
 
         private void saveImageAsSpriteToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            SpriteDialog spriteDialog = new SpriteDialog();
+
             if (vr.bitplane.bitmap == null)
             {
                 MessageBox.Show("Load Image First!", "You Drunk Or Something?");
                 return;
+            }
+
+            if (vr.bitplane.bitmap.Width > 64)
+            {
+                if (spriteDialog.ShowDialog() == DialogResult.OK)
+                {
+                    image.Image = vr.bitplane.bitmap;
+                    image.ScaleImage((int)settings.PrevScaleFactor);
+                }
             }
 
             Sprite sprite = new Sprite();
@@ -406,13 +447,13 @@ namespace AmigaImageConverter
             {
                 switch (saveSourceFileDialog.FilterIndex)
                 {
-                    case 0:
+                    case 1:
                         sprite.SaveAsAssemblerSourceFile(saveSourceFileDialog.FileName);
                         break;
-                    case 1:
+                    case 2:
                         sprite.SaveAsBinaryFile(saveSourceFileDialog.FileName);
                         break;
-                    case 2:
+                    case 3:
                         sprite.SaveAsCPPSourceFile(saveSourceFileDialog.FileName);
                         break;
                 }
@@ -747,28 +788,29 @@ namespace AmigaImageConverter
             //       if (vr.bitplane.Width * ScalingFactor > 0.8 * SystemInformation.VirtualScreen.Width || vr.bitplane.Height * ScalingFactor > 0.8 * SystemInformation.VirtualScreen.Height)
             //     {   // Scaled image bigger then the screen
 
-            float XscaleFactor = (float)ScreenWidth *0.8f / (float) vr.bitplane.Width;
-            float YscaleFactor = (float)ScreenHeight * 0.8f / (float) vr.bitplane.Height;
+            float XscaleFactor = (float)ScreenWidth * 0.8f / (float)vr.bitplane.Width;
+            float YscaleFactor = (float)ScreenHeight * 0.8f / (float)vr.bitplane.Height;
 
             ScalingFactor = XscaleFactor > YscaleFactor ? YscaleFactor : XscaleFactor;
 
             image.ScaleImage(ScalingFactor);
-    
+
         }
 
         private void PredefinedScale()
         {
             float scaleFactor = (int)settings.PrevScaleFactor;
 
-         
-            if (settings.PrevScaleFactor * image.Image.Width > ScreenWidth || settings.PrevScaleFactor * image.Image.Height > ScreenHeight)
-            {
-                ScaleToMax();      
-            }
+            int XSize = (int)settings.PrevScaleFactor * image.Image.Width > ScreenWidth ? (int)(ScreenWidth * 0.8f) : (int)settings.PrevScaleFactor * image.Image.Width;
+            int YSize = (int)settings.PrevScaleFactor * image.Image.Height > ScreenHeight ? (int)(ScreenHeight * 0.8f) : (int)settings.PrevScaleFactor * image.Image.Height;
 
-  
 
+            image.Size = new Size(XSize, YSize);
             image.SizeMode = PictureBoxSizeMode.Normal;
+
+
+
+
             image.ScaleImage((int)settings.PrevScaleFactor);
         }
 
@@ -840,7 +882,32 @@ namespace AmigaImageConverter
             }
         }
 
+        private void c64ImageToolStripMenuItem_Click(object sender, EventArgs e)
+        {
 
+        }
 
+        private void image_HorizontalScrollBarChanged(object sender, ImageBox.ScrollBarEventArgs args)
+        {
+            hScrollBar.Maximum = args.Maximum;
+            hScrollBar.Visible = args.Enabled;
+        }
+
+        private void image_VerticalScrollBarChanged(object sender, ImageBox.ScrollBarEventArgs args)
+        {
+            vScrollBar.Maximum = args.Maximum;
+            vScrollBar.Visible = args.Enabled;
+        }
+
+        private void MainForm_Load(object sender, EventArgs e)
+        {
+            int test = 1;
+        }
+
+        private void MainForm_Enter(object sender, EventArgs e)
+        {
+            int test = 1;
+
+        } 
     }
 }

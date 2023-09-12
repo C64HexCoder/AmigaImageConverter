@@ -110,26 +110,24 @@
             // scaleToMaxCheckBox
             // 
             scaleToMaxCheckBox.AutoSize = true;
-            scaleToMaxCheckBox.Checked = true;
-            scaleToMaxCheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
             scaleToMaxCheckBox.Location = new System.Drawing.Point(6, 30);
             scaleToMaxCheckBox.Name = "scaleToMaxCheckBox";
             scaleToMaxCheckBox.Size = new System.Drawing.Size(139, 29);
             scaleToMaxCheckBox.TabIndex = 0;
             scaleToMaxCheckBox.Text = "Scale To Max";
             scaleToMaxCheckBox.UseVisualStyleBackColor = true;
+            scaleToMaxCheckBox.CheckedChanged += scaleToMaxCheckBox_CheckedChanged;
             scaleToMaxCheckBox.CheckStateChanged += autoCheckBox_CheckStateChanged;
             // 
             // previewScalingNud
             // 
-            previewScalingNud.Enabled = false;
             previewScalingNud.Location = new System.Drawing.Point(6, 65);
             previewScalingNud.Maximum = new decimal(new int[] { 20, 0, 0, 0 });
             previewScalingNud.Minimum = new decimal(new int[] { 2, 0, 0, 0 });
             previewScalingNud.Name = "previewScalingNud";
             previewScalingNud.Size = new System.Drawing.Size(180, 31);
             previewScalingNud.TabIndex = 9;
-            previewScalingNud.Value = new decimal(new int[] { 2, 0, 0, 0 });
+            previewScalingNud.Value = new decimal(new int[] { 4, 0, 0, 0 });
             previewScalingNud.ValueChanged += previewScalingNud_ValueChanged;
             // 
             // tabFormat

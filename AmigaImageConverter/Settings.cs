@@ -35,6 +35,14 @@ namespace AmigaImageConverter
             Predefined
         }
 
+        public bool ScaleToMax
+        {
+            get
+            {
+                return scaleToMaxCheckBox.Checked;
+            }
+        }
+
         public ScaleType ScalingType
         {
             get { return scaleToMaxCheckBox.Checked == true ? ScaleType.ScaleToMax : ScaleType.Predefined; }
@@ -179,6 +187,13 @@ namespace AmigaImageConverter
         private void autoCheckBox_CheckStateChanged(object sender, EventArgs e)
         {
             previewScalingNud.Enabled = !((CheckBox)sender).Checked;
+        }
+
+
+        private void scaleToMaxCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            valueChanged = true;
+
         }
     }
 }

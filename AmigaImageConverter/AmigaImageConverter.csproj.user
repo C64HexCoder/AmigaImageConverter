@@ -48,6 +48,9 @@
     <Compile Update="SpiteSheetCutter.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="SpriteDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Update="LoadImage.resx">

@@ -59,6 +59,8 @@
             autoCorpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             displayMaskToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             informationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
+            c64ImageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             cutSpriteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             spriteSheetCutterToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -215,7 +217,7 @@
             // 
             // imageToolStripMenuItem
             // 
-            imageToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] { resizeToolStripMenuItem, alignWidthToolStripMenuItem, addWordToolStripMenuItem, removeBlitterWorldToolStripMenuItem3, setImageWidthToolStripMenuItem, autoCorpToolStripMenuItem, displayMaskToolStripMenuItem, informationToolStripMenuItem });
+            imageToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] { resizeToolStripMenuItem, alignWidthToolStripMenuItem, addWordToolStripMenuItem, removeBlitterWorldToolStripMenuItem3, setImageWidthToolStripMenuItem, autoCorpToolStripMenuItem, displayMaskToolStripMenuItem, informationToolStripMenuItem, toolStripSeparator4, c64ImageToolStripMenuItem });
             imageToolStripMenuItem.Name = "imageToolStripMenuItem";
             imageToolStripMenuItem.Size = new System.Drawing.Size(78, 29);
             imageToolStripMenuItem.Text = "Image";
@@ -316,6 +318,18 @@
             informationToolStripMenuItem.Size = new System.Drawing.Size(277, 34);
             informationToolStripMenuItem.Text = "Information";
             informationToolStripMenuItem.Click += informationToolStripMenuItem_Click;
+            // 
+            // toolStripSeparator4
+            // 
+            toolStripSeparator4.Name = "toolStripSeparator4";
+            toolStripSeparator4.Size = new System.Drawing.Size(274, 6);
+            // 
+            // c64ImageToolStripMenuItem
+            // 
+            c64ImageToolStripMenuItem.Name = "c64ImageToolStripMenuItem";
+            c64ImageToolStripMenuItem.Size = new System.Drawing.Size(277, 34);
+            c64ImageToolStripMenuItem.Text = "C64 Image";
+            c64ImageToolStripMenuItem.Click += c64ImageToolStripMenuItem_Click;
             // 
             // toolStripMenuItem1
             // 
@@ -449,6 +463,8 @@
             image.TabIndex = 3;
             image.TabStop = false;
             image.VerticalScrollBar = null;
+            image.HorizontalScrollBarChanged += image_HorizontalScrollBarChanged;
+            image.VerticalScrollBarChanged += image_VerticalScrollBarChanged;
             image.LoadCompleted += image_LoadCompleted;
             image.MouseClick += image_MouseClick;
             // 
@@ -606,6 +622,8 @@
             Name = "MainForm";
             StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             Text = "Amiga Image Converter";
+            Load += MainForm_Load;
+            Enter += MainForm_Enter;
             menuStrip1.ResumeLayout(false);
             menuStrip1.PerformLayout();
             statusStrip.ResumeLayout(false);
@@ -686,6 +704,8 @@
         public System.Windows.Forms.StatusStrip statusStrip;
         private System.Windows.Forms.ToolStripMenuItem SaveLinkFileToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator4;
+        private System.Windows.Forms.ToolStripMenuItem c64ImageToolStripMenuItem;
     }
 }
 
