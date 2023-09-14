@@ -33,7 +33,7 @@ namespace AmigaImageConverter
         bool SlicedSpriteSheet = false;
         IFF iffImage = new IFF();
         int defaultimageWidth, defaultimageHeight;
- 
+
         enum BlitWord
         {
             None,
@@ -908,6 +908,13 @@ namespace AmigaImageConverter
         {
             int test = 1;
 
-        } 
+        }
+
+        private void loadAmigaFonttoolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Amiga.Font  obj = new Amiga.Font();
+
+            obj.OpenObjectFile();
+        }
     }
 }

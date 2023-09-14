@@ -93,6 +93,8 @@
             SpritesPerRawNud = new System.Windows.Forms.NumericUpDown();
             hScrollBar = new System.Windows.Forms.HScrollBar();
             vScrollBar = new System.Windows.Forms.VScrollBar();
+            loadAmigaFonttoolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
             menuStrip1.SuspendLayout();
             statusStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)image).BeginInit();
@@ -117,7 +119,7 @@
             // 
             // fileToolStripMenuItem
             // 
-            fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] { loadImageToolStripMenuItem, saveImageToolStripMenuItem, saveImageAsToolStripMenuItem, toolStripSeparator1, LoadIFFToolStripMenuItem, saveIFFToolStripMenuItem, toolStripSeparator2, SaveLinkFileToolStripMenuItem, toolStripSeparator3, saveMaskToolStripMenuItem, savePallateToolStripMenuItem, saveImageAsSpriteToolStripMenuItem });
+            fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] { loadImageToolStripMenuItem, saveImageToolStripMenuItem, saveImageAsToolStripMenuItem, toolStripSeparator1, LoadIFFToolStripMenuItem, saveIFFToolStripMenuItem, toolStripSeparator2, loadAmigaFonttoolStripMenuItem, toolStripSeparator5, SaveLinkFileToolStripMenuItem, toolStripSeparator3, saveMaskToolStripMenuItem, savePallateToolStripMenuItem, saveImageAsSpriteToolStripMenuItem });
             fileToolStripMenuItem.Name = "fileToolStripMenuItem";
             fileToolStripMenuItem.Size = new System.Drawing.Size(54, 29);
             fileToolStripMenuItem.Text = "File";
@@ -601,6 +603,18 @@
             vScrollBar.Visible = false;
             vScrollBar.ValueChanged += vScrollBar_ValueChanged;
             // 
+            // loadAmigaFonttoolStripMenuItem
+            // 
+            loadAmigaFonttoolStripMenuItem.Name = "loadAmigaFonttoolStripMenuItem";
+            loadAmigaFonttoolStripMenuItem.Size = new System.Drawing.Size(292, 34);
+            loadAmigaFonttoolStripMenuItem.Text = "Load Amiga Font";
+            loadAmigaFonttoolStripMenuItem.Click += loadAmigaFonttoolStripMenuItem_Click;
+            // 
+            // toolStripSeparator5
+            // 
+            toolStripSeparator5.Name = "toolStripSeparator5";
+            toolStripSeparator5.Size = new System.Drawing.Size(289, 6);
+            // 
             // MainForm
             // 
             AutoScaleDimensions = new System.Drawing.SizeF(10F, 25F);
@@ -706,6 +720,8 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator4;
         private System.Windows.Forms.ToolStripMenuItem c64ImageToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem loadAmigaFonttoolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator5;
     }
 }
 
