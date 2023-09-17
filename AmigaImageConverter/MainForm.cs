@@ -919,7 +919,7 @@ namespace AmigaImageConverter
             gfx.Clear(Color.White);
 
             obj.OpenObjectFile();
-            obj.DrawFont('Z');
+            obj.DrawFont('Z',0,0,20);
             //Refresh();
 
         }
