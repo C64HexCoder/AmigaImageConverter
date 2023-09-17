@@ -914,7 +914,14 @@ namespace AmigaImageConverter
         {
             Amiga.Font  obj = new Amiga.Font();
 
+            Graphics gfx = image.CreateGraphics();
+            obj.gfx = gfx;
+            gfx.Clear(Color.White);
+
             obj.OpenObjectFile();
+            obj.DrawFont('Z');
+            //Refresh();
+
         }
     }
 }
