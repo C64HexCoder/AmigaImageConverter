@@ -110,6 +110,8 @@
             // scaleToMaxCheckBox
             // 
             scaleToMaxCheckBox.AutoSize = true;
+            scaleToMaxCheckBox.Checked = true;
+            scaleToMaxCheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
             scaleToMaxCheckBox.Location = new System.Drawing.Point(6, 30);
             scaleToMaxCheckBox.Name = "scaleToMaxCheckBox";
             scaleToMaxCheckBox.Size = new System.Drawing.Size(139, 29);
