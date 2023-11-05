@@ -15,7 +15,8 @@ using System.Windows.Forms;
 using Amiga;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using static Amiga.Sprite;
-
+using NAudio;
+using NAudio.Wave;
 
 namespace AmigaImageConverter
 {
@@ -912,7 +913,7 @@ namespace AmigaImageConverter
 
         private void loadAmigaFonttoolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Amiga.Font  obj = new Amiga.Font();
+            Amiga.Font obj = new Amiga.Font();
 
             Graphics gfx = image.CreateGraphics();
             obj.gfx = gfx;
@@ -924,6 +925,20 @@ namespace AmigaImageConverter
             //image.Image = obj.fonts[(int)('G' - 0x20)];
             image.ScaleImage(4);
             //Refresh();
+
+        }
+
+        private void sineWaveGeneratorToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            AudioSamleEditorDialog dlg = new AudioSamleEditorDialog();
+            dlg.ShowDialog();
+
+        }
+
+        private void loadWAVAudiotoolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            WAV wAV = new WAV();
+            wAV.OpenWaveFile();
 
         }
     }

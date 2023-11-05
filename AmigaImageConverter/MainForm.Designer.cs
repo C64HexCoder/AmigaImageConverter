@@ -40,6 +40,11 @@
             iLBMToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             aCBMToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
+            loadWAVAudiotoolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            toolStripSeparator6 = new System.Windows.Forms.ToolStripSeparator();
+            loadAmigaFonttoolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
             SaveLinkFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             saveMaskToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -67,8 +72,13 @@
             colorsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             pallateToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             selectBackgroundToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            audioToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            sineWaveGeneratorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            waveGeneratorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             settingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             settingsMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            booksToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            amigaHardwareReferenceManualToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             aboutMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             openImageFileDialog = new System.Windows.Forms.OpenFileDialog();
@@ -93,8 +103,6 @@
             SpritesPerRawNud = new System.Windows.Forms.NumericUpDown();
             hScrollBar = new System.Windows.Forms.HScrollBar();
             vScrollBar = new System.Windows.Forms.VScrollBar();
-            loadAmigaFonttoolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
             menuStrip1.SuspendLayout();
             statusStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)image).BeginInit();
@@ -109,7 +117,7 @@
             // menuStrip1
             // 
             menuStrip1.ImageScalingSize = new System.Drawing.Size(32, 32);
-            menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] { fileToolStripMenuItem, imageToolStripMenuItem, toolStripMenuItem1, colorsToolStripMenuItem, settingsToolStripMenuItem, aboutToolStripMenuItem });
+            menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] { fileToolStripMenuItem, imageToolStripMenuItem, toolStripMenuItem1, colorsToolStripMenuItem, audioToolStripMenuItem, settingsToolStripMenuItem, booksToolStripMenuItem, aboutToolStripMenuItem });
             menuStrip1.Location = new System.Drawing.Point(0, 0);
             menuStrip1.Name = "menuStrip1";
             menuStrip1.Padding = new System.Windows.Forms.Padding(4, 2, 0, 2);
@@ -119,7 +127,7 @@
             // 
             // fileToolStripMenuItem
             // 
-            fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] { loadImageToolStripMenuItem, saveImageToolStripMenuItem, saveImageAsToolStripMenuItem, toolStripSeparator1, LoadIFFToolStripMenuItem, saveIFFToolStripMenuItem, toolStripSeparator2, loadAmigaFonttoolStripMenuItem, toolStripSeparator5, SaveLinkFileToolStripMenuItem, toolStripSeparator3, saveMaskToolStripMenuItem, savePallateToolStripMenuItem, saveImageAsSpriteToolStripMenuItem });
+            fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] { loadImageToolStripMenuItem, saveImageToolStripMenuItem, saveImageAsToolStripMenuItem, toolStripSeparator1, LoadIFFToolStripMenuItem, saveIFFToolStripMenuItem, toolStripSeparator2, toolStripMenuItem2, loadWAVAudiotoolStripMenuItem, toolStripSeparator6, loadAmigaFonttoolStripMenuItem, toolStripSeparator5, SaveLinkFileToolStripMenuItem, toolStripSeparator3, saveMaskToolStripMenuItem, savePallateToolStripMenuItem, saveImageAsSpriteToolStripMenuItem });
             fileToolStripMenuItem.Name = "fileToolStripMenuItem";
             fileToolStripMenuItem.Size = new System.Drawing.Size(54, 29);
             fileToolStripMenuItem.Text = "File";
@@ -184,6 +192,36 @@
             // 
             toolStripSeparator2.Name = "toolStripSeparator2";
             toolStripSeparator2.Size = new System.Drawing.Size(289, 6);
+            // 
+            // toolStripMenuItem2
+            // 
+            toolStripMenuItem2.Name = "toolStripMenuItem2";
+            toolStripMenuItem2.Size = new System.Drawing.Size(292, 34);
+            toolStripMenuItem2.Text = "Load Audio IFF";
+            // 
+            // loadWAVAudiotoolStripMenuItem
+            // 
+            loadWAVAudiotoolStripMenuItem.Name = "loadWAVAudiotoolStripMenuItem";
+            loadWAVAudiotoolStripMenuItem.Size = new System.Drawing.Size(292, 34);
+            loadWAVAudiotoolStripMenuItem.Text = "Load WAV Audio";
+            loadWAVAudiotoolStripMenuItem.Click += loadWAVAudiotoolStripMenuItem_Click;
+            // 
+            // toolStripSeparator6
+            // 
+            toolStripSeparator6.Name = "toolStripSeparator6";
+            toolStripSeparator6.Size = new System.Drawing.Size(289, 6);
+            // 
+            // loadAmigaFonttoolStripMenuItem
+            // 
+            loadAmigaFonttoolStripMenuItem.Name = "loadAmigaFonttoolStripMenuItem";
+            loadAmigaFonttoolStripMenuItem.Size = new System.Drawing.Size(292, 34);
+            loadAmigaFonttoolStripMenuItem.Text = "Load Amiga Font";
+            loadAmigaFonttoolStripMenuItem.Click += loadAmigaFonttoolStripMenuItem_Click;
+            // 
+            // toolStripSeparator5
+            // 
+            toolStripSeparator5.Name = "toolStripSeparator5";
+            toolStripSeparator5.Size = new System.Drawing.Size(289, 6);
             // 
             // SaveLinkFileToolStripMenuItem
             // 
@@ -374,6 +412,26 @@
             selectBackgroundToolStripMenuItem.Text = "Select Background";
             selectBackgroundToolStripMenuItem.Click += selectBackgroundToolStripMenuItem_Click;
             // 
+            // audioToolStripMenuItem
+            // 
+            audioToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] { sineWaveGeneratorToolStripMenuItem, waveGeneratorToolStripMenuItem });
+            audioToolStripMenuItem.Name = "audioToolStripMenuItem";
+            audioToolStripMenuItem.Size = new System.Drawing.Size(76, 29);
+            audioToolStripMenuItem.Text = "Audio";
+            // 
+            // sineWaveGeneratorToolStripMenuItem
+            // 
+            sineWaveGeneratorToolStripMenuItem.Name = "sineWaveGeneratorToolStripMenuItem";
+            sineWaveGeneratorToolStripMenuItem.Size = new System.Drawing.Size(273, 34);
+            sineWaveGeneratorToolStripMenuItem.Text = "SineWave Generator";
+            sineWaveGeneratorToolStripMenuItem.Click += sineWaveGeneratorToolStripMenuItem_Click;
+            // 
+            // waveGeneratorToolStripMenuItem
+            // 
+            waveGeneratorToolStripMenuItem.Name = "waveGeneratorToolStripMenuItem";
+            waveGeneratorToolStripMenuItem.Size = new System.Drawing.Size(273, 34);
+            waveGeneratorToolStripMenuItem.Text = "Wave Generator";
+            // 
             // settingsToolStripMenuItem
             // 
             settingsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] { settingsMenuItem });
@@ -387,6 +445,19 @@
             settingsMenuItem.Size = new System.Drawing.Size(178, 34);
             settingsMenuItem.Text = "Settings";
             settingsMenuItem.Click += settingsMenuItem_Click;
+            // 
+            // booksToolStripMenuItem
+            // 
+            booksToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] { amigaHardwareReferenceManualToolStripMenuItem });
+            booksToolStripMenuItem.Name = "booksToolStripMenuItem";
+            booksToolStripMenuItem.Size = new System.Drawing.Size(77, 29);
+            booksToolStripMenuItem.Text = "Books";
+            // 
+            // amigaHardwareReferenceManualToolStripMenuItem
+            // 
+            amigaHardwareReferenceManualToolStripMenuItem.Name = "amigaHardwareReferenceManualToolStripMenuItem";
+            amigaHardwareReferenceManualToolStripMenuItem.Size = new System.Drawing.Size(391, 34);
+            amigaHardwareReferenceManualToolStripMenuItem.Text = "Amiga Hardware Reference Manual";
             // 
             // aboutToolStripMenuItem
             // 
@@ -603,18 +674,6 @@
             vScrollBar.Visible = false;
             vScrollBar.ValueChanged += vScrollBar_ValueChanged;
             // 
-            // loadAmigaFonttoolStripMenuItem
-            // 
-            loadAmigaFonttoolStripMenuItem.Name = "loadAmigaFonttoolStripMenuItem";
-            loadAmigaFonttoolStripMenuItem.Size = new System.Drawing.Size(292, 34);
-            loadAmigaFonttoolStripMenuItem.Text = "Load Amiga Font";
-            loadAmigaFonttoolStripMenuItem.Click += loadAmigaFonttoolStripMenuItem_Click;
-            // 
-            // toolStripSeparator5
-            // 
-            toolStripSeparator5.Name = "toolStripSeparator5";
-            toolStripSeparator5.Size = new System.Drawing.Size(289, 6);
-            // 
             // MainForm
             // 
             AutoScaleDimensions = new System.Drawing.SizeF(10F, 25F);
@@ -722,6 +781,14 @@
         private System.Windows.Forms.ToolStripMenuItem c64ImageToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem loadAmigaFonttoolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator5;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem2;
+        private System.Windows.Forms.ToolStripMenuItem audioToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem loadWAVAudiotoolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator6;
+        private System.Windows.Forms.ToolStripMenuItem booksToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem amigaHardwareReferenceManualToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem sineWaveGeneratorToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem waveGeneratorToolStripMenuItem;
     }
 }
 
