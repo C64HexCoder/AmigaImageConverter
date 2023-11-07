@@ -17,7 +17,6 @@ namespace AmigaImageConverter
     {
         Graphics gfx;
         sbyte[] Sameples;
-        short[] Samples16bit;
 
         MemoryStream WAVStream;
         WAV wav = new WAV();
@@ -26,6 +25,7 @@ namespace AmigaImageConverter
         {
             InitializeComponent();
             gfx = GraphPicBox.CreateGraphics();
+            ChanelComboBox.SelectedIndex = 0;
 
         }
 

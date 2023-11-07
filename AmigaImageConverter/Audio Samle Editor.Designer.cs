@@ -36,6 +36,8 @@
             sampleRateLbl = new System.Windows.Forms.Label();
             label1 = new System.Windows.Forms.Label();
             playButton = new System.Windows.Forms.Button();
+            ChanelComboBox = new System.Windows.Forms.ComboBox();
+            label2 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)numericNumOfSamples).BeginInit();
             ((System.ComponentModel.ISupportInitialize)GraphPicBox).BeginInit();
             ((System.ComponentModel.ISupportInitialize)numericUpDown1).BeginInit();
@@ -64,11 +66,11 @@
             // 
             // button1
             // 
-            button1.Location = new System.Drawing.Point(1333, 526);
+            button1.Location = new System.Drawing.Point(1315, 526);
             button1.Name = "button1";
-            button1.Size = new System.Drawing.Size(112, 34);
+            button1.Size = new System.Drawing.Size(130, 34);
             button1.TabIndex = 2;
-            button1.Text = "Finished";
+            button1.Text = "Save As IFF";
             button1.UseVisualStyleBackColor = true;
             // 
             // GraphPicBox
@@ -83,9 +85,11 @@
             // numericUpDown1
             // 
             numericUpDown1.Location = new System.Drawing.Point(1180, 175);
+            numericUpDown1.Maximum = new decimal(new int[] { 50000, 0, 0, 0 });
             numericUpDown1.Name = "numericUpDown1";
             numericUpDown1.Size = new System.Drawing.Size(265, 31);
             numericUpDown1.TabIndex = 4;
+            numericUpDown1.Value = new decimal(new int[] { 16000, 0, 0, 0 });
             // 
             // sampleRateLbl
             // 
@@ -107,18 +111,38 @@
             // 
             // playButton
             // 
-            playButton.Location = new System.Drawing.Point(1180, 243);
+            playButton.Location = new System.Drawing.Point(1180, 343);
             playButton.Name = "playButton";
             playButton.Size = new System.Drawing.Size(265, 34);
             playButton.TabIndex = 7;
             playButton.Text = "Play";
             playButton.UseVisualStyleBackColor = true;
             // 
+            // ChanelComboBox
+            // 
+            ChanelComboBox.FormattingEnabled = true;
+            ChanelComboBox.Items.AddRange(new object[] { "Mono", "Stereo" });
+            ChanelComboBox.Location = new System.Drawing.Point(1180, 254);
+            ChanelComboBox.Name = "ChanelComboBox";
+            ChanelComboBox.Size = new System.Drawing.Size(265, 33);
+            ChanelComboBox.TabIndex = 8;
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Location = new System.Drawing.Point(1180, 226);
+            label2.Name = "label2";
+            label2.Size = new System.Drawing.Size(73, 25);
+            label2.TabIndex = 9;
+            label2.Text = "Chanels";
+            // 
             // AudioSamleEditorDialog
             // 
             AutoScaleDimensions = new System.Drawing.SizeF(10F, 25F);
             AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             ClientSize = new System.Drawing.Size(1457, 576);
+            Controls.Add(label2);
+            Controls.Add(ChanelComboBox);
             Controls.Add(playButton);
             Controls.Add(label1);
             Controls.Add(sampleRateLbl);
@@ -147,5 +171,7 @@
         private System.Windows.Forms.Label sampleRateLbl;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button playButton;
+        private System.Windows.Forms.ComboBox ChanelComboBox;
+        private System.Windows.Forms.Label label2;
     }
 }
