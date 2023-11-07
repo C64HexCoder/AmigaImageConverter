@@ -940,6 +940,9 @@ namespace AmigaImageConverter
             WAV wAV = new WAV();
             wAV.OpenWaveFile();
 
+            AudioSamleEditorDialog dialog = new AudioSamleEditorDialog(wAV.LeftChannelSamples);
+            dialog.ShowDialog();
+
         }
     }
 }

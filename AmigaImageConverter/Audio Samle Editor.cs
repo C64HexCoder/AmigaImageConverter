@@ -7,6 +7,7 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Media;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -16,7 +17,9 @@ namespace AmigaImageConverter
     public partial class AudioSamleEditorDialog : Form
     {
         Graphics gfx;
-        sbyte[] Sameples;
+        public sbyte[] Sameples;
+
+        bool IsDataSigned = true;
 
         MemoryStream WAVStream;
         WAV wav = new WAV();
@@ -27,6 +30,34 @@ namespace AmigaImageConverter
             gfx = GraphPicBox.CreateGraphics();
             ChanelComboBox.SelectedIndex = 0;
 
+        }
+
+        public AudioSamleEditorDialog(sbyte[] sameples)
+        {
+            InitializeComponent();
+            gfx = GraphPicBox.CreateGraphics();
+            ChanelComboBox.SelectedIndex = 0;
+            Sameples = sameples;
+
+
+
+            IsDataSigned = true;
+
+        }
+
+        public AudioSamleEditorDialog(byte[] sameples)
+        {
+            InitializeComponent();
+            gfx = GraphPicBox.CreateGraphics();
+            ChanelComboBox.SelectedIndex = 0;
+            IsDataSigned = false;
+
+            Sameples = new sbyte[sameples.Length];
+
+            for (int i = 0; i < sameples.Length; i++)
+            {
+                Sameples[i] = (sbyte)sameples[i];
+            }
         }
 
         private void AudioSamleEditorDialog_Paint(object sender, PaintEventArgs e)
