@@ -129,7 +129,7 @@
             previewScalingNud.Name = "previewScalingNud";
             previewScalingNud.Size = new System.Drawing.Size(180, 31);
             previewScalingNud.TabIndex = 9;
-            previewScalingNud.Value = new decimal(new int[] { 4, 0, 0, 0 });
+            previewScalingNud.Value = new decimal(new int[] { 2, 0, 0, 0 });
             previewScalingNud.ValueChanged += previewScalingNud_ValueChanged;
             // 
             // tabFormat

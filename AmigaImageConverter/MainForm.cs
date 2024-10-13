@@ -532,7 +532,17 @@ namespace AmigaImageConverter
             SSI.DrawRectangle(p, 0, 0, SprireWidth, SpriteHeight);
             SSI.Dispose();
             image.Image = SelectedSpriteImage;
-            image.ScaleImage((int)(settings.previewScalingNud.Value));
+
+            if (settings.ScalingType == Settings.ScaleType.ScaleToMax)
+            {       // Auto scaling modde
+                ScaleToMax();
+            }
+            // Manual scalling
+            else
+            {
+                PredefinedScale();
+            }
+
             spriteSelectNud.Maximum = sprites.Count - 1;
             SliceBtn.Enabled = false;
             SpriteSaveBtn.Enabled = true;
@@ -557,7 +567,16 @@ namespace AmigaImageConverter
             SSI.DrawRectangle(p, SpriteXPos * SprireWidth, SpriteYPos * SpriteHeight, SprireWidth, SpriteHeight);
             SSI.Dispose();
             image.Image = SelectedSpriteImage;
-            image.ScaleImage((int)(settings.previewScalingNud.Value));
+
+            if (settings.ScalingType == Settings.ScaleType.ScaleToMax)
+            {       // Auto scaling modde
+                ScaleToMax();
+            }
+            // Manual scalling
+            else
+            {
+                PredefinedScale();
+            }
         }
 
         private void SpriteSaveBtn_Click(object sender, EventArgs e)
@@ -583,15 +602,10 @@ namespace AmigaImageConverter
 
 
                 int SpriteXPos = (int)MouseX / SprireWidth, SpriteYPos = (int)MouseY / SpriteHeight;
-                image.Image = vr.bitplane.bitmap;
-                image.ScaleImage((int)(settings.previewScalingNud.Value));
-                Bitmap SelectedSpriteImage = new Bitmap(image.Image);
-                Graphics SSI = Graphics.FromImage(SelectedSpriteImage);
-                Pen p = new Pen(Color.Black, 2 * (int)(settings.previewScalingNud.Value));
-                SSI.DrawRectangle(p, SpriteXPos * SprireWidth, SpriteYPos * SpriteHeight, SprireWidth, SpriteHeight);
-                SSI.Dispose();
-                image.Image = SelectedSpriteImage;
+   
                 spriteSelectNud.Value = SpriteXPos + SpriteYPos * SpritesPerRawNud.Value;
+
+       
             }
         }
 
