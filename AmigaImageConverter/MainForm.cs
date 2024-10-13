@@ -472,21 +472,22 @@ namespace AmigaImageConverter
 
         private void SliceBtn_Click(object sender, EventArgs e)
         {
-            if (SpritesPerRawNud.Value == 0 || numOfRawsNud.Value == 0 || spriteWidthCb.SelectedIndex == -1)
+            int SpritesPerRaw = (int)(ImagesPerRawNud.Value * spritePerImageUDN.Value);
+            if (ImagesPerRawNud.Value == 0 || numOfRawsNud.Value == 0 || spriteWidthCb.SelectedIndex == -1)
             {
                 MessageBox.Show("Please fill in all the parametters first", "Missing info...", MessageBoxButtons.OK);
                 return;
             }
             sprites.Clear();
 
-            int SprireWidth = (int)(vr.bitplane.bitmap.Width / SpritesPerRawNud.Value);
+            int SprireWidth = (int)(vr.bitplane.bitmap.Width / ImagesPerRawNud.Value/spritePerImageUDN.Value);
             int SpriteHeight = (int)(vr.bitplane.bitmap.Height / numOfRawsNud.Value);
 
-            int NumOfSprites = (int)(SpritesPerRawNud.Value * numOfRawsNud.Value);
+            int NumOfSprites = (int)(ImagesPerRawNud.Value * numOfRawsNud.Value * spritePerImageUDN.Value);
 
             for (int y = 0; y < numOfRawsNud.Value; y++)
             {
-                for (int x = 0; x < SpritesPerRawNud.Value; x++)
+                for (int x = 0; x < SpritesPerRaw; x++)
                 {
 
                     Bitmap SprBmp = new Bitmap(SprireWidth, SpriteHeight);
@@ -553,13 +554,13 @@ namespace AmigaImageConverter
 
         private void spriteSelectNud_ValueChanged(object sender, EventArgs e)
         {
-            int SprireWidth = (int)(vr.bitplane.bitmap.Width / SpritesPerRawNud.Value);
+            int SprireWidth = (int)(vr.bitplane.bitmap.Width / ImagesPerRawNud.Value / spritePerImageUDN.Value);
             int SpriteHeight = (int)(vr.bitplane.bitmap.Height / numOfRawsNud.Value);
-
+            int SpritePerRaw = (int)(ImagesPerRawNud.Value*spritePerImageUDN.Value);
             NumericUpDown Nud = (NumericUpDown)sender;
             int SpriteNumber = (int)Nud.Value;
             sprImageBox.Image = sprites[(int)(Nud.Value)].bitmap;
-            int SpriteXPos = (int)Nud.Value % (int)SpritesPerRawNud.Value, SpriteYPos = (int)Nud.Value / (int)SpritesPerRawNud.Value;
+            int SpriteXPos = (int)Nud.Value % SpritePerRaw, SpriteYPos = (int)Nud.Value / SpritePerRaw;
 
             Bitmap SelectedSpriteImage = new Bitmap(vr.bitplane.bitmap);
             Graphics SSI = Graphics.FromImage(SelectedSpriteImage);
@@ -593,19 +594,20 @@ namespace AmigaImageConverter
 
         private void image_MouseClick(object sender, MouseEventArgs e)
         {
+            int SpritesPerRaw = (int)(ImagesPerRawNud.Value * spritePerImageUDN.Value);
             if (SlicedSpriteSheet)
             {
                 int MouseX = e.X, MouseY = e.Y;
 
-                int SprireWidth = (int)(image.Width / SpritesPerRawNud.Value);
+                int SprireWidth = (int)(image.Width / SpritesPerRaw);
                 int SpriteHeight = (int)(image.Height / numOfRawsNud.Value);
 
 
                 int SpriteXPos = (int)MouseX / SprireWidth, SpriteYPos = (int)MouseY / SpriteHeight;
-   
-                spriteSelectNud.Value = SpriteXPos + SpriteYPos * SpritesPerRawNud.Value;
 
-       
+                spriteSelectNud.Value = SpriteXPos + SpriteYPos * SpritesPerRaw;
+
+
             }
         }
 
@@ -956,6 +958,11 @@ namespace AmigaImageConverter
 
             AudioSamleEditorDialog dialog = new AudioSamleEditorDialog(wAV.LeftChannelSamples);
             dialog.ShowDialog();
+
+        }
+
+        private void cutSpriteToolStripMenuItem_Click(object sender, EventArgs e)
+        {
 
         }
     }

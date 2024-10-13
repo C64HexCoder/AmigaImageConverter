@@ -69,6 +69,7 @@
             toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             cutSpriteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             spriteSheetCutterToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            splitSpritesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             colorsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             pallateToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             selectBackgroundToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -92,6 +93,8 @@
             image = new Amiga.ImageBox();
             SlicingPanel = new System.Windows.Forms.Panel();
             SlicingGb = new System.Windows.Forms.GroupBox();
+            label3 = new System.Windows.Forms.Label();
+            spritePerImageUDN = new System.Windows.Forms.NumericUpDown();
             sprImageBox = new Amiga.ImageBox();
             SpriteSaveBtn = new System.Windows.Forms.Button();
             spriteWidthCb = new System.Windows.Forms.ComboBox();
@@ -100,7 +103,7 @@
             label2 = new System.Windows.Forms.Label();
             numOfRawsNud = new System.Windows.Forms.NumericUpDown();
             label1 = new System.Windows.Forms.Label();
-            SpritesPerRawNud = new System.Windows.Forms.NumericUpDown();
+            ImagesPerRawNud = new System.Windows.Forms.NumericUpDown();
             hScrollBar = new System.Windows.Forms.HScrollBar();
             vScrollBar = new System.Windows.Forms.VScrollBar();
             menuStrip1.SuspendLayout();
@@ -108,10 +111,11 @@
             ((System.ComponentModel.ISupportInitialize)image).BeginInit();
             SlicingPanel.SuspendLayout();
             SlicingGb.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)spritePerImageUDN).BeginInit();
             ((System.ComponentModel.ISupportInitialize)sprImageBox).BeginInit();
             ((System.ComponentModel.ISupportInitialize)spriteSelectNud).BeginInit();
             ((System.ComponentModel.ISupportInitialize)numOfRawsNud).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)SpritesPerRawNud).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)ImagesPerRawNud).BeginInit();
             SuspendLayout();
             // 
             // menuStrip1
@@ -373,7 +377,7 @@
             // 
             // toolStripMenuItem1
             // 
-            toolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] { cutSpriteToolStripMenuItem, spriteSheetCutterToolStripMenuItem });
+            toolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] { cutSpriteToolStripMenuItem, spriteSheetCutterToolStripMenuItem, splitSpritesToolStripMenuItem });
             toolStripMenuItem1.Name = "toolStripMenuItem1";
             toolStripMenuItem1.Size = new System.Drawing.Size(74, 29);
             toolStripMenuItem1.Text = "Sprite";
@@ -383,6 +387,7 @@
             cutSpriteToolStripMenuItem.Name = "cutSpriteToolStripMenuItem";
             cutSpriteToolStripMenuItem.Size = new System.Drawing.Size(262, 34);
             cutSpriteToolStripMenuItem.Text = "Cut Sprite";
+            cutSpriteToolStripMenuItem.Click += cutSpriteToolStripMenuItem_Click;
             // 
             // spriteSheetCutterToolStripMenuItem
             // 
@@ -390,6 +395,12 @@
             spriteSheetCutterToolStripMenuItem.Size = new System.Drawing.Size(262, 34);
             spriteSheetCutterToolStripMenuItem.Text = "Sprite Sheet Cutter";
             spriteSheetCutterToolStripMenuItem.Click += sprireSheetCutterToolStripMenuItem_Click;
+            // 
+            // splitSpritesToolStripMenuItem
+            // 
+            splitSpritesToolStripMenuItem.Name = "splitSpritesToolStripMenuItem";
+            splitSpritesToolStripMenuItem.Size = new System.Drawing.Size(262, 34);
+            splitSpritesToolStripMenuItem.Text = "Split Sprites";
             // 
             // colorsToolStripMenuItem
             // 
@@ -551,6 +562,8 @@
             // 
             // SlicingGb
             // 
+            SlicingGb.Controls.Add(label3);
+            SlicingGb.Controls.Add(spritePerImageUDN);
             SlicingGb.Controls.Add(sprImageBox);
             SlicingGb.Controls.Add(SpriteSaveBtn);
             SlicingGb.Controls.Add(spriteWidthCb);
@@ -559,7 +572,7 @@
             SlicingGb.Controls.Add(label2);
             SlicingGb.Controls.Add(numOfRawsNud);
             SlicingGb.Controls.Add(label1);
-            SlicingGb.Controls.Add(SpritesPerRawNud);
+            SlicingGb.Controls.Add(ImagesPerRawNud);
             SlicingGb.Location = new System.Drawing.Point(3, 3);
             SlicingGb.Name = "SlicingGb";
             SlicingGb.Size = new System.Drawing.Size(231, 569);
@@ -567,12 +580,31 @@
             SlicingGb.TabStop = false;
             SlicingGb.Text = "Slicing";
             // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Location = new System.Drawing.Point(6, 133);
+            label3.Name = "label3";
+            label3.Size = new System.Drawing.Size(150, 25);
+            label3.TabIndex = 9;
+            label3.Text = "Sprites Per Image";
+            // 
+            // spritePerImageUDN
+            // 
+            spritePerImageUDN.Location = new System.Drawing.Point(6, 160);
+            spritePerImageUDN.Maximum = new decimal(new int[] { 4, 0, 0, 0 });
+            spritePerImageUDN.Minimum = new decimal(new int[] { 1, 0, 0, 0 });
+            spritePerImageUDN.Name = "spritePerImageUDN";
+            spritePerImageUDN.Size = new System.Drawing.Size(213, 31);
+            spritePerImageUDN.TabIndex = 8;
+            spritePerImageUDN.Value = new decimal(new int[] { 1, 0, 0, 0 });
+            // 
             // sprImageBox
             // 
             sprImageBox.AutoScaleImageBox = false;
             sprImageBox.HrizontalScrollBar = null;
             sprImageBox.Image = null;
-            sprImageBox.Location = new System.Drawing.Point(6, 176);
+            sprImageBox.Location = new System.Drawing.Point(6, 241);
             sprImageBox.Name = "sprImageBox";
             sprImageBox.ScaleFactor = 1;
             sprImageBox.ScaleFactorFloat = 1F;
@@ -585,7 +617,7 @@
             // SpriteSaveBtn
             // 
             SpriteSaveBtn.Enabled = false;
-            SpriteSaveBtn.Location = new System.Drawing.Point(6, 453);
+            SpriteSaveBtn.Location = new System.Drawing.Point(6, 518);
             SpriteSaveBtn.Name = "SpriteSaveBtn";
             SpriteSaveBtn.Size = new System.Drawing.Size(213, 34);
             SpriteSaveBtn.TabIndex = 6;
@@ -606,7 +638,7 @@
             // 
             // spriteSelectNud
             // 
-            spriteSelectNud.Location = new System.Drawing.Point(6, 416);
+            spriteSelectNud.Location = new System.Drawing.Point(6, 481);
             spriteSelectNud.Name = "spriteSelectNud";
             spriteSelectNud.Size = new System.Drawing.Size(213, 31);
             spriteSelectNud.TabIndex = 4;
@@ -614,7 +646,7 @@
             // 
             // SliceBtn
             // 
-            SliceBtn.Location = new System.Drawing.Point(6, 136);
+            SliceBtn.Location = new System.Drawing.Point(6, 201);
             SliceBtn.Name = "SliceBtn";
             SliceBtn.Size = new System.Drawing.Size(213, 34);
             SliceBtn.TabIndex = 1;
@@ -644,17 +676,17 @@
             label1.AutoSize = true;
             label1.Location = new System.Drawing.Point(6, 32);
             label1.Name = "label1";
-            label1.Size = new System.Drawing.Size(106, 25);
+            label1.Size = new System.Drawing.Size(110, 25);
             label1.TabIndex = 1;
-            label1.Text = "Sprites/Raw";
+            label1.Text = "Images/Raw";
             // 
-            // SpritesPerRawNud
+            // ImagesPerRawNud
             // 
-            SpritesPerRawNud.Location = new System.Drawing.Point(6, 60);
-            SpritesPerRawNud.Name = "SpritesPerRawNud";
-            SpritesPerRawNud.Size = new System.Drawing.Size(106, 31);
-            SpritesPerRawNud.TabIndex = 0;
-            SpritesPerRawNud.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            ImagesPerRawNud.Location = new System.Drawing.Point(6, 60);
+            ImagesPerRawNud.Name = "ImagesPerRawNud";
+            ImagesPerRawNud.Size = new System.Drawing.Size(106, 31);
+            ImagesPerRawNud.TabIndex = 0;
+            ImagesPerRawNud.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // hScrollBar
             // 
@@ -705,10 +737,11 @@
             SlicingPanel.ResumeLayout(false);
             SlicingGb.ResumeLayout(false);
             SlicingGb.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)spritePerImageUDN).EndInit();
             ((System.ComponentModel.ISupportInitialize)sprImageBox).EndInit();
             ((System.ComponentModel.ISupportInitialize)spriteSelectNud).EndInit();
             ((System.ComponentModel.ISupportInitialize)numOfRawsNud).EndInit();
-            ((System.ComponentModel.ISupportInitialize)SpritesPerRawNud).EndInit();
+            ((System.ComponentModel.ISupportInitialize)ImagesPerRawNud).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -748,7 +781,7 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.NumericUpDown numOfRawsNud;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.NumericUpDown SpritesPerRawNud;
+        private System.Windows.Forms.NumericUpDown ImagesPerRawNud;
         private System.Windows.Forms.NumericUpDown spriteSelectNud;
         private System.Windows.Forms.ComboBox spriteWidthCb;
         private System.Windows.Forms.Button SpriteSaveBtn;
@@ -789,6 +822,9 @@
         private System.Windows.Forms.ToolStripMenuItem amigaHardwareReferenceManualToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem sineWaveGeneratorToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem waveGeneratorToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem splitSpritesToolStripMenuItem;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.NumericUpDown spritePerImageUDN;
     }
 }
 
