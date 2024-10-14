@@ -71,6 +71,9 @@ namespace AmigaImageConverter
 
         private void loadImageToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            sprites.Clear();
+            SlicingPanel.Visible=false;
+            SliceBtn.Enabled = true;
 
 
             if (openImageFileDialog.ShowDialog() == DialogResult.OK)
@@ -480,7 +483,7 @@ namespace AmigaImageConverter
             }
             sprites.Clear();
 
-            int SprireWidth = (int)(vr.bitplane.bitmap.Width / ImagesPerRawNud.Value/spritePerImageUDN.Value);
+            int SprireWidth = (int)(vr.bitplane.bitmap.Width / ImagesPerRawNud.Value / spritePerImageUDN.Value);
             int SpriteHeight = (int)(vr.bitplane.bitmap.Height / numOfRawsNud.Value);
 
             int NumOfSprites = (int)(ImagesPerRawNud.Value * numOfRawsNud.Value * spritePerImageUDN.Value);
@@ -493,6 +496,7 @@ namespace AmigaImageConverter
                     Bitmap SprBmp = new Bitmap(SprireWidth, SpriteHeight);
                     SprBmp.SetResolution(vr.bitplane.bitmap.HorizontalResolution, vr.bitplane.bitmap.VerticalResolution);
                     Sprite sprite = new Sprite();
+                    
 
                     Graphics gr = Graphics.FromImage(SprBmp);
                     Rectangle sourceRec = new Rectangle(x * SprireWidth, y * SpriteHeight, SprireWidth, SpriteHeight);
@@ -549,6 +553,7 @@ namespace AmigaImageConverter
             SpriteSaveBtn.Enabled = true;
             spriteSelectNud.Value = 0;
             SlicedSpriteSheet = true;
+            spriteSelectNud.Enabled = true;
         }
 
 
@@ -556,7 +561,7 @@ namespace AmigaImageConverter
         {
             int SprireWidth = (int)(vr.bitplane.bitmap.Width / ImagesPerRawNud.Value / spritePerImageUDN.Value);
             int SpriteHeight = (int)(vr.bitplane.bitmap.Height / numOfRawsNud.Value);
-            int SpritePerRaw = (int)(ImagesPerRawNud.Value*spritePerImageUDN.Value);
+            int SpritePerRaw = (int)(ImagesPerRawNud.Value * spritePerImageUDN.Value);
             NumericUpDown Nud = (NumericUpDown)sender;
             int SpriteNumber = (int)Nud.Value;
             sprImageBox.Image = sprites[(int)(Nud.Value)].bitmap;
@@ -584,7 +589,8 @@ namespace AmigaImageConverter
         {
             SaveSprite sp = new SaveSprite();
             sp.sprites = sprites;
-            sp.ShowDialog(this);
+            if (sp.ShowDialog(this) == DialogResult.Continue)
+                MessageBox.Show("Sprite Files/s Created Successfully", "Succsess", MessageBoxButtons.OK);
         }
 
         private void spriteWidthCb_SelectedIndexChanged(object sender, EventArgs e)
@@ -964,6 +970,14 @@ namespace AmigaImageConverter
         private void cutSpriteToolStripMenuItem_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void saveSpriteAsMenuItem_Click(object sender, EventArgs e)
+        {
+            if (saveSourceFileDialog.ShowDialog() == DialogResult.OK)
+            {
+
+            }
         }
     }
 }

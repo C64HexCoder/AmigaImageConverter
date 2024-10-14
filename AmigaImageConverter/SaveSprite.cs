@@ -101,6 +101,8 @@ namespace AmigaImageConverter
                         break;
                 }
             }
+
+            Close();
      
         }
 
