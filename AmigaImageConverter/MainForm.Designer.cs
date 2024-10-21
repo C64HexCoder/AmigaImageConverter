@@ -70,7 +70,11 @@
             c64ImageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             cutSpriteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            toolStripMenuItem4 = new System.Windows.Forms.ToolStripMenuItem();
+            toolStripSeparator8 = new System.Windows.Forms.ToolStripSeparator();
             spriteSheetCutterToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            toolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
+            toolStripSeparator9 = new System.Windows.Forms.ToolStripSeparator();
             splitSpritesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             colorsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             pallateToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -87,20 +91,21 @@
             openImageFileDialog = new System.Windows.Forms.OpenFileDialog();
             saveSourceFileDialog = new System.Windows.Forms.SaveFileDialog();
             statusStrip = new System.Windows.Forms.StatusStrip();
+            toolStripProgressBar = new System.Windows.Forms.ToolStripProgressBar();
             toolStripFileName = new System.Windows.Forms.ToolStripStatusLabel();
             toolStripResolutionLabel = new System.Windows.Forms.ToolStripStatusLabel();
             toolStripDepthLabel = new System.Windows.Forms.ToolStripStatusLabel();
             toolStripScalingFactorLabel = new System.Windows.Forms.ToolStripStatusLabel();
-            toolStripProgressBar = new System.Windows.Forms.ToolStripProgressBar();
-            image = new Amiga.ImageBox();
             SlicingPanel = new System.Windows.Forms.Panel();
             SlicingGb = new System.Windows.Forms.GroupBox();
+            spriteNameTxtbox = new System.Windows.Forms.TextBox();
+            label4 = new System.Windows.Forms.Label();
             label3 = new System.Windows.Forms.Label();
-            spritePerImageUDN = new System.Windows.Forms.NumericUpDown();
-            sprImageBox = new Amiga.ImageBox();
             SpriteSaveBtn = new System.Windows.Forms.Button();
-            spriteWidthCb = new System.Windows.Forms.ComboBox();
+            spritePerImageUDN = new System.Windows.Forms.NumericUpDown();
             spriteSelectNud = new System.Windows.Forms.NumericUpDown();
+            sprImageBox = new Amiga.ImageBox();
+            spriteWidthCb = new System.Windows.Forms.ComboBox();
             SliceBtn = new System.Windows.Forms.Button();
             label2 = new System.Windows.Forms.Label();
             numOfRawsNud = new System.Windows.Forms.NumericUpDown();
@@ -108,16 +113,29 @@
             ImagesPerRawNud = new System.Windows.Forms.NumericUpDown();
             hScrollBar = new System.Windows.Forms.HScrollBar();
             vScrollBar = new System.Windows.Forms.VScrollBar();
+            process1 = new System.Diagnostics.Process();
+            imageCutGB = new System.Windows.Forms.GroupBox();
+            spriteNameSCTB = new System.Windows.Forms.TextBox();
+            label5 = new System.Windows.Forms.Label();
+            spriteCutButton = new System.Windows.Forms.Button();
+            spriteSelectorNud = new System.Windows.Forms.NumericUpDown();
+            spriteCutPreviewIB = new Amiga.ImageBox();
+            comboBox1 = new System.Windows.Forms.ComboBox();
+            cutSpriteBtn = new System.Windows.Forms.Button();
+            image = new Amiga.ImageBox();
             menuStrip1.SuspendLayout();
             statusStrip.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)image).BeginInit();
             SlicingPanel.SuspendLayout();
             SlicingGb.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)spritePerImageUDN).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)sprImageBox).BeginInit();
             ((System.ComponentModel.ISupportInitialize)spriteSelectNud).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)sprImageBox).BeginInit();
             ((System.ComponentModel.ISupportInitialize)numOfRawsNud).BeginInit();
             ((System.ComponentModel.ISupportInitialize)ImagesPerRawNud).BeginInit();
+            imageCutGB.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)spriteSelectorNud).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)spriteCutPreviewIB).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)image).BeginInit();
             SuspendLayout();
             // 
             // menuStrip1
@@ -127,7 +145,7 @@
             menuStrip1.Location = new System.Drawing.Point(0, 0);
             menuStrip1.Name = "menuStrip1";
             menuStrip1.Padding = new System.Windows.Forms.Padding(4, 2, 0, 2);
-            menuStrip1.Size = new System.Drawing.Size(1100, 33);
+            menuStrip1.Size = new System.Drawing.Size(1381, 33);
             menuStrip1.TabIndex = 0;
             menuStrip1.Text = "menuStrip1";
             // 
@@ -391,7 +409,7 @@
             // 
             // toolStripMenuItem1
             // 
-            toolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] { cutSpriteToolStripMenuItem, spriteSheetCutterToolStripMenuItem, splitSpritesToolStripMenuItem });
+            toolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] { cutSpriteToolStripMenuItem, toolStripMenuItem4, toolStripSeparator8, spriteSheetCutterToolStripMenuItem, toolStripMenuItem3, toolStripSeparator9, splitSpritesToolStripMenuItem });
             toolStripMenuItem1.Name = "toolStripMenuItem1";
             toolStripMenuItem1.Size = new System.Drawing.Size(74, 29);
             toolStripMenuItem1.Text = "Sprite";
@@ -399,21 +417,43 @@
             // cutSpriteToolStripMenuItem
             // 
             cutSpriteToolStripMenuItem.Name = "cutSpriteToolStripMenuItem";
-            cutSpriteToolStripMenuItem.Size = new System.Drawing.Size(262, 34);
-            cutSpriteToolStripMenuItem.Text = "Cut Sprite";
+            cutSpriteToolStripMenuItem.Size = new System.Drawing.Size(294, 34);
+            cutSpriteToolStripMenuItem.Text = "Cut Sprite From Image";
             cutSpriteToolStripMenuItem.Click += cutSpriteToolStripMenuItem_Click;
+            // 
+            // toolStripMenuItem4
+            // 
+            toolStripMenuItem4.Name = "toolStripMenuItem4";
+            toolStripMenuItem4.Size = new System.Drawing.Size(294, 34);
+            toolStripMenuItem4.Text = "Image To Sprite";
+            // 
+            // toolStripSeparator8
+            // 
+            toolStripSeparator8.Name = "toolStripSeparator8";
+            toolStripSeparator8.Size = new System.Drawing.Size(291, 6);
             // 
             // spriteSheetCutterToolStripMenuItem
             // 
             spriteSheetCutterToolStripMenuItem.Name = "spriteSheetCutterToolStripMenuItem";
-            spriteSheetCutterToolStripMenuItem.Size = new System.Drawing.Size(262, 34);
+            spriteSheetCutterToolStripMenuItem.Size = new System.Drawing.Size(294, 34);
             spriteSheetCutterToolStripMenuItem.Text = "Sprite Sheet Cutter";
             spriteSheetCutterToolStripMenuItem.Click += sprireSheetCutterToolStripMenuItem_Click;
+            // 
+            // toolStripMenuItem3
+            // 
+            toolStripMenuItem3.Name = "toolStripMenuItem3";
+            toolStripMenuItem3.Size = new System.Drawing.Size(294, 34);
+            toolStripMenuItem3.Text = "Sprite Sheet Maker";
+            // 
+            // toolStripSeparator9
+            // 
+            toolStripSeparator9.Name = "toolStripSeparator9";
+            toolStripSeparator9.Size = new System.Drawing.Size(291, 6);
             // 
             // splitSpritesToolStripMenuItem
             // 
             splitSpritesToolStripMenuItem.Name = "splitSpritesToolStripMenuItem";
-            splitSpritesToolStripMenuItem.Size = new System.Drawing.Size(262, 34);
+            splitSpritesToolStripMenuItem.Size = new System.Drawing.Size(294, 34);
             splitSpritesToolStripMenuItem.Text = "Split Sprites";
             // 
             // colorsToolStripMenuItem
@@ -509,13 +549,18 @@
             // statusStrip
             // 
             statusStrip.ImageScalingSize = new System.Drawing.Size(24, 24);
-            statusStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] { toolStripFileName, toolStripResolutionLabel, toolStripDepthLabel, toolStripScalingFactorLabel, toolStripProgressBar });
-            statusStrip.Location = new System.Drawing.Point(0, 611);
+            statusStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] { toolStripProgressBar, toolStripFileName, toolStripResolutionLabel, toolStripDepthLabel, toolStripScalingFactorLabel });
+            statusStrip.Location = new System.Drawing.Point(0, 766);
             statusStrip.Name = "statusStrip";
             statusStrip.Padding = new System.Windows.Forms.Padding(1, 0, 16, 0);
-            statusStrip.Size = new System.Drawing.Size(1100, 32);
+            statusStrip.Size = new System.Drawing.Size(1381, 32);
             statusStrip.TabIndex = 2;
             statusStrip.Text = "statusStrip1";
+            // 
+            // toolStripProgressBar
+            // 
+            toolStripProgressBar.Name = "toolStripProgressBar";
+            toolStripProgressBar.Size = new System.Drawing.Size(100, 24);
             // 
             // toolStripFileName
             // 
@@ -541,47 +586,24 @@
             toolStripScalingFactorLabel.Size = new System.Drawing.Size(121, 25);
             toolStripScalingFactorLabel.Text = "Scaling Factor";
             // 
-            // toolStripProgressBar
-            // 
-            toolStripProgressBar.Name = "toolStripProgressBar";
-            toolStripProgressBar.Size = new System.Drawing.Size(100, 24);
-            // 
-            // image
-            // 
-            image.AutoScaleImageBox = false;
-            image.HrizontalScrollBar = null;
-            image.Image = null;
-            image.Location = new System.Drawing.Point(0, 34);
-            image.Margin = new System.Windows.Forms.Padding(1, 2, 1, 2);
-            image.Name = "image";
-            image.ScaleFactor = 4;
-            image.ScaleFactorFloat = 1F;
-            image.Size = new System.Drawing.Size(831, 534);
-            image.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
-            image.TabIndex = 3;
-            image.TabStop = false;
-            image.VerticalScrollBar = null;
-            image.HorizontalScrollBarChanged += image_HorizontalScrollBarChanged;
-            image.VerticalScrollBarChanged += image_VerticalScrollBarChanged;
-            image.LoadCompleted += image_LoadCompleted;
-            image.MouseClick += image_MouseClick;
-            // 
             // SlicingPanel
             // 
             SlicingPanel.Controls.Add(SlicingGb);
             SlicingPanel.Location = new System.Drawing.Point(866, 34);
             SlicingPanel.Name = "SlicingPanel";
-            SlicingPanel.Size = new System.Drawing.Size(234, 575);
+            SlicingPanel.Size = new System.Drawing.Size(234, 729);
             SlicingPanel.TabIndex = 4;
             // 
             // SlicingGb
             // 
+            SlicingGb.Controls.Add(spriteNameTxtbox);
+            SlicingGb.Controls.Add(label4);
             SlicingGb.Controls.Add(label3);
-            SlicingGb.Controls.Add(spritePerImageUDN);
-            SlicingGb.Controls.Add(sprImageBox);
             SlicingGb.Controls.Add(SpriteSaveBtn);
-            SlicingGb.Controls.Add(spriteWidthCb);
+            SlicingGb.Controls.Add(spritePerImageUDN);
             SlicingGb.Controls.Add(spriteSelectNud);
+            SlicingGb.Controls.Add(sprImageBox);
+            SlicingGb.Controls.Add(spriteWidthCb);
             SlicingGb.Controls.Add(SliceBtn);
             SlicingGb.Controls.Add(label2);
             SlicingGb.Controls.Add(numOfRawsNud);
@@ -589,10 +611,26 @@
             SlicingGb.Controls.Add(ImagesPerRawNud);
             SlicingGb.Location = new System.Drawing.Point(3, 3);
             SlicingGb.Name = "SlicingGb";
-            SlicingGb.Size = new System.Drawing.Size(231, 569);
+            SlicingGb.Size = new System.Drawing.Size(231, 726);
             SlicingGb.TabIndex = 0;
             SlicingGb.TabStop = false;
             SlicingGb.Text = "Slicing";
+            // 
+            // spriteNameTxtbox
+            // 
+            spriteNameTxtbox.Location = new System.Drawing.Point(6, 222);
+            spriteNameTxtbox.Name = "spriteNameTxtbox";
+            spriteNameTxtbox.Size = new System.Drawing.Size(213, 31);
+            spriteNameTxtbox.TabIndex = 11;
+            // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.Location = new System.Drawing.Point(6, 194);
+            label4.Name = "label4";
+            label4.Size = new System.Drawing.Size(111, 25);
+            label4.TabIndex = 10;
+            label4.Text = "Sprite name:";
             // 
             // label3
             // 
@@ -602,6 +640,17 @@
             label3.Size = new System.Drawing.Size(150, 25);
             label3.TabIndex = 9;
             label3.Text = "Sprites Per Image";
+            // 
+            // SpriteSaveBtn
+            // 
+            SpriteSaveBtn.Enabled = false;
+            SpriteSaveBtn.Location = new System.Drawing.Point(6, 663);
+            SpriteSaveBtn.Name = "SpriteSaveBtn";
+            SpriteSaveBtn.Size = new System.Drawing.Size(213, 34);
+            SpriteSaveBtn.TabIndex = 6;
+            SpriteSaveBtn.Text = "Save";
+            SpriteSaveBtn.UseVisualStyleBackColor = true;
+            SpriteSaveBtn.Click += SpriteSaveBtn_Click;
             // 
             // spritePerImageUDN
             // 
@@ -613,31 +662,29 @@
             spritePerImageUDN.TabIndex = 8;
             spritePerImageUDN.Value = new decimal(new int[] { 1, 0, 0, 0 });
             // 
+            // spriteSelectNud
+            // 
+            spriteSelectNud.Enabled = false;
+            spriteSelectNud.Location = new System.Drawing.Point(6, 626);
+            spriteSelectNud.Name = "spriteSelectNud";
+            spriteSelectNud.Size = new System.Drawing.Size(213, 31);
+            spriteSelectNud.TabIndex = 4;
+            spriteSelectNud.ValueChanged += spriteSelectNud_ValueChanged;
+            // 
             // sprImageBox
             // 
             sprImageBox.AutoScaleImageBox = false;
             sprImageBox.HrizontalScrollBar = null;
             sprImageBox.Image = null;
-            sprImageBox.Location = new System.Drawing.Point(6, 241);
+            sprImageBox.Location = new System.Drawing.Point(6, 303);
             sprImageBox.Name = "sprImageBox";
             sprImageBox.ScaleFactor = 1;
             sprImageBox.ScaleFactorFloat = 1F;
-            sprImageBox.Size = new System.Drawing.Size(213, 234);
+            sprImageBox.Size = new System.Drawing.Size(213, 317);
             sprImageBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             sprImageBox.TabIndex = 7;
             sprImageBox.TabStop = false;
             sprImageBox.VerticalScrollBar = null;
-            // 
-            // SpriteSaveBtn
-            // 
-            SpriteSaveBtn.Enabled = false;
-            SpriteSaveBtn.Location = new System.Drawing.Point(6, 518);
-            SpriteSaveBtn.Name = "SpriteSaveBtn";
-            SpriteSaveBtn.Size = new System.Drawing.Size(213, 34);
-            SpriteSaveBtn.TabIndex = 6;
-            SpriteSaveBtn.Text = "Save";
-            SpriteSaveBtn.UseVisualStyleBackColor = true;
-            SpriteSaveBtn.Click += SpriteSaveBtn_Click;
             // 
             // spriteWidthCb
             // 
@@ -650,18 +697,9 @@
             spriteWidthCb.Text = "Select sprite width";
             spriteWidthCb.SelectedIndexChanged += spriteWidthCb_SelectedIndexChanged;
             // 
-            // spriteSelectNud
-            // 
-            spriteSelectNud.Enabled = false;
-            spriteSelectNud.Location = new System.Drawing.Point(6, 481);
-            spriteSelectNud.Name = "spriteSelectNud";
-            spriteSelectNud.Size = new System.Drawing.Size(213, 31);
-            spriteSelectNud.TabIndex = 4;
-            spriteSelectNud.ValueChanged += spriteSelectNud_ValueChanged;
-            // 
             // SliceBtn
             // 
-            SliceBtn.Location = new System.Drawing.Point(6, 201);
+            SliceBtn.Location = new System.Drawing.Point(6, 263);
             SliceBtn.Name = "SliceBtn";
             SliceBtn.Size = new System.Drawing.Size(213, 34);
             SliceBtn.TabIndex = 1;
@@ -705,7 +743,7 @@
             // 
             // hScrollBar
             // 
-            hScrollBar.Location = new System.Drawing.Point(0, 572);
+            hScrollBar.Location = new System.Drawing.Point(0, 736);
             hScrollBar.Name = "hScrollBar";
             hScrollBar.Size = new System.Drawing.Size(862, 30);
             hScrollBar.TabIndex = 5;
@@ -716,10 +754,134 @@
             // 
             vScrollBar.Location = new System.Drawing.Point(832, 37);
             vScrollBar.Name = "vScrollBar";
-            vScrollBar.Size = new System.Drawing.Size(30, 531);
+            vScrollBar.Size = new System.Drawing.Size(30, 697);
             vScrollBar.TabIndex = 6;
             vScrollBar.Visible = false;
             vScrollBar.ValueChanged += vScrollBar_ValueChanged;
+            // 
+            // process1
+            // 
+            process1.StartInfo.Domain = "";
+            process1.StartInfo.LoadUserProfile = false;
+            process1.StartInfo.Password = null;
+            process1.StartInfo.StandardErrorEncoding = null;
+            process1.StartInfo.StandardInputEncoding = null;
+            process1.StartInfo.StandardOutputEncoding = null;
+            process1.StartInfo.UseCredentialsForNetworkingOnly = false;
+            process1.StartInfo.UserName = "";
+            process1.SynchronizingObject = this;
+            // 
+            // imageCutGB
+            // 
+            imageCutGB.Controls.Add(spriteNameSCTB);
+            imageCutGB.Controls.Add(label5);
+            imageCutGB.Controls.Add(spriteCutButton);
+            imageCutGB.Controls.Add(spriteSelectorNud);
+            imageCutGB.Controls.Add(spriteCutPreviewIB);
+            imageCutGB.Controls.Add(comboBox1);
+            imageCutGB.Controls.Add(cutSpriteBtn);
+            imageCutGB.Location = new System.Drawing.Point(1118, 34);
+            imageCutGB.Name = "imageCutGB";
+            imageCutGB.Size = new System.Drawing.Size(231, 726);
+            imageCutGB.TabIndex = 7;
+            imageCutGB.TabStop = false;
+            imageCutGB.Text = "Sprite Cutter";
+            imageCutGB.Visible = false;
+            // 
+            // spriteNameSCTB
+            // 
+            spriteNameSCTB.Location = new System.Drawing.Point(6, 102);
+            spriteNameSCTB.Name = "spriteNameSCTB";
+            spriteNameSCTB.Size = new System.Drawing.Size(213, 31);
+            spriteNameSCTB.TabIndex = 11;
+            // 
+            // label5
+            // 
+            label5.AutoSize = true;
+            label5.Location = new System.Drawing.Point(6, 74);
+            label5.Name = "label5";
+            label5.Size = new System.Drawing.Size(111, 25);
+            label5.TabIndex = 10;
+            label5.Text = "Sprite name:";
+            // 
+            // spriteCutButton
+            // 
+            spriteCutButton.Enabled = false;
+            spriteCutButton.Location = new System.Drawing.Point(6, 589);
+            spriteCutButton.Name = "spriteCutButton";
+            spriteCutButton.Size = new System.Drawing.Size(213, 34);
+            spriteCutButton.TabIndex = 6;
+            spriteCutButton.Text = "Save";
+            spriteCutButton.UseVisualStyleBackColor = true;
+            // 
+            // spriteSelectorNud
+            // 
+            spriteSelectorNud.Enabled = false;
+            spriteSelectorNud.Location = new System.Drawing.Point(6, 548);
+            spriteSelectorNud.Name = "spriteSelectorNud";
+            spriteSelectorNud.Size = new System.Drawing.Size(213, 31);
+            spriteSelectorNud.TabIndex = 4;
+            spriteSelectorNud.ValueChanged += spriteSelectorNud_ValueChanged;
+            // 
+            // spriteCutPreviewIB
+            // 
+            spriteCutPreviewIB.AutoScaleImageBox = false;
+            spriteCutPreviewIB.HrizontalScrollBar = null;
+            spriteCutPreviewIB.Image = null;
+            spriteCutPreviewIB.Location = new System.Drawing.Point(6, 225);
+            spriteCutPreviewIB.Name = "spriteCutPreviewIB";
+            spriteCutPreviewIB.ScaleFactor = 1;
+            spriteCutPreviewIB.ScaleFactorFloat = 1F;
+            spriteCutPreviewIB.Size = new System.Drawing.Size(213, 317);
+            spriteCutPreviewIB.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            spriteCutPreviewIB.TabIndex = 7;
+            spriteCutPreviewIB.TabStop = false;
+            spriteCutPreviewIB.VerticalScrollBar = null;
+            // 
+            // comboBox1
+            // 
+            comboBox1.FormattingEnabled = true;
+            comboBox1.Items.AddRange(new object[] { "OCS/ECS 16 Pixels", "AGA 32 Pixels", "AGA 64 Pixels" });
+            comboBox1.Location = new System.Drawing.Point(6, 32);
+            comboBox1.Name = "comboBox1";
+            comboBox1.Size = new System.Drawing.Size(213, 33);
+            comboBox1.TabIndex = 5;
+            comboBox1.Text = "Select sprite width";
+            // 
+            // cutSpriteBtn
+            // 
+            cutSpriteBtn.Location = new System.Drawing.Point(6, 179);
+            cutSpriteBtn.Name = "cutSpriteBtn";
+            cutSpriteBtn.Size = new System.Drawing.Size(213, 34);
+            cutSpriteBtn.TabIndex = 1;
+            cutSpriteBtn.Text = "Cut it!";
+            cutSpriteBtn.UseVisualStyleBackColor = true;
+            cutSpriteBtn.Click += cutSpriteBtn_Click;
+            // 
+            // image
+            // 
+            image.AutoScaleImageBox = false;
+            image.HrizontalScrollBar = null;
+            image.Image = null;
+            image.Location = new System.Drawing.Point(0, 34);
+            image.Margin = new System.Windows.Forms.Padding(1, 2, 1, 2);
+            image.Name = "image";
+            image.ScaleFactor = 4;
+            image.ScaleFactorFloat = 1F;
+            image.Size = new System.Drawing.Size(831, 700);
+            image.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            image.TabIndex = 3;
+            image.TabStop = false;
+            image.VerticalScrollBar = null;
+            image.HorizontalScrollBarChanged += image_HorizontalScrollBarChanged;
+            image.VerticalScrollBarChanged += image_VerticalScrollBarChanged;
+            image.LoadCompleted += image_LoadCompleted;
+            image.Paint += image_Paint;
+            image.MouseClick += image_MouseClick;
+            image.MouseDown += image_MouseDown;
+            image.MouseHover += image_MouseHover;
+            image.MouseMove += image_MouseMove;
+            image.MouseUp += image_MouseUp;
             // 
             // MainForm
             // 
@@ -727,7 +889,8 @@
             AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             AutoSize = true;
             AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            ClientSize = new System.Drawing.Size(1100, 643);
+            ClientSize = new System.Drawing.Size(1381, 798);
+            Controls.Add(imageCutGB);
             Controls.Add(vScrollBar);
             Controls.Add(hScrollBar);
             Controls.Add(SlicingPanel);
@@ -748,15 +911,19 @@
             menuStrip1.PerformLayout();
             statusStrip.ResumeLayout(false);
             statusStrip.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)image).EndInit();
             SlicingPanel.ResumeLayout(false);
             SlicingGb.ResumeLayout(false);
             SlicingGb.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)spritePerImageUDN).EndInit();
-            ((System.ComponentModel.ISupportInitialize)sprImageBox).EndInit();
             ((System.ComponentModel.ISupportInitialize)spriteSelectNud).EndInit();
+            ((System.ComponentModel.ISupportInitialize)sprImageBox).EndInit();
             ((System.ComponentModel.ISupportInitialize)numOfRawsNud).EndInit();
             ((System.ComponentModel.ISupportInitialize)ImagesPerRawNud).EndInit();
+            imageCutGB.ResumeLayout(false);
+            imageCutGB.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)spriteSelectorNud).EndInit();
+            ((System.ComponentModel.ISupportInitialize)spriteCutPreviewIB).EndInit();
+            ((System.ComponentModel.ISupportInitialize)image).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -780,7 +947,6 @@
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem cutSpriteToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem saveImageAsSpriteToolStripMenuItem;
-        private Amiga.ImageBox image;
         private System.Windows.Forms.ToolStripMenuItem imageToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem alignWidthToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem addWordToolStripMenuItem;
@@ -842,6 +1008,22 @@
         private System.Windows.Forms.NumericUpDown spritePerImageUDN;
         private System.Windows.Forms.ToolStripMenuItem saveSpriteAsMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator7;
+        private System.Diagnostics.Process process1;
+        private System.Windows.Forms.TextBox spriteNameTxtbox;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem3;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem4;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator8;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator9;
+        private System.Windows.Forms.GroupBox imageCutGB;
+        private System.Windows.Forms.TextBox spriteNameSCTB;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Button spriteCutButton;
+        private System.Windows.Forms.NumericUpDown spriteSelectorNud;
+        private Amiga.ImageBox spriteCutPreviewIB;
+        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.Button cutSpriteBtn;
+        private Amiga.ImageBox image;
     }
 }
 

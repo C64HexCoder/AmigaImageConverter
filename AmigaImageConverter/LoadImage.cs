@@ -1,14 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
+﻿using Amiga;
+using System;
 using System.Drawing;
-using System.Drawing.Imaging;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using Amiga;
+using System.Threading.Tasks;
+using System.Diagnostics.Eventing.Reader;
 
 namespace AmigaImageConverter
 {
@@ -20,6 +15,8 @@ namespace AmigaImageConverter
             InitializeComponent();
             int width = DesktopBounds.Width;
             int height = DesktopBounds.Height;
+
+
         }
 
         public LoadImageDialog(Bitmap bitmap)
@@ -29,6 +26,9 @@ namespace AmigaImageConverter
             widthNumericUpDown.Value = bitmap.Width;
             heightNumericUpDown.Value = bitmap.Height;
             bgColorPictureBox.BackColor = findBackgroundColor(bitmap);
+
+            resizeMethodCBox.SelectedIndex = 0;
+
             if (bgColorPictureBox.BackColor.A == 0)
             {
                 toolStripStatusLabel.Text = "Found Transprent color in Image and is used as Background";
@@ -63,7 +63,8 @@ namespace AmigaImageConverter
                 hScrollBar.Visible = true;
                 hScrollBar.Maximum = ScaledBitmap.Width - imageBox.Width; //(int)((float)imageBox.Width / (float)imageBox.Image.Width * 100);
 
-                DrawImagePart(0);
+                Task.Run(() => DrawImagePart(0));
+
 
             }
 
@@ -118,11 +119,11 @@ namespace AmigaImageConverter
             get { return SystemInformation.VirtualScreen.Height; }
         }
 
-        public int ImageWidth
+        public int RequestedImageWidth
         {
             get { return (int)widthNumericUpDown.Value; }
         }
-        public int ImageHeight
+        public int RequestedImageHeight
         {
             get { return (int)heightNumericUpDown.Value; }
         }
@@ -216,7 +217,7 @@ namespace AmigaImageConverter
 
         private void doItButton_Click(object sender, EventArgs e)
         {
-            if ((ImageWidth * ImageHeight / 8) > 0x2000000)
+            if ((RequestedImageWidth * RequestedImageHeight / 8) > 0x2000000)
             {
                 if (MessageBox.Show("The image is too big to fit into 2M chip memory, are you sure you want to continue?", "Image too big", MessageBoxButtons.OKCancel) == DialogResult.OK)
                     DialogResult = DialogResult.OK;
@@ -229,6 +230,27 @@ namespace AmigaImageConverter
         {
             DrawImagePart(hScrollBar.Value);
             imageBox.Invalidate();
+        }
+
+        private void resizeMethodCBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ComboBox comboBox = (ComboBox)sender;
+
+            if (comboBox.SelectedIndex > 0)
+            {
+                if (comboBox.SelectedIndex == 1)
+                    widthNumericUpDown.Value = 320;
+                else
+                    widthNumericUpDown.Value = 640;
+
+                widthNumericUpDown.Enabled = false;
+                heightNumericUpDown.Enabled = false;
+            }
+            else
+            {
+                widthNumericUpDown.Enabled= true;
+                heightNumericUpDown.Enabled= true;
+            }
         }
     }
 }

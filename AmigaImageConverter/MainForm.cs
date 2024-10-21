@@ -17,6 +17,7 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using static Amiga.Sprite;
 using NAudio;
 using NAudio.Wave;
+using Microsoft.VisualBasic.Devices;
 
 namespace AmigaImageConverter
 {
@@ -34,6 +35,71 @@ namespace AmigaImageConverter
         bool SlicedSpriteSheet = false;
         IFF iffImage = new IFF();
         int defaultimageWidth, defaultimageHeight;
+
+        enum SpriteCutState
+        {
+            Cut,
+            PanSE,
+            PanNW,
+            Pan
+        }
+
+        SpriteCutState spriteCutState = SpriteCutState.Cut;
+        private struct SpriteCutRec
+        {
+            private int _X2, _Y2;
+            public SpriteCutRec()
+            {
+                SpriteRec.X = 0;
+                SpriteRec.Y = 0;
+                _X2 = 0;
+                Y2 = 0;
+
+                Width = 0;
+                Height = 0;
+            }
+
+            public int LineWIdth { get; set; } = 4;
+
+            public int X { get => SpriteRec.X; set => SpriteRec.X = value; }
+            public int Y { get => SpriteRec.Y; set => SpriteRec.Y = value; }
+            public int Width { get => SpriteRec.Width;
+                set
+                {
+                    SpriteRec.Width = value;
+                    X2 = SpriteRec.Width + SpriteRec.X;
+                }
+            }
+            public int Height { get => SpriteRec.Height;
+
+                set 
+                {
+                    SpriteRec.Height = value;
+                    _Y2 = SpriteRec.Height + SpriteRec.Y;
+                }
+            }
+
+            public int X2
+            {
+                get => (SpriteRec.X + SpriteRec.Width);
+                set { SpriteRec.Width = value - SpriteRec.X; }
+            }
+
+            public int Y2
+            {
+                get => (SpriteRec.Y + SpriteRec.Height);
+                set
+                {
+                    SpriteRec.Height = value - SpriteRec.Y;
+                }
+            }
+
+            public bool IsSpriteCut = false;
+            public Rectangle SpriteRec;
+        };
+
+        SpriteCutRec spriteRec;
+
 
         enum BlitWord
         {
@@ -69,10 +135,11 @@ namespace AmigaImageConverter
 
         }
 
-        private void loadImageToolStripMenuItem_Click(object sender, EventArgs e)
+        private async void loadImageToolStripMenuItem_Click(object sender, EventArgs e)
         {
             sprites.Clear();
-            SlicingPanel.Visible=false;
+            spriteRec.IsSpriteCut = false;
+            SlicingPanel.Visible = false;
             SliceBtn.Enabled = true;
 
 
@@ -90,21 +157,26 @@ namespace AmigaImageConverter
                     LoadImageDialog loadImageDlg = new LoadImageDialog(bmp);
                     if (loadImageDlg.ShowDialog() == DialogResult.OK)
                     {
-                        if (loadImageDlg.ImageWidth != bmp.Width || loadImageDlg.ImageHeight != bmp.Height)
+                        // Change image size if user requested to do so in LoadImageDlg
+                        if (loadImageDlg.RequestedImageWidth != bmp.Width || loadImageDlg.RequestedImageHeight != bmp.Height)
                         {
-                            Bitmap NewBitmap = new Bitmap(loadImageDlg.ImageWidth, loadImageDlg.ImageHeight);
+                            Bitmap NewBitmap = new Bitmap(loadImageDlg.RequestedImageWidth, loadImageDlg.RequestedImageHeight);
                             Graphics g = Graphics.FromImage(NewBitmap);
                             g.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.None;
                             g.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.NearestNeighbor;
-                            g.DrawImage(bmp, 0, 0, loadImageDlg.ImageWidth, loadImageDlg.ImageHeight);
+                            g.DrawImage(bmp, 0, 0, loadImageDlg.RequestedImageWidth, loadImageDlg.RequestedImageHeight);
                             g.Dispose();
                             bmp = NewBitmap;
                         }
                     }
                     else return;
 
+                    //KMeansQuant.ProgressBarUpdated += ProgressBarEvent;
 
-                    vr.bitplane.bitmap = KMeansQuant.DecreaseColors(bmp, loadImageDlg.ImageNumOfColors);
+                    //KMeansQuant.toolStripProgressBar = toolStripProgressBar;
+                    menuStrip1.Enabled = false;
+                    vr.bitplane.bitmap = await Task.Run(() => KMeansQuant.ReduceColors(bmp, loadImageDlg.ImageNumOfColors));
+                    menuStrip1.Enabled = true;
 
                 }
                 else  // The image is not true color (24 or 32 bit)
@@ -143,6 +215,7 @@ namespace AmigaImageConverter
 
                 SlicingPanel.Left = image.Right + 2;
                 SlicingPanel.Height = SlicingGb.Height;
+                imageCutGB.Left = image.Right - 2;
                 hScrollBar.Top = image.Bottom;
                 hScrollBar.Left = image.Left;
                 hScrollBar.Width = image.Width;
@@ -197,6 +270,12 @@ namespace AmigaImageConverter
             }
         }
 
+        private void ProgressBarEvent(object sender, KMeansQuant.ProgressBarEventArgs e)
+        {
+            toolStripProgressBar.Minimum = e.Min;
+            toolStripProgressBar.Maximum = e.Max;
+            toolStripProgressBar.Value = e.Position;
+        }
         private void saveImageAsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (saveSourceFileDialog.ShowDialog() == DialogResult.OK)
@@ -488,6 +567,7 @@ namespace AmigaImageConverter
 
             int NumOfSprites = (int)(ImagesPerRawNud.Value * numOfRawsNud.Value * spritePerImageUDN.Value);
 
+            int SpriteNum = 0;
             for (int y = 0; y < numOfRawsNud.Value; y++)
             {
                 for (int x = 0; x < SpritesPerRaw; x++)
@@ -496,7 +576,9 @@ namespace AmigaImageConverter
                     Bitmap SprBmp = new Bitmap(SprireWidth, SpriteHeight);
                     SprBmp.SetResolution(vr.bitplane.bitmap.HorizontalResolution, vr.bitplane.bitmap.VerticalResolution);
                     Sprite sprite = new Sprite();
-                    
+
+                    sprite.Name = spriteNameTxtbox.Text != "" ? spriteNameTxtbox.Text + SpriteNum++.ToString() : "SpriteName";
+
 
                     Graphics gr = Graphics.FromImage(SprBmp);
                     Rectangle sourceRec = new Rectangle(x * SprireWidth, y * SpriteHeight, SprireWidth, SpriteHeight);
@@ -969,6 +1051,7 @@ namespace AmigaImageConverter
 
         private void cutSpriteToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            imageCutGB.Visible = true;
 
         }
 
@@ -979,5 +1062,172 @@ namespace AmigaImageConverter
 
             }
         }
+
+        int CutStartX, CutStartY;
+        private void image_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (spriteCutState == SpriteCutState.Cut)
+            {
+                spriteRec.X = e.X;
+                spriteRec.Y = e.Y;
+                spriteRec.Width = 0;
+                spriteRec.Height = 0;
+            }
+        }
+
+        int OldXPos = 0, OldYPos = 0;
+        Bitmap BackUp;
+        Point PanPos;
+        private void image_MouseMove(object sender, MouseEventArgs e)
+        {
+            Graphics gfx = image.CreateGraphics();
+            spriteRec.LineWIdth = 4;
+            Pen p = new Pen(Color.Black, spriteRec.LineWIdth);
+
+            image.Refresh();
+
+            if (e.Button == MouseButtons.Left)
+            {
+                switch (spriteCutState)
+                {
+                    case SpriteCutState.Cut:
+                        if (e.X > spriteRec.X && e.Y > spriteRec.Y)
+                        {
+                            Rectangle temp = new Rectangle(spriteRec.X, spriteRec.Y, e.X - spriteRec.X, e.Y - spriteRec.Y);
+                            gfx.DrawRectangle(p, temp);
+                        }
+                        else
+                        {
+
+                        }
+                        break;
+
+                    case SpriteCutState.PanNW:
+                        if (e.X < spriteRec.X + spriteRec.Width && e.Y < spriteRec.Y + spriteRec.Height)
+                        {
+                            int NewWidth = spriteRec.Width - (e.X - spriteRec.X);
+                            int NewHeight = spriteRec.Height - (e.Y - spriteRec.Y);
+                            spriteRec.X = e.X;
+                            spriteRec.Y = e.Y;
+                            spriteRec.Width = NewWidth;
+                            spriteRec.Height = NewHeight;
+
+                        }
+                        break;
+
+                    case SpriteCutState.PanSE:
+                        if (e.X > spriteRec.X && e.Y > spriteRec.Y)
+                        {
+                            spriteRec.Width = e.X - spriteRec.X;
+                            spriteRec.Height = e.Y - spriteRec.Y;
+                        }
+                        break;
+
+                    case SpriteCutState.Pan:
+                        int DeltaX = e.X - PanPos.X;
+                        int DeltaY = e.Y - PanPos.Y; 
+                        spriteRec.X += DeltaX;
+                        spriteRec.Y += DeltaY;
+                        PanPos.X = e.X; PanPos.Y = e.Y;
+
+                        break;
+
+                }
+            }
+            else
+            {
+                if (Math.Abs(e.X - spriteRec.X) < 5 && Math.Abs(e.Y - spriteRec.Y) < 5)
+                {
+                    image.Cursor = Cursors.PanNW;
+                    spriteCutState = SpriteCutState.PanNW;
+                }
+                else if (Math.Abs(e.X - (spriteRec.X + spriteRec.Width)) < 5 && Math.Abs(e.Y - (spriteRec.Y + spriteRec.Height)) < 5)
+                {
+                    image.Cursor = Cursors.PanSE;
+                    spriteCutState = SpriteCutState.PanSE;
+                }
+                else if (e.X > spriteRec.X + 5  && e.X < spriteRec.X2-5 && e.Y > spriteRec.Y+5 && e.Y < spriteRec.Y2 -5)
+                {
+                    image.Cursor = Cursors.Hand;
+                    spriteCutState = SpriteCutState.Pan;
+                    PanPos.X = e.X; PanPos.Y = e.Y;
+                }
+                else
+                {
+                    image.Cursor = Cursors.Default;
+                    spriteCutState = SpriteCutState.Cut;
+                }
+            }
+
+
+
+        }
+
+        private void image_MouseUp(object sender, MouseEventArgs e)
+        {
+
+            if (spriteCutState == SpriteCutState.Cut)
+            {
+                spriteRec.Width = e.X - spriteRec.X;
+                spriteRec.Height = e.Y - spriteRec.Y;
+                spriteRec.IsSpriteCut = true;
+            }
+
+            image.Invalidate();
+        }
+
+        private void image_Paint(object sender, PaintEventArgs e)
+        {
+            Graphics g = e.Graphics;
+            Pen p = new(Color.Black, spriteRec.LineWIdth);
+
+            if (spriteRec.IsSpriteCut)
+            {
+                g.DrawRectangle(p, spriteRec.SpriteRec);
+            }
+        }
+
+        private void cutSpriteBtn_Click(object sender, EventArgs e)
+        {
+            Bitmap bitmap = new Bitmap(spriteRec.Width, spriteRec.Height);
+            Graphics gfx = Graphics.FromImage(bitmap);
+            Sprite sprite = new Sprite();
+            sprite.Name = spriteNameSCTB.Text;
+
+            //            gfx.DrawImage (image.Image,spriteRec.X,spriteRec.Y,spriteRec.Width,spriteRec.Height);
+            gfx.DrawImage(image.Image, 0, 0, spriteRec.SpriteRec, GraphicsUnit.Pixel);
+
+            spriteCutPreviewIB.Image = bitmap;
+            sprite.bitmap = bitmap;
+            sprites.Add(sprite);
+            spriteCutButton.Enabled = true;
+
+            if (sprites.Count > 1 && spriteSelectorNud.Enabled == false)
+            {
+                spriteSelectorNud.Enabled = true;
+               
+            }
+
+            spriteSelectorNud.Value = sprites.Count-1;
+
+
+        }
+
+        private void image_MouseHover(object sender, EventArgs e)
+        {
+
+        }
+
+        private void spriteSelectorNud_ValueChanged(object sender, EventArgs e)
+        {
+            NumericUpDown num = (NumericUpDown)sender;
+
+            if (num.Value > sprites.Count - 1)
+                return;
+
+            spriteCutPreviewIB.Image = sprites[(int)num.Value].bitmap;
+        }
+
+      
     }
 }

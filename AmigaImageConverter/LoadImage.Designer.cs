@@ -30,6 +30,7 @@
         {
             components = new System.ComponentModel.Container();
             resizeGroupBox = new System.Windows.Forms.GroupBox();
+            resizeMethodCBox = new System.Windows.Forms.ComboBox();
             heightNumericUpDown = new System.Windows.Forms.NumericUpDown();
             widthNumericUpDown = new System.Windows.Forms.NumericUpDown();
             label2 = new System.Windows.Forms.Label();
@@ -62,6 +63,7 @@
             // 
             // resizeGroupBox
             // 
+            resizeGroupBox.Controls.Add(resizeMethodCBox);
             resizeGroupBox.Controls.Add(heightNumericUpDown);
             resizeGroupBox.Controls.Add(widthNumericUpDown);
             resizeGroupBox.Controls.Add(label2);
@@ -73,9 +75,19 @@
             resizeGroupBox.TabStop = false;
             resizeGroupBox.Text = "Resize";
             // 
+            // resizeMethodCBox
+            // 
+            resizeMethodCBox.FormattingEnabled = true;
+            resizeMethodCBox.Items.AddRange(new object[] { "Manual", "Resize to 320 Pix WIdth", "Resize to 640 Pix Width" });
+            resizeMethodCBox.Location = new System.Drawing.Point(3, 35);
+            resizeMethodCBox.Name = "resizeMethodCBox";
+            resizeMethodCBox.Size = new System.Drawing.Size(258, 33);
+            resizeMethodCBox.TabIndex = 4;
+            resizeMethodCBox.SelectedIndexChanged += resizeMethodCBox_SelectedIndexChanged;
+            // 
             // heightNumericUpDown
             // 
-            heightNumericUpDown.Location = new System.Drawing.Point(146, 78);
+            heightNumericUpDown.Location = new System.Drawing.Point(139, 104);
             heightNumericUpDown.Maximum = new decimal(new int[] { 1000000, 0, 0, 0 });
             heightNumericUpDown.Name = "heightNumericUpDown";
             heightNumericUpDown.Size = new System.Drawing.Size(120, 31);
@@ -84,7 +96,7 @@
             // 
             // widthNumericUpDown
             // 
-            widthNumericUpDown.Location = new System.Drawing.Point(10, 78);
+            widthNumericUpDown.Location = new System.Drawing.Point(3, 104);
             widthNumericUpDown.Maximum = new decimal(new int[] { 1000000, 0, 0, 0 });
             widthNumericUpDown.Name = "widthNumericUpDown";
             widthNumericUpDown.Size = new System.Drawing.Size(120, 31);
@@ -94,7 +106,7 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new System.Drawing.Point(146, 52);
+            label2.Location = new System.Drawing.Point(139, 78);
             label2.Name = "label2";
             label2.Size = new System.Drawing.Size(65, 25);
             label2.TabIndex = 1;
@@ -103,7 +115,7 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new System.Drawing.Point(6, 52);
+            label1.Location = new System.Drawing.Point(-1, 78);
             label1.Name = "label1";
             label1.Size = new System.Drawing.Size(60, 25);
             label1.TabIndex = 0;
@@ -219,14 +231,16 @@
             // imageBox
             // 
             imageBox.AutoScaleImageBox = false;
+            imageBox.HrizontalScrollBar = null;
             imageBox.Image = null;
             imageBox.Location = new System.Drawing.Point(19, 15);
             imageBox.Name = "imageBox";
             imageBox.ScaleFactor = 1;
             imageBox.ScaleFactorFloat = 1F;
-            imageBox.Size = new System.Drawing.Size(699, 497);
+            imageBox.Size = new System.Drawing.Size(686, 497);
             imageBox.TabIndex = 6;
             imageBox.TabStop = false;
+            imageBox.VerticalScrollBar = null;
             imageBox.MouseClick += imageBox_MouseClick;
             // 
             // sidePael
@@ -303,5 +317,6 @@
         private System.Windows.Forms.Panel sidePael;
         private System.Windows.Forms.ToolTip toolTip;
         private System.Windows.Forms.HScrollBar hScrollBar;
+        private System.Windows.Forms.ComboBox resizeMethodCBox;
     }
 }
