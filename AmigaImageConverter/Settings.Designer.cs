@@ -47,7 +47,7 @@
             label1 = new System.Windows.Forms.Label();
             numInARowNud = new System.Windows.Forms.NumericUpDown();
             groupBox1 = new System.Windows.Forms.GroupBox();
-            radioButton2 = new System.Windows.Forms.RadioButton();
+            interleavedRB = new System.Windows.Forms.RadioButton();
             sequentialRB = new System.Windows.Forms.RadioButton();
             groupBox3 = new System.Windows.Forms.GroupBox();
             colorRegistersCombo = new System.Windows.Forms.ComboBox();
@@ -125,7 +125,7 @@
             // 
             previewScalingNud.Location = new System.Drawing.Point(6, 65);
             previewScalingNud.Maximum = new decimal(new int[] { 20, 0, 0, 0 });
-            previewScalingNud.Minimum = new decimal(new int[] { 2, 0, 0, 0 });
+            previewScalingNud.Minimum = new decimal(new int[] { 1, 0, 0, 0 });
             previewScalingNud.Name = "previewScalingNud";
             previewScalingNud.Size = new System.Drawing.Size(180, 31);
             previewScalingNud.TabIndex = 9;
@@ -181,6 +181,7 @@
             alignLongRb.TabIndex = 2;
             alignLongRb.Text = "Long";
             alignLongRb.UseVisualStyleBackColor = true;
+            alignLongRb.CheckedChanged += alignLongRb_CheckedChanged_1;
             // 
             // alignWordRb
             // 
@@ -191,6 +192,7 @@
             alignWordRb.TabIndex = 1;
             alignWordRb.Text = "Word";
             alignWordRb.UseVisualStyleBackColor = true;
+            alignWordRb.CheckedChanged += alignWordRb_CheckedChanged_1;
             // 
             // alignByteRb
             // 
@@ -201,6 +203,7 @@
             alignByteRb.TabIndex = 0;
             alignByteRb.Text = "Byte";
             alignByteRb.UseVisualStyleBackColor = true;
+            alignByteRb.CheckedChanged += alignByteRb_CheckedChanged_1;
             // 
             // groupBox2
             // 
@@ -266,7 +269,7 @@
             // groupBox1
             // 
             groupBox1.AutoSize = true;
-            groupBox1.Controls.Add(radioButton2);
+            groupBox1.Controls.Add(interleavedRB);
             groupBox1.Controls.Add(sequentialRB);
             groupBox1.Location = new System.Drawing.Point(9, 16);
             groupBox1.Name = "groupBox1";
@@ -275,15 +278,16 @@
             groupBox1.TabStop = false;
             groupBox1.Text = "Image Format";
             // 
-            // radioButton2
+            // interleavedRB
             // 
-            radioButton2.AutoSize = true;
-            radioButton2.Location = new System.Drawing.Point(9, 72);
-            radioButton2.Name = "radioButton2";
-            radioButton2.Size = new System.Drawing.Size(124, 29);
-            radioButton2.TabIndex = 1;
-            radioButton2.Text = "Interleaved";
-            radioButton2.UseVisualStyleBackColor = true;
+            interleavedRB.AutoSize = true;
+            interleavedRB.Location = new System.Drawing.Point(9, 72);
+            interleavedRB.Name = "interleavedRB";
+            interleavedRB.Size = new System.Drawing.Size(124, 29);
+            interleavedRB.TabIndex = 1;
+            interleavedRB.Text = "Interleaved";
+            interleavedRB.UseVisualStyleBackColor = true;
+            interleavedRB.CheckedChanged += radioButton2_CheckedChanged;
             // 
             // sequentialRB
             // 
@@ -296,6 +300,7 @@
             sequentialRB.TabStop = true;
             sequentialRB.Text = "Sequential";
             sequentialRB.UseVisualStyleBackColor = true;
+            sequentialRB.CheckedChanged += sequentialRB_CheckedChanged;
             // 
             // groupBox3
             // 
@@ -384,7 +389,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.NumericUpDown numInARowNud;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.RadioButton radioButton2;
+        private System.Windows.Forms.RadioButton interleavedRB;
         public System.Windows.Forms.RadioButton sequentialRB;
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.ComboBox colorRegistersCombo;

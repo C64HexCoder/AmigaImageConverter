@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Amiga;
+using Microsoft.Win32;
 
 namespace AmigaImageConverter
 {
@@ -16,8 +17,11 @@ namespace AmigaImageConverter
         PublicVariables vr = PublicVariables.instance;
         public Bitplane.OutputSize _Aligment;
         public bool valueChanged = false;
+        RegEdit regEdit = null;
         public Settings()
         {
+            regEdit = RegEdit.Instance;
+
             InitializeComponent();
 
             outPutSize = vr.outputSize;
@@ -27,6 +31,48 @@ namespace AmigaImageConverter
 
             Alignment = vr.Alignment;
 
+            bool result = Convert.ToBoolean(regEdit.regKey.GetValue("AutoScaling"));
+            if (result != null)
+            {
+                scaleToMaxCheckBox.Checked = result;
+            }
+
+            var ScalingFactor = regEdit.regKey.GetValue("ScaleFactor", RegistryValueKind.DWord);
+            if (ScalingFactor != null)
+            {
+                previewScalingNud.Value = Convert.ToDecimal(ScalingFactor);
+            }
+
+
+            var Sequencial = regEdit.regKey.GetValue("Sequencial");
+            if (Sequencial != null)
+            {
+                sequentialRB.Checked = Convert.ToBoolean(Sequencial);
+            }
+
+            var Interleaved = regEdit.regKey.GetValue("Interleaved");
+            if (Interleaved != null)
+            {
+                interleavedRB.Checked = Convert.ToBoolean(Interleaved);
+            }
+
+            var align = regEdit.regKey.GetValue("AlignByte");
+            if (Interleaved != null)
+            {
+                alignByteRb.Checked = Convert.ToBoolean(align);
+            }
+
+            align = regEdit.regKey.GetValue("AlignWord");
+            if (Interleaved != null)
+            {
+                alignWordRb.Checked = Convert.ToBoolean(align);
+            }
+
+            align = regEdit.regKey.GetValue("AlignLong");
+            if (Interleaved != null)
+            {
+                alignLongRb.Checked = Convert.ToBoolean(align);
+            }
         }
 
         public enum ScaleType
@@ -181,6 +227,8 @@ namespace AmigaImageConverter
 
         private void previewScalingNud_ValueChanged(object sender, EventArgs e)
         {
+            NumericUpDown numericUpDown = (NumericUpDown)sender;
+            regEdit.regKey.SetValue("ScaleFactor", numericUpDown.Value);
             valueChanged = true;
         }
 
@@ -192,7 +240,37 @@ namespace AmigaImageConverter
 
         private void scaleToMaxCheckBox_CheckedChanged(object sender, EventArgs e)
         {
+            CheckBox scaleToMax = (CheckBox)sender;
             valueChanged = true;
+            regEdit.regKey.SetValue("AutoScaling", scaleToMax.Checked);
+
+        }
+
+        private void sequentialRB_CheckedChanged(object sender, EventArgs e)
+        {
+            regEdit.regKey.SetValue("Sequencial", sequentialRB.Checked);
+        }
+
+        private void radioButton2_CheckedChanged(object sender, EventArgs e)
+        {
+            regEdit.regKey.SetValue("Interleaved", interleavedRB.Checked);
+
+        }
+
+        private void alignByteRb_CheckedChanged_1(object sender, EventArgs e)
+        {
+            regEdit.regKey.SetValue("AlignByte", alignByteRb.Checked);
+
+        }
+
+        private void alignWordRb_CheckedChanged_1(object sender, EventArgs e)
+        {
+            regEdit.regKey.SetValue("AlignWord", alignWordRb.Checked);
+        }
+
+        private void alignLongRb_CheckedChanged_1(object sender, EventArgs e)
+        {
+            regEdit.regKey.SetValue("AlignLong", alignLongRb.Checked);
 
         }
     }
