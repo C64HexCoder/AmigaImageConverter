@@ -19,6 +19,7 @@ using NAudio;
 using NAudio.Wave;
 using Microsoft.VisualBasic.Devices;
 using Microsoft.Win32;
+using System.Runtime.CompilerServices;
 
 namespace AmigaImageConverter
 {
@@ -36,7 +37,7 @@ namespace AmigaImageConverter
         bool SlicedSpriteSheet = false;
         IFF iffImage = new IFF();
         int defaultimageWidth, defaultimageHeight;
-
+        
         RegEdit RegEdit = RegEdit.Instance;
 
 
@@ -60,65 +61,8 @@ namespace AmigaImageConverter
         }
 
         SpriteCutState spriteCutState = SpriteCutState.Cut;
-        private struct SpriteCutRec
-        {
-            private int _X2, _Y2;
-            public SpriteCutRec()
-            {
-                SpriteRec.X = 0;
-                SpriteRec.Y = 0;
-                _X2 = 0;
-                Y2 = 0;
+        PublicVariables.SpriteCutRec spriteRec;
 
-                Width = 0;
-                Height = 0;
-            }
-
-            public bool Enable {  get; set; }
-            public int LineWIdth { get; set; } = 4;
-
-            public int X { get => SpriteRec.X; set => SpriteRec.X = value; }
-            public int Y { get => SpriteRec.Y; set => SpriteRec.Y = value; }
-            public int Width
-            {
-                get => SpriteRec.Width;
-                set
-                {
-                    SpriteRec.Width = value;
-                    X2 = SpriteRec.Width + SpriteRec.X;
-                }
-            }
-            public int Height
-            {
-                get => SpriteRec.Height;
-
-                set
-                {
-                    SpriteRec.Height = value;
-                    _Y2 = SpriteRec.Height + SpriteRec.Y;
-                }
-            }
-
-            public int X2
-            {
-                get => (SpriteRec.X + SpriteRec.Width);
-                set { SpriteRec.Width = value - SpriteRec.X; }
-            }
-
-            public int Y2
-            {
-                get => (SpriteRec.Y + SpriteRec.Height);
-                set
-                {
-                    SpriteRec.Height = value - SpriteRec.Y;
-                }
-            }
-
-            public bool IsSpriteCut = false;
-            public Rectangle SpriteRec;
-        };
-
-        SpriteCutRec spriteRec;
 
 
         enum BlitWord
@@ -191,9 +135,7 @@ namespace AmigaImageConverter
                     }
                     else return;
 
-                    //KMeansQuant.ProgressBarUpdated += ProgressBarEvent;
 
-                    //KMeansQuant.toolStripProgressBar = toolStripProgressBar;
                     menuStrip1.Enabled = false;
                     vr.bitplane.bitmap = await Task.Run(() => KMeansQuant.ReduceColors(bmp, loadImageDlg.ImageNumOfColors));
                     menuStrip1.Enabled = true;
@@ -632,8 +574,8 @@ namespace AmigaImageConverter
                 }
             }
             sprImageBox.Image = sprites[0].bitmap;
-     
-           
+
+
             image.Image = vr.bitplane.bitmap;
 
             if (settings.ScalingType == Settings.ScaleType.ScaleToMax)
@@ -665,18 +607,18 @@ namespace AmigaImageConverter
 
             if (Nud.Enabled == false)
                 return;
-            
-            RectangleSprite ((int)Nud.Value);
+
+            RectangleSprite((int)Nud.Value);
             image.Invalidate();
-            
+
         }
 
-        private void RectangleSprite (int SpriteNum)
+        private void RectangleSprite(int SpriteNum)
         {
             int SprireWidth = (int)(image.Width / ImagesPerRawNud.Value / spritePerImageUDN.Value);
             int SpriteHeight = (int)(image.Height / numOfRawsNud.Value);
             int SpritePerRaw = (int)(ImagesPerRawNud.Value * spritePerImageUDN.Value);
-           
+
             sprImageBox.Image = sprites[SpriteNum].bitmap;
             int SpriteXPos = SpriteNum % SpritePerRaw, SpriteYPos = SpriteNum / SpritePerRaw;
 
@@ -888,7 +830,9 @@ namespace AmigaImageConverter
                 if (vr.bitplane.Width != image.Image.Width || vr.bitplane.Height != image.Image.Height)
                 {
                     image.Image = vr.bitplane.bitmap;
+                    image.SizeMode = PictureBoxSizeMode.AutoSize;
                     image.ScaleImage((float)settings.previewScalingNud.Value);
+           
                 }
             }
         }
@@ -1082,10 +1026,13 @@ namespace AmigaImageConverter
 
         private void saveSpriteAsMenuItem_Click(object sender, EventArgs e)
         {
-            if (saveSourceFileDialog.ShowDialog() == DialogResult.OK)
+         
+            ConvertImageToSprite convertImageToSprite = new ConvertImageToSprite();
+            if (convertImageToSprite.ShowDialog() == DialogResult.OK)
             {
 
             }
+   
         }
 
         int CutStartX, CutStartY;
@@ -1162,9 +1109,16 @@ namespace AmigaImageConverter
                     case SpriteCutState.Pan:
                         int DeltaX = e.X - PanPos.X;
                         int DeltaY = e.Y - PanPos.Y;
-                        spriteRec.X += DeltaX;
-                        spriteRec.Y += DeltaY;
-                        PanPos.X = e.X; PanPos.Y = e.Y;
+                        if (spriteRec.X + DeltaX >= 0 && spriteRec.X2 + DeltaX <= image.Width-1)
+                        {
+                            spriteRec.X += DeltaX;                          
+                            PanPos.X = e.X; 
+                        }
+                        if (spriteRec.Y + DeltaY >= 0 && spriteRec.Y2 + DeltaY <= image.Height-1)
+                        {
+                            spriteRec.Y += DeltaY;
+                            PanPos.Y = e.Y;
+                        }
                         break;
 
                 }
@@ -1206,8 +1160,8 @@ namespace AmigaImageConverter
             }
             widthNumUD.Maximum = image.Width;
             heightNumUD.Maximum = image.Height;
-            widthNumUD.Value = spriteRec.Width;
-            heightNumUD.Value = spriteRec.Height;
+            widthNumUD.Value = spriteRec.Width / image.ScaleFactor;
+            heightNumUD.Value = spriteRec.Height / image.ScaleFactor;
 
         }
 
@@ -1231,7 +1185,7 @@ namespace AmigaImageConverter
 
             if (formState == FormState.SpriteSplit || formState == FormState.SpriteCut)
             {
-                if (spriteRec.Enable) 
+                if (spriteRec.Enable)
                     g.DrawRectangle(p, spriteRec.SpriteRec);
             }
         }
@@ -1277,17 +1231,11 @@ namespace AmigaImageConverter
                 num.Value--;
         }
 
-        private void widthNumUD_ValueChanged(object sender, EventArgs e)
-        {
-
-
-        }
-
         private void widthNumUD_Leave(object sender, EventArgs e)
         {
 
             NumericUpDown newWidth = (NumericUpDown)sender;
-            spriteRec.Width = (int)newWidth.Value;
+            spriteRec.Width = (int)newWidth.Value * image.ScaleFactor;
             image.Invalidate();
         }
 
@@ -1300,13 +1248,13 @@ namespace AmigaImageConverter
                 spriteRec.Enable = false;
                 image.Refresh();
 
-                sprites.Clear();    
+                sprites.Clear();
             }
         }
 
         private void SlicingGb_VisibleChanged(object sender, EventArgs e)
         {
-       
+
         }
 
         private void SlicingPanel_VisibleChanged(object sender, EventArgs e)
@@ -1317,11 +1265,20 @@ namespace AmigaImageConverter
             {
                 sprites.Clear();
                 spriteSelectNud.Enabled = false;
-             
+
                 spriteRec.Enable = false;
                 SliceBtn.Enabled = true;
 
             }
         }
+
+        private void heightNumUD_Leave(object sender, EventArgs e)
+        {
+            NumericUpDown newHeight = (NumericUpDown) sender;
+
+            spriteRec.Height = (int)newHeight.Value * image.ScaleFactor;
+        }
+
+       
     }
 }

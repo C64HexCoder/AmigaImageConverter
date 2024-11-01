@@ -33,6 +33,13 @@
     <ApplicationIcon>amiga.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Remove="ImageToSprite.cs" />
+    <Compile Remove="ImageToSprite.Designer.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Remove="ImageToSprite.resx" />
+  </ItemGroup>
+  <ItemGroup>
     <Reference Include="Hexadecimal">
       <HintPath>..\..\Hexadecimal\Hexadecimal\bin\Release\Hexadecimal.dll</HintPath>
     </Reference>

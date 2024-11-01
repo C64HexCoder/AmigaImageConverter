@@ -235,6 +235,7 @@
             imageBox.Image = null;
             imageBox.Location = new System.Drawing.Point(19, 15);
             imageBox.Name = "imageBox";
+            imageBox.OriginalImage = null;
             imageBox.ScaleFactor = 1;
             imageBox.ScaleFactorFloat = 1F;
             imageBox.Size = new System.Drawing.Size(686, 497);

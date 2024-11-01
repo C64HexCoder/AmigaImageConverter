@@ -195,7 +195,7 @@
             // 
             saveSpriteAsMenuItem.Name = "saveSpriteAsMenuItem";
             saveSpriteAsMenuItem.Size = new System.Drawing.Size(292, 34);
-            saveSpriteAsMenuItem.Text = "Save Sprite As";
+            saveSpriteAsMenuItem.Text = "Save As Sprite";
             saveSpriteAsMenuItem.Click += saveSpriteAsMenuItem_Click;
             // 
             // toolStripSeparator7
@@ -688,7 +688,9 @@
             sprImageBox.HrizontalScrollBar = null;
             sprImageBox.Image = null;
             sprImageBox.Location = new System.Drawing.Point(6, 303);
+            sprImageBox.MouseWheelZoom = false;
             sprImageBox.Name = "sprImageBox";
+            sprImageBox.OriginalImage = null;
             sprImageBox.ScaleFactor = 1;
             sprImageBox.ScaleFactorFloat = 1F;
             sprImageBox.Size = new System.Drawing.Size(213, 317);
@@ -839,6 +841,7 @@
             heightNumUD.Name = "heightNumUD";
             heightNumUD.Size = new System.Drawing.Size(77, 31);
             heightNumUD.TabIndex = 1;
+            heightNumUD.Leave += heightNumUD_Leave;
             // 
             // widthNumUD
             // 
@@ -846,7 +849,6 @@
             widthNumUD.Name = "widthNumUD";
             widthNumUD.Size = new System.Drawing.Size(80, 31);
             widthNumUD.TabIndex = 0;
-            widthNumUD.ValueChanged += widthNumUD_ValueChanged;
             widthNumUD.Leave += widthNumUD_Leave;
             // 
             // spriteNameSCTB
@@ -891,7 +893,9 @@
             spriteCutPreviewIB.HrizontalScrollBar = null;
             spriteCutPreviewIB.Image = null;
             spriteCutPreviewIB.Location = new System.Drawing.Point(6, 318);
+            spriteCutPreviewIB.MouseWheelZoom = false;
             spriteCutPreviewIB.Name = "spriteCutPreviewIB";
+            spriteCutPreviewIB.OriginalImage = null;
             spriteCutPreviewIB.ScaleFactor = 1;
             spriteCutPreviewIB.ScaleFactorFloat = 1F;
             spriteCutPreviewIB.Size = new System.Drawing.Size(213, 305);
@@ -927,7 +931,9 @@
             image.Image = null;
             image.Location = new System.Drawing.Point(0, 34);
             image.Margin = new System.Windows.Forms.Padding(1, 2, 1, 2);
+            image.MouseWheelZoom = true;
             image.Name = "image";
+            image.OriginalImage = null;
             image.ScaleFactor = 4;
             image.ScaleFactorFloat = 1F;
             image.Size = new System.Drawing.Size(831, 700);
