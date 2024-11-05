@@ -398,3 +398,5 @@ FodyWeavers.xsd
 *.sln.iml
 AmigaImageConverter/AmigaImageConverter.csproj.user
 .vs/AmigaImageConverter/v17/.suo
+/.vs/AmigaImageConverter/v17/.suo
+/.vs/AmigaImageConverter/v17/.suo
