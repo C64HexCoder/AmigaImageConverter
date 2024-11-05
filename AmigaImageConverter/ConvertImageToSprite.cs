@@ -31,8 +31,8 @@ namespace AmigaImageConverter
             image.Image = pv.bitplane.bitmap;
             image.AutoScale();
             PublicVariables.SpriteCutRec.ScaleFactor = image.ScaleFactor;
-            widthNumericUpDown.Value = image.Width;
-            heightNumericUpDown.Value = image.Height;
+            widthNumericUpDown.Value = pv.bitplane.Width;
+            heightNumericUpDown.Value = pv.bitplane.Height;
         }
 
         private void image_Paint(object sender, PaintEventArgs e)
@@ -86,6 +86,8 @@ namespace AmigaImageConverter
                     }
                 }
             }
+
+            MessageBox.Show($"Saved {sprites.Count} Sprites successfully");
 
         }
 

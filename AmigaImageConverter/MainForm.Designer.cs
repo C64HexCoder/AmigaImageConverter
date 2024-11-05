@@ -128,6 +128,8 @@
             comboBox1 = new System.Windows.Forms.ComboBox();
             cutSpriteBtn = new System.Windows.Forms.Button();
             image = new Amiga.ImageBox();
+            toolsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            calculateBlitterLFByteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             menuStrip1.SuspendLayout();
             statusStrip.SuspendLayout();
             SlicingPanel.SuspendLayout();
@@ -150,7 +152,7 @@
             // menuStrip1
             // 
             menuStrip1.ImageScalingSize = new System.Drawing.Size(32, 32);
-            menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] { fileToolStripMenuItem, imageToolStripMenuItem, toolStripMenuItem1, colorsToolStripMenuItem, audioToolStripMenuItem, settingsToolStripMenuItem, booksToolStripMenuItem, aboutToolStripMenuItem });
+            menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] { fileToolStripMenuItem, imageToolStripMenuItem, toolStripMenuItem1, colorsToolStripMenuItem, audioToolStripMenuItem, settingsToolStripMenuItem, booksToolStripMenuItem, toolsToolStripMenuItem, aboutToolStripMenuItem });
             menuStrip1.Location = new System.Drawing.Point(0, 0);
             menuStrip1.Name = "menuStrip1";
             menuStrip1.Padding = new System.Windows.Forms.Padding(4, 2, 0, 2);
@@ -475,14 +477,14 @@
             // pallateToolStripMenuItem
             // 
             pallateToolStripMenuItem.Name = "pallateToolStripMenuItem";
-            pallateToolStripMenuItem.Size = new System.Drawing.Size(260, 34);
+            pallateToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
             pallateToolStripMenuItem.Text = "Pallate";
             pallateToolStripMenuItem.Click += pallateToolStripMenuItem_Click;
             // 
             // selectBackgroundToolStripMenuItem
             // 
             selectBackgroundToolStripMenuItem.Name = "selectBackgroundToolStripMenuItem";
-            selectBackgroundToolStripMenuItem.Size = new System.Drawing.Size(260, 34);
+            selectBackgroundToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
             selectBackgroundToolStripMenuItem.Text = "Select Background";
             selectBackgroundToolStripMenuItem.Click += selectBackgroundToolStripMenuItem_Click;
             // 
@@ -950,6 +952,19 @@
             image.MouseMove += image_MouseMove;
             image.MouseUp += image_MouseUp;
             // 
+            // toolsToolStripMenuItem
+            // 
+            toolsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] { calculateBlitterLFByteToolStripMenuItem });
+            toolsToolStripMenuItem.Name = "toolsToolStripMenuItem";
+            toolsToolStripMenuItem.Size = new System.Drawing.Size(69, 29);
+            toolsToolStripMenuItem.Text = "Tools";
+            // 
+            // calculateBlitterLFByteToolStripMenuItem
+            // 
+            calculateBlitterLFByteToolStripMenuItem.Name = "calculateBlitterLFByteToolStripMenuItem";
+            calculateBlitterLFByteToolStripMenuItem.Size = new System.Drawing.Size(295, 34);
+            calculateBlitterLFByteToolStripMenuItem.Text = "Calculate Blitter LF Byte";
+            // 
             // MainForm
             // 
             AutoScaleDimensions = new System.Drawing.SizeF(10F, 25F);
@@ -1100,6 +1115,8 @@
         private System.Windows.Forms.NumericUpDown widthNumUD;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.NumericUpDown spritePerImageCutNud;
+        private System.Windows.Forms.ToolStripMenuItem toolsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem calculateBlitterLFByteToolStripMenuItem;
     }
 }
 
