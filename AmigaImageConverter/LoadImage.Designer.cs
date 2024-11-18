@@ -93,6 +93,7 @@
             heightNumericUpDown.Size = new System.Drawing.Size(120, 31);
             heightNumericUpDown.TabIndex = 3;
             heightNumericUpDown.ValueChanged += heightNumericUpDown_ValueChanged;
+            heightNumericUpDown.Leave += heightNumericUpDown_Leave;
             // 
             // widthNumericUpDown
             // 
@@ -102,6 +103,7 @@
             widthNumericUpDown.Size = new System.Drawing.Size(120, 31);
             widthNumericUpDown.TabIndex = 2;
             widthNumericUpDown.ValueChanged += widthNumericUpDown_ValueChanged;
+            widthNumericUpDown.Leave += widthNumericUpDown_Leave;
             // 
             // label2
             // 
@@ -234,6 +236,7 @@
             imageBox.HrizontalScrollBar = null;
             imageBox.Image = null;
             imageBox.Location = new System.Drawing.Point(19, 15);
+            imageBox.MouseWheelZoom = false;
             imageBox.Name = "imageBox";
             imageBox.OriginalImage = null;
             imageBox.ScaleFactor = 1;

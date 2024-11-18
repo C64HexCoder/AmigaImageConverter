@@ -94,7 +94,7 @@ namespace AmigaImageConverter
         private void spriteNum_ValueChanged(object sender, EventArgs e)
         {
             NumericUpDown numericUpDown = (NumericUpDown)sender;
-            //if (sprites.Count > 0)
+            if (sprites.Count > 0)
             {
                 spritePreviewIB.Image = sprites[(int)numericUpDown.Value].bitmap;
                 spritePreviewIB.Left = (sidePael.Width - spritePreviewIB.Width) / 2;
@@ -170,7 +170,9 @@ namespace AmigaImageConverter
                 spritePreviewIB.Left = (sidePael.Width - spritePreviewIB.Width) / 2;
             }
 
-            spriteNum.Maximum = sprites.Count - 1;
+            if (sprites.Count > 0)
+                spriteNum.Maximum = sprites.Count - 1;
+
             image.Refresh();
         }
 
@@ -180,6 +182,21 @@ namespace AmigaImageConverter
             int i = 0;
             foreach (var sprite in sprites)
                 sprite.Name = textBox.Text + i++;
+        }
+
+        private void resizeBtn_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void widthNumericUpDown_ValueChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void widthNumericUpDown_Leave(object sender, EventArgs e)
+        {
+
         }
     }
 }

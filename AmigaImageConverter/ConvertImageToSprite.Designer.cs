@@ -137,6 +137,7 @@
             resizeBtn.TabIndex = 4;
             resizeBtn.Text = "Resize";
             resizeBtn.UseVisualStyleBackColor = true;
+            resizeBtn.Click += resizeBtn_Click;
             // 
             // label1
             // 
@@ -163,6 +164,8 @@
             widthNumericUpDown.Name = "widthNumericUpDown";
             widthNumericUpDown.Size = new System.Drawing.Size(102, 31);
             widthNumericUpDown.TabIndex = 2;
+            widthNumericUpDown.ValueChanged += widthNumericUpDown_ValueChanged;
+            widthNumericUpDown.Leave += widthNumericUpDown_Leave;
             // 
             // heightNumericUpDown
             // 

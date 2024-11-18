@@ -182,21 +182,12 @@ namespace AmigaImageConverter
 
         private void widthNumericUpDown_ValueChanged(object sender, EventArgs e)
         {
-            if (bmp != null)
-            {
-                float HeightToWidth = (float)bmp.Height / (float)bmp.Width;
-                heightNumericUpDown.Value = (int)Math.Round(widthNumericUpDown.Value * (decimal)HeightToWidth);
-                heightNumericUpDown.Refresh();
-            }
+
         }
 
         private void heightNumericUpDown_ValueChanged(object sender, EventArgs e)
         {
-            if (bmp != null)
-            {
-                float WidthToHeight = (float)bmp.Width / (float)bmp.Height;
-                widthNumericUpDown.Value = (int)Math.Round(heightNumericUpDown.Value * (decimal)WidthToHeight);
-            }
+          
         }
 
         private void imageBox_MouseClick(object sender, MouseEventArgs e)
@@ -248,8 +239,27 @@ namespace AmigaImageConverter
             }
             else
             {
-                widthNumericUpDown.Enabled= true;
-                heightNumericUpDown.Enabled= true;
+                widthNumericUpDown.Enabled = true;
+                heightNumericUpDown.Enabled = true;
+            }
+        }
+
+        private void widthNumericUpDown_Leave(object sender, EventArgs e)
+        {
+            if (bmp != null)
+            {
+                float HeightToWidth = (float)bmp.Height / (float)bmp.Width;
+                heightNumericUpDown.Value = (int)Math.Round(widthNumericUpDown.Value * (decimal)HeightToWidth);
+                heightNumericUpDown.Refresh();
+            }
+        }
+
+        private void heightNumericUpDown_Leave(object sender, EventArgs e)
+        {
+            if (bmp != null)
+            {
+                float WidthToHeight = (float)bmp.Width / (float)bmp.Height;
+                widthNumericUpDown.Value = (int)Math.Round(heightNumericUpDown.Value * (decimal)WidthToHeight);
             }
         }
     }
