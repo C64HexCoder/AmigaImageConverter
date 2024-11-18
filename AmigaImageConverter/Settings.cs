@@ -15,7 +15,7 @@ namespace AmigaImageConverter
     public partial class Settings : Form
     {
         PublicVariables vr = PublicVariables.instance;
-        public Bitplane.OutputSize _Aligment;
+        public Bitplane.DataType _Aligment;
         public bool valueChanged = false;
         RegEdit regEdit = null;
         public Settings()
@@ -116,28 +116,28 @@ namespace AmigaImageConverter
             }
         }
 
-        public Bitplane.OutputSize outPutSize
+        public Bitplane.DataType outPutSize
         {
             get
             {
                 if (byteRbox.Checked)
-                    return Bitplane.OutputSize.Byte;
+                    return Bitplane.DataType.Byte;
                 else if (wordRbox.Checked)
-                    return Bitplane.OutputSize.Word;
+                    return Bitplane.DataType.Word;
                 else
-                    return Bitplane.OutputSize.Long;
+                    return Bitplane.DataType.Long;
             }
             set
             {
                 switch (value)
                 {
-                    case Bitplane.OutputSize.Byte:
+                    case Bitplane.DataType.Byte:
                         byteRbox.Checked = true;
                         break;
-                    case Bitplane.OutputSize.Word:
+                    case Bitplane.DataType.Word:
                         wordRbox.Checked = true;
                         break;
-                    case Bitplane.OutputSize.Long:
+                    case Bitplane.DataType.Long:
                         longRbox.Checked = true;
                         break;
 
@@ -145,20 +145,20 @@ namespace AmigaImageConverter
             }
         }
 
-        public Bitplane.OutputSize Alignment
+        public Bitplane.DataType Alignment
         {
             get { return vr.Alignment; }
             set
             {
                 switch (value)
                 {
-                    case Bitplane.OutputSize.Byte:
+                    case Bitplane.DataType.Byte:
                         alignByteRb.Checked = true;
                         break;
-                    case Bitplane.OutputSize.Word:
+                    case Bitplane.DataType.Word:
                         alignWordRb.Checked = true;
                         break;
-                    case Bitplane.OutputSize.Long:
+                    case Bitplane.DataType.Long:
                         alignLongRb.Checked = true;
                         break;
                 }
@@ -172,17 +172,17 @@ namespace AmigaImageConverter
 
         private void byteRbox_CheckedChanged(object sender, EventArgs e)
         {
-            vr.outputSize = Bitplane.OutputSize.Byte;
+            vr.outputSize = Bitplane.DataType.Byte;
         }
 
         private void wordRbox_CheckedChanged(object sender, EventArgs e)
         {
-            vr.outputSize = Bitplane.OutputSize.Word;
+            vr.outputSize = Bitplane.DataType.Word;
         }
 
         private void longRbox_CheckedChanged(object sender, EventArgs e)
         {
-            vr.outputSize = Bitplane.OutputSize.Long;
+            vr.outputSize = Bitplane.DataType.Long;
         }
 
         private void numInARowNud_ValueChanged(object sender, EventArgs e)
@@ -212,17 +212,17 @@ namespace AmigaImageConverter
 
         private void alignByteRb_CheckedChanged(object sender, EventArgs e)
         {
-            vr.Alignment = Bitplane.OutputSize.Byte;
+            vr.Alignment = Bitplane.DataType.Byte;
         }
 
         private void alignWordRb_CheckedChanged(object sender, EventArgs e)
         {
-            vr.Alignment = Bitplane.OutputSize.Word;
+            vr.Alignment = Bitplane.DataType.Word;
         }
 
         private void alignLongRb_CheckedChanged(object sender, EventArgs e)
         {
-            vr.Alignment = Bitplane.OutputSize.Long;
+            vr.Alignment = Bitplane.DataType.Long;
         }
 
         private void previewScalingNud_ValueChanged(object sender, EventArgs e)

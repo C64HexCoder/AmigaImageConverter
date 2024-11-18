@@ -12,8 +12,8 @@ namespace AmigaImageConverter
     {
         public static PublicVariables _instance;
 
-        public Bitplane.OutputSize outputSize = Bitplane.OutputSize.Word;
-        public Bitplane.OutputSize Alignment = Bitplane.OutputSize.Word;
+        public Bitplane.DataType outputSize = Bitplane.DataType.Word;
+        public Bitplane.DataType Alignment = Bitplane.DataType.Word;
 
         public int NumInARow = 8;
         public ushort BaseColor = 0x180;

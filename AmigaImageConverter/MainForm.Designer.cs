@@ -42,6 +42,8 @@
             iLBMToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             aCBMToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            loadAmigaPaletterMI = new System.Windows.Forms.ToolStripMenuItem();
+            toolStripSeparator10 = new System.Windows.Forms.ToolStripSeparator();
             toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             loadWAVAudiotoolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             toolStripSeparator6 = new System.Windows.Forms.ToolStripSeparator();
@@ -86,6 +88,8 @@
             settingsMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             booksToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             amigaHardwareReferenceManualToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            toolsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            calculateBlitterLFByteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             aboutMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             openImageFileDialog = new System.Windows.Forms.OpenFileDialog();
@@ -128,8 +132,6 @@
             comboBox1 = new System.Windows.Forms.ComboBox();
             cutSpriteBtn = new System.Windows.Forms.Button();
             image = new Amiga.ImageBox();
-            toolsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            calculateBlitterLFByteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             menuStrip1.SuspendLayout();
             statusStrip.SuspendLayout();
             SlicingPanel.SuspendLayout();
@@ -162,7 +164,7 @@
             // 
             // fileToolStripMenuItem
             // 
-            fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] { loadImageToolStripMenuItem, saveImageToolStripMenuItem, saveImageAsToolStripMenuItem, toolStripSeparator1, saveSpriteAsMenuItem, toolStripSeparator7, LoadIFFToolStripMenuItem, saveIFFToolStripMenuItem, toolStripSeparator2, toolStripMenuItem2, loadWAVAudiotoolStripMenuItem, toolStripSeparator6, loadAmigaFonttoolStripMenuItem, toolStripSeparator5, SaveLinkFileToolStripMenuItem, toolStripSeparator3, saveMaskToolStripMenuItem, savePallateToolStripMenuItem, saveImageAsSpriteToolStripMenuItem });
+            fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] { loadImageToolStripMenuItem, saveImageToolStripMenuItem, saveImageAsToolStripMenuItem, toolStripSeparator1, saveSpriteAsMenuItem, toolStripSeparator7, LoadIFFToolStripMenuItem, saveIFFToolStripMenuItem, toolStripSeparator2, loadAmigaPaletterMI, toolStripSeparator10, toolStripMenuItem2, loadWAVAudiotoolStripMenuItem, toolStripSeparator6, loadAmigaFonttoolStripMenuItem, toolStripSeparator5, SaveLinkFileToolStripMenuItem, toolStripSeparator3, saveMaskToolStripMenuItem, savePallateToolStripMenuItem, saveImageAsSpriteToolStripMenuItem });
             fileToolStripMenuItem.Name = "fileToolStripMenuItem";
             fileToolStripMenuItem.Size = new System.Drawing.Size(54, 29);
             fileToolStripMenuItem.Text = "File";
@@ -170,45 +172,45 @@
             // loadImageToolStripMenuItem
             // 
             loadImageToolStripMenuItem.Name = "loadImageToolStripMenuItem";
-            loadImageToolStripMenuItem.Size = new System.Drawing.Size(292, 34);
+            loadImageToolStripMenuItem.Size = new System.Drawing.Size(311, 34);
             loadImageToolStripMenuItem.Text = "Load Image";
             loadImageToolStripMenuItem.Click += loadImageToolStripMenuItem_Click;
             // 
             // saveImageToolStripMenuItem
             // 
             saveImageToolStripMenuItem.Name = "saveImageToolStripMenuItem";
-            saveImageToolStripMenuItem.Size = new System.Drawing.Size(292, 34);
+            saveImageToolStripMenuItem.Size = new System.Drawing.Size(311, 34);
             saveImageToolStripMenuItem.Text = "Save Image";
             saveImageToolStripMenuItem.Click += saveImageToolStripMenuItem_Click;
             // 
             // saveImageAsToolStripMenuItem
             // 
             saveImageAsToolStripMenuItem.Name = "saveImageAsToolStripMenuItem";
-            saveImageAsToolStripMenuItem.Size = new System.Drawing.Size(292, 34);
+            saveImageAsToolStripMenuItem.Size = new System.Drawing.Size(311, 34);
             saveImageAsToolStripMenuItem.Text = "Save Image As";
             saveImageAsToolStripMenuItem.Click += saveImageAsToolStripMenuItem_Click;
             // 
             // toolStripSeparator1
             // 
             toolStripSeparator1.Name = "toolStripSeparator1";
-            toolStripSeparator1.Size = new System.Drawing.Size(289, 6);
+            toolStripSeparator1.Size = new System.Drawing.Size(308, 6);
             // 
             // saveSpriteAsMenuItem
             // 
             saveSpriteAsMenuItem.Name = "saveSpriteAsMenuItem";
-            saveSpriteAsMenuItem.Size = new System.Drawing.Size(292, 34);
+            saveSpriteAsMenuItem.Size = new System.Drawing.Size(311, 34);
             saveSpriteAsMenuItem.Text = "Save As Sprite";
             saveSpriteAsMenuItem.Click += saveSpriteAsMenuItem_Click;
             // 
             // toolStripSeparator7
             // 
             toolStripSeparator7.Name = "toolStripSeparator7";
-            toolStripSeparator7.Size = new System.Drawing.Size(289, 6);
+            toolStripSeparator7.Size = new System.Drawing.Size(308, 6);
             // 
             // LoadIFFToolStripMenuItem
             // 
             LoadIFFToolStripMenuItem.Name = "LoadIFFToolStripMenuItem";
-            LoadIFFToolStripMenuItem.Size = new System.Drawing.Size(292, 34);
+            LoadIFFToolStripMenuItem.Size = new System.Drawing.Size(311, 34);
             LoadIFFToolStripMenuItem.Text = "Load IFF";
             LoadIFFToolStripMenuItem.Click += LoadIFFToolStripMenuItem_Click;
             // 
@@ -216,7 +218,7 @@
             // 
             saveIFFToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] { iLBMToolStripMenuItem, aCBMToolStripMenuItem });
             saveIFFToolStripMenuItem.Name = "saveIFFToolStripMenuItem";
-            saveIFFToolStripMenuItem.Size = new System.Drawing.Size(292, 34);
+            saveIFFToolStripMenuItem.Size = new System.Drawing.Size(311, 34);
             saveIFFToolStripMenuItem.Text = "Save IFF";
             // 
             // iLBMToolStripMenuItem
@@ -238,67 +240,79 @@
             // toolStripSeparator2
             // 
             toolStripSeparator2.Name = "toolStripSeparator2";
-            toolStripSeparator2.Size = new System.Drawing.Size(289, 6);
+            toolStripSeparator2.Size = new System.Drawing.Size(308, 6);
+            // 
+            // loadAmigaPaletterMI
+            // 
+            loadAmigaPaletterMI.Name = "loadAmigaPaletterMI";
+            loadAmigaPaletterMI.Size = new System.Drawing.Size(311, 34);
+            loadAmigaPaletterMI.Text = "Load Amiga Paletter (IFF)";
+            loadAmigaPaletterMI.Click += loadAmigaPaletterMI_Click;
+            // 
+            // toolStripSeparator10
+            // 
+            toolStripSeparator10.Name = "toolStripSeparator10";
+            toolStripSeparator10.Size = new System.Drawing.Size(308, 6);
             // 
             // toolStripMenuItem2
             // 
             toolStripMenuItem2.Name = "toolStripMenuItem2";
-            toolStripMenuItem2.Size = new System.Drawing.Size(292, 34);
+            toolStripMenuItem2.Size = new System.Drawing.Size(311, 34);
             toolStripMenuItem2.Text = "Load Audio IFF";
             // 
             // loadWAVAudiotoolStripMenuItem
             // 
             loadWAVAudiotoolStripMenuItem.Name = "loadWAVAudiotoolStripMenuItem";
-            loadWAVAudiotoolStripMenuItem.Size = new System.Drawing.Size(292, 34);
+            loadWAVAudiotoolStripMenuItem.Size = new System.Drawing.Size(311, 34);
             loadWAVAudiotoolStripMenuItem.Text = "Load WAV Audio";
             loadWAVAudiotoolStripMenuItem.Click += loadWAVAudiotoolStripMenuItem_Click;
             // 
             // toolStripSeparator6
             // 
             toolStripSeparator6.Name = "toolStripSeparator6";
-            toolStripSeparator6.Size = new System.Drawing.Size(289, 6);
+            toolStripSeparator6.Size = new System.Drawing.Size(308, 6);
             // 
             // loadAmigaFonttoolStripMenuItem
             // 
             loadAmigaFonttoolStripMenuItem.Name = "loadAmigaFonttoolStripMenuItem";
-            loadAmigaFonttoolStripMenuItem.Size = new System.Drawing.Size(292, 34);
+            loadAmigaFonttoolStripMenuItem.Size = new System.Drawing.Size(311, 34);
             loadAmigaFonttoolStripMenuItem.Text = "Load Amiga Font";
             loadAmigaFonttoolStripMenuItem.Click += loadAmigaFonttoolStripMenuItem_Click;
             // 
             // toolStripSeparator5
             // 
             toolStripSeparator5.Name = "toolStripSeparator5";
-            toolStripSeparator5.Size = new System.Drawing.Size(289, 6);
+            toolStripSeparator5.Size = new System.Drawing.Size(308, 6);
             // 
             // SaveLinkFileToolStripMenuItem
             // 
             SaveLinkFileToolStripMenuItem.Name = "SaveLinkFileToolStripMenuItem";
-            SaveLinkFileToolStripMenuItem.Size = new System.Drawing.Size(292, 34);
+            SaveLinkFileToolStripMenuItem.Size = new System.Drawing.Size(311, 34);
             SaveLinkFileToolStripMenuItem.Text = "Save Linkable File (obj)";
             SaveLinkFileToolStripMenuItem.Click += SaveLinkFileToolStripMenuItem_Click;
             // 
             // toolStripSeparator3
             // 
             toolStripSeparator3.Name = "toolStripSeparator3";
-            toolStripSeparator3.Size = new System.Drawing.Size(289, 6);
+            toolStripSeparator3.Size = new System.Drawing.Size(308, 6);
             // 
             // saveMaskToolStripMenuItem
             // 
             saveMaskToolStripMenuItem.Name = "saveMaskToolStripMenuItem";
-            saveMaskToolStripMenuItem.Size = new System.Drawing.Size(292, 34);
+            saveMaskToolStripMenuItem.Size = new System.Drawing.Size(311, 34);
             saveMaskToolStripMenuItem.Text = "Save Mask";
             // 
             // savePallateToolStripMenuItem
             // 
             savePallateToolStripMenuItem.Name = "savePallateToolStripMenuItem";
-            savePallateToolStripMenuItem.Size = new System.Drawing.Size(292, 34);
+            savePallateToolStripMenuItem.Size = new System.Drawing.Size(311, 34);
             savePallateToolStripMenuItem.Text = "Save Pallate";
             savePallateToolStripMenuItem.Click += savePallateToolStripMenuItem_Click;
             // 
             // saveImageAsSpriteToolStripMenuItem
             // 
             saveImageAsSpriteToolStripMenuItem.Name = "saveImageAsSpriteToolStripMenuItem";
-            saveImageAsSpriteToolStripMenuItem.Size = new System.Drawing.Size(292, 34);
+            saveImageAsSpriteToolStripMenuItem.Size = new System.Drawing.Size(311, 34);
             saveImageAsSpriteToolStripMenuItem.Text = "Save Image As Sprite";
             saveImageAsSpriteToolStripMenuItem.Click += saveImageAsSpriteToolStripMenuItem_Click;
             // 
@@ -477,14 +491,14 @@
             // pallateToolStripMenuItem
             // 
             pallateToolStripMenuItem.Name = "pallateToolStripMenuItem";
-            pallateToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
+            pallateToolStripMenuItem.Size = new System.Drawing.Size(260, 34);
             pallateToolStripMenuItem.Text = "Pallate";
             pallateToolStripMenuItem.Click += pallateToolStripMenuItem_Click;
             // 
             // selectBackgroundToolStripMenuItem
             // 
             selectBackgroundToolStripMenuItem.Name = "selectBackgroundToolStripMenuItem";
-            selectBackgroundToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
+            selectBackgroundToolStripMenuItem.Size = new System.Drawing.Size(260, 34);
             selectBackgroundToolStripMenuItem.Text = "Select Background";
             selectBackgroundToolStripMenuItem.Click += selectBackgroundToolStripMenuItem_Click;
             // 
@@ -534,6 +548,19 @@
             amigaHardwareReferenceManualToolStripMenuItem.Name = "amigaHardwareReferenceManualToolStripMenuItem";
             amigaHardwareReferenceManualToolStripMenuItem.Size = new System.Drawing.Size(391, 34);
             amigaHardwareReferenceManualToolStripMenuItem.Text = "Amiga Hardware Reference Manual";
+            // 
+            // toolsToolStripMenuItem
+            // 
+            toolsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] { calculateBlitterLFByteToolStripMenuItem });
+            toolsToolStripMenuItem.Name = "toolsToolStripMenuItem";
+            toolsToolStripMenuItem.Size = new System.Drawing.Size(69, 29);
+            toolsToolStripMenuItem.Text = "Tools";
+            // 
+            // calculateBlitterLFByteToolStripMenuItem
+            // 
+            calculateBlitterLFByteToolStripMenuItem.Name = "calculateBlitterLFByteToolStripMenuItem";
+            calculateBlitterLFByteToolStripMenuItem.Size = new System.Drawing.Size(295, 34);
+            calculateBlitterLFByteToolStripMenuItem.Text = "Calculate Blitter LF Byte";
             // 
             // aboutToolStripMenuItem
             // 
@@ -952,19 +979,6 @@
             image.MouseMove += image_MouseMove;
             image.MouseUp += image_MouseUp;
             // 
-            // toolsToolStripMenuItem
-            // 
-            toolsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] { calculateBlitterLFByteToolStripMenuItem });
-            toolsToolStripMenuItem.Name = "toolsToolStripMenuItem";
-            toolsToolStripMenuItem.Size = new System.Drawing.Size(69, 29);
-            toolsToolStripMenuItem.Text = "Tools";
-            // 
-            // calculateBlitterLFByteToolStripMenuItem
-            // 
-            calculateBlitterLFByteToolStripMenuItem.Name = "calculateBlitterLFByteToolStripMenuItem";
-            calculateBlitterLFByteToolStripMenuItem.Size = new System.Drawing.Size(295, 34);
-            calculateBlitterLFByteToolStripMenuItem.Text = "Calculate Blitter LF Byte";
-            // 
             // MainForm
             // 
             AutoScaleDimensions = new System.Drawing.SizeF(10F, 25F);
@@ -1117,6 +1131,8 @@
         private System.Windows.Forms.NumericUpDown spritePerImageCutNud;
         private System.Windows.Forms.ToolStripMenuItem toolsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem calculateBlitterLFByteToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem loadAmigaPaletterMI;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator10;
     }
 }
 

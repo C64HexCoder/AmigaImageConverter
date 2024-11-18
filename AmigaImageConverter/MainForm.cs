@@ -37,7 +37,7 @@ namespace AmigaImageConverter
         bool SlicedSpriteSheet = false;
         IFF iffImage = new IFF();
         int defaultimageWidth, defaultimageHeight;
-        
+
         RegEdit RegEdit = RegEdit.Instance;
 
 
@@ -240,27 +240,31 @@ namespace AmigaImageConverter
         }
         private void saveImageAsToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            ImageSaveDialog imageSaveDialog = new ImageSaveDialog();
+            
+            imageSaveDialog.ShowDialog();
+
             if (saveSourceFileDialog.ShowDialog() == DialogResult.OK)
             {
                 switch (saveSourceFileDialog.FilterIndex)
                 {
                     case 1:
-                        if (settings.sequentialRB.Checked == true)
-                            vr.bitplane.SaveBitmapsAsAssemblerSourceCode(saveSourceFileDialog.FileName, vr.outputSize, vr.NumInARow);
+                        if (imageSaveDialog.ImageFormat == ImageSaveDialog.ImageFormats.Sequential) 
+                            vr.bitplane.SaveBitmapsAsAssemblerSourceCode(saveSourceFileDialog.FileName, imageSaveDialog.DataType, imageSaveDialog.DataPerRaw);
                         else
-                            vr.bitplane.SaveBitmapsAsInterleavedAssemblerSourceCode(saveSourceFileDialog.FileName, vr.outputSize, vr.NumInARow);
+                            vr.bitplane.SaveBitmapsAsInterleavedAssemblerSourceCode(saveSourceFileDialog.FileName,imageSaveDialog.DataType, imageSaveDialog.DataPerRaw);
                         break;
                     case 2:
-                        if (settings.sequentialRB.Checked == true)
+                        if (imageSaveDialog.ImageFormat == ImageSaveDialog.ImageFormats.Sequential)
                             vr.bitplane.SaveBitmapsAsBinaryFile(saveSourceFileDialog.FileName);
                         else
                             vr.bitplane.SaveBitmapsAsInterleavedBinaryFile(saveSourceFileDialog.FileName);
                         break;
                     case 3:
-                        if (settings.sequentialRB.Checked == true)
-                            vr.bitplane.SaveBitmapsAsCPPSourceCode(saveSourceFileDialog.FileName, vr.outputSize, vr.NumInARow);
+                        if (imageSaveDialog.ImageFormat == ImageSaveDialog.ImageFormats.Sequential)
+                            vr.bitplane.SaveBitmapsAsCPPSourceCode(saveSourceFileDialog.FileName, imageSaveDialog.DataType, imageSaveDialog.DataPerRaw);
                         else
-                            vr.bitplane.SaveBitmapsAsInterleavedCPPSourceCode(saveSourceFileDialog.FileName, vr.outputSize, vr.NumInARow);
+                            vr.bitplane.SaveBitmapsAsInterleavedCPPSourceCode(saveSourceFileDialog.FileName, imageSaveDialog.DataType, imageSaveDialog.DataPerRaw);
                         break;
                 }
             }
@@ -796,6 +800,21 @@ namespace AmigaImageConverter
                 vr.bitplane.LoadIFF(iffFile.FileName);
                 image.Image = vr.bitplane.bitmap;
                 image.ScaleImage((int)settings.previewScalingNud.Value);
+
+                if (vr.bitplane.bitmap == null)
+                    if (MessageBox.Show ("Whould you like to load palette?\nWith the absence of palette no image will be displayed!","Missing Palette",MessageBoxButtons.OKCancel) == DialogResult.OK)
+                    {
+                        OpenFileDialog paletteDlg = new OpenFileDialog();
+                        if (paletteDlg.ShowDialog() == DialogResult.OK)
+                        {
+                            iffImage.Load(paletteDlg.FileName);
+                            vr.bitplane.palette = iffImage.palette;
+                            image.Image = vr.bitplane.CreateBitmap();
+                            //image.Refresh();
+                            //image.ScaleImage();
+                            
+                        }
+                    }
             }
         }
 
@@ -832,7 +851,7 @@ namespace AmigaImageConverter
                     image.Image = vr.bitplane.bitmap;
                     image.SizeMode = PictureBoxSizeMode.AutoSize;
                     image.ScaleImage((float)settings.previewScalingNud.Value);
-           
+
                 }
             }
         }
@@ -1026,13 +1045,13 @@ namespace AmigaImageConverter
 
         private void saveSpriteAsMenuItem_Click(object sender, EventArgs e)
         {
-         
+
             ConvertImageToSprite convertImageToSprite = new ConvertImageToSprite();
             if (convertImageToSprite.ShowDialog() == DialogResult.OK)
             {
 
             }
-   
+
         }
 
         int CutStartX, CutStartY;
@@ -1109,12 +1128,12 @@ namespace AmigaImageConverter
                     case SpriteCutState.Pan:
                         int DeltaX = e.X - PanPos.X;
                         int DeltaY = e.Y - PanPos.Y;
-                        if (spriteRec.X + DeltaX >= 0 && spriteRec.X2 + DeltaX <= image.Width-1)
+                        if (spriteRec.X + DeltaX >= 0 && spriteRec.X2 + DeltaX <= image.Width - 1)
                         {
-                            spriteRec.X += DeltaX;                          
-                            PanPos.X = e.X; 
+                            spriteRec.X += DeltaX;
+                            PanPos.X = e.X;
                         }
-                        if (spriteRec.Y + DeltaY >= 0 && spriteRec.Y2 + DeltaY <= image.Height-1)
+                        if (spriteRec.Y + DeltaY >= 0 && spriteRec.Y2 + DeltaY <= image.Height - 1)
                         {
                             spriteRec.Y += DeltaY;
                             PanPos.Y = e.Y;
@@ -1274,11 +1293,22 @@ namespace AmigaImageConverter
 
         private void heightNumUD_Leave(object sender, EventArgs e)
         {
-            NumericUpDown newHeight = (NumericUpDown) sender;
+            NumericUpDown newHeight = (NumericUpDown)sender;
 
             spriteRec.Height = (int)newHeight.Value * image.ScaleFactor;
         }
 
-       
+        private void loadAmigaPaletterMI_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Filter = "All Paletter Files|*.col;*.pal|PPaint|*.col|Dpaint|*.pal";
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                // loading only the palette not the image... since there is no image in the file
+                iffImage.Load(openFileDialog.FileName);
+                // what to do with the palette? i did not know what should i do with it so i just uploaded it so i put it in a temporary array
+                vr.bitplane.palette = iffImage.palette;
+            }
+        }
     }
 }
