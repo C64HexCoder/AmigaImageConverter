@@ -241,7 +241,7 @@ namespace AmigaImageConverter
         private void saveImageAsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             ImageSaveDialog imageSaveDialog = new ImageSaveDialog();
-            
+
             imageSaveDialog.ShowDialog();
 
             if (saveSourceFileDialog.ShowDialog() == DialogResult.OK)
@@ -249,10 +249,10 @@ namespace AmigaImageConverter
                 switch (saveSourceFileDialog.FilterIndex)
                 {
                     case 1:
-                        if (imageSaveDialog.ImageFormat == ImageSaveDialog.ImageFormats.Sequential) 
+                        if (imageSaveDialog.ImageFormat == ImageSaveDialog.ImageFormats.Sequential)
                             vr.bitplane.SaveBitmapsAsAssemblerSourceCode(saveSourceFileDialog.FileName, imageSaveDialog.DataType, imageSaveDialog.DataPerRaw);
                         else
-                            vr.bitplane.SaveBitmapsAsInterleavedAssemblerSourceCode(saveSourceFileDialog.FileName,imageSaveDialog.DataType, imageSaveDialog.DataPerRaw);
+                            vr.bitplane.SaveBitmapsAsInterleavedAssemblerSourceCode(saveSourceFileDialog.FileName, imageSaveDialog.DataType, imageSaveDialog.DataPerRaw);
                         break;
                     case 2:
                         if (imageSaveDialog.ImageFormat == ImageSaveDialog.ImageFormats.Sequential)
@@ -347,11 +347,15 @@ namespace AmigaImageConverter
 
         private void savePallateToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            ColorOptions colorOptions = new ColorOptions();
+            colorOptions.ShowDialog();
+
             SaveFileDialog pallateFileDialog = new SaveFileDialog();
             pallateFileDialog.Filter = "Assembler Source|*.S";
             if (pallateFileDialog.ShowDialog() == DialogResult.OK)
             {
-                vr.bitplane.SavePallate(pallateFileDialog.FileName, vr.BaseColor);
+                // Need to add 12 bit per pixel support
+                vr.bitplane.SavePallate(pallateFileDialog.FileName, colorOptions.BaseColorRegister);
             }
         }
 
@@ -491,7 +495,6 @@ namespace AmigaImageConverter
 
             Sprite sprite = new Sprite();
             sprite.ImportImage(vr.bitplane.bitmap);
-
             if (saveSourceFileDialog.ShowDialog() == DialogResult.OK)
             {
                 switch (saveSourceFileDialog.FilterIndex)
@@ -802,7 +805,7 @@ namespace AmigaImageConverter
                 image.ScaleImage((int)settings.previewScalingNud.Value);
 
                 if (vr.bitplane.bitmap == null)
-                    if (MessageBox.Show ("Whould you like to load palette?\nWith the absence of palette no image will be displayed!","Missing Palette",MessageBoxButtons.OKCancel) == DialogResult.OK)
+                    if (MessageBox.Show("Whould you like to load palette?\nWith the absence of palette no image will be displayed!", "Missing Palette", MessageBoxButtons.OKCancel) == DialogResult.OK)
                     {
                         OpenFileDialog paletteDlg = new OpenFileDialog();
                         if (paletteDlg.ShowDialog() == DialogResult.OK)
@@ -812,7 +815,7 @@ namespace AmigaImageConverter
                             image.Image = vr.bitplane.CreateBitmap();
                             //image.Refresh();
                             //image.ScaleImage();
-                            
+
                         }
                     }
             }
@@ -1308,6 +1311,18 @@ namespace AmigaImageConverter
                 iffImage.Load(openFileDialog.FileName);
                 // what to do with the palette? i did not know what should i do with it so i just uploaded it so i put it in a temporary array
                 vr.bitplane.palette = iffImage.palette;
+            }
+        }
+
+        private void loadIFFAsSpriteToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Sprite sprite = new Sprite();        // temporery sprite.... just for testing porposes......
+            OpenFileDialog iffFileDialog = new OpenFileDialog();
+            iffFileDialog.Filter = "IFF File (*.IFF)|*.IFF";
+
+            if (iffFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                sprite.LoadIFF (iffFileDialog.FileName,SpriteWidth._16Pixels);    
             }
         }
     }

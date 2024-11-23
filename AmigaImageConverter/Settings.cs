@@ -197,16 +197,16 @@ namespace AmigaImageConverter
             if (comboBox.Tag == "bpp")
             {
                 if (comboBox.SelectedIndex == 0)
-                    vr.BaseColor = 4;
+                    vr.BaseColorRegister = 4;
                 else
-                    vr.BaseColor = 8;
+                    vr.BaseColorRegister = 8;
             }
             else
             {
                 if ((comboBox.SelectedIndex == 0))
-                    vr.BaseColor = 0x180;
+                    vr.BaseColorRegister = 0x180;
                 else
-                    vr.BaseColor = 0x1A0;
+                    vr.BaseColorRegister = 0x1A0;
             }
         }
 

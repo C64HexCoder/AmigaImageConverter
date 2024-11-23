@@ -16,7 +16,7 @@ namespace AmigaImageConverter
         public Bitplane.DataType Alignment = Bitplane.DataType.Word;
 
         public int NumInARow = 8;
-        public ushort BaseColor = 0x180;
+        public ushort BaseColorRegister = 0x180;
         public byte bpp = 4;
         public Bitplane bitplane = new Bitplane();
 
