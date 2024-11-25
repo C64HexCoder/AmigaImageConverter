@@ -569,6 +569,7 @@
             calculateBlitterLFByteToolStripMenuItem.Name = "calculateBlitterLFByteToolStripMenuItem";
             calculateBlitterLFByteToolStripMenuItem.Size = new System.Drawing.Size(295, 34);
             calculateBlitterLFByteToolStripMenuItem.Text = "Calculate Blitter LF Byte";
+            calculateBlitterLFByteToolStripMenuItem.Click += calculateBlitterLFByteToolStripMenuItem_Click;
             // 
             // aboutToolStripMenuItem
             // 

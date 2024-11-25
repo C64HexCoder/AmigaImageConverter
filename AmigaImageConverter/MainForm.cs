@@ -1322,8 +1322,15 @@ namespace AmigaImageConverter
 
             if (iffFileDialog.ShowDialog() == DialogResult.OK)
             {
-                sprite.LoadIFF (iffFileDialog.FileName,SpriteWidth._16Pixels);    
+                sprite.LoadIFF(iffFileDialog.FileName, SpriteWidth._16Pixels);
             }
+        }
+
+        private void calculateBlitterLFByteToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            BlitterLFCalculator blitterLFCalculator = new BlitterLFCalculator();
+            blitterLFCalculator.ShowDialog();
+
         }
     }
 }
