@@ -35,6 +35,7 @@ namespace AmigaImageConverter
             sprite.CreateSpriteFromBitplane(pv.bitplane.Bitplanes, pv.bitplane.palette, Sprite.SpriteWidth._64Pixels, pv.bitplane.NumOfBitmaps, pv.bitplane.Width, pv.bitplane.Height);
             image.Image = sprite.bitmap;
             image.AutoScale();
+            spritePreviewIB.Left = (sidePael.Width - spritePreviewIB.Width) / 2;
             PublicVariables.SpriteCutRec.ScaleFactor = image.ScaleFactor;
             widthNumericUpDown.Value = pv.bitplane.Width;
             heightNumericUpDown.Value = pv.bitplane.Height;
@@ -102,6 +103,8 @@ namespace AmigaImageConverter
             if (sprites.Count > 0)
             {
                 spritePreviewIB.Image = sprites[(int)numericUpDown.Value].bitmap;
+                spritePreviewIB.OriginalImage = null;
+                spritePreviewIB.AutoScale();
                 spritePreviewIB.Left = (sidePael.Width - spritePreviewIB.Width) / 2;
             }
         }
@@ -153,8 +156,9 @@ namespace AmigaImageConverter
 
             //sprite.Name = spriteNameTb.Text + spriteIndex++;
             sprites = sprite.SplitSprite(spritesPerImage);
-            spritePreviewIB.Image = sprites[(int)spriteNum.Value].bitmap;
-
+            spriteNum.Value = 0;
+            spritePreviewIB.Image = sprites[0].bitmap;
+            spritePreviewIB.OriginalImage = null;
             spritePreviewIB.AutoScale();
             spritePreviewIB.Left = (sidePael.Width - spritePreviewIB.Width) / 2;
         
