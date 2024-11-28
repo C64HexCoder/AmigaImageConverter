@@ -17,6 +17,8 @@ namespace AmigaImageConverter
         PublicVariables pv = PublicVariables.instance;
         int spriteWIdth = 0;
         List<Sprite> sprites = new List<Sprite>();
+        Sprite sprite = new Sprite();
+  
         PublicVariables.SpriteCutRec SpriteCutRec = new PublicVariables.SpriteCutRec();
         List<PublicVariables.SpriteCutRec> spriteCutRecs = new List<PublicVariables.SpriteCutRec>();
         List<Rectangle> spriteRects = new List<Rectangle>();
@@ -28,7 +30,10 @@ namespace AmigaImageConverter
         {
             InitializeComponent();
 
-            image.Image = pv.bitplane.bitmap;
+            
+
+            sprite.CreateSpriteFromBitplane(pv.bitplane.Bitplanes, pv.bitplane.palette, Sprite.SpriteWidth._64Pixels, pv.bitplane.NumOfBitmaps, pv.bitplane.Width, pv.bitplane.Height);
+            image.Image = sprite.bitmap;
             image.AutoScale();
             PublicVariables.SpriteCutRec.ScaleFactor = image.ScaleFactor;
             widthNumericUpDown.Value = pv.bitplane.Width;
@@ -123,52 +128,38 @@ namespace AmigaImageConverter
 
             int spritesPerImage = pv.bitplane.bitmap.Width / spriteWIdth;
 
-            for (int i = 0; i < spritesPerImage; i++)
+
+            
+            //Sprite sprite = new Sprite();
+
+            Sprite.SpriteWidth spriteWidth;
+            switch (spriteWIdth)
             {
-                int x = i * spriteWIdth;
-                int x2 = i * spriteWIdth + spriteWIdth;
-                int y = 0;
-                int y2 = pv.bitplane.bitmap.Height;
-                PublicVariables.SpriteCutRec rectangle = new PublicVariables.SpriteCutRec(x, y, x2 - x, y2 - y);
-                spriteCutRecs.Add(rectangle);
+                case 16:
+                    spriteWidth = Sprite.SpriteWidth._16Pixels;
+                    break;
+                case 32:
+                    spriteWidth = Sprite.SpriteWidth._32Pixels;
+                    break;
+                case 64:
+                    spriteWidth = Sprite.SpriteWidth._64Pixels;
+                    break;
+                default:
+                    spriteWidth = Sprite.SpriteWidth._16Pixels;
+                    break;
+
             }
-            int spriteIndex = 0;
-            foreach (PublicVariables.SpriteCutRec rectangle in spriteCutRecs)
-            {
-                Bitmap cutSprite = new Bitmap(rectangle.Width, rectangle.Height);
-                Graphics gfx = Graphics.FromImage(cutSprite);
-                Rectangle destRec = new Rectangle(0, 0, cutSprite.Width, cutSprite.Height);
 
-                gfx.DrawImage(pv.bitplane.bitmap, destRec, rectangle.SpriteRec, GraphicsUnit.Pixel);
-                spritePreviewIB.Image = cutSprite;
 
-                spritePreviewIB.AutoScale();
-                Sprite sprite = new Sprite();
+            //sprite.Name = spriteNameTb.Text + spriteIndex++;
+            sprites = sprite.SplitSprite(spritesPerImage);
+            spritePreviewIB.Image = sprites[(int)spriteNum.Value].bitmap;
 
-                Sprite.SpriteWidth spriteWidth;
-                switch (spriteWIdth)
-                {
-                    case 16:
-                        spriteWidth = Sprite.SpriteWidth._16Pixels;
-                        break;
-                    case 32:
-                        spriteWidth = Sprite.SpriteWidth._32Pixels;
-                        break;
-                    case 64:
-                        spriteWidth = Sprite.SpriteWidth._64Pixels;
-                        break;
-                    default:
-                        spriteWidth = Sprite.SpriteWidth._16Pixels;
-                        break;
+            spritePreviewIB.AutoScale();
+            spritePreviewIB.Left = (sidePael.Width - spritePreviewIB.Width) / 2;
+        
 
-                }
-
-                sprite.bitmap = cutSprite;
-                sprite.Name = spriteNameTb.Text + spriteIndex++;
-                sprite.ImportImage(cutSprite, spriteWidth);
-                sprites.Add(sprite);
-                spritePreviewIB.Left = (sidePael.Width - spritePreviewIB.Width) / 2;
-            }
+            
 
             if (sprites.Count > 0)
                 spriteNum.Maximum = sprites.Count - 1;
