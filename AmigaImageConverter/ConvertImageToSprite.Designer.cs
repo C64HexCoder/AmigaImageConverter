@@ -30,7 +30,7 @@
         {
             image = new Amiga.ImageBox();
             sidePael = new System.Windows.Forms.Panel();
-            panel2 = new System.Windows.Forms.Panel();
+            spritePrevPanel = new System.Windows.Forms.Panel();
             spritePreviewIB = new Amiga.ImageBox();
             groupBox1 = new System.Windows.Forms.GroupBox();
             resizeBtn = new System.Windows.Forms.Button();
@@ -44,17 +44,17 @@
             spriteWidtthCbox = new System.Windows.Forms.GroupBox();
             spriteWIdthCbox = new System.Windows.Forms.ComboBox();
             doItButton = new System.Windows.Forms.Button();
-            panel1 = new System.Windows.Forms.Panel();
+            imagePanel = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)image).BeginInit();
             sidePael.SuspendLayout();
-            panel2.SuspendLayout();
+            spritePrevPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)spritePreviewIB).BeginInit();
             groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)widthNumericUpDown).BeginInit();
             ((System.ComponentModel.ISupportInitialize)heightNumericUpDown).BeginInit();
             ((System.ComponentModel.ISupportInitialize)spriteNum).BeginInit();
             spriteWidtthCbox.SuspendLayout();
-            panel1.SuspendLayout();
+            imagePanel.SuspendLayout();
             SuspendLayout();
             // 
             // image
@@ -62,14 +62,13 @@
             image.AutoScaleImageBox = false;
             image.HrizontalScrollBar = null;
             image.Image = null;
-            image.Location = new System.Drawing.Point(0, 3);
+            image.Location = new System.Drawing.Point(3, 3);
             image.MouseWheelZoom = true;
             image.Name = "image";
             image.OriginalImage = null;
             image.ScaleFactor = 1;
             image.ScaleFactorFloat = 1F;
-            image.Size = new System.Drawing.Size(510, 671);
-            image.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            image.Size = new System.Drawing.Size(504, 668);
             image.TabIndex = 0;
             image.TabStop = false;
             image.VerticalScrollBar = null;
@@ -77,7 +76,7 @@
             // 
             // sidePael
             // 
-            sidePael.Controls.Add(panel2);
+            sidePael.Controls.Add(spritePrevPanel);
             sidePael.Controls.Add(groupBox1);
             sidePael.Controls.Add(label3);
             sidePael.Controls.Add(spriteNameTb);
@@ -89,13 +88,13 @@
             sidePael.Size = new System.Drawing.Size(273, 677);
             sidePael.TabIndex = 8;
             // 
-            // panel2
+            // spritePrevPanel
             // 
-            panel2.Controls.Add(spritePreviewIB);
-            panel2.Location = new System.Drawing.Point(0, 290);
-            panel2.Name = "panel2";
-            panel2.Size = new System.Drawing.Size(270, 308);
-            panel2.TabIndex = 11;
+            spritePrevPanel.Controls.Add(spritePreviewIB);
+            spritePrevPanel.Location = new System.Drawing.Point(0, 290);
+            spritePrevPanel.Name = "spritePrevPanel";
+            spritePrevPanel.Size = new System.Drawing.Size(270, 308);
+            spritePrevPanel.TabIndex = 11;
             // 
             // spritePreviewIB
             // 
@@ -111,6 +110,7 @@
             spritePreviewIB.ScaleFactor = 2;
             spritePreviewIB.ScaleFactorFloat = 1F;
             spritePreviewIB.Size = new System.Drawing.Size(270, 305);
+            spritePreviewIB.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
             spritePreviewIB.TabIndex = 6;
             spritePreviewIB.TabStop = false;
             spritePreviewIB.VerticalScrollBar = null;
@@ -231,14 +231,14 @@
             doItButton.UseVisualStyleBackColor = true;
             doItButton.Click += doItButton_Click;
             // 
-            // panel1
+            // imagePanel
             // 
-            panel1.AutoSize = true;
-            panel1.Controls.Add(image);
-            panel1.Location = new System.Drawing.Point(12, 12);
-            panel1.Name = "panel1";
-            panel1.Size = new System.Drawing.Size(554, 677);
-            panel1.TabIndex = 9;
+            imagePanel.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            imagePanel.Controls.Add(image);
+            imagePanel.Location = new System.Drawing.Point(12, 15);
+            imagePanel.Name = "imagePanel";
+            imagePanel.Size = new System.Drawing.Size(510, 671);
+            imagePanel.TabIndex = 9;
             // 
             // ConvertImageToSprite
             // 
@@ -246,13 +246,14 @@
             AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             ClientSize = new System.Drawing.Size(817, 701);
             Controls.Add(sidePael);
-            Controls.Add(panel1);
+            Controls.Add(imagePanel);
             Name = "ConvertImageToSprite";
             Text = "LoadSprite";
             ((System.ComponentModel.ISupportInitialize)image).EndInit();
             sidePael.ResumeLayout(false);
             sidePael.PerformLayout();
-            panel2.ResumeLayout(false);
+            spritePrevPanel.ResumeLayout(false);
+            spritePrevPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)spritePreviewIB).EndInit();
             groupBox1.ResumeLayout(false);
             groupBox1.PerformLayout();
@@ -260,9 +261,8 @@
             ((System.ComponentModel.ISupportInitialize)heightNumericUpDown).EndInit();
             ((System.ComponentModel.ISupportInitialize)spriteNum).EndInit();
             spriteWidtthCbox.ResumeLayout(false);
-            panel1.ResumeLayout(false);
+            imagePanel.ResumeLayout(false);
             ResumeLayout(false);
-            PerformLayout();
         }
 
         #endregion
@@ -282,7 +282,7 @@
         private System.Windows.Forms.TextBox spriteNameTb;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Button resizeBtn;
-        private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Panel imagePanel;
+        private System.Windows.Forms.Panel spritePrevPanel;
     }
 }

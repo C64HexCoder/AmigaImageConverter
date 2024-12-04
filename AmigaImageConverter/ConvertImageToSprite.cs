@@ -35,8 +35,7 @@ namespace AmigaImageConverter
             sprite.CreateSpriteFromBitplane(pv.bitplane.Bitplanes, pv.bitplane.palette, Sprite.SpriteWidth._64Pixels, pv.bitplane.NumOfBitmaps, pv.bitplane.Width, pv.bitplane.Height);
             image.Image = sprite.bitmap;
             image.AutoScale();
-            spritePreviewIB.Left = (sidePael.Width - spritePreviewIB.Width) / 2;
-            PublicVariables.SpriteCutRec.ScaleFactor = image.ScaleFactor;
+          
             widthNumericUpDown.Value = pv.bitplane.Width;
             heightNumericUpDown.Value = pv.bitplane.Height;
         }
@@ -78,7 +77,7 @@ namespace AmigaImageConverter
                     {
                         case 1:
                             newFileName = fileName + spriteNum++ + ".asm";
-                            sprite.SaveAsAssemblerSourceFile(newFileName);
+                            sprite.SaveAsAssemblerSourceFile(newFileName,Sprite.MemoryType.CHIP,10,10,false);
                             break;
                         case 2:
                             newFileName = fileName + spriteNum++ + ".bin";
@@ -86,7 +85,7 @@ namespace AmigaImageConverter
                             break;
                         case 3:
                             newFileName = fileName + spriteNum++ + "cpp";
-                            sprite.SaveAsCPPSourceFile(newFileName);
+                            sprite.SaveAsCPPSourceFile(newFileName,Sprite.MemoryType.CHIP,0,0,false);
                             break;
 
                     }
@@ -102,9 +101,11 @@ namespace AmigaImageConverter
             NumericUpDown numericUpDown = (NumericUpDown)sender;
             if (sprites.Count > 0)
             {
+                ScaleFactor = spritePreviewIB.ScaleFactor;
                 spritePreviewIB.Image = sprites[(int)numericUpDown.Value].bitmap;
                 spritePreviewIB.OriginalImage = null;
-                spritePreviewIB.AutoScale();
+
+                spritePreviewIB.ScaleImage(ScaleFactor);
                 spritePreviewIB.Left = (sidePael.Width - spritePreviewIB.Width) / 2;
             }
         }
@@ -155,6 +156,7 @@ namespace AmigaImageConverter
 
 
             //sprite.Name = spriteNameTb.Text + spriteIndex++;
+            sprite.Name = spriteNameTb.Text;
             sprites = sprite.SplitSprite(spritesPerImage);
             spriteNum.Value = 0;
             spritePreviewIB.Image = sprites[0].bitmap;

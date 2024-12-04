@@ -24,6 +24,9 @@
     <Compile Update="ColorOptions.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="ControlWords.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="DisplayMask.cs">
       <SubType>Form</SubType>
     </Compile>
