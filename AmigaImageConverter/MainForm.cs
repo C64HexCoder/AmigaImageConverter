@@ -1332,5 +1332,10 @@ namespace AmigaImageConverter
             blitterLFCalculator.ShowDialog();
 
         }
+
+        private void controlWordsCalculatorToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

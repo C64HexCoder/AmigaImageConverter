@@ -18,7 +18,7 @@ namespace AmigaImageConverter
         int spriteWIdth = 0;
         List<Sprite> sprites = new List<Sprite>();
         Sprite sprite = new Sprite();
-  
+
         PublicVariables.SpriteCutRec SpriteCutRec = new PublicVariables.SpriteCutRec();
         List<PublicVariables.SpriteCutRec> spriteCutRecs = new List<PublicVariables.SpriteCutRec>();
         List<Rectangle> spriteRects = new List<Rectangle>();
@@ -30,12 +30,12 @@ namespace AmigaImageConverter
         {
             InitializeComponent();
 
-            
+
 
             sprite.CreateSpriteFromBitplane(pv.bitplane.Bitplanes, pv.bitplane.palette, Sprite.SpriteWidth._64Pixels, pv.bitplane.NumOfBitmaps, pv.bitplane.Width, pv.bitplane.Height);
             image.Image = sprite.bitmap;
             image.AutoScale();
-          
+
             widthNumericUpDown.Value = pv.bitplane.Width;
             heightNumericUpDown.Value = pv.bitplane.Height;
         }
@@ -77,7 +77,7 @@ namespace AmigaImageConverter
                     {
                         case 1:
                             newFileName = fileName + spriteNum++ + ".asm";
-                            sprite.SaveAsAssemblerSourceFile(newFileName,Sprite.MemoryType.CHIP,10,10,false);
+                            sprite.SaveAsAssemblerSourceFile(newFileName, Sprite.MemoryType.CHIP, 10, 10, false);
                             break;
                         case 2:
                             newFileName = fileName + spriteNum++ + ".bin";
@@ -85,7 +85,7 @@ namespace AmigaImageConverter
                             break;
                         case 3:
                             newFileName = fileName + spriteNum++ + "cpp";
-                            sprite.SaveAsCPPSourceFile(newFileName,Sprite.MemoryType.CHIP,0,0,false);
+                            sprite.SaveAsCPPSourceFile(newFileName, Sprite.MemoryType.CHIP, 0, 0, false);
                             break;
 
                     }
@@ -133,7 +133,7 @@ namespace AmigaImageConverter
             int spritesPerImage = pv.bitplane.bitmap.Width / spriteWIdth;
 
 
-            
+
             //Sprite sprite = new Sprite();
 
             Sprite.SpriteWidth spriteWidth;
@@ -163,9 +163,9 @@ namespace AmigaImageConverter
             spritePreviewIB.OriginalImage = null;
             spritePreviewIB.AutoScale();
             spritePreviewIB.Left = (sidePael.Width - spritePreviewIB.Width) / 2;
-        
 
-            
+
+
 
             if (sprites.Count > 0)
                 spriteNum.Maximum = sprites.Count - 1;
@@ -194,6 +194,15 @@ namespace AmigaImageConverter
         private void widthNumericUpDown_Leave(object sender, EventArgs e)
         {
 
+        }
+
+        private void calculateControlWordsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ControlWords controlWords = new ControlWords(sprites);
+            if (controlWords.ShowDialog() == DialogResult.OK)
+            {
+
+            }
         }
     }
 }

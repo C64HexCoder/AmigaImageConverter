@@ -45,6 +45,9 @@
             spriteWIdthCbox = new System.Windows.Forms.ComboBox();
             doItButton = new System.Windows.Forms.Button();
             imagePanel = new System.Windows.Forms.Panel();
+            menuStrip1 = new System.Windows.Forms.MenuStrip();
+            toolsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            calculateControlWordsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)image).BeginInit();
             sidePael.SuspendLayout();
             spritePrevPanel.SuspendLayout();
@@ -55,6 +58,7 @@
             ((System.ComponentModel.ISupportInitialize)spriteNum).BeginInit();
             spriteWidtthCbox.SuspendLayout();
             imagePanel.SuspendLayout();
+            menuStrip1.SuspendLayout();
             SuspendLayout();
             // 
             // image
@@ -235,10 +239,34 @@
             // 
             imagePanel.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             imagePanel.Controls.Add(image);
-            imagePanel.Location = new System.Drawing.Point(12, 15);
+            imagePanel.Location = new System.Drawing.Point(12, 36);
             imagePanel.Name = "imagePanel";
-            imagePanel.Size = new System.Drawing.Size(510, 671);
+            imagePanel.Size = new System.Drawing.Size(510, 650);
             imagePanel.TabIndex = 9;
+            // 
+            // menuStrip1
+            // 
+            menuStrip1.ImageScalingSize = new System.Drawing.Size(24, 24);
+            menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] { toolsToolStripMenuItem });
+            menuStrip1.Location = new System.Drawing.Point(0, 0);
+            menuStrip1.Name = "menuStrip1";
+            menuStrip1.Size = new System.Drawing.Size(817, 33);
+            menuStrip1.TabIndex = 10;
+            menuStrip1.Text = "menuStrip1";
+            // 
+            // toolsToolStripMenuItem
+            // 
+            toolsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] { calculateControlWordsToolStripMenuItem });
+            toolsToolStripMenuItem.Name = "toolsToolStripMenuItem";
+            toolsToolStripMenuItem.Size = new System.Drawing.Size(69, 29);
+            toolsToolStripMenuItem.Text = "Tools";
+            // 
+            // calculateControlWordsToolStripMenuItem
+            // 
+            calculateControlWordsToolStripMenuItem.Name = "calculateControlWordsToolStripMenuItem";
+            calculateControlWordsToolStripMenuItem.Size = new System.Drawing.Size(305, 34);
+            calculateControlWordsToolStripMenuItem.Text = "Calculate Control Words";
+            calculateControlWordsToolStripMenuItem.Click += calculateControlWordsToolStripMenuItem_Click;
             // 
             // ConvertImageToSprite
             // 
@@ -247,6 +275,7 @@
             ClientSize = new System.Drawing.Size(817, 701);
             Controls.Add(sidePael);
             Controls.Add(imagePanel);
+            Controls.Add(menuStrip1);
             Name = "ConvertImageToSprite";
             Text = "LoadSprite";
             ((System.ComponentModel.ISupportInitialize)image).EndInit();
@@ -262,7 +291,10 @@
             ((System.ComponentModel.ISupportInitialize)spriteNum).EndInit();
             spriteWidtthCbox.ResumeLayout(false);
             imagePanel.ResumeLayout(false);
+            menuStrip1.ResumeLayout(false);
+            menuStrip1.PerformLayout();
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
@@ -284,5 +316,8 @@
         private System.Windows.Forms.Button resizeBtn;
         private System.Windows.Forms.Panel imagePanel;
         private System.Windows.Forms.Panel spritePrevPanel;
+        private System.Windows.Forms.MenuStrip menuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem toolsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem calculateControlWordsToolStripMenuItem;
     }
 }

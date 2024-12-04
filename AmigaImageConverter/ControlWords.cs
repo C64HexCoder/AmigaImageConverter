@@ -15,7 +15,8 @@ namespace AmigaImageConverter
     {
         private ushort _Xpos, _Ypos;
  
-        Sprite sprite;
+        Sprite sprite = null;
+        List<Sprite> sprites = new List<Sprite>();
 
         public ControlWords(Sprite sprite)
         {
@@ -28,6 +29,11 @@ namespace AmigaImageConverter
             nameTb.Text = sprite.Name;
         }
 
+        public ControlWords(List<Sprite> sprites)
+        {
+            InitializeComponent();
+            this.sprites = sprites;
+        }
         public ControlWords()
         {
             InitializeComponent();
@@ -73,8 +79,11 @@ namespace AmigaImageConverter
         }
         private void CalculateComWordsBT_Click(object sender, EventArgs e)
         {
-            //CalculateControlWords();
-            sprite.CalculateControlWords(_Xpos, _Ypos,RelativePositioning);
+            if (sprite != null) 
+                sprite.CalculateControlWords(_Xpos, _Ypos,RelativePositioning);
+            else
+                foreach (Sprite sprite in sprites)
+                    sprite.CalculateControlWords(Xpos, Ypos,RelativePositioning);
         }
 
         private void NameTb_KeyDown(object sender, KeyEventArgs e)

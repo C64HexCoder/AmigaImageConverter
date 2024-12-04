@@ -133,6 +133,7 @@
             comboBox1 = new System.Windows.Forms.ComboBox();
             cutSpriteBtn = new System.Windows.Forms.Button();
             image = new Amiga.ImageBox();
+            controlWordsCalculatorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             menuStrip1.SuspendLayout();
             statusStrip.SuspendLayout();
             SlicingPanel.SuspendLayout();
@@ -442,7 +443,7 @@
             // 
             // toolStripMenuItem1
             // 
-            toolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] { cutSpriteToolStripMenuItem, toolStripMenuItem4, toolStripSeparator8, spriteSheetCutterToolStripMenuItem, toolStripMenuItem3, toolStripSeparator9, splitSpritesToolStripMenuItem });
+            toolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] { cutSpriteToolStripMenuItem, toolStripMenuItem4, toolStripSeparator8, spriteSheetCutterToolStripMenuItem, toolStripMenuItem3, toolStripSeparator9, splitSpritesToolStripMenuItem, controlWordsCalculatorToolStripMenuItem });
             toolStripMenuItem1.Name = "toolStripMenuItem1";
             toolStripMenuItem1.Size = new System.Drawing.Size(74, 29);
             toolStripMenuItem1.Text = "Sprite";
@@ -450,43 +451,43 @@
             // cutSpriteToolStripMenuItem
             // 
             cutSpriteToolStripMenuItem.Name = "cutSpriteToolStripMenuItem";
-            cutSpriteToolStripMenuItem.Size = new System.Drawing.Size(294, 34);
+            cutSpriteToolStripMenuItem.Size = new System.Drawing.Size(313, 34);
             cutSpriteToolStripMenuItem.Text = "Cut Sprite From Image";
             cutSpriteToolStripMenuItem.Click += cutSpriteToolStripMenuItem_Click;
             // 
             // toolStripMenuItem4
             // 
             toolStripMenuItem4.Name = "toolStripMenuItem4";
-            toolStripMenuItem4.Size = new System.Drawing.Size(294, 34);
+            toolStripMenuItem4.Size = new System.Drawing.Size(313, 34);
             toolStripMenuItem4.Text = "Image To Sprite";
             // 
             // toolStripSeparator8
             // 
             toolStripSeparator8.Name = "toolStripSeparator8";
-            toolStripSeparator8.Size = new System.Drawing.Size(291, 6);
+            toolStripSeparator8.Size = new System.Drawing.Size(310, 6);
             // 
             // spriteSheetCutterToolStripMenuItem
             // 
             spriteSheetCutterToolStripMenuItem.Name = "spriteSheetCutterToolStripMenuItem";
-            spriteSheetCutterToolStripMenuItem.Size = new System.Drawing.Size(294, 34);
+            spriteSheetCutterToolStripMenuItem.Size = new System.Drawing.Size(313, 34);
             spriteSheetCutterToolStripMenuItem.Text = "Sprite Sheet Cutter";
             spriteSheetCutterToolStripMenuItem.Click += sprireSheetCutterToolStripMenuItem_Click;
             // 
             // toolStripMenuItem3
             // 
             toolStripMenuItem3.Name = "toolStripMenuItem3";
-            toolStripMenuItem3.Size = new System.Drawing.Size(294, 34);
+            toolStripMenuItem3.Size = new System.Drawing.Size(313, 34);
             toolStripMenuItem3.Text = "Sprite Sheet Maker";
             // 
             // toolStripSeparator9
             // 
             toolStripSeparator9.Name = "toolStripSeparator9";
-            toolStripSeparator9.Size = new System.Drawing.Size(291, 6);
+            toolStripSeparator9.Size = new System.Drawing.Size(310, 6);
             // 
             // splitSpritesToolStripMenuItem
             // 
             splitSpritesToolStripMenuItem.Name = "splitSpritesToolStripMenuItem";
-            splitSpritesToolStripMenuItem.Size = new System.Drawing.Size(294, 34);
+            splitSpritesToolStripMenuItem.Size = new System.Drawing.Size(313, 34);
             splitSpritesToolStripMenuItem.Text = "Split Sprites";
             // 
             // colorsToolStripMenuItem
@@ -988,6 +989,13 @@
             image.MouseMove += image_MouseMove;
             image.MouseUp += image_MouseUp;
             // 
+            // controlWordsCalculatorToolStripMenuItem
+            // 
+            controlWordsCalculatorToolStripMenuItem.Name = "controlWordsCalculatorToolStripMenuItem";
+            controlWordsCalculatorToolStripMenuItem.Size = new System.Drawing.Size(313, 34);
+            controlWordsCalculatorToolStripMenuItem.Text = "Control Words Calculator";
+            controlWordsCalculatorToolStripMenuItem.Click += controlWordsCalculatorToolStripMenuItem_Click;
+            // 
             // MainForm
             // 
             AutoScaleDimensions = new System.Drawing.SizeF(10F, 25F);
@@ -1143,6 +1151,7 @@
         private System.Windows.Forms.ToolStripMenuItem loadAmigaPaletterMI;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator10;
         private System.Windows.Forms.ToolStripMenuItem loadIFFAsSpriteToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem controlWordsCalculatorToolStripMenuItem;
     }
 }
 
