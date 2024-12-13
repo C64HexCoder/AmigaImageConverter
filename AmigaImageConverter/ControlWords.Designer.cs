@@ -208,6 +208,7 @@
             // xPosNum
             // 
             xPosNum.Location = new System.Drawing.Point(162, 18);
+            xPosNum.Maximum = new decimal(new int[] { 447, 0, 0, 0 });
             xPosNum.Name = "xPosNum";
             xPosNum.Size = new System.Drawing.Size(137, 31);
             xPosNum.TabIndex = 16;
@@ -216,12 +217,13 @@
             // yPosNum
             // 
             yPosNum.Location = new System.Drawing.Point(162, 55);
+            yPosNum.Maximum = new decimal(new int[] { 255, 0, 0, 0 });
             yPosNum.Name = "yPosNum";
             yPosNum.Size = new System.Drawing.Size(137, 31);
             yPosNum.TabIndex = 17;
             yPosNum.ValueChanged += yPosNum_ValueChanged;
             // 
-            // Control_Words
+            // ControlWords
             // 
             AutoScaleDimensions = new System.Drawing.SizeF(10F, 25F);
             AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -243,7 +245,7 @@
             Controls.Add(label2);
             Controls.Add(label1);
             Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            Name = "Control_Words";
+            Name = "ControlWords";
             StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             Text = "Control_Words";
             ((System.ComponentModel.ISupportInitialize)xPosNum).EndInit();

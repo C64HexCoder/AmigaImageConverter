@@ -79,6 +79,7 @@
             toolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
             toolStripSeparator9 = new System.Windows.Forms.ToolStripSeparator();
             splitSpritesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            controlWordsCalculatorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             colorsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             pallateToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             selectBackgroundToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -133,7 +134,7 @@
             comboBox1 = new System.Windows.Forms.ComboBox();
             cutSpriteBtn = new System.Windows.Forms.Button();
             image = new Amiga.ImageBox();
-            controlWordsCalculatorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            dDFCalculatorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             menuStrip1.SuspendLayout();
             statusStrip.SuspendLayout();
             SlicingPanel.SuspendLayout();
@@ -490,6 +491,13 @@
             splitSpritesToolStripMenuItem.Size = new System.Drawing.Size(313, 34);
             splitSpritesToolStripMenuItem.Text = "Split Sprites";
             // 
+            // controlWordsCalculatorToolStripMenuItem
+            // 
+            controlWordsCalculatorToolStripMenuItem.Name = "controlWordsCalculatorToolStripMenuItem";
+            controlWordsCalculatorToolStripMenuItem.Size = new System.Drawing.Size(313, 34);
+            controlWordsCalculatorToolStripMenuItem.Text = "Control Words Calculator";
+            controlWordsCalculatorToolStripMenuItem.Click += controlWordsCalculatorToolStripMenuItem_Click;
+            // 
             // colorsToolStripMenuItem
             // 
             colorsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] { pallateToolStripMenuItem, selectBackgroundToolStripMenuItem });
@@ -560,7 +568,7 @@
             // 
             // toolsToolStripMenuItem
             // 
-            toolsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] { calculateBlitterLFByteToolStripMenuItem });
+            toolsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] { calculateBlitterLFByteToolStripMenuItem, dDFCalculatorToolStripMenuItem });
             toolsToolStripMenuItem.Name = "toolsToolStripMenuItem";
             toolsToolStripMenuItem.Size = new System.Drawing.Size(69, 29);
             toolsToolStripMenuItem.Text = "Tools";
@@ -593,6 +601,7 @@
             // saveSourceFileDialog
             // 
             saveSourceFileDialog.Filter = "Aseembler Source File|*.S;*.asm|Binary File|*.bin| C Source File |*.c";
+            saveSourceFileDialog.FileOk += saveSourceFileDialog_FileOk;
             // 
             // statusStrip
             // 
@@ -989,12 +998,12 @@
             image.MouseMove += image_MouseMove;
             image.MouseUp += image_MouseUp;
             // 
-            // controlWordsCalculatorToolStripMenuItem
+            // dDFCalculatorToolStripMenuItem
             // 
-            controlWordsCalculatorToolStripMenuItem.Name = "controlWordsCalculatorToolStripMenuItem";
-            controlWordsCalculatorToolStripMenuItem.Size = new System.Drawing.Size(313, 34);
-            controlWordsCalculatorToolStripMenuItem.Text = "Control Words Calculator";
-            controlWordsCalculatorToolStripMenuItem.Click += controlWordsCalculatorToolStripMenuItem_Click;
+            dDFCalculatorToolStripMenuItem.Name = "dDFCalculatorToolStripMenuItem";
+            dDFCalculatorToolStripMenuItem.Size = new System.Drawing.Size(295, 34);
+            dDFCalculatorToolStripMenuItem.Text = "DDF Calculator";
+            dDFCalculatorToolStripMenuItem.Click += dDFCalculatorToolStripMenuItem_Click;
             // 
             // MainForm
             // 
@@ -1152,6 +1161,7 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator10;
         private System.Windows.Forms.ToolStripMenuItem loadIFFAsSpriteToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem controlWordsCalculatorToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem dDFCalculatorToolStripMenuItem;
     }
 }
 

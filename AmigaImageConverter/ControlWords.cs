@@ -14,7 +14,7 @@ namespace AmigaImageConverter
     public partial class ControlWords : Form
     {
         private ushort _Xpos, _Ypos;
- 
+
         Sprite sprite = null;
         List<Sprite> sprites = new List<Sprite>();
 
@@ -79,11 +79,25 @@ namespace AmigaImageConverter
         }
         private void CalculateComWordsBT_Click(object sender, EventArgs e)
         {
-            if (sprite != null) 
-                sprite.CalculateControlWords(_Xpos, _Ypos,RelativePositioning);
-            else
-                foreach (Sprite sprite in sprites)
-                    sprite.CalculateControlWords(Xpos, Ypos,RelativePositioning);
+            if (sprites.Count == 0)
+            {
+                MessageBox.Show("No Sprite Found...");
+                return;
+            }
+
+            /*if (sprite != null)
+            {
+                sprite.CalculateControlWords(_Xpos, _Ypos, RelativePositioning);
+                SPRxPOSTB.Text = sprite.SPRxPOS.ToString();
+                SPRxCTLTB.Text = sprite.SPRxCTL.ToString();
+            }
+            else*/
+
+            foreach (Sprite sprite in sprites)
+                sprite.CalculateControlWords(Xpos, Ypos, RelativePositioning);
+
+            SPRxPOSTB.Text = "$"+sprites[0].SPRxPOS.ToString("X4");
+            SPRxCTLTB.Text = "$"+sprites[0].SPRxCTL.ToString("X4");
         }
 
         private void NameTb_KeyDown(object sender, KeyEventArgs e)

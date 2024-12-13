@@ -9,7 +9,7 @@
     <ErrorReportUrlHistory />
     <FallbackCulture>en-US</FallbackCulture>
     <VerifyUploadedFiles>false</VerifyUploadedFiles>
-    <_LastSelectedProfileId>C:\Users\yossi\source\repos\AmigaImageConverter\AmigaImageConverter\Properties\PublishProfiles\FolderProfile.pubxml</_LastSelectedProfileId>
+    <_LastSelectedProfileId>C:\Users\yossi\source\repos\AmigaImageConverter\AmigaImageConverter\Properties\PublishProfiles\FolderProfile1.pubxml</_LastSelectedProfileId>
   </PropertyGroup>
   <ItemGroup>
     <Compile Update="About.cs">
@@ -25,6 +25,9 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="ControlWords.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="DDFCalculator.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="DisplayMask.cs">

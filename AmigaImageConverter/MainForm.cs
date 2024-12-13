@@ -15,8 +15,6 @@ using System.Windows.Forms;
 using Amiga;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using static Amiga.Sprite;
-using NAudio;
-using NAudio.Wave;
 using Microsoft.VisualBasic.Devices;
 using Microsoft.Win32;
 using System.Runtime.CompilerServices;
@@ -1336,6 +1334,17 @@ namespace AmigaImageConverter
         private void controlWordsCalculatorToolStripMenuItem_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void saveSourceFileDialog_FileOk(object sender, CancelEventArgs e)
+        {
+
+        }
+
+        private void dDFCalculatorToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            DDFCalculator dDFCalculator = new DDFCalculator();
+            dDFCalculator.ShowDialog();
         }
     }
 }

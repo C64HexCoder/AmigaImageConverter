@@ -53,6 +53,14 @@
             colorRegistersCombo = new System.Windows.Forms.ComboBox();
             bitsPpCombo = new System.Windows.Forms.ComboBox();
             tabControl1 = new System.Windows.Forms.TabControl();
+            tabFileExt = new System.Windows.Forms.TabPage();
+            groupBox5 = new System.Windows.Forms.GroupBox();
+            groupBox6 = new System.Windows.Forms.GroupBox();
+            radioButton1 = new System.Windows.Forms.RadioButton();
+            radioButton2 = new System.Windows.Forms.RadioButton();
+            radioButton3 = new System.Windows.Forms.RadioButton();
+            radioButton4 = new System.Windows.Forms.RadioButton();
+            radioButton5 = new System.Windows.Forms.RadioButton();
             tabDisplay.SuspendLayout();
             groupBox4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)previewScalingNud).BeginInit();
@@ -63,6 +71,9 @@
             groupBox1.SuspendLayout();
             groupBox3.SuspendLayout();
             tabControl1.SuspendLayout();
+            tabFileExt.SuspendLayout();
+            groupBox5.SuspendLayout();
+            groupBox6.SuspendLayout();
             SuspendLayout();
             // 
             // OKBtn
@@ -339,11 +350,101 @@
             // 
             tabControl1.Controls.Add(tabFormat);
             tabControl1.Controls.Add(tabDisplay);
+            tabControl1.Controls.Add(tabFileExt);
             tabControl1.Location = new System.Drawing.Point(1, 0);
             tabControl1.Name = "tabControl1";
             tabControl1.SelectedIndex = 0;
             tabControl1.Size = new System.Drawing.Size(747, 327);
             tabControl1.TabIndex = 12;
+            // 
+            // tabFileExt
+            // 
+            tabFileExt.Controls.Add(groupBox6);
+            tabFileExt.Controls.Add(groupBox5);
+            tabFileExt.Location = new System.Drawing.Point(4, 34);
+            tabFileExt.Name = "tabFileExt";
+            tabFileExt.Size = new System.Drawing.Size(739, 289);
+            tabFileExt.TabIndex = 3;
+            tabFileExt.Text = "File Extensions";
+            tabFileExt.UseVisualStyleBackColor = true;
+            // 
+            // groupBox5
+            // 
+            groupBox5.Controls.Add(radioButton5);
+            groupBox5.Controls.Add(radioButton2);
+            groupBox5.Controls.Add(radioButton1);
+            groupBox5.Location = new System.Drawing.Point(7, 13);
+            groupBox5.Name = "groupBox5";
+            groupBox5.Size = new System.Drawing.Size(175, 161);
+            groupBox5.TabIndex = 0;
+            groupBox5.TabStop = false;
+            groupBox5.Text = "C/C++";
+            // 
+            // groupBox6
+            // 
+            groupBox6.Controls.Add(radioButton4);
+            groupBox6.Controls.Add(radioButton3);
+            groupBox6.Location = new System.Drawing.Point(188, 13);
+            groupBox6.Name = "groupBox6";
+            groupBox6.Size = new System.Drawing.Size(175, 161);
+            groupBox6.TabIndex = 1;
+            groupBox6.TabStop = false;
+            groupBox6.Text = "Assembler";
+            // 
+            // radioButton1
+            // 
+            radioButton1.AutoSize = true;
+            radioButton1.Location = new System.Drawing.Point(6, 30);
+            radioButton1.Name = "radioButton1";
+            radioButton1.Size = new System.Drawing.Size(49, 29);
+            radioButton1.TabIndex = 0;
+            radioButton1.TabStop = true;
+            radioButton1.Text = ".c";
+            radioButton1.UseVisualStyleBackColor = true;
+            // 
+            // radioButton2
+            // 
+            radioButton2.AutoSize = true;
+            radioButton2.Location = new System.Drawing.Point(6, 65);
+            radioButton2.Name = "radioButton2";
+            radioButton2.Size = new System.Drawing.Size(71, 29);
+            radioButton2.TabIndex = 1;
+            radioButton2.TabStop = true;
+            radioButton2.Text = ".cpp";
+            radioButton2.UseVisualStyleBackColor = true;
+            // 
+            // radioButton3
+            // 
+            radioButton3.AutoSize = true;
+            radioButton3.Location = new System.Drawing.Point(6, 30);
+            radioButton3.Name = "radioButton3";
+            radioButton3.Size = new System.Drawing.Size(141, 29);
+            radioButton3.TabIndex = 1;
+            radioButton3.TabStop = true;
+            radioButton3.Text = "radioButton3";
+            radioButton3.UseVisualStyleBackColor = true;
+            // 
+            // radioButton4
+            // 
+            radioButton4.AutoSize = true;
+            radioButton4.Location = new System.Drawing.Point(6, 65);
+            radioButton4.Name = "radioButton4";
+            radioButton4.Size = new System.Drawing.Size(141, 29);
+            radioButton4.TabIndex = 2;
+            radioButton4.TabStop = true;
+            radioButton4.Text = "radioButton4";
+            radioButton4.UseVisualStyleBackColor = true;
+            // 
+            // radioButton5
+            // 
+            radioButton5.AutoSize = true;
+            radioButton5.Location = new System.Drawing.Point(6, 100);
+            radioButton5.Name = "radioButton5";
+            radioButton5.Size = new System.Drawing.Size(51, 29);
+            radioButton5.TabIndex = 2;
+            radioButton5.TabStop = true;
+            radioButton5.Text = ".h";
+            radioButton5.UseVisualStyleBackColor = true;
             // 
             // Settings
             // 
@@ -371,6 +472,11 @@
             groupBox1.PerformLayout();
             groupBox3.ResumeLayout(false);
             tabControl1.ResumeLayout(false);
+            tabFileExt.ResumeLayout(false);
+            groupBox5.ResumeLayout(false);
+            groupBox5.PerformLayout();
+            groupBox6.ResumeLayout(false);
+            groupBox6.PerformLayout();
             ResumeLayout(false);
         }
 
@@ -400,5 +506,13 @@
         public System.Windows.Forms.RadioButton alignWordRb;
         public System.Windows.Forms.RadioButton alignByteRb;
         private System.Windows.Forms.CheckBox checkBox1;
+        private System.Windows.Forms.TabPage tabFileExt;
+        private System.Windows.Forms.GroupBox groupBox6;
+        private System.Windows.Forms.GroupBox groupBox5;
+        private System.Windows.Forms.RadioButton radioButton4;
+        private System.Windows.Forms.RadioButton radioButton3;
+        private System.Windows.Forms.RadioButton radioButton5;
+        private System.Windows.Forms.RadioButton radioButton2;
+        private System.Windows.Forms.RadioButton radioButton1;
     }
 }
