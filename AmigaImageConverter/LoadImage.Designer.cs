@@ -92,7 +92,8 @@
             heightNumericUpDown.Name = "heightNumericUpDown";
             heightNumericUpDown.Size = new System.Drawing.Size(120, 31);
             heightNumericUpDown.TabIndex = 3;
-            heightNumericUpDown.ValueChanged += heightNumericUpDown_ValueChanged;
+            toolTip.SetToolTip(heightNumericUpDown, "Press Enter to update Width");
+            heightNumericUpDown.KeyDown += heightNumericUpDown_KeyDown;
             heightNumericUpDown.Leave += heightNumericUpDown_Leave;
             // 
             // widthNumericUpDown
@@ -102,7 +103,8 @@
             widthNumericUpDown.Name = "widthNumericUpDown";
             widthNumericUpDown.Size = new System.Drawing.Size(120, 31);
             widthNumericUpDown.TabIndex = 2;
-            widthNumericUpDown.ValueChanged += widthNumericUpDown_ValueChanged;
+            toolTip.SetToolTip(widthNumericUpDown, "Press Enter to update Height");
+            widthNumericUpDown.KeyDown += widthNumericUpDown_KeyDown;
             widthNumericUpDown.Leave += widthNumericUpDown_Leave;
             // 
             // label2
@@ -232,6 +234,7 @@
             // 
             // imageBox
             // 
+            imageBox.AutoCenter = false;
             imageBox.AutoScaleImageBox = false;
             imageBox.HrizontalScrollBar = null;
             imageBox.Image = null;

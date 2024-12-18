@@ -10,6 +10,7 @@ namespace AmigaImageConverter
     public partial class LoadImageDialog : Form
     {
         Bitmap bmp, ScaledBitmap;
+        bool isWidthHeightUpdated = false;
         public LoadImageDialog()
         {
             InitializeComponent();
@@ -175,21 +176,6 @@ namespace AmigaImageConverter
             return bitmap.GetPixel(0, 0);
         }
 
-        private void LoadImageDialog_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        private void widthNumericUpDown_ValueChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void heightNumericUpDown_ValueChanged(object sender, EventArgs e)
-        {
-          
-        }
-
         private void imageBox_MouseClick(object sender, MouseEventArgs e)
         {
             Bitmap bitmap = (Bitmap)((ImageBox)sender).Image;
@@ -208,7 +194,7 @@ namespace AmigaImageConverter
 
         private void doItButton_Click(object sender, EventArgs e)
         {
-            if ((RequestedImageWidth * RequestedImageHeight / 8) > 0x2000000)
+            if ((RequestedImageWidth * RequestedImageHeight / 8) > 0x2000000 || imageBox.UnscaledWidth > 640 || imageBox.UnscaledHeight > 512)
             {
                 if (MessageBox.Show("The image is too big to fit into 2M chip memory, are you sure you want to continue?", "Image too big", MessageBoxButtons.OKCancel) == DialogResult.OK)
                     DialogResult = DialogResult.OK;
@@ -230,9 +216,18 @@ namespace AmigaImageConverter
             if (comboBox.SelectedIndex > 0)
             {
                 if (comboBox.SelectedIndex == 1)
+                {
                     widthNumericUpDown.Value = 320;
+                    float HeightToWidth = (float)bmp.Height / (float)bmp.Width;
+                    heightNumericUpDown.Value = (int)Math.Round(widthNumericUpDown.Value * (decimal)HeightToWidth);
+                    heightNumericUpDown.Refresh();
+                }
                 else
+                {
+                    float WidthToHeight = (float)bmp.Width / (float)bmp.Height;
                     widthNumericUpDown.Value = 640;
+                    widthNumericUpDown.Value = (int)Math.Round(heightNumericUpDown.Value * (decimal)WidthToHeight);
+                }
 
                 widthNumericUpDown.Enabled = false;
                 heightNumericUpDown.Enabled = false;
@@ -246,21 +241,49 @@ namespace AmigaImageConverter
 
         private void widthNumericUpDown_Leave(object sender, EventArgs e)
         {
-            if (bmp != null)
-            {
-                float HeightToWidth = (float)bmp.Height / (float)bmp.Width;
-                heightNumericUpDown.Value = (int)Math.Round(widthNumericUpDown.Value * (decimal)HeightToWidth);
-                heightNumericUpDown.Refresh();
-            }
+            if (bmp != null && isWidthHeightUpdated) 
+                {
+                    float HeightToWidth = (float)bmp.Height / (float)bmp.Width;
+                    heightNumericUpDown.Value = (int)Math.Round(widthNumericUpDown.Value * (decimal)HeightToWidth);
+                    heightNumericUpDown.Refresh();
+                    isWidthHeightUpdated = false;
+                }
         }
 
         private void heightNumericUpDown_Leave(object sender, EventArgs e)
         {
-            if (bmp != null)
+            if (bmp != null && isWidthHeightUpdated)
+            {
+                    float WidthToHeight = (float)bmp.Width / (float)bmp.Height;
+                    widthNumericUpDown.Value = (int)Math.Round(heightNumericUpDown.Value * (decimal)WidthToHeight);
+                    isWidthHeightUpdated = false;
+            }
+        }
+
+        private void widthNumericUpDown_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter && bmp != null)
+            {
+
+                float HeightToWidth = (float)bmp.Height / (float)bmp.Width;
+                heightNumericUpDown.Value = (int)Math.Round(widthNumericUpDown.Value * (decimal)HeightToWidth);
+                isWidthHeightUpdated = false;
+            }
+            else
+                isWidthHeightUpdated = true;
+        }
+
+        private void heightNumericUpDown_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter && bmp != null)
             {
                 float WidthToHeight = (float)bmp.Width / (float)bmp.Height;
                 widthNumericUpDown.Value = (int)Math.Round(heightNumericUpDown.Value * (decimal)WidthToHeight);
+                isWidthHeightUpdated = false;
             }
+            else
+                isWidthHeightUpdated = true;
         }
+
     }
 }

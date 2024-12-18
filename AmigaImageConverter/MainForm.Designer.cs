@@ -92,6 +92,8 @@
             amigaHardwareReferenceManualToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             toolsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             calculateBlitterLFByteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            dDFCalculatorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            sPRxPOSSPRxCTLConverterToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             aboutMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             openImageFileDialog = new System.Windows.Forms.OpenFileDialog();
@@ -134,7 +136,6 @@
             comboBox1 = new System.Windows.Forms.ComboBox();
             cutSpriteBtn = new System.Windows.Forms.Button();
             image = new Amiga.ImageBox();
-            dDFCalculatorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             menuStrip1.SuspendLayout();
             statusStrip.SuspendLayout();
             SlicingPanel.SuspendLayout();
@@ -161,7 +162,7 @@
             menuStrip1.Location = new System.Drawing.Point(0, 0);
             menuStrip1.Name = "menuStrip1";
             menuStrip1.Padding = new System.Windows.Forms.Padding(4, 2, 0, 2);
-            menuStrip1.Size = new System.Drawing.Size(1364, 33);
+            menuStrip1.Size = new System.Drawing.Size(1548, 33);
             menuStrip1.TabIndex = 0;
             menuStrip1.Text = "menuStrip1";
             // 
@@ -440,6 +441,7 @@
             c64ImageToolStripMenuItem.Name = "c64ImageToolStripMenuItem";
             c64ImageToolStripMenuItem.Size = new System.Drawing.Size(277, 34);
             c64ImageToolStripMenuItem.Text = "C64 Image";
+            c64ImageToolStripMenuItem.Visible = false;
             c64ImageToolStripMenuItem.Click += c64ImageToolStripMenuItem_Click;
             // 
             // toolStripMenuItem1
@@ -568,7 +570,7 @@
             // 
             // toolsToolStripMenuItem
             // 
-            toolsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] { calculateBlitterLFByteToolStripMenuItem, dDFCalculatorToolStripMenuItem });
+            toolsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] { calculateBlitterLFByteToolStripMenuItem, dDFCalculatorToolStripMenuItem, sPRxPOSSPRxCTLConverterToolStripMenuItem });
             toolsToolStripMenuItem.Name = "toolsToolStripMenuItem";
             toolsToolStripMenuItem.Size = new System.Drawing.Size(69, 29);
             toolsToolStripMenuItem.Text = "Tools";
@@ -576,9 +578,23 @@
             // calculateBlitterLFByteToolStripMenuItem
             // 
             calculateBlitterLFByteToolStripMenuItem.Name = "calculateBlitterLFByteToolStripMenuItem";
-            calculateBlitterLFByteToolStripMenuItem.Size = new System.Drawing.Size(295, 34);
+            calculateBlitterLFByteToolStripMenuItem.Size = new System.Drawing.Size(341, 34);
             calculateBlitterLFByteToolStripMenuItem.Text = "Calculate Blitter LF Byte";
             calculateBlitterLFByteToolStripMenuItem.Click += calculateBlitterLFByteToolStripMenuItem_Click;
+            // 
+            // dDFCalculatorToolStripMenuItem
+            // 
+            dDFCalculatorToolStripMenuItem.Name = "dDFCalculatorToolStripMenuItem";
+            dDFCalculatorToolStripMenuItem.Size = new System.Drawing.Size(341, 34);
+            dDFCalculatorToolStripMenuItem.Text = "DDF Calculator";
+            dDFCalculatorToolStripMenuItem.Click += dDFCalculatorToolStripMenuItem_Click;
+            // 
+            // sPRxPOSSPRxCTLConverterToolStripMenuItem
+            // 
+            sPRxPOSSPRxCTLConverterToolStripMenuItem.Name = "sPRxPOSSPRxCTLConverterToolStripMenuItem";
+            sPRxPOSSPRxCTLConverterToolStripMenuItem.Size = new System.Drawing.Size(341, 34);
+            sPRxPOSSPRxCTLConverterToolStripMenuItem.Text = "SPRxPOS SPRxCTL Converter";
+            sPRxPOSSPRxCTLConverterToolStripMenuItem.Click += sPRxPOSSPRxCTLConverterToolStripMenuItem_Click;
             // 
             // aboutToolStripMenuItem
             // 
@@ -610,7 +626,7 @@
             statusStrip.Location = new System.Drawing.Point(0, 766);
             statusStrip.Name = "statusStrip";
             statusStrip.Padding = new System.Windows.Forms.Padding(1, 0, 16, 0);
-            statusStrip.Size = new System.Drawing.Size(1364, 32);
+            statusStrip.Size = new System.Drawing.Size(1548, 32);
             statusStrip.TabIndex = 2;
             statusStrip.Text = "statusStrip1";
             // 
@@ -646,7 +662,7 @@
             // SlicingPanel
             // 
             SlicingPanel.Controls.Add(SlicingGb);
-            SlicingPanel.Location = new System.Drawing.Point(866, 34);
+            SlicingPanel.Location = new System.Drawing.Point(1065, 37);
             SlicingPanel.Name = "SlicingPanel";
             SlicingPanel.Size = new System.Drawing.Size(234, 729);
             SlicingPanel.TabIndex = 4;
@@ -806,14 +822,14 @@
             // 
             hScrollBar.Location = new System.Drawing.Point(0, 736);
             hScrollBar.Name = "hScrollBar";
-            hScrollBar.Size = new System.Drawing.Size(862, 30);
+            hScrollBar.Size = new System.Drawing.Size(1062, 30);
             hScrollBar.TabIndex = 5;
             hScrollBar.Visible = false;
             hScrollBar.ValueChanged += hScrollBar_ValueChanged;
             // 
             // vScrollBar
             // 
-            vScrollBar.Location = new System.Drawing.Point(832, 37);
+            vScrollBar.Location = new System.Drawing.Point(1032, 40);
             vScrollBar.Name = "vScrollBar";
             vScrollBar.Size = new System.Drawing.Size(30, 697);
             vScrollBar.TabIndex = 6;
@@ -844,7 +860,7 @@
             imageCutGB.Controls.Add(spriteCutPreviewIB);
             imageCutGB.Controls.Add(comboBox1);
             imageCutGB.Controls.Add(cutSpriteBtn);
-            imageCutGB.Location = new System.Drawing.Point(1118, 34);
+            imageCutGB.Location = new System.Drawing.Point(1305, 37);
             imageCutGB.Name = "imageCutGB";
             imageCutGB.Size = new System.Drawing.Size(231, 726);
             imageCutGB.TabIndex = 7;
@@ -984,7 +1000,7 @@
             image.OriginalImage = null;
             image.ScaleFactor = 4;
             image.ScaleFactorFloat = 1F;
-            image.Size = new System.Drawing.Size(831, 700);
+            image.Size = new System.Drawing.Size(1031, 700);
             image.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
             image.TabIndex = 3;
             image.TabStop = false;
@@ -998,20 +1014,13 @@
             image.MouseMove += image_MouseMove;
             image.MouseUp += image_MouseUp;
             // 
-            // dDFCalculatorToolStripMenuItem
-            // 
-            dDFCalculatorToolStripMenuItem.Name = "dDFCalculatorToolStripMenuItem";
-            dDFCalculatorToolStripMenuItem.Size = new System.Drawing.Size(295, 34);
-            dDFCalculatorToolStripMenuItem.Text = "DDF Calculator";
-            dDFCalculatorToolStripMenuItem.Click += dDFCalculatorToolStripMenuItem_Click;
-            // 
             // MainForm
             // 
             AutoScaleDimensions = new System.Drawing.SizeF(10F, 25F);
             AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             AutoSize = true;
             AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            ClientSize = new System.Drawing.Size(1364, 798);
+            ClientSize = new System.Drawing.Size(1548, 798);
             Controls.Add(imageCutGB);
             Controls.Add(vScrollBar);
             Controls.Add(hScrollBar);
@@ -1162,6 +1171,7 @@
         private System.Windows.Forms.ToolStripMenuItem loadIFFAsSpriteToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem controlWordsCalculatorToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem dDFCalculatorToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem sPRxPOSSPRxCTLConverterToolStripMenuItem;
     }
 }
 

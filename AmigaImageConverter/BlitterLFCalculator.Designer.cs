@@ -28,157 +28,123 @@
         /// </summary>
         private void InitializeComponent()
         {
-            bitSelector1 = new Amiga.BitSelector();
-            bitSelector2 = new Amiga.BitSelector();
-            bitSelector3 = new Amiga.BitSelector();
-            bitSelector4 = new Amiga.BitSelector();
-            bitSelector5 = new Amiga.BitSelector();
-            bitSelector6 = new Amiga.BitSelector();
-            bitSelector7 = new Amiga.BitSelector();
-            bitSelector8 = new Amiga.BitSelector();
             byteDisplay1 = new Amiga.ByteDisplay();
+            label1 = new System.Windows.Forms.Label();
+            byteDisplay2 = new Amiga.ByteDisplay();
+            byteDisplay3 = new Amiga.ByteDisplay();
+            label2 = new System.Windows.Forms.Label();
+            label3 = new System.Windows.Forms.Label();
+            byteDisplay4 = new Amiga.ByteDisplay();
+            label4 = new System.Windows.Forms.Label();
             SuspendLayout();
-            // 
-            // bitSelector1
-            // 
-            bitSelector1.BackgroundImage = 0;
-            bitSelector1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            bitSelector1.BitPosition = 0;
-            bitSelector1.bitState = true;
-            bitSelector1.BorderStyle = 0;
-            bitSelector1.displyDigit = Amiga.BitSelector.DisplyDigit.On;
-            bitSelector1.Location = new System.Drawing.Point(59, 58);
-            bitSelector1.Name = "bitSelector1";
-            bitSelector1.Size = new System.Drawing.Size(31, 31);
-            bitSelector1.TabIndex = 0;
-            // 
-            // bitSelector2
-            // 
-            bitSelector2.BackgroundImage = 0;
-            bitSelector2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            bitSelector2.BitPosition = 0;
-            bitSelector2.bitState = true;
-            bitSelector2.BorderStyle = 0;
-            bitSelector2.displyDigit = Amiga.BitSelector.DisplyDigit.On;
-            bitSelector2.Location = new System.Drawing.Point(96, 58);
-            bitSelector2.Name = "bitSelector2";
-            bitSelector2.Size = new System.Drawing.Size(32, 31);
-            bitSelector2.TabIndex = 1;
-            // 
-            // bitSelector3
-            // 
-            bitSelector3.BackgroundImage = 0;
-            bitSelector3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            bitSelector3.BitPosition = 0;
-            bitSelector3.bitState = true;
-            bitSelector3.BorderStyle = 0;
-            bitSelector3.displyDigit = Amiga.BitSelector.DisplyDigit.On;
-            bitSelector3.Location = new System.Drawing.Point(171, 58);
-            bitSelector3.Name = "bitSelector3";
-            bitSelector3.Size = new System.Drawing.Size(32, 31);
-            bitSelector3.TabIndex = 3;
-            // 
-            // bitSelector4
-            // 
-            bitSelector4.BackgroundImage = 0;
-            bitSelector4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            bitSelector4.BitPosition = 0;
-            bitSelector4.bitState = true;
-            bitSelector4.BorderStyle = 0;
-            bitSelector4.displyDigit = Amiga.BitSelector.DisplyDigit.On;
-            bitSelector4.Location = new System.Drawing.Point(134, 58);
-            bitSelector4.Name = "bitSelector4";
-            bitSelector4.Size = new System.Drawing.Size(31, 31);
-            bitSelector4.TabIndex = 2;
-            // 
-            // bitSelector5
-            // 
-            bitSelector5.BackgroundImage = 0;
-            bitSelector5.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            bitSelector5.BitPosition = 0;
-            bitSelector5.bitState = true;
-            bitSelector5.BorderStyle = 0;
-            bitSelector5.displyDigit = Amiga.BitSelector.DisplyDigit.On;
-            bitSelector5.Location = new System.Drawing.Point(321, 58);
-            bitSelector5.Name = "bitSelector5";
-            bitSelector5.Size = new System.Drawing.Size(32, 31);
-            bitSelector5.TabIndex = 7;
-            // 
-            // bitSelector6
-            // 
-            bitSelector6.BackgroundImage = 0;
-            bitSelector6.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            bitSelector6.BitPosition = 0;
-            bitSelector6.bitState = true;
-            bitSelector6.BorderStyle = 0;
-            bitSelector6.displyDigit = Amiga.BitSelector.DisplyDigit.On;
-            bitSelector6.Location = new System.Drawing.Point(284, 58);
-            bitSelector6.Name = "bitSelector6";
-            bitSelector6.Size = new System.Drawing.Size(31, 31);
-            bitSelector6.TabIndex = 6;
-            // 
-            // bitSelector7
-            // 
-            bitSelector7.BackgroundImage = 0;
-            bitSelector7.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            bitSelector7.BitPosition = 0;
-            bitSelector7.bitState = true;
-            bitSelector7.BorderStyle = 0;
-            bitSelector7.displyDigit = Amiga.BitSelector.DisplyDigit.On;
-            bitSelector7.Location = new System.Drawing.Point(246, 58);
-            bitSelector7.Name = "bitSelector7";
-            bitSelector7.Size = new System.Drawing.Size(32, 31);
-            bitSelector7.TabIndex = 5;
-            // 
-            // bitSelector8
-            // 
-            bitSelector8.BackgroundImage = 0;
-            bitSelector8.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            bitSelector8.BitPosition = 0;
-            bitSelector8.bitState = true;
-            bitSelector8.BorderStyle = 0;
-            bitSelector8.displyDigit = Amiga.BitSelector.DisplyDigit.On;
-            bitSelector8.Location = new System.Drawing.Point(209, 58);
-            bitSelector8.Name = "bitSelector8";
-            bitSelector8.Size = new System.Drawing.Size(31, 31);
-            bitSelector8.TabIndex = 4;
             // 
             // byteDisplay1
             // 
-            byteDisplay1.Location = new System.Drawing.Point(24, 183);
+            byteDisplay1.AutoSize = true;
+            byteDisplay1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            byteDisplay1.ByteVal = 255;
+            byteDisplay1.Location = new System.Drawing.Point(201, 12);
             byteDisplay1.Name = "byteDisplay1";
-            byteDisplay1.Size = new System.Drawing.Size(485, 112);
+            byteDisplay1.Size = new System.Drawing.Size(296, 80);
             byteDisplay1.TabIndex = 8;
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
+            label1.Location = new System.Drawing.Point(12, 31);
+            label1.Name = "label1";
+            label1.Size = new System.Drawing.Size(116, 32);
+            label1.TabIndex = 9;
+            label1.Text = "Source A";
+            // 
+            // byteDisplay2
+            // 
+            byteDisplay2.AutoSize = true;
+            byteDisplay2.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            byteDisplay2.ByteVal = 0;
+            byteDisplay2.Location = new System.Drawing.Point(201, 98);
+            byteDisplay2.Name = "byteDisplay2";
+            byteDisplay2.Size = new System.Drawing.Size(296, 80);
+            byteDisplay2.TabIndex = 11;
+            // 
+            // byteDisplay3
+            // 
+            byteDisplay3.AutoSize = true;
+            byteDisplay3.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            byteDisplay3.ByteVal = 0;
+            byteDisplay3.Location = new System.Drawing.Point(201, 184);
+            byteDisplay3.Name = "byteDisplay3";
+            byteDisplay3.Size = new System.Drawing.Size(296, 80);
+            byteDisplay3.TabIndex = 12;
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
+            label2.Location = new System.Drawing.Point(12, 119);
+            label2.Name = "label2";
+            label2.Size = new System.Drawing.Size(114, 32);
+            label2.TabIndex = 13;
+            label2.Text = "Source B";
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
+            label3.Location = new System.Drawing.Point(12, 210);
+            label3.Name = "label3";
+            label3.Size = new System.Drawing.Size(114, 32);
+            label3.TabIndex = 14;
+            label3.Text = "Source C";
+            // 
+            // byteDisplay4
+            // 
+            byteDisplay4.AutoSize = true;
+            byteDisplay4.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            byteDisplay4.ByteVal = 0;
+            byteDisplay4.Location = new System.Drawing.Point(201, 326);
+            byteDisplay4.Name = "byteDisplay4";
+            byteDisplay4.Size = new System.Drawing.Size(296, 80);
+            byteDisplay4.TabIndex = 15;
+            // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
+            label4.Location = new System.Drawing.Point(12, 347);
+            label4.Name = "label4";
+            label4.Size = new System.Drawing.Size(152, 32);
+            label4.TabIndex = 16;
+            label4.Text = "Destenation";
             // 
             // BlitterLFCalculator
             // 
             AutoScaleDimensions = new System.Drawing.SizeF(10F, 25F);
             AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            ClientSize = new System.Drawing.Size(800, 450);
+            ClientSize = new System.Drawing.Size(513, 425);
+            Controls.Add(label4);
+            Controls.Add(byteDisplay4);
+            Controls.Add(label3);
+            Controls.Add(label2);
+            Controls.Add(byteDisplay3);
+            Controls.Add(byteDisplay2);
+            Controls.Add(label1);
             Controls.Add(byteDisplay1);
-            Controls.Add(bitSelector5);
-            Controls.Add(bitSelector6);
-            Controls.Add(bitSelector7);
-            Controls.Add(bitSelector8);
-            Controls.Add(bitSelector3);
-            Controls.Add(bitSelector4);
-            Controls.Add(bitSelector2);
-            Controls.Add(bitSelector1);
             Name = "BlitterLFCalculator";
             Text = "BlitterLFCalculator";
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
-
-        private Amiga.BitSelector bitSelector1;
-        private Amiga.BitSelector bitSelector2;
-        private Amiga.BitSelector bitSelector3;
-        private Amiga.BitSelector bitSelector4;
-        private Amiga.BitSelector bitSelector5;
-        private Amiga.BitSelector bitSelector6;
-        private Amiga.BitSelector bitSelector7;
-        private Amiga.BitSelector bitSelector8;
         private Amiga.ByteDisplay byteDisplay1;
+        private System.Windows.Forms.Label label1;
+        private Amiga.ByteDisplay byteDisplay2;
+        private Amiga.ByteDisplay byteDisplay3;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label3;
+        private Amiga.ByteDisplay byteDisplay4;
+        private System.Windows.Forms.Label label4;
     }
 }

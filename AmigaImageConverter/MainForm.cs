@@ -813,7 +813,6 @@ namespace AmigaImageConverter
                             image.Image = vr.bitplane.CreateBitmap();
                             //image.Refresh();
                             //image.ScaleImage();
-
                         }
                     }
             }
@@ -1345,6 +1344,12 @@ namespace AmigaImageConverter
         {
             DDFCalculator dDFCalculator = new DDFCalculator();
             dDFCalculator.ShowDialog();
+        }
+
+        private void sPRxPOSSPRxCTLConverterToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SPRxPOS_CTLDecoding sPRxPOS_CTLDecoding = new SPRxPOS_CTLDecoding();
+            sPRxPOS_CTLDecoding.ShowDialog();
         }
     }
 }
