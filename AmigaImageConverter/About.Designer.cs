@@ -44,7 +44,7 @@
             richTextBox1.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.None;
             richTextBox1.Size = new System.Drawing.Size(459, 258);
             richTextBox1.TabIndex = 0;
-            richTextBox1.Text = "Amiga Image Converter (AIC)\nProgrammed by Yossi Shelly on June 2022.\n\nVersion: \nAll Rights (C) Reserved!! \n\n";
+            richTextBox1.Text = "Amiga Image Converter (AIC)\nProgrammed by Yossi Shelly on June 2022.\n\nVersion: \nAll Rights (C) Reserved!! \n\n\n\nYossi.shelly@gmail.com\n\n";
             // 
             // button1
             // 

@@ -498,7 +498,6 @@
             controlWordsCalculatorToolStripMenuItem.Name = "controlWordsCalculatorToolStripMenuItem";
             controlWordsCalculatorToolStripMenuItem.Size = new System.Drawing.Size(313, 34);
             controlWordsCalculatorToolStripMenuItem.Text = "Control Words Calculator";
-            controlWordsCalculatorToolStripMenuItem.Click += controlWordsCalculatorToolStripMenuItem_Click;
             // 
             // colorsToolStripMenuItem
             // 
@@ -617,7 +616,6 @@
             // saveSourceFileDialog
             // 
             saveSourceFileDialog.Filter = "Aseembler Source File|*.S;*.asm|Binary File|*.bin| C Source File |*.c";
-            saveSourceFileDialog.FileOk += saveSourceFileDialog_FileOk;
             // 
             // statusStrip
             // 
@@ -689,7 +687,6 @@
             SlicingGb.TabIndex = 0;
             SlicingGb.TabStop = false;
             SlicingGb.Text = "Slicing";
-            SlicingGb.VisibleChanged += SlicingGb_VisibleChanged;
             // 
             // spriteNameTxtbox
             // 
@@ -753,6 +750,7 @@
             sprImageBox.HrizontalScrollBar = null;
             sprImageBox.Image = null;
             sprImageBox.Location = new System.Drawing.Point(6, 303);
+            sprImageBox.MaxImageScale = 4;
             sprImageBox.MouseWheelZoom = false;
             sprImageBox.Name = "sprImageBox";
             sprImageBox.OriginalImage = null;
@@ -959,6 +957,7 @@
             spriteCutPreviewIB.HrizontalScrollBar = null;
             spriteCutPreviewIB.Image = null;
             spriteCutPreviewIB.Location = new System.Drawing.Point(6, 318);
+            spriteCutPreviewIB.MaxImageScale = 4;
             spriteCutPreviewIB.MouseWheelZoom = false;
             spriteCutPreviewIB.Name = "spriteCutPreviewIB";
             spriteCutPreviewIB.OriginalImage = null;
@@ -998,6 +997,7 @@
             image.Image = null;
             image.Location = new System.Drawing.Point(0, 34);
             image.Margin = new System.Windows.Forms.Padding(1, 2, 1, 2);
+            image.MaxImageScale = 5;
             image.MouseWheelZoom = true;
             image.Name = "image";
             image.OriginalImage = null;
@@ -1011,6 +1011,7 @@
             image.HorizontalScrollBarChanged += image_HorizontalScrollBarChanged;
             image.VerticalScrollBarChanged += image_VerticalScrollBarChanged;
             image.LoadCompleted += image_LoadCompleted;
+            image.SizeChanged += image_SizeChanged;
             image.Paint += image_Paint;
             image.MouseClick += image_MouseClick;
             image.MouseDown += image_MouseDown;
@@ -1039,8 +1040,6 @@
             Name = "MainForm";
             StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             Text = "Amiga Image Converter";
-            Load += MainForm_Load;
-            Enter += MainForm_Enter;
             menuStrip1.ResumeLayout(false);
             menuStrip1.PerformLayout();
             statusStrip.ResumeLayout(false);

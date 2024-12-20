@@ -194,7 +194,7 @@ namespace AmigaImageConverter
 
         private void doItButton_Click(object sender, EventArgs e)
         {
-            if ((RequestedImageWidth * RequestedImageHeight / 8) > 0x2000000 || imageBox.UnscaledWidth > 640 || imageBox.UnscaledHeight > 512)
+            if (widthNumericUpDown.Value > 640 || heightNumericUpDown.Value > 512)
             {
                 if (MessageBox.Show("The image is too big to fit into 2M chip memory, are you sure you want to continue?", "Image too big", MessageBoxButtons.OKCancel) == DialogResult.OK)
                     DialogResult = DialogResult.OK;

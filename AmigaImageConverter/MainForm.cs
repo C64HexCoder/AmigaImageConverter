@@ -99,9 +99,11 @@ namespace AmigaImageConverter
 
         private async void loadImageToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            image.MouseWheelZoom = true;
             formState = FormState.Image;
             spriteRec.IsSpriteCut = false;
             SlicingPanel.Visible = false;
+            imageCutGB.Visible = false;
             SliceBtn.Enabled = true;
 
 
@@ -513,6 +515,8 @@ namespace AmigaImageConverter
 
         private void sprireSheetCutterToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            image.MouseWheelZoom = false;
+            SlicingPanel.Left = image.Right + 2;
             SlicingPanel.Visible = true;
             imageCutGB.Visible = false;
             formState = FormState.SpriteSplit;
@@ -580,18 +584,6 @@ namespace AmigaImageConverter
             }
             sprImageBox.Image = sprites[0].bitmap;
 
-
-            image.Image = vr.bitplane.bitmap;
-
-            if (settings.ScalingType == Settings.ScaleType.ScaleToMax)
-            {       // Auto scaling modde
-                ScaleToMax();
-            }
-            // Manual scalling
-            else
-            {
-                PredefinedScale();
-            }
 
             spriteSelectNud.Maximum = sprites.Count - 1;
             SliceBtn.Enabled = false;
@@ -988,17 +980,6 @@ namespace AmigaImageConverter
             vScrollBar.Visible = args.Enabled;
         }
 
-        private void MainForm_Load(object sender, EventArgs e)
-        {
-            int test = 1;
-        }
-
-        private void MainForm_Enter(object sender, EventArgs e)
-        {
-            int test = 1;
-
-        }
-
         private void loadAmigaFonttoolStripMenuItem_Click(object sender, EventArgs e)
         {
             Amiga.Font obj = new Amiga.Font();
@@ -1035,6 +1016,8 @@ namespace AmigaImageConverter
 
         private void cutSpriteToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            image.MouseWheelZoom = false;
+            imageCutGB.Left = image.Right + 2;
             imageCutGB.Visible = true;
             SlicingPanel.Visible = false;
             formState = FormState.SpriteCut;
@@ -1271,10 +1254,7 @@ namespace AmigaImageConverter
             }
         }
 
-        private void SlicingGb_VisibleChanged(object sender, EventArgs e)
-        {
 
-        }
 
         private void SlicingPanel_VisibleChanged(object sender, EventArgs e)
         {
@@ -1330,15 +1310,6 @@ namespace AmigaImageConverter
 
         }
 
-        private void controlWordsCalculatorToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void saveSourceFileDialog_FileOk(object sender, CancelEventArgs e)
-        {
-
-        }
 
         private void dDFCalculatorToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -1351,5 +1322,22 @@ namespace AmigaImageConverter
             SPRxPOS_CTLDecoding sPRxPOS_CTLDecoding = new SPRxPOS_CTLDecoding();
             sPRxPOS_CTLDecoding.ShowDialog();
         }
+
+        private void image_SizeChanged(object sender, EventArgs e)
+        {
+            if (formState == FormState.SpriteSplit)
+            {
+                SlicingPanel.Left = image.Right + 2;
+                this.Width = Width + SlicingPanel.Width;
+
+            }
+            else if (formState == FormState.SpriteCut)
+            {
+                imageCutGB.Left = image.Right + 2;
+                Width = Width + imageCutGB.Width;
+            }
+
+        }
+
     }
 }
