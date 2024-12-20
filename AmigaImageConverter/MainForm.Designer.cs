@@ -748,6 +748,7 @@
             // 
             // sprImageBox
             // 
+            sprImageBox.AutoCenter = false;
             sprImageBox.AutoScaleImageBox = false;
             sprImageBox.HrizontalScrollBar = null;
             sprImageBox.Image = null;
@@ -953,6 +954,7 @@
             // 
             // spriteCutPreviewIB
             // 
+            spriteCutPreviewIB.AutoCenter = false;
             spriteCutPreviewIB.AutoScaleImageBox = false;
             spriteCutPreviewIB.HrizontalScrollBar = null;
             spriteCutPreviewIB.Image = null;
@@ -990,6 +992,7 @@
             // 
             // image
             // 
+            image.AutoCenter = false;
             image.AutoScaleImageBox = false;
             image.HrizontalScrollBar = null;
             image.Image = null;
