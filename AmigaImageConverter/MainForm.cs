@@ -137,7 +137,22 @@ namespace AmigaImageConverter
 
 
                     menuStrip1.Enabled = false;
-                    vr.bitplane.bitmap = await Task.Run(() => KMeansQuant.ReduceColors(bmp, loadImageDlg.ImageNumOfColors));
+                    switch (loadImageDlg.algorithemCB.SelectedIndex)
+                    {
+                        case 0:
+                            vr.bitplane.bitmap = await Task.Run(() => KMeansQuant.ReduceColors(bmp, loadImageDlg.ImageNumOfColors));
+                            break;
+
+                        case 1:
+                            MedianCut mc = new MedianCut();
+                            vr.bitplane.bitmap = await Task.Run (() => vr.bitplane.bitmap = mc.ReduceColors(bmp));
+                            break;
+
+                        case 2:
+                            DeepCycle dp = new DeepCycle();
+                            vr.bitplane.bitmap = await Task.Run(() => dp.ReduceColors(bmp, DeepCycle.ColorAvaragingMethod.RelaativeToNumberOfInstances));
+                            break;
+                    }
                     menuStrip1.Enabled = true;
 
                 }
@@ -347,6 +362,11 @@ namespace AmigaImageConverter
 
         private void savePallateToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            if (vr.bitplane.bitmap ==  null)
+            {
+                MessageBox.Show("Pease load image first", "Missing Image", MessageBoxButtons.OK);
+                return;
+            }
             ColorOptions colorOptions = new ColorOptions();
             colorOptions.ShowDialog();
 
@@ -354,8 +374,10 @@ namespace AmigaImageConverter
             pallateFileDialog.Filter = "Assembler Source|*.S";
             if (pallateFileDialog.ShowDialog() == DialogResult.OK)
             {
-                // Need to add 12 bit per pixel support
-                vr.bitplane.SavePallate(pallateFileDialog.FileName, colorOptions.BaseColorRegister);
+                if (colorOptions.bitsPerPixel == ColorOptions.BitsPerPixel.FourBpp)
+                    vr.bitplane.SavePallate(pallateFileDialog.FileName, colorOptions.BaseColorRegister);
+                else
+                    vr.bitplane.Save24bitPalette(pallateFileDialog.FileName,colorOptions.BaseColorRegister,(int)colorOptions.bankNumUD.Value);
             }
         }
 
@@ -786,6 +808,9 @@ namespace AmigaImageConverter
 
         private void LoadIFFToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            SlicingPanel.Enabled = false ;
+            imageCutGB.Enabled = false ;
+
             OpenFileDialog iffFile = new OpenFileDialog();
             iffFile.Filter = "Amiga IFF|*.iff;*.ilbm;*.pbm;*.acbm";
             if (iffFile.ShowDialog() == DialogResult.OK)

@@ -39,7 +39,7 @@
             label4 = new System.Windows.Forms.Label();
             colorComboBox = new System.Windows.Forms.ComboBox();
             label3 = new System.Windows.Forms.Label();
-            comboBox1 = new System.Windows.Forms.ComboBox();
+            algorithemCB = new System.Windows.Forms.ComboBox();
             groupBox2 = new System.Windows.Forms.GroupBox();
             transparentCheckBox = new System.Windows.Forms.CheckBox();
             bgColorPictureBox = new System.Windows.Forms.PictureBox();
@@ -130,7 +130,7 @@
             groupBox1.Controls.Add(label4);
             groupBox1.Controls.Add(colorComboBox);
             groupBox1.Controls.Add(label3);
-            groupBox1.Controls.Add(comboBox1);
+            groupBox1.Controls.Add(algorithemCB);
             groupBox1.Location = new System.Drawing.Point(0, 158);
             groupBox1.Name = "groupBox1";
             groupBox1.Size = new System.Drawing.Size(273, 178);
@@ -165,15 +165,15 @@
             label3.TabIndex = 1;
             label3.Text = "Algorithem";
             // 
-            // comboBox1
+            // algorithemCB
             // 
-            comboBox1.Enabled = false;
-            comboBox1.FormattingEnabled = true;
-            comboBox1.Location = new System.Drawing.Point(6, 55);
-            comboBox1.Name = "comboBox1";
-            comboBox1.Size = new System.Drawing.Size(260, 33);
-            comboBox1.TabIndex = 0;
-            comboBox1.Text = "K Means";
+            algorithemCB.FormattingEnabled = true;
+            algorithemCB.Items.AddRange(new object[] { "K Means", "MedianCut", "Deap Cycle" });
+            algorithemCB.Location = new System.Drawing.Point(6, 55);
+            algorithemCB.Name = "algorithemCB";
+            algorithemCB.Size = new System.Drawing.Size(260, 33);
+            algorithemCB.TabIndex = 0;
+            algorithemCB.Text = "K Means";
             // 
             // groupBox2
             // 
@@ -239,6 +239,7 @@
             imageBox.HrizontalScrollBar = null;
             imageBox.Image = null;
             imageBox.Location = new System.Drawing.Point(19, 15);
+            imageBox.MaxImageScale = 4;
             imageBox.MouseWheelZoom = false;
             imageBox.Name = "imageBox";
             imageBox.OriginalImage = null;
@@ -313,7 +314,6 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.ComboBox colorComboBox;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.PictureBox bgColorPictureBox;
         private System.Windows.Forms.CheckBox transparentCheckBox;
@@ -325,5 +325,6 @@
         private System.Windows.Forms.ToolTip toolTip;
         private System.Windows.Forms.HScrollBar hScrollBar;
         private System.Windows.Forms.ComboBox resizeMethodCBox;
+        public System.Windows.Forms.ComboBox algorithemCB;
     }
 }
