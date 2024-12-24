@@ -12,6 +12,8 @@ namespace AmigaImageConverter
     {
         public static PublicVariables _instance;
 
+        public int imageScalingFactoer = 0;
+
         public Bitplane.DataType outputSize = Bitplane.DataType.Word;
         public Bitplane.DataType Alignment = Bitplane.DataType.Word;
 
@@ -19,6 +21,7 @@ namespace AmigaImageConverter
         public ushort BaseColorRegister = 0x180;
         public byte bpp = 4;
         public Bitplane bitplane = new Bitplane();
+        public SpriteCutRec spriteRec;
 
         public static PublicVariables instance
         {

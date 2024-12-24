@@ -1,0 +1,227 @@
+﻿namespace AmigaImageConverter
+{
+    partial class SpriteCut
+    {
+        /// <summary> 
+        /// Required designer variable.
+        /// </summary>
+        private System.ComponentModel.IContainer components = null;
+
+        /// <summary> 
+        /// Clean up any resources being used.
+        /// </summary>
+        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing && (components != null))
+            {
+                components.Dispose();
+            }
+            base.Dispose(disposing);
+        }
+
+        #region Component Designer generated code
+
+        /// <summary> 
+        /// Required method for Designer support - do not modify 
+        /// the contents of this method with the code editor.
+        /// </summary>
+        private void InitializeComponent()
+        {
+            imageCutGB = new System.Windows.Forms.GroupBox();
+            label6 = new System.Windows.Forms.Label();
+            spritePerImageCutNud = new System.Windows.Forms.NumericUpDown();
+            groupBox1 = new System.Windows.Forms.GroupBox();
+            heightNumUD = new System.Windows.Forms.NumericUpDown();
+            widthNumUD = new System.Windows.Forms.NumericUpDown();
+            spriteNameSCTB = new System.Windows.Forms.TextBox();
+            label5 = new System.Windows.Forms.Label();
+            spriteCutSaveButton = new System.Windows.Forms.Button();
+            spriteSelectorNud = new System.Windows.Forms.NumericUpDown();
+            spriteCutPreviewIB = new Amiga.ImageBox();
+            comboBox1 = new System.Windows.Forms.ComboBox();
+            cutSpriteBtn = new System.Windows.Forms.Button();
+            imageCutGB.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)spritePerImageCutNud).BeginInit();
+            groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)heightNumUD).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)widthNumUD).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)spriteSelectorNud).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)spriteCutPreviewIB).BeginInit();
+            SuspendLayout();
+            // 
+            // imageCutGB
+            // 
+            imageCutGB.Controls.Add(label6);
+            imageCutGB.Controls.Add(spritePerImageCutNud);
+            imageCutGB.Controls.Add(groupBox1);
+            imageCutGB.Controls.Add(spriteNameSCTB);
+            imageCutGB.Controls.Add(label5);
+            imageCutGB.Controls.Add(spriteCutSaveButton);
+            imageCutGB.Controls.Add(spriteSelectorNud);
+            imageCutGB.Controls.Add(spriteCutPreviewIB);
+            imageCutGB.Controls.Add(comboBox1);
+            imageCutGB.Controls.Add(cutSpriteBtn);
+            imageCutGB.Location = new System.Drawing.Point(3, 3);
+            imageCutGB.Name = "imageCutGB";
+            imageCutGB.Size = new System.Drawing.Size(231, 726);
+            imageCutGB.TabIndex = 8;
+            imageCutGB.TabStop = false;
+            imageCutGB.Text = "Sprite Cutter";
+            imageCutGB.Visible = false;
+            // 
+            // label6
+            // 
+            label6.AutoSize = true;
+            label6.Location = new System.Drawing.Point(6, 136);
+            label6.Name = "label6";
+            label6.Size = new System.Drawing.Size(150, 25);
+            label6.TabIndex = 14;
+            label6.Text = "Sprites Per Image";
+            // 
+            // spritePerImageCutNud
+            // 
+            spritePerImageCutNud.Location = new System.Drawing.Point(6, 163);
+            spritePerImageCutNud.Maximum = new decimal(new int[] { 4, 0, 0, 0 });
+            spritePerImageCutNud.Minimum = new decimal(new int[] { 1, 0, 0, 0 });
+            spritePerImageCutNud.Name = "spritePerImageCutNud";
+            spritePerImageCutNud.Size = new System.Drawing.Size(213, 31);
+            spritePerImageCutNud.TabIndex = 13;
+            spritePerImageCutNud.Value = new decimal(new int[] { 1, 0, 0, 0 });
+            // 
+            // groupBox1
+            // 
+            groupBox1.Controls.Add(heightNumUD);
+            groupBox1.Controls.Add(widthNumUD);
+            groupBox1.Location = new System.Drawing.Point(6, 200);
+            groupBox1.Name = "groupBox1";
+            groupBox1.Size = new System.Drawing.Size(213, 72);
+            groupBox1.TabIndex = 12;
+            groupBox1.TabStop = false;
+            groupBox1.Text = "Dimension";
+            // 
+            // heightNumUD
+            // 
+            heightNumUD.Location = new System.Drawing.Point(119, 35);
+            heightNumUD.Name = "heightNumUD";
+            heightNumUD.Size = new System.Drawing.Size(77, 31);
+            heightNumUD.TabIndex = 1;
+            // 
+            // widthNumUD
+            // 
+            widthNumUD.Location = new System.Drawing.Point(15, 35);
+            widthNumUD.Name = "widthNumUD";
+            widthNumUD.Size = new System.Drawing.Size(80, 31);
+            widthNumUD.TabIndex = 0;
+            // 
+            // spriteNameSCTB
+            // 
+            spriteNameSCTB.Location = new System.Drawing.Point(6, 100);
+            spriteNameSCTB.Name = "spriteNameSCTB";
+            spriteNameSCTB.Size = new System.Drawing.Size(213, 31);
+            spriteNameSCTB.TabIndex = 11;
+            // 
+            // label5
+            // 
+            label5.AutoSize = true;
+            label5.Location = new System.Drawing.Point(6, 74);
+            label5.Name = "label5";
+            label5.Size = new System.Drawing.Size(111, 25);
+            label5.TabIndex = 10;
+            label5.Text = "Sprite name:";
+            // 
+            // spriteCutSaveButton
+            // 
+            spriteCutSaveButton.Enabled = false;
+            spriteCutSaveButton.Location = new System.Drawing.Point(6, 666);
+            spriteCutSaveButton.Name = "spriteCutSaveButton";
+            spriteCutSaveButton.Size = new System.Drawing.Size(213, 34);
+            spriteCutSaveButton.TabIndex = 6;
+            spriteCutSaveButton.Text = "Save";
+            spriteCutSaveButton.UseVisualStyleBackColor = true;
+            // 
+            // spriteSelectorNud
+            // 
+            spriteSelectorNud.Enabled = false;
+            spriteSelectorNud.Location = new System.Drawing.Point(6, 629);
+            spriteSelectorNud.Name = "spriteSelectorNud";
+            spriteSelectorNud.Size = new System.Drawing.Size(213, 31);
+            spriteSelectorNud.TabIndex = 4;
+            spriteSelectorNud.ValueChanged += spriteSelectorNud_ValueChanged;
+            // 
+            // spriteCutPreviewIB
+            // 
+            spriteCutPreviewIB.AutoCenter = false;
+            spriteCutPreviewIB.AutoScaleImageBox = false;
+            spriteCutPreviewIB.HrizontalScrollBar = null;
+            spriteCutPreviewIB.Image = null;
+            spriteCutPreviewIB.Location = new System.Drawing.Point(6, 318);
+            spriteCutPreviewIB.MaxImageScale = 4;
+            spriteCutPreviewIB.MouseWheelZoom = false;
+            spriteCutPreviewIB.Name = "spriteCutPreviewIB";
+            spriteCutPreviewIB.OriginalImage = null;
+            spriteCutPreviewIB.ScaleFactor = 1;
+            spriteCutPreviewIB.ScaleFactorFloat = 1F;
+            spriteCutPreviewIB.Size = new System.Drawing.Size(213, 305);
+            spriteCutPreviewIB.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            spriteCutPreviewIB.TabIndex = 7;
+            spriteCutPreviewIB.TabStop = false;
+            spriteCutPreviewIB.VerticalScrollBar = null;
+            // 
+            // comboBox1
+            // 
+            comboBox1.FormattingEnabled = true;
+            comboBox1.Items.AddRange(new object[] { "OCS/ECS 16 Pixels", "AGA 32 Pixels", "AGA 64 Pixels" });
+            comboBox1.Location = new System.Drawing.Point(6, 32);
+            comboBox1.Name = "comboBox1";
+            comboBox1.Size = new System.Drawing.Size(213, 33);
+            comboBox1.TabIndex = 5;
+            comboBox1.Text = "Select sprite width";
+            // 
+            // cutSpriteBtn
+            // 
+            cutSpriteBtn.Location = new System.Drawing.Point(6, 278);
+            cutSpriteBtn.Name = "cutSpriteBtn";
+            cutSpriteBtn.Size = new System.Drawing.Size(213, 34);
+            cutSpriteBtn.TabIndex = 1;
+            cutSpriteBtn.Text = "Cut it!";
+            cutSpriteBtn.UseVisualStyleBackColor = true;
+            cutSpriteBtn.Click += cutSpriteBtn_Click;
+            // 
+            // SpriteCut
+            // 
+            AutoScaleDimensions = new System.Drawing.SizeF(10F, 25F);
+            AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            AutoSize = true;
+            AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            Controls.Add(imageCutGB);
+            Name = "SpriteCut";
+            Size = new System.Drawing.Size(237, 732);
+            imageCutGB.ResumeLayout(false);
+            imageCutGB.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)spritePerImageCutNud).EndInit();
+            groupBox1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)heightNumUD).EndInit();
+            ((System.ComponentModel.ISupportInitialize)widthNumUD).EndInit();
+            ((System.ComponentModel.ISupportInitialize)spriteSelectorNud).EndInit();
+            ((System.ComponentModel.ISupportInitialize)spriteCutPreviewIB).EndInit();
+            ResumeLayout(false);
+        }
+
+        #endregion
+
+        private System.Windows.Forms.GroupBox imageCutGB;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.Label label5;
+        private Amiga.ImageBox spriteCutPreviewIB;
+        private System.Windows.Forms.Button cutSpriteBtn;
+        public System.Windows.Forms.NumericUpDown heightNumUD;
+        public System.Windows.Forms.NumericUpDown widthNumUD;
+        public System.Windows.Forms.TextBox spriteNameSCTB;
+        public System.Windows.Forms.ComboBox comboBox1;
+        public System.Windows.Forms.NumericUpDown spritePerImageCutNud;
+        public System.Windows.Forms.Button spriteCutSaveButton;
+        public System.Windows.Forms.NumericUpDown spriteSelectorNud;
+    }
+}
