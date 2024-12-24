@@ -1140,22 +1140,22 @@ namespace AmigaImageConverter
             }
             else
             {
-                if (Math.Abs(e.X - spriteRec.X) < 5 && Math.Abs(e.Y - spriteRec.Y) < 5)
+                if (Math.Abs(e.X - vr.spriteRec.X) < 5 && Math.Abs(e.Y - vr.spriteRec.Y) < 5)
                 {
                     image.Cursor = Cursors.PanNW;
                     spriteCutState = SpriteCutState.PanNW;
                 }
-                else if (Math.Abs(e.X - (spriteRec.X2)) < 5 && Math.Abs(e.Y - spriteRec.Y2) < 5)
+                else if (Math.Abs(e.X - (vr.spriteRec.X2)) < 5 && Math.Abs(e.Y - vr.spriteRec.Y2) < 5)
                 {
                     image.Cursor = Cursors.PanSE;
                     spriteCutState = SpriteCutState.PanSE;
                 }
-                else if (Math.Abs(e.X - spriteRec.X) < 5 && Math.Abs(e.Y - spriteRec.Y2) < 5)
+                else if (Math.Abs(e.X - vr.spriteRec.X) < 5 && Math.Abs(e.Y - vr.spriteRec.Y2) < 5)
                 {
                     image.Cursor = Cursors.PanSW;
                     spriteCutState = SpriteCutState.PanSW;
                 }
-                else if (Math.Abs(e.X - spriteRec.X2) < 5 && Math.Abs(e.Y - spriteRec.Y) < 5)
+                else if (Math.Abs(e.X - vr.spriteRec.X2) < 5 && Math.Abs(e.Y - vr.spriteRec.Y) < 5)
                 {
                     image.Cursor = Cursors.PanNE;
                     spriteCutState = SpriteCutState.PanNE;
