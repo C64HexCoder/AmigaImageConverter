@@ -16,23 +16,34 @@ namespace AmigaImageConverter
     {
         List<Sprite> sprites = new List<Sprite>();
         PublicVariables vr = PublicVariables.instance;
-        PublicVariables.SpriteCutRec spriteRec;
+        
         public SpriteCut()
         {
             InitializeComponent();
         }
 
+        public void SetWidth(int width)
+        {
+            widthNumUD.Value = width / vr.imageScalingFactoer;
+        }
+        public void SetHeight(int height)
+        {
+            heightNumUD.Value = height / vr.imageScalingFactoer;
+        }
         private void cutSpriteBtn_Click(object sender, EventArgs e)
         {
-            Bitmap bitmap = new Bitmap(spriteRec.Width, spriteRec.Height);
+            Bitmap bitmap = new Bitmap(vr.spriteRec.Width/vr.imageScalingFactoer, vr.spriteRec.Height/vr.imageScalingFactoer);
             Graphics gfx = Graphics.FromImage(bitmap);
             Sprite sprite = new Sprite();
             sprite.Name = spriteNameSCTB.Text;
 
-            //            gfx.DrawImage (image.Image,spriteRec.X,spriteRec.Y,spriteRec.Width,spriteRec.Height);
-            gfx.DrawImage(vr.bitplane.bitmap, 0, 0, spriteRec.SpriteRec, GraphicsUnit.Pixel);
+            Rectangle OriginalSizeRect = new Rectangle(vr.spriteRec.X / vr.imageScalingFactoer,vr.spriteRec.Y / vr.imageScalingFactoer,vr.spriteRec.Width/vr.imageScalingFactoer,vr.spriteRec.Height/vr.imageScalingFactoer);
+            gfx.DrawImage(vr.bitplane.bitmap, 0, 0, OriginalSizeRect, GraphicsUnit.Pixel);
 
             spriteCutPreviewIB.Image = bitmap;
+            widthNumUD.Value = bitmap.Width;
+            heightNumUD.Value = bitmap.Height;
+            spriteCutPreviewIB.AutoScale();
             sprite.bitmap = bitmap;
             sprites.Add(sprite);
             spriteCutSaveButton.Enabled = true;
@@ -57,6 +68,14 @@ namespace AmigaImageConverter
             }
             else
                 num.Value--;
+        }
+
+        private void SpriteSaveBtn_Click(object sender, EventArgs e)
+        {
+            SaveSprite sp = new SaveSprite();
+            sp.sprites = sprites;
+            if (sp.ShowDialog(this) == DialogResult.Continue)
+                MessageBox.Show("Sprite Files/s Created Successfully", "Succsess", MessageBoxButtons.OK);
         }
     }
 }

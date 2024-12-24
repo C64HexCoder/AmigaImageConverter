@@ -431,7 +431,7 @@
             // 
             spriteSheetCutterToolStripMenuItem.Name = "spriteSheetCutterToolStripMenuItem";
             spriteSheetCutterToolStripMenuItem.Size = new System.Drawing.Size(313, 34);
-            spriteSheetCutterToolStripMenuItem.Text = "Sprite Sheet Cutter";
+            spriteSheetCutterToolStripMenuItem.Text = "Sprite Sheet Splitter";
             spriteSheetCutterToolStripMenuItem.Click += sprireSheetCutterToolStripMenuItem_Click;
             // 
             // toolStripMenuItem3

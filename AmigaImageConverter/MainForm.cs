@@ -38,7 +38,7 @@ namespace AmigaImageConverter
         int defaultimageWidth, defaultimageHeight;
 
         RegEdit RegEdit = RegEdit.Instance;
-        SpriteCut spriteCut = new SpriteCut();
+        SpriteCut spriteCut;// = new SpriteCut();
         SpriteSlicing spriteSlicing; //= new SpriteSlicing();
         enum FormState
         {
@@ -247,8 +247,8 @@ namespace AmigaImageConverter
                 }
             }
 
-            spriteCut.widthNumUD.Maximum = image.Width;
-            spriteCut.heightNumUD.Maximum = image.Height;
+            //spriteCut.widthNumUD.Maximum = image.Width;
+            //spriteCut.heightNumUD.Maximum = image.Height;
         }
 
         private void ProgressBarEvent(object sender, KMeansQuant.ProgressBarEventArgs e)
@@ -537,7 +537,7 @@ namespace AmigaImageConverter
 
         private void sprireSheetCutterToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            CreateSpriteSlicing();
+            CreateSpriteSlicingPanel();
             image.MouseWheelZoom = false;
 
             this.Controls.Add(spriteSlicing);
@@ -1032,6 +1032,7 @@ namespace AmigaImageConverter
             image.MouseWheelZoom = false;
 
             formState = FormState.SpriteCut;
+            CreateSpriteCutPanel();
             sprites.Clear();
 
 
@@ -1053,14 +1054,14 @@ namespace AmigaImageConverter
         {
             if (formState == FormState.SpriteCut)
             {
-                spriteRec.Enable = true;
+                vr.spriteRec.Enable = true;
 
                 if (spriteCutState == SpriteCutState.Cut)
                 {
-                    spriteRec.X = e.X;
-                    spriteRec.Y = e.Y;
-                    spriteRec.Width = 0;
-                    spriteRec.Height = 0;
+                    vr.spriteRec.X = e.X;
+                    vr.spriteRec.Y = e.Y;
+                    vr.spriteRec.Width = 0;
+                    vr.spriteRec.Height = 0;
                 }
             }
         }
@@ -1074,8 +1075,8 @@ namespace AmigaImageConverter
                 return;
 
             Graphics gfx = image.CreateGraphics();
-            spriteRec.LineWIdth = 4;
-            Pen p = new Pen(Color.Black, spriteRec.LineWIdth);
+            vr.spriteRec.LineWIdth = 4;
+            Pen p = new Pen(Color.Black, vr.spriteRec.LineWIdth);
 
             image.Refresh();
 
@@ -1084,16 +1085,17 @@ namespace AmigaImageConverter
                 switch (spriteCutState)
                 {
                     case SpriteCutState.Cut:
-                        if (e.X > spriteRec.X && e.Y > spriteRec.Y)
+                        if (e.X > vr.spriteRec.X && e.Y > vr.spriteRec.Y)
                         {
-                            Rectangle temp = new Rectangle(spriteRec.X, spriteRec.Y, e.X - spriteRec.X, e.Y - spriteRec.Y);
+                            Rectangle temp = new Rectangle(vr.spriteRec.X, vr.spriteRec.Y, e.X - vr.spriteRec.X, e.Y - vr.spriteRec.Y);
                             gfx.DrawRectangle(p, temp);
+
                         }
                         break;
                     case SpriteCutState.PanNW:
 
-                        int NewWidth = spriteRec.Width - (e.X - spriteRec.X);
-                        int NewHeight = spriteRec.Height - (e.Y - spriteRec.Y);
+                        int NewWidth = vr.spriteRec.Width - (e.X - vr.spriteRec.X);
+                        int NewHeight = vr.spriteRec.Height - (e.Y - vr.spriteRec.Y);
                         spriteRec.X = e.X;
                         spriteRec.Y = e.Y;
                         spriteRec.Width = NewWidth;
@@ -1101,40 +1103,40 @@ namespace AmigaImageConverter
                         break;
 
                     case SpriteCutState.PanSW:
-                        spriteRec.Width = spriteRec.Width - (e.X - spriteRec.X);
+                        vr.spriteRec.Width = vr.spriteRec.Width - (e.X - vr.spriteRec.X);
 
-                        spriteRec.X = e.X;
-                        spriteRec.Y2 = e.Y;
+                        vr.spriteRec.X = e.X;
+                        vr.spriteRec.Y2 = e.Y;
                         break;
 
                     case SpriteCutState.PanSE:
 
-                        spriteRec.Width = e.X - spriteRec.X;
-                        spriteRec.Height = e.Y - spriteRec.Y;
+                        vr.spriteRec.Width = e.X - vr.spriteRec.X;
+                        vr.spriteRec.Height = e.Y - vr.spriteRec.Y;
                         break;
 
                     case SpriteCutState.PanNE:
-                        spriteRec.Height = spriteRec.Height - (e.Y - spriteRec.Y);
-                        spriteRec.X2 = e.X;
-                        spriteRec.Y = e.Y;
+                        vr.spriteRec.Height = vr.spriteRec.Height - (e.Y - vr.spriteRec.Y);
+                        vr.spriteRec.X2 = e.X;
+                        vr.spriteRec.Y = e.Y;
                         break;
 
                     case SpriteCutState.Pan:
                         int DeltaX = e.X - PanPos.X;
                         int DeltaY = e.Y - PanPos.Y;
-                        if (spriteRec.X + DeltaX >= 0 && spriteRec.X2 + DeltaX <= image.Width - 1)
+                        if (vr.spriteRec.X + DeltaX >= 0 && vr.spriteRec.X2 + DeltaX <= image.Width - 1)
                         {
-                            spriteRec.X += DeltaX;
+                            vr.spriteRec.X += DeltaX;
                             PanPos.X = e.X;
                         }
-                        if (spriteRec.Y + DeltaY >= 0 && spriteRec.Y2 + DeltaY <= image.Height - 1)
+                        if (vr.spriteRec.Y + DeltaY >= 0 && vr.spriteRec.Y2 + DeltaY <= image.Height - 1)
                         {
-                            spriteRec.Y += DeltaY;
+                            vr.spriteRec.Y += DeltaY;
                             PanPos.Y = e.Y;
                         }
                         break;
-
                 }
+               
             }
             else
             {
@@ -1159,7 +1161,7 @@ namespace AmigaImageConverter
                     spriteCutState = SpriteCutState.PanNE;
                 }
 
-                else if (e.X > spriteRec.X + 5 && e.X < spriteRec.X2 - 5 && e.Y > spriteRec.Y + 5 && e.Y < spriteRec.Y2 - 5)
+                else if (e.X > vr.spriteRec.X + 5 && e.X < vr.spriteRec.X2 - 5 && e.Y > vr.spriteRec.Y + 5 && e.Y < vr.spriteRec.Y2 - 5)
                 {
                     image.Cursor = Cursors.Hand;
                     spriteCutState = SpriteCutState.Pan;
@@ -1194,7 +1196,7 @@ namespace AmigaImageConverter
         private void image_Paint(object sender, PaintEventArgs e)
         {
             Graphics g = e.Graphics;
-            Pen p = new(Color.Black, spriteRec.LineWIdth);
+            Pen p = new(Color.Black, vr.spriteRec.LineWIdth);
 
             if (formState == FormState.SpriteSplit || formState == FormState.SpriteCut)
             {
@@ -1332,7 +1334,7 @@ namespace AmigaImageConverter
             vr.imageScalingFactoer = e.ScaleFactoer;
         }
 
-        private void CreateSpriteSlicing ()
+        private void CreateSpriteSlicingPanel ()
         {
             spriteSlicing = new SpriteSlicing(); 
             //Controls.Add(spriteSlicing);
@@ -1350,5 +1352,20 @@ namespace AmigaImageConverter
             //this.Width += image.Width - spriteSlicing.Width;
         }
 
+        private void CreateSpriteCutPanel()
+        {
+            spriteCut = new SpriteCut();
+            Controls.Add(spriteCut);
+
+            if (Width - image.Right > spriteCut.Width)
+            {
+                spriteCut.Dock = DockStyle.Right;
+            }
+            else
+            {
+                spriteCut.Left = image.Right + 2;
+            }
+            //this.Width += image.Width - spriteSlicing.Width;
+        }
     }
 }
