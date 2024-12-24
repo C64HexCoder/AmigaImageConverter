@@ -105,7 +105,9 @@ namespace AmigaImageConverter
         private async void loadImageToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Controls.Remove(spriteSlicing);
+            Controls.Remove(spriteCut);
             spriteSlicing = null;
+            spriteCut = null;
 
             image.MouseWheelZoom = true;
             formState = FormState.Image;
