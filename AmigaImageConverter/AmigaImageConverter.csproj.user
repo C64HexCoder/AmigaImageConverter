@@ -39,6 +39,9 @@
     <Compile Update="ImageSaveDialog.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="ImageToSpriteControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Update="LinkObjectConfig.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -86,6 +89,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Update="ConvertImageToSprite.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Update="LoadImage.resx">
       <SubType>Designer</SubType>
     </EmbeddedResource>

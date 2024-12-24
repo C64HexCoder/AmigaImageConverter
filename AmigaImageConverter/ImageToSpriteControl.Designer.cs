@@ -1,13 +1,13 @@
 ﻿namespace AmigaImageConverter
 {
-    partial class ConvertImageToSprite
+    partial class ImageToSpriteControl
     {
-        /// <summary>
+        /// <summary> 
         /// Required designer variable.
         /// </summary>
         private System.ComponentModel.IContainer components = null;
 
-        /// <summary>
+        /// <summary> 
         /// Clean up any resources being used.
         /// </summary>
         /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
@@ -20,15 +20,14 @@
             base.Dispose(disposing);
         }
 
-        #region Windows Form Designer generated code
+        #region Component Designer generated code
 
-        /// <summary>
-        /// Required method for Designer support - do not modify
+        /// <summary> 
+        /// Required method for Designer support - do not modify 
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent()
         {
-            image = new Amiga.ImageBox();
             sidePael = new System.Windows.Forms.Panel();
             spritePrevPanel = new System.Windows.Forms.Panel();
             spritePreviewIB = new Amiga.ImageBox();
@@ -44,11 +43,6 @@
             spriteWidtthCbox = new System.Windows.Forms.GroupBox();
             spriteWIdthCbox = new System.Windows.Forms.ComboBox();
             doItButton = new System.Windows.Forms.Button();
-            imagePanel = new System.Windows.Forms.Panel();
-            menuStrip1 = new System.Windows.Forms.MenuStrip();
-            toolsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            calculateControlWordsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            ((System.ComponentModel.ISupportInitialize)image).BeginInit();
             sidePael.SuspendLayout();
             spritePrevPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)spritePreviewIB).BeginInit();
@@ -57,28 +51,7 @@
             ((System.ComponentModel.ISupportInitialize)heightNumericUpDown).BeginInit();
             ((System.ComponentModel.ISupportInitialize)spriteNum).BeginInit();
             spriteWidtthCbox.SuspendLayout();
-            imagePanel.SuspendLayout();
-            menuStrip1.SuspendLayout();
             SuspendLayout();
-            // 
-            // image
-            // 
-            image.AutoCenter = false;
-            image.AutoScaleImageBox = false;
-            image.HrizontalScrollBar = null;
-            image.Image = null;
-            image.Location = new System.Drawing.Point(3, 3);
-            image.MaxImageScale = 4;
-            image.MouseWheelZoom = true;
-            image.Name = "image";
-            image.OriginalImage = null;
-            image.ScaleFactor = 1;
-            image.ScaleFactorFloat = 1F;
-            image.Size = new System.Drawing.Size(504, 650);
-            image.TabIndex = 0;
-            image.TabStop = false;
-            image.VerticalScrollBar = null;
-            image.Paint += image_Paint;
             // 
             // sidePael
             // 
@@ -89,10 +62,10 @@
             sidePael.Controls.Add(spriteNum);
             sidePael.Controls.Add(spriteWidtthCbox);
             sidePael.Controls.Add(doItButton);
-            sidePael.Location = new System.Drawing.Point(528, 12);
+            sidePael.Location = new System.Drawing.Point(3, 3);
             sidePael.Name = "sidePael";
             sidePael.Size = new System.Drawing.Size(273, 677);
-            sidePael.TabIndex = 8;
+            sidePael.TabIndex = 9;
             // 
             // spritePrevPanel
             // 
@@ -105,7 +78,7 @@
             // spritePreviewIB
             // 
             spritePreviewIB.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
-            spritePreviewIB.AutoCenter = true;
+            spritePreviewIB.AutoCenter = false;
             spritePreviewIB.AutoScaleImageBox = false;
             spritePreviewIB.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             spritePreviewIB.HrizontalScrollBar = null;
@@ -117,7 +90,7 @@
             spritePreviewIB.OriginalImage = null;
             spritePreviewIB.ScaleFactor = 2;
             spritePreviewIB.ScaleFactorFloat = 1F;
-            spritePreviewIB.Size = new System.Drawing.Size(270, 305);
+            spritePreviewIB.Size = new System.Drawing.Size(340, 513);
             spritePreviewIB.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
             spritePreviewIB.TabIndex = 6;
             spritePreviewIB.TabStop = false;
@@ -145,7 +118,6 @@
             resizeBtn.TabIndex = 4;
             resizeBtn.Text = "Resize";
             resizeBtn.UseVisualStyleBackColor = true;
-            resizeBtn.Click += resizeBtn_Click;
             // 
             // label1
             // 
@@ -172,8 +144,6 @@
             widthNumericUpDown.Name = "widthNumericUpDown";
             widthNumericUpDown.Size = new System.Drawing.Size(102, 31);
             widthNumericUpDown.TabIndex = 2;
-            widthNumericUpDown.ValueChanged += widthNumericUpDown_ValueChanged;
-            widthNumericUpDown.Leave += widthNumericUpDown_Leave;
             // 
             // heightNumericUpDown
             // 
@@ -198,7 +168,6 @@
             spriteNameTb.Name = "spriteNameTb";
             spriteNameTb.Size = new System.Drawing.Size(254, 31);
             spriteNameTb.TabIndex = 8;
-            spriteNameTb.TextChanged += spriteNameTb_TextChanged;
             // 
             // spriteNum
             // 
@@ -207,7 +176,6 @@
             spriteNum.Name = "spriteNum";
             spriteNum.Size = new System.Drawing.Size(254, 31);
             spriteNum.TabIndex = 7;
-            spriteNum.ValueChanged += spriteNum_ValueChanged;
             // 
             // spriteWidtthCbox
             // 
@@ -227,7 +195,6 @@
             spriteWIdthCbox.Name = "spriteWIdthCbox";
             spriteWIdthCbox.Size = new System.Drawing.Size(258, 33);
             spriteWIdthCbox.TabIndex = 4;
-            spriteWIdthCbox.SelectedIndexChanged += spriteWIdthCbox_SelectedIndexChanged;
             // 
             // doItButton
             // 
@@ -237,52 +204,16 @@
             doItButton.TabIndex = 4;
             doItButton.Text = "Do it!";
             doItButton.UseVisualStyleBackColor = true;
-            doItButton.Click += doItButton_Click;
             // 
-            // imagePanel
-            // 
-            imagePanel.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            imagePanel.Controls.Add(image);
-            imagePanel.Location = new System.Drawing.Point(12, 36);
-            imagePanel.Name = "imagePanel";
-            imagePanel.Size = new System.Drawing.Size(510, 650);
-            imagePanel.TabIndex = 9;
-            // 
-            // menuStrip1
-            // 
-            menuStrip1.ImageScalingSize = new System.Drawing.Size(24, 24);
-            menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] { toolsToolStripMenuItem });
-            menuStrip1.Location = new System.Drawing.Point(0, 0);
-            menuStrip1.Name = "menuStrip1";
-            menuStrip1.Size = new System.Drawing.Size(817, 33);
-            menuStrip1.TabIndex = 10;
-            menuStrip1.Text = "menuStrip1";
-            // 
-            // toolsToolStripMenuItem
-            // 
-            toolsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] { calculateControlWordsToolStripMenuItem });
-            toolsToolStripMenuItem.Name = "toolsToolStripMenuItem";
-            toolsToolStripMenuItem.Size = new System.Drawing.Size(69, 29);
-            toolsToolStripMenuItem.Text = "Tools";
-            // 
-            // calculateControlWordsToolStripMenuItem
-            // 
-            calculateControlWordsToolStripMenuItem.Name = "calculateControlWordsToolStripMenuItem";
-            calculateControlWordsToolStripMenuItem.Size = new System.Drawing.Size(305, 34);
-            calculateControlWordsToolStripMenuItem.Text = "Calculate Control Words";
-            calculateControlWordsToolStripMenuItem.Click += calculateControlWordsToolStripMenuItem_Click;
-            // 
-            // ConvertImageToSprite
+            // ImageToSpriteControl
             // 
             AutoScaleDimensions = new System.Drawing.SizeF(10F, 25F);
             AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            ClientSize = new System.Drawing.Size(817, 701);
+            AutoSize = true;
+            AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             Controls.Add(sidePael);
-            Controls.Add(imagePanel);
-            Controls.Add(menuStrip1);
-            Name = "ConvertImageToSprite";
-            Text = "LoadSprite";
-            ((System.ComponentModel.ISupportInitialize)image).EndInit();
+            Name = "ImageToSpriteControl";
+            Size = new System.Drawing.Size(279, 683);
             sidePael.ResumeLayout(false);
             sidePael.PerformLayout();
             spritePrevPanel.ResumeLayout(false);
@@ -294,34 +225,25 @@
             ((System.ComponentModel.ISupportInitialize)heightNumericUpDown).EndInit();
             ((System.ComponentModel.ISupportInitialize)spriteNum).EndInit();
             spriteWidtthCbox.ResumeLayout(false);
-            imagePanel.ResumeLayout(false);
-            menuStrip1.ResumeLayout(false);
-            menuStrip1.PerformLayout();
             ResumeLayout(false);
-            PerformLayout();
         }
 
         #endregion
 
-        private Amiga.ImageBox image;
         private System.Windows.Forms.Panel sidePael;
-        private System.Windows.Forms.GroupBox spriteWidtthCbox;
-        private System.Windows.Forms.ComboBox spriteWIdthCbox;
-        private System.Windows.Forms.NumericUpDown heightNumericUpDown;
-        private System.Windows.Forms.NumericUpDown widthNumericUpDown;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button doItButton;
+        private System.Windows.Forms.Panel spritePrevPanel;
         private Amiga.ImageBox spritePreviewIB;
-        private System.Windows.Forms.NumericUpDown spriteNum;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox spriteNameTb;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Button resizeBtn;
-        private System.Windows.Forms.Panel imagePanel;
-        private System.Windows.Forms.Panel spritePrevPanel;
-        private System.Windows.Forms.MenuStrip menuStrip1;
-        private System.Windows.Forms.ToolStripMenuItem toolsToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem calculateControlWordsToolStripMenuItem;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.NumericUpDown widthNumericUpDown;
+        private System.Windows.Forms.NumericUpDown heightNumericUpDown;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.TextBox spriteNameTb;
+        private System.Windows.Forms.NumericUpDown spriteNum;
+        private System.Windows.Forms.GroupBox spriteWidtthCbox;
+        private System.Windows.Forms.ComboBox spriteWIdthCbox;
+        private System.Windows.Forms.Button doItButton;
     }
 }

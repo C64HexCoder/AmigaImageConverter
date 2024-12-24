@@ -31,8 +31,32 @@ namespace AmigaImageConverter
             InitializeComponent();
 
 
+            if (pv.bitplane.Width > 64)
+            {
+                MessageBox.Show("Sprite Is To Wide For a Sprite. \n" +
+                    "Please Resize the image to 16bit, 32bit or 64bit wide.", "Image Size Error", MessageBoxButtons.OK);
+                return;
+            }
+            Sprite.SpriteWidth sprWidth;
 
-            sprite.CreateSpriteFromBitplane(pv.bitplane.Bitplanes, pv.bitplane.palette, Sprite.SpriteWidth._64Pixels, pv.bitplane.NumOfBitmaps, pv.bitplane.Width, pv.bitplane.Height);
+            switch (pv.bitplane.Width)
+            {
+                case 64:
+                    sprWidth = Sprite.SpriteWidth._64Pixels; 
+                    break;
+                case 32:
+                    sprWidth = Sprite.SpriteWidth._32Pixels;
+                    break;
+                case 16:
+                    sprWidth = Sprite.SpriteWidth._16Pixels;
+                    break;
+
+                 default:
+                    sprWidth = Sprite.SpriteWidth._16Pixels;
+                    break;
+
+            }
+            sprite.CreateSpriteFromBitplane(pv.bitplane.Bitplanes, pv.bitplane.palette, sprWidth, pv.bitplane.NumOfBitmaps, pv.bitplane.Width, pv.bitplane.Height);
             image.Image = sprite.bitmap;
             image.AutoScale();
 

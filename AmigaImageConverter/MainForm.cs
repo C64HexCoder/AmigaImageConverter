@@ -539,10 +539,12 @@ namespace AmigaImageConverter
 
         private void sprireSheetCutterToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            Controls.Remove(spriteCut);
+            spriteCut = null;
             CreateSpriteSlicingPanel();
             image.MouseWheelZoom = false;
 
-            this.Controls.Add(spriteSlicing);
+            //this.Controls.Add(spriteSlicing);
             
             formState = FormState.SpriteSplit;
             sprites.Clear();
@@ -1032,7 +1034,8 @@ namespace AmigaImageConverter
         private void cutSpriteToolStripMenuItem_Click(object sender, EventArgs e)
         {
             image.MouseWheelZoom = false;
-
+            Controls.Remove(spriteSlicing);
+            spriteSlicing = null;
             formState = FormState.SpriteCut;
             CreateSpriteCutPanel();
             sprites.Clear();
@@ -1317,17 +1320,16 @@ namespace AmigaImageConverter
 
         private void image_SizeChanged(object sender, EventArgs e)
         {
-            if (formState == FormState.SpriteSplit)
+            /*if (formState == FormState.SpriteSplit)
             {
-                spriteSlicing.Left = image.Right + 2;
                 this.Width = Width + spriteSlicing.Width;
-
+                spriteSlicing.Height = image.Height;
             }
             else if (formState == FormState.SpriteCut)
             {
                 spriteCut.Left = image.Right + 2;
                 Width = Width + spriteCut.Width;
-            }
+            }*/
 
         }
 
@@ -1339,7 +1341,7 @@ namespace AmigaImageConverter
         private void CreateSpriteSlicingPanel ()
         {
             spriteSlicing = new SpriteSlicing(); 
-            //Controls.Add(spriteSlicing);
+            Controls.Add(spriteSlicing);
 
             spriteSlicing.ImageUpdated += ImageUpdate;
             //spriteSlicing.Left = this.Right - spriteSlicing.Width;
@@ -1351,6 +1353,7 @@ namespace AmigaImageConverter
             {
                 spriteSlicing.Left = image.Right + 2;
             }
+            spriteSlicing.Height = image.Height;
             //this.Width += image.Width - spriteSlicing.Width;
         }
 
