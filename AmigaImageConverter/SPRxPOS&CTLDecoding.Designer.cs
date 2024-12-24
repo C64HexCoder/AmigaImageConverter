@@ -147,6 +147,7 @@
             CalculateBtn.TabIndex = 10;
             CalculateBtn.Text = "Calculate";
             CalculateBtn.UseVisualStyleBackColor = true;
+            CalculateBtn.Click += CalculateBtn_Click;
             // 
             // SPRxPOS_CTLDecoding
             // 

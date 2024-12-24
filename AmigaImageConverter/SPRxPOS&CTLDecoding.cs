@@ -14,38 +14,54 @@ namespace AmigaImageConverter
 {
     public partial class SPRxPOS_CTLDecoding : Form
     {
-        int _SprXPos, _SprYPos, _SprHieght;
+        int _SpriteXPos, _SpriteYPos, _SprHieght;
+        ushort _SPRxPOS, _SPRxCTL;
         public SPRxPOS_CTLDecoding()
         {
             InitializeComponent();
         }
 
-        public int SprXPos
+        public ushort SPRxPOS
+        {
+            set
+            {
+                sprPosHexBox.Value = value;
+            }
+        }
+
+        public ushort SPRxCTL
+        {
+            set
+            {
+                sprCtlHexBox.Value = value;
+            }
+        }
+        public int SpriteXPos
         {
             get
             {
-                return _SprXPos;
+                return _SpriteXPos;
             }
 
             set
             {
-                _SprXPos = value;
+                _SpriteXPos = value;
                 sprXPosNumUD.Value = value;
             }
         }
 
-        public int SprYPos
+        public int SpriteYPos
         {
-            get { return _SprYPos; }
+            get { return _SpriteYPos; }
             set
             {
-                _SprYPos = value;
+                _SpriteYPos = value;
                 sprYPosNumUD.Value = value;
             }
         }
         private void sprPosHexBox_HexBoxChanged(object sender, EventArgs e)
         {
-           ExtractSpriteProperties();
+            ExtractSpriteProperties();
         }
 
         private void sprCtlHexBox_HexBoxChanged(object sender, EventArgs e)
@@ -59,14 +75,22 @@ namespace AmigaImageConverter
             {
                 int VSTOP = (sprCtlHexBox.HexByte & 0xff00) >> 8 | (sprCtlHexBox.HexByte & 0x0002) >> 2;
 
-                SprXPos = (sprPosHexBox.HexByte & 0x00ff) << 1 | sprCtlHexBox.HexByte & 0x0001;
-                SprYPos = (sprPosHexBox.HexByte & 0xff00) >> 8 | (sprCtlHexBox.HexByte & 0x0004) << 6;
+                SpriteXPos = (sprPosHexBox.HexByte & 0x00ff) << 1 | sprCtlHexBox.HexByte & 0x0001;
+                SpriteYPos = (sprPosHexBox.HexByte & 0xff00) >> 8 | (sprCtlHexBox.HexByte & 0x0004) << 6;
 
                 if (sprCtlHexBox.HexByte != 0)
                 {
-                    sprHeightNumUD.Value = VSTOP - SprYPos;
+                    sprHeightNumUD.Value = VSTOP - SpriteYPos;
                 }
-            } catch { }
+            }
+            catch { }
+        }
+
+        private void CalculateBtn_Click(object sender, EventArgs e)
+        {
+            int vstop = (int)(sprYPosNumUD.Value + sprHeightNumUD.Value);
+            SPRxPOS = (ushort)(((int)sprYPosNumUD.Value & 0xff) << 8 | ((int)sprXPosNumUD.Value >> 1) & 0x0ff);
+            SPRxCTL = (ushort)((vstop & 0xff) << 8 | (vstop & 0x100) >> 7 | ((int)sprYPosNumUD.Value & 0x100) >> 6 | (int)sprXPosNumUD.Value & 0x01);
         }
     }
 }

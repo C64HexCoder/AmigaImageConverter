@@ -89,7 +89,7 @@ namespace AmigaImageConverter
             InitializeComponent();
             defaultimageWidth = image.Width;
             defaultimageHeight = image.Height;
-        
+
 
             ButtomPanel.Size = new Size(image.Width, statusStrip.Height);
             ButtomPanel.Top = image.Bottom + 2;
@@ -104,11 +104,6 @@ namespace AmigaImageConverter
         }
         private async void loadImageToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Controls.Remove(spriteSlicing);
-            Controls.Remove(spriteCut);
-            spriteSlicing = null;
-            spriteCut = null;
-
             image.MouseWheelZoom = true;
             formState = FormState.Image;
             spriteRec.IsSpriteCut = false;
@@ -539,16 +534,32 @@ namespace AmigaImageConverter
 
         private void sprireSheetCutterToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Controls.Remove(spriteCut);
-            spriteCut = null;
-            CreateSpriteSlicingPanel();
-            image.MouseWheelZoom = false;
+            ToolStripMenuItem tsmi = (ToolStripMenuItem)sender;
 
-            //this.Controls.Add(spriteSlicing);
-            
-            formState = FormState.SpriteSplit;
-            sprites.Clear();
-  
+            if (!tsmi.Checked)
+            {
+                Controls.Remove(spriteCut);
+                spriteCut = null;
+                CreateSpriteSlicingPanel();
+                image.MouseWheelZoom = false;
+
+                //this.Controls.Add(spriteSlicing);
+
+                formState = FormState.SpriteSplit;
+                sprites.Clear();
+                tsmi.Checked = true;
+                cutSpriteToolStripMenuItem.Checked = false;
+            }
+            else
+            {
+                Controls.Remove(spriteSlicing);
+                spriteSlicing = null;
+                image.MouseWheelZoom = true;
+                tsmi.Checked = false;
+                formState = FormState.Image;
+            }
+
+
 
         }
 
@@ -644,7 +655,7 @@ namespace AmigaImageConverter
 
             image.Invalidate();
         }
-      
+
 
         private void spriteWidthCb_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -653,7 +664,7 @@ namespace AmigaImageConverter
 
         private void image_MouseClick(object sender, MouseEventArgs e)
         {
-           
+
             if (spriteSlicing != null)
             {
                 if (!spriteSlicing.isSliced)
@@ -802,7 +813,6 @@ namespace AmigaImageConverter
 
         private void LoadIFFToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
             OpenFileDialog iffFile = new OpenFileDialog();
             iffFile.Filter = "Amiga IFF|*.iff;*.ilbm;*.pbm;*.acbm";
             if (iffFile.ShowDialog() == DialogResult.OK)
@@ -1033,12 +1043,27 @@ namespace AmigaImageConverter
 
         private void cutSpriteToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            image.MouseWheelZoom = false;
-            Controls.Remove(spriteSlicing);
-            spriteSlicing = null;
-            formState = FormState.SpriteCut;
-            CreateSpriteCutPanel();
-            sprites.Clear();
+            ToolStripMenuItem tsmi = (ToolStripMenuItem)sender;
+
+            if (!tsmi.Checked)
+            {
+                image.MouseWheelZoom = false;
+                Controls.Remove(spriteSlicing);
+                spriteSlicing = null;
+                formState = FormState.SpriteCut;
+                CreateSpriteCutPanel();
+                sprites.Clear();
+                tsmi.Checked = true;
+                spriteSheetCutterToolStripMenuItem.Checked = false;
+            }
+            else
+            {
+                image.MouseWheelZoom = true;
+                Controls.Remove(spriteCut);
+                spriteCut = null;
+                formState = FormState.Image;
+                tsmi.Checked = false;
+            }
 
 
         }
@@ -1141,7 +1166,7 @@ namespace AmigaImageConverter
                         }
                         break;
                 }
-               
+
             }
             else
             {
@@ -1288,6 +1313,7 @@ namespace AmigaImageConverter
 
         private void loadIFFAsSpriteToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            DisableAllSidePanels();
             Sprite sprite = new Sprite();        // temporery sprite.... just for testing porposes......
             OpenFileDialog iffFileDialog = new OpenFileDialog();
             iffFileDialog.Filter = "IFF File (*.IFF)|*.IFF";
@@ -1338,14 +1364,14 @@ namespace AmigaImageConverter
             vr.imageScalingFactoer = e.ScaleFactoer;
         }
 
-        private void CreateSpriteSlicingPanel ()
+        private void CreateSpriteSlicingPanel()
         {
-            spriteSlicing = new SpriteSlicing(); 
+            spriteSlicing = new SpriteSlicing();
             Controls.Add(spriteSlicing);
 
             spriteSlicing.ImageUpdated += ImageUpdate;
             //spriteSlicing.Left = this.Right - spriteSlicing.Width;
-            if (Width - image.Right  > spriteSlicing.Width)
+            if (Width - image.Right > spriteSlicing.Width)
             {
                 spriteSlicing.Dock = DockStyle.Right;
             }
@@ -1371,6 +1397,19 @@ namespace AmigaImageConverter
                 spriteCut.Left = image.Right + 2;
             }
             //this.Width += image.Width - spriteSlicing.Width;
+        }
+
+        private void DisableAllSidePanels()
+        {
+            Controls.Remove(spriteSlicing);
+            Controls.Remove(spriteCut);
+            spriteSlicing = null;
+            spriteCut = null;
+        }
+
+        private void toolStripMenuItem3_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

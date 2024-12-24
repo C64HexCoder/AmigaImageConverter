@@ -34,7 +34,10 @@
             loadImageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             saveImageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             saveImageAsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            toolStripSeparator11 = new System.Windows.Forms.ToolStripSeparator();
+            savePallateToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            loadIFFAsSpriteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             saveImageAsSpriteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             saveSpriteAsMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             toolStripSeparator7 = new System.Windows.Forms.ToolStripSeparator();
@@ -52,8 +55,6 @@
             SaveLinkFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             saveMaskToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            savePallateToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            loadIFFAsSpriteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             imageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             resizeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             alignWidthToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -105,7 +106,6 @@
             vScrollBar = new System.Windows.Forms.VScrollBar();
             process1 = new System.Diagnostics.Process();
             image = new Amiga.ImageBox();
-            toolStripSeparator11 = new System.Windows.Forms.ToolStripSeparator();
             menuStrip1.SuspendLayout();
             statusStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)image).BeginInit();
@@ -150,10 +150,29 @@
             saveImageAsToolStripMenuItem.Text = "Save Image As";
             saveImageAsToolStripMenuItem.Click += saveImageAsToolStripMenuItem_Click;
             // 
+            // toolStripSeparator11
+            // 
+            toolStripSeparator11.Name = "toolStripSeparator11";
+            toolStripSeparator11.Size = new System.Drawing.Size(308, 6);
+            // 
+            // savePallateToolStripMenuItem
+            // 
+            savePallateToolStripMenuItem.Name = "savePallateToolStripMenuItem";
+            savePallateToolStripMenuItem.Size = new System.Drawing.Size(311, 34);
+            savePallateToolStripMenuItem.Text = "Save Pallate";
+            savePallateToolStripMenuItem.Click += savePallateToolStripMenuItem_Click;
+            // 
             // toolStripSeparator1
             // 
             toolStripSeparator1.Name = "toolStripSeparator1";
             toolStripSeparator1.Size = new System.Drawing.Size(308, 6);
+            // 
+            // loadIFFAsSpriteToolStripMenuItem
+            // 
+            loadIFFAsSpriteToolStripMenuItem.Name = "loadIFFAsSpriteToolStripMenuItem";
+            loadIFFAsSpriteToolStripMenuItem.Size = new System.Drawing.Size(311, 34);
+            loadIFFAsSpriteToolStripMenuItem.Text = "Load IFF As Sprite";
+            loadIFFAsSpriteToolStripMenuItem.Click += loadIFFAsSpriteToolStripMenuItem_Click;
             // 
             // saveImageAsSpriteToolStripMenuItem
             // 
@@ -262,20 +281,6 @@
             saveMaskToolStripMenuItem.Name = "saveMaskToolStripMenuItem";
             saveMaskToolStripMenuItem.Size = new System.Drawing.Size(311, 34);
             saveMaskToolStripMenuItem.Text = "Save Mask";
-            // 
-            // savePallateToolStripMenuItem
-            // 
-            savePallateToolStripMenuItem.Name = "savePallateToolStripMenuItem";
-            savePallateToolStripMenuItem.Size = new System.Drawing.Size(311, 34);
-            savePallateToolStripMenuItem.Text = "Save Pallate";
-            savePallateToolStripMenuItem.Click += savePallateToolStripMenuItem_Click;
-            // 
-            // loadIFFAsSpriteToolStripMenuItem
-            // 
-            loadIFFAsSpriteToolStripMenuItem.Name = "loadIFFAsSpriteToolStripMenuItem";
-            loadIFFAsSpriteToolStripMenuItem.Size = new System.Drawing.Size(311, 34);
-            loadIFFAsSpriteToolStripMenuItem.Text = "Load IFF As Sprite";
-            loadIFFAsSpriteToolStripMenuItem.Click += loadIFFAsSpriteToolStripMenuItem_Click;
             // 
             // imageToolStripMenuItem
             // 
@@ -426,6 +431,7 @@
             toolStripMenuItem3.Size = new System.Drawing.Size(313, 34);
             toolStripMenuItem3.Text = "Sprite Sheet Maker";
             toolStripMenuItem3.Visible = false;
+            toolStripMenuItem3.Click += toolStripMenuItem3_Click;
             // 
             // toolStripSeparator9
             // 
@@ -657,11 +663,6 @@
             image.MouseDown += image_MouseDown;
             image.MouseMove += image_MouseMove;
             image.MouseUp += image_MouseUp;
-            // 
-            // toolStripSeparator11
-            // 
-            toolStripSeparator11.Name = "toolStripSeparator11";
-            toolStripSeparator11.Size = new System.Drawing.Size(308, 6);
             // 
             // MainForm
             // 
