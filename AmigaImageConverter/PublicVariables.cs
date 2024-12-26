@@ -22,6 +22,7 @@ namespace AmigaImageConverter
         public byte bpp = 4;
         public Bitplane bitplane = new Bitplane();
         public SpriteCutRec spriteRec;
+        public Sprite[] Sprites = new Sprite[100];
 
         public static PublicVariables instance
         {

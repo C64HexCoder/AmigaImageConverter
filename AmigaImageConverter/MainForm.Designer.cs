@@ -106,6 +106,7 @@
             vScrollBar = new System.Windows.Forms.VScrollBar();
             process1 = new System.Diagnostics.Process();
             image = new Amiga.ImageBox();
+            animationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             menuStrip1.SuspendLayout();
             statusStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)image).BeginInit();
@@ -401,7 +402,7 @@
             // 
             // toolStripMenuItem1
             // 
-            toolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] { cutSpriteToolStripMenuItem, toolStripSeparator8, spriteSheetCutterToolStripMenuItem, toolStripMenuItem3, toolStripSeparator9, controlWordsCalculatorToolStripMenuItem });
+            toolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] { cutSpriteToolStripMenuItem, toolStripSeparator8, spriteSheetCutterToolStripMenuItem, toolStripMenuItem3, toolStripSeparator9, controlWordsCalculatorToolStripMenuItem, animationToolStripMenuItem });
             toolStripMenuItem1.Name = "toolStripMenuItem1";
             toolStripMenuItem1.Size = new System.Drawing.Size(74, 29);
             toolStripMenuItem1.Text = "Sprite";
@@ -664,6 +665,12 @@
             image.MouseMove += image_MouseMove;
             image.MouseUp += image_MouseUp;
             // 
+            // animationToolStripMenuItem
+            // 
+            animationToolStripMenuItem.Name = "animationToolStripMenuItem";
+            animationToolStripMenuItem.Size = new System.Drawing.Size(313, 34);
+            animationToolStripMenuItem.Text = "Animation";
+            // 
             // MainForm
             // 
             AutoScaleDimensions = new System.Drawing.SizeF(10F, 25F);
@@ -772,6 +779,7 @@
         private System.Windows.Forms.ToolStripMenuItem dDFCalculatorToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem sPRxPOSSPRxCTLConverterToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator11;
+        private System.Windows.Forms.ToolStripMenuItem animationToolStripMenuItem;
     }
 }
 

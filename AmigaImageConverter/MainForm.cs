@@ -328,6 +328,7 @@ namespace AmigaImageConverter
                         //image.SizeMode = PictureBoxSizeMode.AutoSize;
                         image.Image = vr.bitplane.bitmap;
                         image.ScaleImage((int)settings.previewScalingNud.Value);
+                        
 
                         hScrollBar.Top = image.Bottom;
                         hScrollBar.Left = image.Left;
