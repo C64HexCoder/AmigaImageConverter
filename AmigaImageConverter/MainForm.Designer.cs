@@ -78,6 +78,7 @@
             toolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
             toolStripSeparator9 = new System.Windows.Forms.ToolStripSeparator();
             controlWordsCalculatorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            animationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             colorsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             pallateToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             selectBackgroundToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -106,7 +107,6 @@
             vScrollBar = new System.Windows.Forms.VScrollBar();
             process1 = new System.Diagnostics.Process();
             image = new Amiga.ImageBox();
-            animationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             menuStrip1.SuspendLayout();
             statusStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)image).BeginInit();
@@ -446,6 +446,12 @@
             controlWordsCalculatorToolStripMenuItem.Text = "Control Words Calculator";
             controlWordsCalculatorToolStripMenuItem.Visible = false;
             // 
+            // animationToolStripMenuItem
+            // 
+            animationToolStripMenuItem.Name = "animationToolStripMenuItem";
+            animationToolStripMenuItem.Size = new System.Drawing.Size(313, 34);
+            animationToolStripMenuItem.Text = "Animation";
+            // 
             // colorsToolStripMenuItem
             // 
             colorsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] { pallateToolStripMenuItem, selectBackgroundToolStripMenuItem });
@@ -497,7 +503,7 @@
             // settingsMenuItem
             // 
             settingsMenuItem.Name = "settingsMenuItem";
-            settingsMenuItem.Size = new System.Drawing.Size(178, 34);
+            settingsMenuItem.Size = new System.Drawing.Size(270, 34);
             settingsMenuItem.Text = "Settings";
             settingsMenuItem.Click += settingsMenuItem_Click;
             // 
@@ -644,6 +650,7 @@
             image.Location = new System.Drawing.Point(0, 34);
             image.Margin = new System.Windows.Forms.Padding(1, 2, 1, 2);
             image.MaxImageScale = 5;
+            image.MinimumSize = new System.Drawing.Size(200, 200);
             image.MouseWheelZoom = true;
             image.Name = "image";
             image.OriginalImage = null;
@@ -664,12 +671,6 @@
             image.MouseDown += image_MouseDown;
             image.MouseMove += image_MouseMove;
             image.MouseUp += image_MouseUp;
-            // 
-            // animationToolStripMenuItem
-            // 
-            animationToolStripMenuItem.Name = "animationToolStripMenuItem";
-            animationToolStripMenuItem.Size = new System.Drawing.Size(313, 34);
-            animationToolStripMenuItem.Text = "Animation";
             // 
             // MainForm
             // 

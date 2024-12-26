@@ -60,7 +60,6 @@ namespace AmigaImageConverter
         }
 
         SpriteCutState spriteCutState = SpriteCutState.Cut;
-        PublicVariables.SpriteCutRec spriteRec;
 
 
 
@@ -106,7 +105,7 @@ namespace AmigaImageConverter
         {
             image.MouseWheelZoom = true;
             formState = FormState.Image;
-            spriteRec.IsSpriteCut = false;
+            vr.spriteRec.IsSpriteCut = false;
 
 
 
@@ -648,11 +647,11 @@ namespace AmigaImageConverter
 
             int SpriteXPos = SpriteNum % SpritePerRaw, SpriteYPos = SpriteNum / SpritePerRaw;
 
-            spriteRec.LineWIdth = 4;
-            spriteRec.X = SpriteXPos * SprireWidth;
-            spriteRec.Y = SpriteYPos * SpriteHeight;
-            spriteRec.Width = SprireWidth;
-            spriteRec.Height = SpriteHeight;
+            vr.spriteRec.LineWIdth = 4;
+            vr.spriteRec.X = SpriteXPos * SprireWidth;
+            vr.spriteRec.Y = SpriteYPos * SpriteHeight;
+            vr.spriteRec.Width = SprireWidth;
+            vr.spriteRec.Height = SpriteHeight;
 
             image.Invalidate();
         }
@@ -1127,10 +1126,10 @@ namespace AmigaImageConverter
 
                         int NewWidth = vr.spriteRec.Width - (e.X - vr.spriteRec.X);
                         int NewHeight = vr.spriteRec.Height - (e.Y - vr.spriteRec.Y);
-                        spriteRec.X = e.X;
-                        spriteRec.Y = e.Y;
-                        spriteRec.Width = NewWidth;
-                        spriteRec.Height = NewHeight;
+                        vr.spriteRec.X = e.X;
+                        vr.spriteRec.Y = e.Y;
+                        vr.spriteRec.Width = NewWidth;
+                        vr.spriteRec.Height = NewHeight;
                         break;
 
                     case SpriteCutState.PanSW:
@@ -1206,8 +1205,8 @@ namespace AmigaImageConverter
             }
             spriteCut.widthNumUD.Maximum = image.Width;
             spriteCut.heightNumUD.Maximum = image.Height;
-            spriteCut.widthNumUD.Value = spriteRec.Width / image.ScaleFactor;
-            spriteCut.heightNumUD.Value = spriteRec.Height / image.ScaleFactor;
+            spriteCut.widthNumUD.Value = vr.spriteRec.Width / image.ScaleFactor;
+            spriteCut.heightNumUD.Value = vr.spriteRec.Height / image.ScaleFactor;
 
         }
 
@@ -1274,17 +1273,17 @@ namespace AmigaImageConverter
         {
 
             NumericUpDown newWidth = (NumericUpDown)sender;
-            spriteRec.Width = (int)newWidth.Value * image.ScaleFactor;
+            vr.spriteRec.Width = (int)newWidth.Value * image.ScaleFactor;
             image.Invalidate();
         }
 
         private void imageCutGB_VisibleChanged(object sender, EventArgs e)
         {
-            GroupBox groupBox = sender as GroupBox;
+            GroupBox groupBox = sender as GroupBox;     
 
             if (groupBox.Visible == false)
             {
-                spriteRec.Enable = false;
+                vr.spriteRec.Enable = false;
                 image.Refresh();
 
                 sprites.Clear();
@@ -1296,7 +1295,7 @@ namespace AmigaImageConverter
         {
             NumericUpDown newHeight = (NumericUpDown)sender;
 
-            spriteRec.Height = (int)newHeight.Value * image.ScaleFactor;
+            vr.spriteRec.Height = (int)newHeight.Value * image.ScaleFactor;
         }
 
         private void loadAmigaPaletterMI_Click(object sender, EventArgs e)
