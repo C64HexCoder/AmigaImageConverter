@@ -23,10 +23,6 @@ namespace AmigaImageConverter
             InitializeComponent();
             this.sprite = sprite;
 
-            if (sprite.Attached)
-                AttachedCB.Checked = true;
-
-            nameTb.Text = sprite.Name;
         }
 
         public ControlWords(List<Sprite> sprites)

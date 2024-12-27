@@ -28,77 +28,86 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.pallete = new Amiga.Pallate();
-            this.swapBt = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.imageBox = new Amiga.ImageBox();
-            ((System.ComponentModel.ISupportInitialize)(this.imageBox)).BeginInit();
-            this.SuspendLayout();
+            pallete = new Amiga.Pallate();
+            swapBt = new System.Windows.Forms.Button();
+            button2 = new System.Windows.Forms.Button();
+            imageBox = new Amiga.ImageBox();
+            ((System.ComponentModel.ISupportInitialize)imageBox).BeginInit();
+            SuspendLayout();
             // 
             // pallete
             // 
-            this.pallete.AlphChennel = true;
-            this.pallete.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.pallete.Location = new System.Drawing.Point(754, 12);
-            this.pallete.Name = "pallete";
-            this.pallete.NumOfColors = 4;
-            this.pallete.RGBVisible = true;
-            this.pallete.SelectedColor = System.Drawing.Color.Empty;
-            this.pallete.SelectedColorBox = true;
-            this.pallete.SelectedColorIdx = ((byte)(0));
-            this.pallete.Size = new System.Drawing.Size(397, 519);
-            this.pallete.TabIndex = 0;
-            this.pallete.ColorSelected += new System.EventHandler<Amiga.Pallate.SelectedColorEventArgs>(this.pallete_ColorSelected);
+            pallete.AlphChennel = true;
+            pallete.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            pallete.Location = new System.Drawing.Point(754, 12);
+            pallete.Name = "pallete";
+            pallete.NumOfColors = 4;
+            pallete.paletteFormat = Amiga.Pallate.PaletteFormat.TwelveBit;
+            pallete.RGBVisible = true;
+            pallete.SelectedColor = System.Drawing.Color.FromArgb(15, 132, 179);
+            pallete.SelectedColorBox = true;
+            pallete.SelectedColorIdx = 0;
+            pallete.Size = new System.Drawing.Size(397, 519);
+            pallete.TabIndex = 0;
+            pallete.ColorSelected += pallete_ColorSelected;
             // 
             // swapBt
             // 
-            this.swapBt.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.swapBt.Location = new System.Drawing.Point(1023, 549);
-            this.swapBt.Name = "swapBt";
-            this.swapBt.Size = new System.Drawing.Size(128, 34);
-            this.swapBt.TabIndex = 1;
-            this.swapBt.Text = "Swap";
-            this.swapBt.UseVisualStyleBackColor = true;
-            this.swapBt.Click += new System.EventHandler(this.swapBt_Click);
+            swapBt.DialogResult = System.Windows.Forms.DialogResult.OK;
+            swapBt.Location = new System.Drawing.Point(1023, 549);
+            swapBt.Name = "swapBt";
+            swapBt.Size = new System.Drawing.Size(128, 34);
+            swapBt.TabIndex = 1;
+            swapBt.Text = "Swap";
+            swapBt.UseVisualStyleBackColor = true;
+            swapBt.Click += swapBt_Click;
             // 
             // button2
             // 
-            this.button2.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.button2.Location = new System.Drawing.Point(12, 549);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(128, 34);
-            this.button2.TabIndex = 2;
-            this.button2.Text = "No Thanks";
-            this.button2.UseVisualStyleBackColor = true;
+            button2.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            button2.Location = new System.Drawing.Point(12, 549);
+            button2.Name = "button2";
+            button2.Size = new System.Drawing.Size(128, 34);
+            button2.TabIndex = 2;
+            button2.Text = "No Thanks";
+            button2.UseVisualStyleBackColor = true;
             // 
             // imageBox
             // 
-            this.imageBox.Location = new System.Drawing.Point(12, 12);
-            this.imageBox.Name = "imageBox";
-            this.imageBox.ScaleFactor = 1;
-            this.imageBox.Size = new System.Drawing.Size(736, 519);
-            this.imageBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
-            this.imageBox.TabIndex = 3;
-            this.imageBox.TabStop = false;
-            this.imageBox.MouseClick += new System.Windows.Forms.MouseEventHandler(this.imageBox_MouseClick);
+            imageBox.AutoCenter = false;
+            imageBox.AutoScaleImageBox = false;
+            imageBox.HrizontalScrollBar = null;
+            imageBox.Image = null;
+            imageBox.Location = new System.Drawing.Point(12, 12);
+            imageBox.MaxImageScale = 4;
+            imageBox.MouseWheelZoom = false;
+            imageBox.Name = "imageBox";
+            imageBox.OriginalImage = null;
+            imageBox.ScaleFactor = 1;
+            imageBox.ScaleFactorFloat = 1F;
+            imageBox.Size = new System.Drawing.Size(736, 519);
+            imageBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            imageBox.TabIndex = 3;
+            imageBox.TabStop = false;
+            imageBox.VerticalScrollBar = null;
+            imageBox.MouseClick += imageBox_MouseClick;
             // 
             // SelectBackgroundColor
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 25F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.AutoSize = true;
-            this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.ClientSize = new System.Drawing.Size(1163, 595);
-            this.Controls.Add(this.imageBox);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.swapBt);
-            this.Controls.Add(this.pallete);
-            this.Name = "SelectBackgroundColor";
-            this.Text = "Select Background Color";
-            ((System.ComponentModel.ISupportInitialize)(this.imageBox)).EndInit();
-            this.ResumeLayout(false);
-            this.PerformLayout();
-
+            AutoScaleDimensions = new System.Drawing.SizeF(10F, 25F);
+            AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            AutoSize = true;
+            AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            ClientSize = new System.Drawing.Size(1163, 595);
+            Controls.Add(imageBox);
+            Controls.Add(button2);
+            Controls.Add(swapBt);
+            Controls.Add(pallete);
+            Name = "SelectBackgroundColor";
+            Text = "Select Background Color";
+            ((System.ComponentModel.ISupportInitialize)imageBox).EndInit();
+            ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion

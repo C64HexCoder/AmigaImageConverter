@@ -451,6 +451,7 @@
             animationToolStripMenuItem.Name = "animationToolStripMenuItem";
             animationToolStripMenuItem.Size = new System.Drawing.Size(313, 34);
             animationToolStripMenuItem.Text = "Animation";
+            animationToolStripMenuItem.Click += animationToolStripMenuItem_Click;
             // 
             // colorsToolStripMenuItem
             // 
@@ -503,7 +504,7 @@
             // settingsMenuItem
             // 
             settingsMenuItem.Name = "settingsMenuItem";
-            settingsMenuItem.Size = new System.Drawing.Size(270, 34);
+            settingsMenuItem.Size = new System.Drawing.Size(178, 34);
             settingsMenuItem.Text = "Settings";
             settingsMenuItem.Click += settingsMenuItem_Click;
             // 
@@ -689,6 +690,7 @@
             Icon = (System.Drawing.Icon)resources.GetObject("$this.Icon");
             MainMenuStrip = menuStrip1;
             Margin = new System.Windows.Forms.Padding(1, 2, 1, 2);
+            MinimumSize = new System.Drawing.Size(500, 400);
             Name = "MainForm";
             StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             Text = "Amiga Image Converter";

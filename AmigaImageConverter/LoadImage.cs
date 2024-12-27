@@ -4,7 +4,7 @@ using System.Drawing;
 using System.Windows.Forms;
 using System.Threading.Tasks;
 using System.Diagnostics.Eventing.Reader;
-
+using System.Drawing.Drawing2D;
 namespace AmigaImageConverter
 {
     public partial class LoadImageDialog : Form
@@ -16,10 +16,58 @@ namespace AmigaImageConverter
             InitializeComponent();
             int width = DesktopBounds.Width;
             int height = DesktopBounds.Height;
+            colorComboBox.SelectedIndex = 3;
+            interpulationCB.SelectedIndex = 2;
 
 
         }
 
+        public SmoothingMode smoothingMode { 
+            
+            get
+            {
+                switch (smoothingModeCB.SelectedIndex)
+                {
+                    case 0:
+                        return SmoothingMode.HighQuality;
+                    case 1:
+                        return SmoothingMode.AntiAlias;
+                    case 2:
+                        return SmoothingMode.HighSpeed;
+                    case 3:
+                        return SmoothingMode.None;
+                    default:
+                        return SmoothingMode.Default;
+                }
+            }
+                
+        }
+        public InterpolationMode interpolationMode
+        {
+            get
+            {
+                switch (interpulationCB.SelectedIndex)
+                {
+                    case 0:
+                        return InterpolationMode.NearestNeighbor;
+                    case 1:
+                        return InterpolationMode.Bicubic;
+                    case 2:
+                        return InterpolationMode.HighQualityBicubic;
+                    case 3:
+                        return InterpolationMode.Bilinear;
+                    case 4:
+                        return InterpolationMode.HighQualityBilinear;
+                    case 5:
+                        return InterpolationMode.High;
+                    case 6:
+                        return InterpolationMode.Low;
+                    default:
+                        return InterpolationMode.Default;
+                }
+            }
+           
+        }
         public LoadImageDialog(Bitmap bitmap)
         {
             InitializeComponent();
@@ -27,6 +75,9 @@ namespace AmigaImageConverter
             widthNumericUpDown.Value = bitmap.Width;
             heightNumericUpDown.Value = bitmap.Height;
             bgColorPictureBox.BackColor = findBackgroundColor(bitmap);
+            colorComboBox.SelectedIndex = 3;
+            interpulationCB.SelectedIndex = 2;
+            smoothingModeCB.SelectedIndex = 0;
 
             resizeMethodCBox.SelectedIndex = 0;
 
@@ -129,17 +180,7 @@ namespace AmigaImageConverter
             get { return (int)heightNumericUpDown.Value; }
         }
 
-        public int ImageNumOfColors
-        {
-            get
-            {
-                return (int)Math.Pow(2, colorComboBox.SelectedIndex + 1);
-            }
-            set
-            {
-                colorComboBox.SelectedIndex = (int)(Math.Log(value) / Math.Log(2) - 1);
-            }
-        }
+        public int ImageNumOfColors = 16;
 
         public bool ImageTransparent
         {

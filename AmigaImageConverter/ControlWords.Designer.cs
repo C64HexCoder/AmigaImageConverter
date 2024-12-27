@@ -30,7 +30,6 @@
         {
             label1 = new System.Windows.Forms.Label();
             label2 = new System.Windows.Forms.Label();
-            AttachedCB = new System.Windows.Forms.CheckBox();
             SPRxPOSTB = new System.Windows.Forms.TextBox();
             SPRxCTLTB = new System.Windows.Forms.TextBox();
             button1 = new System.Windows.Forms.Button();
@@ -39,9 +38,6 @@
             PositionAddressingCB = new System.Windows.Forms.ComboBox();
             label5 = new System.Windows.Forms.Label();
             CalculateComWordsBT = new System.Windows.Forms.Button();
-            label6 = new System.Windows.Forms.Label();
-            nameTb = new System.Windows.Forms.TextBox();
-            doubleScanCB = new System.Windows.Forms.CheckBox();
             xPosNum = new System.Windows.Forms.NumericUpDown();
             yPosNum = new System.Windows.Forms.NumericUpDown();
             ((System.ComponentModel.ISupportInitialize)xPosNum).BeginInit();
@@ -66,18 +62,6 @@
             label2.TabIndex = 2;
             label2.Text = "Sprite Y Position";
             // 
-            // AttachedCB
-            // 
-            AttachedCB.AutoSize = true;
-            AttachedCB.Enabled = false;
-            AttachedCB.Location = new System.Drawing.Point(322, 15);
-            AttachedCB.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            AttachedCB.Name = "AttachedCB";
-            AttachedCB.Size = new System.Drawing.Size(168, 29);
-            AttachedCB.TabIndex = 4;
-            AttachedCB.Text = "Attached Sprites";
-            AttachedCB.UseVisualStyleBackColor = true;
-            // 
             // SPRxPOSTB
             // 
             SPRxPOSTB.BackColor = System.Drawing.SystemColors.Control;
@@ -86,7 +70,7 @@
             SPRxPOSTB.Enabled = false;
             SPRxPOSTB.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, 177);
             SPRxPOSTB.ForeColor = System.Drawing.SystemColors.MenuHighlight;
-            SPRxPOSTB.Location = new System.Drawing.Point(18, 292);
+            SPRxPOSTB.Location = new System.Drawing.Point(19, 292);
             SPRxPOSTB.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             SPRxPOSTB.Name = "SPRxPOSTB";
             SPRxPOSTB.ReadOnly = true;
@@ -102,7 +86,7 @@
             SPRxCTLTB.Enabled = false;
             SPRxCTLTB.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, 177);
             SPRxCTLTB.ForeColor = System.Drawing.SystemColors.MenuHighlight;
-            SPRxCTLTB.Location = new System.Drawing.Point(160, 292);
+            SPRxCTLTB.Location = new System.Drawing.Point(188, 292);
             SPRxCTLTB.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             SPRxCTLTB.Name = "SPRxCTLTB";
             SPRxCTLTB.ReadOnly = true;
@@ -112,20 +96,21 @@
             // 
             // button1
             // 
+            button1.AutoSize = true;
             button1.DialogResult = System.Windows.Forms.DialogResult.OK;
-            button1.Location = new System.Drawing.Point(450, 291);
+            button1.Location = new System.Drawing.Point(181, 377);
             button1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             button1.Name = "button1";
-            button1.Size = new System.Drawing.Size(111, 46);
+            button1.Size = new System.Drawing.Size(118, 46);
             button1.TabIndex = 7;
-            button1.Text = "OK";
+            button1.Text = "Write To File";
             button1.UseVisualStyleBackColor = true;
             // 
             // label3
             // 
             label3.AutoSize = true;
             label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 177);
-            label3.Location = new System.Drawing.Point(29, 264);
+            label3.Location = new System.Drawing.Point(19, 269);
             label3.Name = "label3";
             label3.Size = new System.Drawing.Size(82, 20);
             label3.TabIndex = 8;
@@ -134,7 +119,7 @@
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new System.Drawing.Point(167, 264);
+            label4.Location = new System.Drawing.Point(188, 264);
             label4.Name = "label4";
             label4.Size = new System.Drawing.Size(79, 25);
             label4.TabIndex = 9;
@@ -174,37 +159,6 @@
             CalculateComWordsBT.UseVisualStyleBackColor = false;
             CalculateComWordsBT.Click += CalculateComWordsBT_Click;
             // 
-            // label6
-            // 
-            label6.AutoSize = true;
-            label6.Location = new System.Drawing.Point(318, 104);
-            label6.Name = "label6";
-            label6.Size = new System.Drawing.Size(114, 25);
-            label6.TabIndex = 13;
-            label6.Text = "Sprite Name:";
-            // 
-            // nameTb
-            // 
-            nameTb.Location = new System.Drawing.Point(322, 134);
-            nameTb.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            nameTb.Name = "nameTb";
-            nameTb.Size = new System.Drawing.Size(238, 31);
-            nameTb.TabIndex = 14;
-            nameTb.Text = "Sprite";
-            nameTb.KeyDown += NameTb_KeyDown;
-            // 
-            // doubleScanCB
-            // 
-            doubleScanCB.AutoSize = true;
-            doubleScanCB.Enabled = false;
-            doubleScanCB.Location = new System.Drawing.Point(322, 54);
-            doubleScanCB.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            doubleScanCB.Name = "doubleScanCB";
-            doubleScanCB.Size = new System.Drawing.Size(138, 29);
-            doubleScanCB.TabIndex = 15;
-            doubleScanCB.Text = "Double Scan";
-            doubleScanCB.UseVisualStyleBackColor = true;
-            // 
             // xPosNum
             // 
             xPosNum.Location = new System.Drawing.Point(162, 18);
@@ -227,12 +181,9 @@
             // 
             AutoScaleDimensions = new System.Drawing.SizeF(10F, 25F);
             AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            ClientSize = new System.Drawing.Size(574, 352);
+            ClientSize = new System.Drawing.Size(316, 436);
             Controls.Add(yPosNum);
             Controls.Add(xPosNum);
-            Controls.Add(doubleScanCB);
-            Controls.Add(nameTb);
-            Controls.Add(label6);
             Controls.Add(CalculateComWordsBT);
             Controls.Add(label5);
             Controls.Add(PositionAddressingCB);
@@ -241,7 +192,6 @@
             Controls.Add(button1);
             Controls.Add(SPRxCTLTB);
             Controls.Add(SPRxPOSTB);
-            Controls.Add(AttachedCB);
             Controls.Add(label2);
             Controls.Add(label1);
             Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
@@ -258,7 +208,6 @@
 
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.CheckBox AttachedCB;
         private System.Windows.Forms.TextBox SPRxPOSTB;
         private System.Windows.Forms.TextBox SPRxCTLTB;
         private System.Windows.Forms.Button button1;
@@ -267,9 +216,6 @@
         private System.Windows.Forms.ComboBox PositionAddressingCB;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Button CalculateComWordsBT;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.TextBox nameTb;
-        private System.Windows.Forms.CheckBox doubleScanCB;
         private System.Windows.Forms.NumericUpDown xPosNum;
         private System.Windows.Forms.NumericUpDown yPosNum;
     }

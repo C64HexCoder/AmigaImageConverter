@@ -56,10 +56,10 @@ namespace AmigaImageConverter
                     break;
 
             }
-            sprite.CreateSpriteFromBitplane(pv.bitplane.Bitplanes, pv.bitplane.palette, sprWidth, pv.bitplane.NumOfBitmaps, pv.bitplane.Width, pv.bitplane.Height);
+            sprite = pv.bitplane.CreateSprite();
+            //image.Image = sprite.bitmap;
             image.Image = sprite.bitmap;
             image.AutoScale();
-
             widthNumericUpDown.Value = pv.bitplane.Width;
             heightNumericUpDown.Value = pv.bitplane.Height;
         }
@@ -70,7 +70,7 @@ namespace AmigaImageConverter
             if (spriteWIdth != 0)
             {
 
-                PublicVariables.SpriteCutRec.ScaleFactor = image.ScaleFactor;
+                //PublicVariables.SpriteCutRec.ScaleFactor = image.ScaleFactor;
 
                 foreach (PublicVariables.SpriteCutRec spriteCutRec in spriteCutRecs)
                 {
@@ -84,6 +84,8 @@ namespace AmigaImageConverter
 
         private void doItButton_Click(object sender, EventArgs e)
         {
+            ControlWords controlWords = new ControlWords(sprites);
+            controlWords.ShowDialog();
 
             SaveFileDialog saveFileDialog = new SaveFileDialog();
             saveFileDialog.Filter = "Aseembler Source File|*.S;*.asm|Binary File|*.bin| C Source File |*.c";

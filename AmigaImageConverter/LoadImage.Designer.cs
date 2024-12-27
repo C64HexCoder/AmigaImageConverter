@@ -38,7 +38,6 @@
             groupBox1 = new System.Windows.Forms.GroupBox();
             label4 = new System.Windows.Forms.Label();
             colorComboBox = new System.Windows.Forms.ComboBox();
-            label3 = new System.Windows.Forms.Label();
             algorithemCB = new System.Windows.Forms.ComboBox();
             groupBox2 = new System.Windows.Forms.GroupBox();
             transparentCheckBox = new System.Windows.Forms.CheckBox();
@@ -48,6 +47,10 @@
             statusStrip = new System.Windows.Forms.StatusStrip();
             imageBox = new Amiga.ImageBox();
             sidePael = new System.Windows.Forms.Panel();
+            label3 = new System.Windows.Forms.Label();
+            smoothingModeCB = new System.Windows.Forms.ComboBox();
+            label5 = new System.Windows.Forms.Label();
+            interpulationCB = new System.Windows.Forms.ComboBox();
             toolTip = new System.Windows.Forms.ToolTip(components);
             hScrollBar = new System.Windows.Forms.HScrollBar();
             resizeGroupBox.SuspendLayout();
@@ -129,11 +132,10 @@
             // 
             groupBox1.Controls.Add(label4);
             groupBox1.Controls.Add(colorComboBox);
-            groupBox1.Controls.Add(label3);
             groupBox1.Controls.Add(algorithemCB);
             groupBox1.Location = new System.Drawing.Point(0, 158);
             groupBox1.Name = "groupBox1";
-            groupBox1.Size = new System.Drawing.Size(273, 178);
+            groupBox1.Size = new System.Drawing.Size(273, 136);
             groupBox1.TabIndex = 1;
             groupBox1.TabStop = false;
             groupBox1.Text = "Color Quantation";
@@ -141,7 +143,7 @@
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new System.Drawing.Point(6, 105);
+            label4.Location = new System.Drawing.Point(6, 66);
             label4.Name = "label4";
             label4.Size = new System.Drawing.Size(63, 25);
             label4.TabIndex = 3;
@@ -151,25 +153,16 @@
             // 
             colorComboBox.FormattingEnabled = true;
             colorComboBox.Items.AddRange(new object[] { "2", "4", "8", "16", "32", "64", "128", "256" });
-            colorComboBox.Location = new System.Drawing.Point(6, 133);
+            colorComboBox.Location = new System.Drawing.Point(6, 94);
             colorComboBox.Name = "colorComboBox";
             colorComboBox.Size = new System.Drawing.Size(258, 33);
             colorComboBox.TabIndex = 2;
-            // 
-            // label3
-            // 
-            label3.AutoSize = true;
-            label3.Location = new System.Drawing.Point(6, 27);
-            label3.Name = "label3";
-            label3.Size = new System.Drawing.Size(101, 25);
-            label3.TabIndex = 1;
-            label3.Text = "Algorithem";
             // 
             // algorithemCB
             // 
             algorithemCB.FormattingEnabled = true;
             algorithemCB.Items.AddRange(new object[] { "K Means", "MedianCut", "Deap Cycle" });
-            algorithemCB.Location = new System.Drawing.Point(6, 55);
+            algorithemCB.Location = new System.Drawing.Point(6, 30);
             algorithemCB.Name = "algorithemCB";
             algorithemCB.Size = new System.Drawing.Size(260, 33);
             algorithemCB.TabIndex = 0;
@@ -179,7 +172,7 @@
             // 
             groupBox2.Controls.Add(transparentCheckBox);
             groupBox2.Controls.Add(bgColorPictureBox);
-            groupBox2.Location = new System.Drawing.Point(0, 343);
+            groupBox2.Location = new System.Drawing.Point(6, 439);
             groupBox2.Name = "groupBox2";
             groupBox2.Size = new System.Drawing.Size(273, 127);
             groupBox2.TabIndex = 3;
@@ -189,7 +182,7 @@
             // transparentCheckBox
             // 
             transparentCheckBox.AutoSize = true;
-            transparentCheckBox.Location = new System.Drawing.Point(6, 78);
+            transparentCheckBox.Location = new System.Drawing.Point(6, 70);
             transparentCheckBox.Name = "transparentCheckBox";
             transparentCheckBox.Size = new System.Drawing.Size(174, 29);
             transparentCheckBox.TabIndex = 1;
@@ -199,7 +192,7 @@
             // bgColorPictureBox
             // 
             bgColorPictureBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            bgColorPictureBox.Location = new System.Drawing.Point(6, 38);
+            bgColorPictureBox.Location = new System.Drawing.Point(6, 30);
             bgColorPictureBox.Name = "bgColorPictureBox";
             bgColorPictureBox.Size = new System.Drawing.Size(258, 34);
             bgColorPictureBox.TabIndex = 0;
@@ -207,7 +200,7 @@
             // 
             // doItButton
             // 
-            doItButton.Location = new System.Drawing.Point(159, 502);
+            doItButton.Location = new System.Drawing.Point(159, 557);
             doItButton.Name = "doItButton";
             doItButton.Size = new System.Drawing.Size(111, 33);
             doItButton.TabIndex = 4;
@@ -226,9 +219,9 @@
             statusStrip.BackColor = System.Drawing.SystemColors.ControlLight;
             statusStrip.ImageScalingSize = new System.Drawing.Size(24, 24);
             statusStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] { toolStripStatusLabel });
-            statusStrip.Location = new System.Drawing.Point(0, 553);
+            statusStrip.Location = new System.Drawing.Point(0, 625);
             statusStrip.Name = "statusStrip";
-            statusStrip.Size = new System.Drawing.Size(996, 32);
+            statusStrip.Size = new System.Drawing.Size(1002, 32);
             statusStrip.TabIndex = 5;
             statusStrip.Text = "statusStrip1";
             // 
@@ -245,7 +238,7 @@
             imageBox.OriginalImage = null;
             imageBox.ScaleFactor = 1;
             imageBox.ScaleFactorFloat = 1F;
-            imageBox.Size = new System.Drawing.Size(686, 497);
+            imageBox.Size = new System.Drawing.Size(686, 587);
             imageBox.TabIndex = 6;
             imageBox.TabStop = false;
             imageBox.VerticalScrollBar = null;
@@ -253,19 +246,59 @@
             // 
             // sidePael
             // 
+            sidePael.Controls.Add(label3);
+            sidePael.Controls.Add(smoothingModeCB);
+            sidePael.Controls.Add(label5);
+            sidePael.Controls.Add(interpulationCB);
+            sidePael.Controls.Add(groupBox2);
             sidePael.Controls.Add(resizeGroupBox);
             sidePael.Controls.Add(groupBox1);
-            sidePael.Controls.Add(groupBox2);
             sidePael.Controls.Add(doItButton);
-            sidePael.Location = new System.Drawing.Point(711, 12);
+            sidePael.Location = new System.Drawing.Point(711, 15);
             sidePael.Name = "sidePael";
-            sidePael.Size = new System.Drawing.Size(273, 538);
+            sidePael.Size = new System.Drawing.Size(273, 590);
             sidePael.TabIndex = 7;
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Location = new System.Drawing.Point(6, 372);
+            label3.Name = "label3";
+            label3.Size = new System.Drawing.Size(142, 25);
+            label3.TabIndex = 8;
+            label3.Text = "Smothing Mode";
+            // 
+            // smoothingModeCB
+            // 
+            smoothingModeCB.FormattingEnabled = true;
+            smoothingModeCB.Items.AddRange(new object[] { "High Quality", "Anti Alias", "High Speed", "None", "Default" });
+            smoothingModeCB.Location = new System.Drawing.Point(6, 400);
+            smoothingModeCB.Name = "smoothingModeCB";
+            smoothingModeCB.Size = new System.Drawing.Size(260, 33);
+            smoothingModeCB.TabIndex = 7;
+            // 
+            // label5
+            // 
+            label5.AutoSize = true;
+            label5.Location = new System.Drawing.Point(6, 297);
+            label5.Name = "label5";
+            label5.Size = new System.Drawing.Size(113, 25);
+            label5.TabIndex = 6;
+            label5.Text = "Interpulation";
+            // 
+            // interpulationCB
+            // 
+            interpulationCB.FormattingEnabled = true;
+            interpulationCB.Items.AddRange(new object[] { "NearestNeighbor;", "Bicubic;", "HighQualityBicubic;", "Bilinear;", "HighQualityBilinear;", "Mode.High;", "Low;", "Default;" });
+            interpulationCB.Location = new System.Drawing.Point(6, 325);
+            interpulationCB.Name = "interpulationCB";
+            interpulationCB.Size = new System.Drawing.Size(260, 33);
+            interpulationCB.TabIndex = 5;
             // 
             // hScrollBar
             // 
             hScrollBar.LargeChange = 100;
-            hScrollBar.Location = new System.Drawing.Point(7, 513);
+            hScrollBar.Location = new System.Drawing.Point(6, 605);
             hScrollBar.Name = "hScrollBar";
             hScrollBar.Size = new System.Drawing.Size(699, 20);
             hScrollBar.SmallChange = 2;
@@ -278,7 +311,7 @@
             AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             AutoSize = true;
             AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            ClientSize = new System.Drawing.Size(996, 585);
+            ClientSize = new System.Drawing.Size(1002, 657);
             Controls.Add(hScrollBar);
             Controls.Add(sidePael);
             Controls.Add(imageBox);
@@ -299,6 +332,7 @@
             statusStrip.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)imageBox).EndInit();
             sidePael.ResumeLayout(false);
+            sidePael.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -313,7 +347,6 @@
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.ComboBox colorComboBox;
-        private System.Windows.Forms.Label label3;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.PictureBox bgColorPictureBox;
         private System.Windows.Forms.CheckBox transparentCheckBox;
@@ -326,5 +359,9 @@
         private System.Windows.Forms.HScrollBar hScrollBar;
         private System.Windows.Forms.ComboBox resizeMethodCBox;
         public System.Windows.Forms.ComboBox algorithemCB;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.ComboBox interpulationCB;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.ComboBox smoothingModeCB;
     }
 }

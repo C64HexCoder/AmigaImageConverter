@@ -69,7 +69,7 @@
             image.Image = null;
             image.Location = new System.Drawing.Point(3, 3);
             image.MaxImageScale = 4;
-            image.MouseWheelZoom = true;
+            image.MouseWheelZoom = false;
             image.Name = "image";
             image.OriginalImage = null;
             image.ScaleFactor = 1;

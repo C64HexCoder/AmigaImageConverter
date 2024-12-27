@@ -40,11 +40,13 @@ namespace AmigaImageConverter
         RegEdit RegEdit = RegEdit.Instance;
         SpriteCut spriteCut;// = new SpriteCut();
         SpriteSlicing spriteSlicing; //= new SpriteSlicing();
+        Animation animation;
         enum FormState
         {
             Image,
             SpriteSplit,
-            SpriteCut
+            SpriteCut,
+            Animation
         }
 
         FormState formState = FormState.Image;
@@ -128,8 +130,8 @@ namespace AmigaImageConverter
                         {
                             Bitmap NewBitmap = new Bitmap(loadImageDlg.RequestedImageWidth, loadImageDlg.RequestedImageHeight);
                             Graphics g = Graphics.FromImage(NewBitmap);
-                            g.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.None;
-                            g.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.NearestNeighbor;
+                            g.SmoothingMode = loadImageDlg.smoothingMode;                        
+                            g.InterpolationMode = loadImageDlg.interpolationMode;
                             g.DrawImage(bmp, 0, 0, loadImageDlg.RequestedImageWidth, loadImageDlg.RequestedImageHeight);
                             g.Dispose();
                             bmp = NewBitmap;
@@ -327,7 +329,7 @@ namespace AmigaImageConverter
                         //image.SizeMode = PictureBoxSizeMode.AutoSize;
                         image.Image = vr.bitplane.bitmap;
                         image.ScaleImage((int)settings.previewScalingNud.Value);
-                        
+
 
                         hScrollBar.Top = image.Bottom;
                         hScrollBar.Left = image.Left;
@@ -397,7 +399,14 @@ namespace AmigaImageConverter
             if (vr.bitplane.bitmap != null)
             {
                 selectBGColor.pallete.SetPalette(vr.bitplane.Pallate);
-                selectBGColor.ShowDialog();
+                if (selectBGColor.ShowDialog() == DialogResult.OK)
+                {
+                    if (formState == FormState.Animation)
+                    {
+                       
+                    }
+
+                }
             }
             else
                 MessageBox.Show("There is no pallate yet, try to load image first, or that the image you've loaded has no Pallate.", "Pallate Error", MessageBoxButtons.OK);
@@ -819,6 +828,8 @@ namespace AmigaImageConverter
             {
                 vr.bitplane.LoadIFF(iffFile.FileName);
                 image.Image = vr.bitplane.bitmap;
+
+                image.MaxImageScale = Height / image.Image.Height;
                 image.ScaleImage((int)settings.previewScalingNud.Value);
 
                 if (vr.bitplane.bitmap == null)
@@ -1070,6 +1081,13 @@ namespace AmigaImageConverter
 
         private void saveSpriteAsMenuItem_Click(object sender, EventArgs e)
         {
+            /* if (bmp == null)
+             {
+                 MessageBox.Show ("No Image Loaded\n" +
+                     "Load an image and try again!","Image is missing",MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                 return;
+             }*/
 
             ConvertImageToSprite convertImageToSprite = new ConvertImageToSprite();
             if (convertImageToSprite.ShowDialog() == DialogResult.OK)
@@ -1279,7 +1297,7 @@ namespace AmigaImageConverter
 
         private void imageCutGB_VisibleChanged(object sender, EventArgs e)
         {
-            GroupBox groupBox = sender as GroupBox;     
+            GroupBox groupBox = sender as GroupBox;
 
             if (groupBox.Visible == false)
             {
@@ -1410,6 +1428,27 @@ namespace AmigaImageConverter
         private void toolStripMenuItem3_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void animationToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            CreateAnimationControl();
+        }
+
+        private void CreateAnimationControl()
+        {
+            animation = new Animation();
+            Controls.Add(animation);
+
+            if (Width - image.Right > animation.Width)
+            {
+                animation.Dock = DockStyle.Right;
+            }
+            else
+            {
+                animation.Left = image.Right + 2;
+            }
+            //this.Width += image.Width - spriteSlicing.Width;
         }
     }
 }
