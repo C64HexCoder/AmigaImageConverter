@@ -107,6 +107,7 @@
             vScrollBar = new System.Windows.Forms.VScrollBar();
             process1 = new System.Diagnostics.Process();
             image = new Amiga.ImageBox();
+            equlizePalletsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             menuStrip1.SuspendLayout();
             statusStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)image).BeginInit();
@@ -455,7 +456,7 @@
             // 
             // colorsToolStripMenuItem
             // 
-            colorsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] { pallateToolStripMenuItem, selectBackgroundToolStripMenuItem });
+            colorsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] { pallateToolStripMenuItem, selectBackgroundToolStripMenuItem, equlizePalletsToolStripMenuItem });
             colorsToolStripMenuItem.Name = "colorsToolStripMenuItem";
             colorsToolStripMenuItem.Size = new System.Drawing.Size(79, 29);
             colorsToolStripMenuItem.Text = "Colors";
@@ -463,14 +464,14 @@
             // pallateToolStripMenuItem
             // 
             pallateToolStripMenuItem.Name = "pallateToolStripMenuItem";
-            pallateToolStripMenuItem.Size = new System.Drawing.Size(260, 34);
+            pallateToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
             pallateToolStripMenuItem.Text = "Pallate";
             pallateToolStripMenuItem.Click += pallateToolStripMenuItem_Click;
             // 
             // selectBackgroundToolStripMenuItem
             // 
             selectBackgroundToolStripMenuItem.Name = "selectBackgroundToolStripMenuItem";
-            selectBackgroundToolStripMenuItem.Size = new System.Drawing.Size(260, 34);
+            selectBackgroundToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
             selectBackgroundToolStripMenuItem.Text = "Select Background";
             selectBackgroundToolStripMenuItem.Click += selectBackgroundToolStripMenuItem_Click;
             // 
@@ -673,6 +674,12 @@
             image.MouseMove += image_MouseMove;
             image.MouseUp += image_MouseUp;
             // 
+            // equlizePalletsToolStripMenuItem
+            // 
+            equlizePalletsToolStripMenuItem.Name = "equlizePalletsToolStripMenuItem";
+            equlizePalletsToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
+            equlizePalletsToolStripMenuItem.Text = "Equlize Pallets";
+            // 
             // MainForm
             // 
             AutoScaleDimensions = new System.Drawing.SizeF(10F, 25F);
@@ -783,6 +790,7 @@
         private System.Windows.Forms.ToolStripMenuItem sPRxPOSSPRxCTLConverterToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator11;
         private System.Windows.Forms.ToolStripMenuItem animationToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem equlizePalletsToolStripMenuItem;
     }
 }
 

@@ -89,11 +89,14 @@ namespace AmigaImageConverter
             }
             else*/
 
+            ushort xpos = Xpos;
             foreach (Sprite sprite in sprites)
-                sprite.CalculateControlWords(Xpos, Ypos, RelativePositioning);
-
-            SPRxPOSTB.Text = "$"+sprites[0].SPRxPOS.ToString("X4");
-            SPRxCTLTB.Text = "$"+sprites[0].SPRxCTL.ToString("X4");
+            {
+                sprite.CalculateControlWords(xpos, Ypos, RelativePositioning);
+                xpos += (ushort)sprite.bitmap.Width;
+            }
+            SPRxPOSTB.Text = "$" + sprites[0].SPRxPOS.ToString("X4");
+            SPRxCTLTB.Text = "$" + sprites[0].SPRxCTL.ToString("X4");
         }
 
         private void NameTb_KeyDown(object sender, KeyEventArgs e)
@@ -113,5 +116,6 @@ namespace AmigaImageConverter
         {
             _Ypos = (ushort)yPosNum.Value;
         }
+
     }
 }

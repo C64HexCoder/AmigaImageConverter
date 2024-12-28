@@ -87,6 +87,7 @@ namespace AmigaImageConverter
             ControlWords controlWords = new ControlWords(sprites);
             controlWords.ShowDialog();
 
+
             SaveFileDialog saveFileDialog = new SaveFileDialog();
             saveFileDialog.Filter = "Aseembler Source File|*.S;*.asm|Binary File|*.bin| C Source File |*.c";
             string newFileName = null;
@@ -94,24 +95,34 @@ namespace AmigaImageConverter
             if (saveFileDialog.ShowDialog() == DialogResult.OK)
             {
                 int spriteNum = 0;
-
+           
                 String fileName = Path.ChangeExtension(saveFileDialog.FileName, null);
-                Path.ChangeExtension(saveFileDialog.FileName, null);
+
+                switch (saveFileDialog.FilterIndex) { 
+                    case 1:
+                        Path.ChangeExtension(saveFileDialog.FileName, "asm");
+                        break;
+
+                    case 3:
+                        Path.ChangeExtension(saveFileDialog.FileName, "cpp");
+                        break;
+      
+                }
+                File.Delete(saveFileDialog.FileName);
+                int i = 0;
                 foreach (Sprite sprite in sprites)
                 {
                     switch (saveFileDialog.FilterIndex)
                     {
                         case 1:
-                            newFileName = fileName + spriteNum++ + ".asm";
-                            sprite.SaveAsAssemblerSourceFile(newFileName, Sprite.MemoryType.CHIP, 10, 10, false);
+                            sprite.SaveAsAssemblerSourceFile(saveFileDialog.FileName, Sprite.MemoryType.CHIP, 10, 10, false,true);
                             break;
                         case 2:
-                            newFileName = fileName + spriteNum++ + ".bin";
+                            newFileName = fileName + i + ".bin";
                             sprite.SaveAsBinaryFile(newFileName);
                             break;
                         case 3:
-                            newFileName = fileName + spriteNum++ + "cpp";
-                            sprite.SaveAsCPPSourceFile(newFileName, Sprite.MemoryType.CHIP, 0, 0, false);
+                            sprite.SaveAsCPPSourceFile(saveFileDialog.FileName, Sprite.MemoryType.CHIP, 0, 0, false,true);
                             break;
 
                     }
