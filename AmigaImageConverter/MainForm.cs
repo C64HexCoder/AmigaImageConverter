@@ -41,6 +41,7 @@ namespace AmigaImageConverter
         SpriteCut spriteCut;// = new SpriteCut();
         SpriteSlicing spriteSlicing; //= new SpriteSlicing();
         Animation animation;
+        PaletteQulalizerBtn paleEqua;
         enum FormState
         {
             Image,
@@ -946,7 +947,7 @@ namespace AmigaImageConverter
             LinkObjectConfig linkObjectConfig = new LinkObjectConfig();
 
             uint MemoryType;
-            int NumOfLongs = vr.bitplane.Bitplanes.Length % 4 == 0 ? vr.bitplane.Bitplanes.Length / 4 : vr.bitplane.Bitplanes.Length / 4 + 1;
+            int NumOfLongs = vr.bitplane.Bitmaps.Length % 4 == 0 ? vr.bitplane.Bitmaps.Length / 4 : vr.bitplane.Bitmaps.Length / 4 + 1;
 
             SaveFileDialog ObjSaveFileDialog = new SaveFileDialog();
             ObjSaveFileDialog.Filter = "Linkable File (Obj)|*.obj";
@@ -1453,14 +1454,15 @@ namespace AmigaImageConverter
 
         private void CreateEqualizingPanel()
         {
-            PaletteQulalizerBtn paleEqua = new PaletteQulalizerBtn(ref image);
+            paleEqua = new PaletteQulalizerBtn(ref image);
 
             if (image.Image == null)
             {
-                MessageBox.Show ("No image loaded!\n" +
-                    "Please load image first.","Image missing error",MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("No image loaded!\n" +
+                    "Please load image first.", "Image missing error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
+
             Controls.Add(paleEqua);
 
             if (Width - image.Right > paleEqua.Width)
@@ -1472,12 +1474,21 @@ namespace AmigaImageConverter
             {
                 paleEqua.Left = image.Right + 2;
             }
+            paletteEqualizerToolStripMenuItem.Checked = true;
             //this.Width += image.Width - spriteSlicing.Width;
         }
 
         private void paletteEqualizerToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            CreateEqualizingPanel();
+            if (paletteEqualizerToolStripMenuItem.Checked)
+            {
+                this.Controls.Remove(paleEqua);
+                paletteEqualizerToolStripMenuItem.Checked = false;
+            }
+            else
+                CreateEqualizingPanel();
         }
+
+      
     }
 }

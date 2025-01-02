@@ -16,6 +16,7 @@ namespace AmigaImageConverter
     {
         ImageBox imageBox;
         Sprite sprite = new Sprite();
+        PublicVariables pv = PublicVariables.instance;
 
         public PaletteQulalizerBtn(ref ImageBox imageBox)
         {
@@ -37,15 +38,11 @@ namespace AmigaImageConverter
 
         private void convertPaletteBtn_Click(object sender, EventArgs e)
         {
-            SaveFileDialog saveFileDialog = new SaveFileDialog();
-            saveFileDialog.Filter = "IFF Amiga File Format|*.iff";
-
-            if (saveFileDialog.ShowDialog() == DialogResult.OK)
-            {
-                sprite.EqualizePalette(sprite.palette);
-                sprite.SaveACBM(saveFileDialog.FileName);
-           
-            }
+            pv.bitplane.EqualizePalette(sprite.palette);
+            //imageBox.Image = pv.bitplane.bmp;
+            imageBox.AutoScale();
+            MessageBox.Show("Palette Converted Succsesfully","Palette Conversion Finished",MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
+
     }
 }

@@ -472,21 +472,21 @@
             // pallateToolStripMenuItem
             // 
             pallateToolStripMenuItem.Name = "pallateToolStripMenuItem";
-            pallateToolStripMenuItem.Size = new System.Drawing.Size(260, 34);
+            pallateToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
             pallateToolStripMenuItem.Text = "Pallate";
             pallateToolStripMenuItem.Click += pallateToolStripMenuItem_Click;
             // 
             // selectBackgroundToolStripMenuItem
             // 
             selectBackgroundToolStripMenuItem.Name = "selectBackgroundToolStripMenuItem";
-            selectBackgroundToolStripMenuItem.Size = new System.Drawing.Size(260, 34);
+            selectBackgroundToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
             selectBackgroundToolStripMenuItem.Text = "Select Background";
             selectBackgroundToolStripMenuItem.Click += selectBackgroundToolStripMenuItem_Click;
             // 
             // equlizePalletsToolStripMenuItem
             // 
             equlizePalletsToolStripMenuItem.Name = "equlizePalletsToolStripMenuItem";
-            equlizePalletsToolStripMenuItem.Size = new System.Drawing.Size(260, 34);
+            equlizePalletsToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
             equlizePalletsToolStripMenuItem.Text = "Equlize Pallets";
             // 
             // audioToolStripMenuItem
