@@ -79,9 +79,11 @@
             toolStripSeparator9 = new System.Windows.Forms.ToolStripSeparator();
             controlWordsCalculatorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             animationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            paletteEqualizerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             colorsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             pallateToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             selectBackgroundToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            equlizePalletsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             audioToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             sineWaveGeneratorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             waveGeneratorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -107,7 +109,6 @@
             vScrollBar = new System.Windows.Forms.VScrollBar();
             process1 = new System.Diagnostics.Process();
             image = new Amiga.ImageBox();
-            equlizePalletsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             menuStrip1.SuspendLayout();
             statusStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)image).BeginInit();
@@ -122,7 +123,7 @@
             menuStrip1.Padding = new System.Windows.Forms.Padding(4, 2, 0, 2);
             menuStrip1.Size = new System.Drawing.Size(1072, 33);
             menuStrip1.TabIndex = 0;
-            menuStrip1.Text = "menuStrip1";
+            menuStrip1.Text = "menuStrip";
             // 
             // fileToolStripMenuItem
             // 
@@ -403,7 +404,7 @@
             // 
             // toolStripMenuItem1
             // 
-            toolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] { cutSpriteToolStripMenuItem, toolStripSeparator8, spriteSheetCutterToolStripMenuItem, toolStripMenuItem3, toolStripSeparator9, controlWordsCalculatorToolStripMenuItem, animationToolStripMenuItem });
+            toolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] { cutSpriteToolStripMenuItem, toolStripSeparator8, spriteSheetCutterToolStripMenuItem, toolStripMenuItem3, toolStripSeparator9, controlWordsCalculatorToolStripMenuItem, animationToolStripMenuItem, paletteEqualizerToolStripMenuItem });
             toolStripMenuItem1.Name = "toolStripMenuItem1";
             toolStripMenuItem1.Size = new System.Drawing.Size(74, 29);
             toolStripMenuItem1.Text = "Sprite";
@@ -454,6 +455,13 @@
             animationToolStripMenuItem.Text = "Animation";
             animationToolStripMenuItem.Click += animationToolStripMenuItem_Click;
             // 
+            // paletteEqualizerToolStripMenuItem
+            // 
+            paletteEqualizerToolStripMenuItem.Name = "paletteEqualizerToolStripMenuItem";
+            paletteEqualizerToolStripMenuItem.Size = new System.Drawing.Size(313, 34);
+            paletteEqualizerToolStripMenuItem.Text = "Palette Equalizer";
+            paletteEqualizerToolStripMenuItem.Click += paletteEqualizerToolStripMenuItem_Click;
+            // 
             // colorsToolStripMenuItem
             // 
             colorsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] { pallateToolStripMenuItem, selectBackgroundToolStripMenuItem, equlizePalletsToolStripMenuItem });
@@ -464,16 +472,22 @@
             // pallateToolStripMenuItem
             // 
             pallateToolStripMenuItem.Name = "pallateToolStripMenuItem";
-            pallateToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
+            pallateToolStripMenuItem.Size = new System.Drawing.Size(260, 34);
             pallateToolStripMenuItem.Text = "Pallate";
             pallateToolStripMenuItem.Click += pallateToolStripMenuItem_Click;
             // 
             // selectBackgroundToolStripMenuItem
             // 
             selectBackgroundToolStripMenuItem.Name = "selectBackgroundToolStripMenuItem";
-            selectBackgroundToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
+            selectBackgroundToolStripMenuItem.Size = new System.Drawing.Size(260, 34);
             selectBackgroundToolStripMenuItem.Text = "Select Background";
             selectBackgroundToolStripMenuItem.Click += selectBackgroundToolStripMenuItem_Click;
+            // 
+            // equlizePalletsToolStripMenuItem
+            // 
+            equlizePalletsToolStripMenuItem.Name = "equlizePalletsToolStripMenuItem";
+            equlizePalletsToolStripMenuItem.Size = new System.Drawing.Size(260, 34);
+            equlizePalletsToolStripMenuItem.Text = "Equlize Pallets";
             // 
             // audioToolStripMenuItem
             // 
@@ -674,12 +688,6 @@
             image.MouseMove += image_MouseMove;
             image.MouseUp += image_MouseUp;
             // 
-            // equlizePalletsToolStripMenuItem
-            // 
-            equlizePalletsToolStripMenuItem.Name = "equlizePalletsToolStripMenuItem";
-            equlizePalletsToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
-            equlizePalletsToolStripMenuItem.Text = "Equlize Pallets";
-            // 
             // MainForm
             // 
             AutoScaleDimensions = new System.Drawing.SizeF(10F, 25F);
@@ -779,7 +787,6 @@
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem3;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator8;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator9;
-        private Amiga.ImageBox image;
         private System.Windows.Forms.ToolStripMenuItem toolsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem calculateBlitterLFByteToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem loadAmigaPaletterMI;
@@ -791,6 +798,8 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator11;
         private System.Windows.Forms.ToolStripMenuItem animationToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem equlizePalletsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem paletteEqualizerToolStripMenuItem;
+        public Amiga.ImageBox image;
     }
 }
 

@@ -130,7 +130,7 @@ namespace AmigaImageConverter
                         {
                             Bitmap NewBitmap = new Bitmap(loadImageDlg.RequestedImageWidth, loadImageDlg.RequestedImageHeight);
                             Graphics g = Graphics.FromImage(NewBitmap);
-                            g.SmoothingMode = loadImageDlg.smoothingMode;                        
+                            g.SmoothingMode = loadImageDlg.smoothingMode;
                             g.InterpolationMode = loadImageDlg.interpolationMode;
                             g.DrawImage(bmp, 0, 0, loadImageDlg.RequestedImageWidth, loadImageDlg.RequestedImageHeight);
                             g.Dispose();
@@ -403,7 +403,7 @@ namespace AmigaImageConverter
                 {
                     if (formState == FormState.Animation)
                     {
-                       
+
                     }
 
                 }
@@ -1449,6 +1449,35 @@ namespace AmigaImageConverter
                 animation.Left = image.Right + 2;
             }
             //this.Width += image.Width - spriteSlicing.Width;
+        }
+
+        private void CreateEqualizingPanel()
+        {
+            PaletteQulalizerBtn paleEqua = new PaletteQulalizerBtn(ref image);
+
+            if (image.Image == null)
+            {
+                MessageBox.Show ("No image loaded!\n" +
+                    "Please load image first.","Image missing error",MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            Controls.Add(paleEqua);
+
+            if (Width - image.Right > paleEqua.Width)
+            {
+                paleEqua.Dock = DockStyle.Right;
+                //paleEqua.Top = menuStrip1.Bottom;
+            }
+            else
+            {
+                paleEqua.Left = image.Right + 2;
+            }
+            //this.Width += image.Width - spriteSlicing.Width;
+        }
+
+        private void paletteEqualizerToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            CreateEqualizingPanel();
         }
     }
 }
