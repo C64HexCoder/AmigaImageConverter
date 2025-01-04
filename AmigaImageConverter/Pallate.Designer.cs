@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            imagePallate = new Amiga.Pallate();
+            imagePallate = new Amiga.Palette();
             button1 = new System.Windows.Forms.Button();
             SuspendLayout();
             // 
@@ -39,7 +39,7 @@
             imagePallate.Location = new System.Drawing.Point(2, 1);
             imagePallate.Name = "imagePallate";
             imagePallate.NumOfColors = 8;
-            imagePallate.paletteFormat = Amiga.Pallate.PaletteFormat.TwelveBit;
+            imagePallate.paletteFormat = Amiga.Palette.PaletteFormat.TwelveBit;
             imagePallate.RGBVisible = true;
             imagePallate.SelectedColor = System.Drawing.Color.FromArgb(242, 137, 97);
             imagePallate.SelectedColorBox = true;
@@ -73,7 +73,7 @@
 
         #endregion
 
-        public Amiga.Pallate imagePallate;
+        public Amiga.Palette imagePallate;
         private System.Windows.Forms.Button button1;
     }
 }

@@ -17,11 +17,13 @@ namespace AmigaImageConverter
         ImageBox imageBox;
         Sprite sprite = new Sprite();
         PublicVariables pv = PublicVariables.instance;
+        byte BackgroundColorIdx = 0;
 
         public PaletteQulalizerBtn(ref ImageBox imageBox)
         {
             InitializeComponent();
             this.imageBox = imageBox;
+            backgroundColorBox.color = pv.bitplane.palette[0];
         }
 
         private void paletteLoadBtn_Click(object sender, EventArgs e)
@@ -39,10 +41,22 @@ namespace AmigaImageConverter
         private void convertPaletteBtn_Click(object sender, EventArgs e)
         {
             pv.bitplane.EqualizePalette(sprite.palette);
-            //imageBox.Image = pv.bitplane.bmp;
-            imageBox.AutoScale();
-            MessageBox.Show("Palette Converted Succsesfully","Palette Conversion Finished",MessageBoxButtons.OK, MessageBoxIcon.Information);
+            imageBox.Image = pv.bitplane.CreateBitmap();
+            localImageBox.Image = pv.bitplane.bmp;
+            localImageBox.AutoScale();
+            MessageBox.Show("Palette Converted Succsesfully", "Palette Conversion Finished", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
+        private void backgroundColorBox_Click(object sender, EventArgs e)
+        {
+            ColorBox colorBox = (ColorBox)sender;
+
+            SelectBackgroundColor  selectBackgroundColor = new SelectBackgroundColor();
+            if (selectBackgroundColor.ShowDialog() == DialogResult.OK)
+            {
+                colorBox.color = selectBackgroundColor.BackgroundColor;
+                BackgroundColorIdx = selectBackgroundColor.BackgroundColorIdx;
+            }
+        }
     }
 }

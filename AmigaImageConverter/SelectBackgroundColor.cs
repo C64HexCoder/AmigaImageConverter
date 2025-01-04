@@ -18,7 +18,7 @@ namespace AmigaImageConverter
         public SelectBackgroundColor()
         {
             InitializeComponent();
-            pallete.Colors = vr.bitplane.Pallate;
+            pallete.Colors = vr.bitplane.Palette;
             imageBox.Image = vr.bitplane.bitmap;
             float multiFactor = pallete.Height/imageBox.Image.Height;
             imageBox.ScaleFactor = (int) Math.Round(multiFactor);
@@ -27,7 +27,33 @@ namespace AmigaImageConverter
             swapBt.Left = pallete.Right-swapBt.Width;
         }
 
-        private void pallete_ColorSelected(object sender, Amiga.Pallate.SelectedColorEventArgs e)
+        public SelectBackgroundColor(Bitmap bitmap)
+        {
+            imageBox.Image = bitmap;
+        }
+        public byte BackgroundColorIdx
+        {
+            get
+            {
+                return pallete.SelectedColorIdx;
+            }
+        }
+
+        public Color BackgroundColor
+        {
+            get
+            {
+                return pallete.SelectedColor;
+            }
+        }
+
+        public void SetPalette(Color[] palette)
+        {
+            pallete.Colors = palette;
+
+        }
+        
+        private void pallete_ColorSelected(object sender, Amiga.Palette.SelectedColorEventArgs e)
         {
            // selectedColorPB.BackColor = e.Color;
         }

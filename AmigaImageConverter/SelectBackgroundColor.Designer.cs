@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            pallete = new Amiga.Pallate();
+            pallete = new Amiga.Palette();
             swapBt = new System.Windows.Forms.Button();
             button2 = new System.Windows.Forms.Button();
             imageBox = new Amiga.ImageBox();
@@ -42,7 +42,7 @@
             pallete.Location = new System.Drawing.Point(754, 12);
             pallete.Name = "pallete";
             pallete.NumOfColors = 4;
-            pallete.paletteFormat = Amiga.Pallate.PaletteFormat.TwelveBit;
+            pallete.paletteFormat = Amiga.Palette.PaletteFormat.TwelveBit;
             pallete.RGBVisible = true;
             pallete.SelectedColor = System.Drawing.Color.FromArgb(15, 132, 179);
             pallete.SelectedColorBox = true;
@@ -113,7 +113,7 @@
         #endregion
         private System.Windows.Forms.Button swapBt;
         private System.Windows.Forms.Button button2;
-        public Amiga.Pallate pallete;
+        public Amiga.Palette pallete;
         private Amiga.ImageBox imageBox;
     }
 }

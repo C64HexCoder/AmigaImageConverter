@@ -109,6 +109,7 @@
             vScrollBar = new System.Windows.Forms.VScrollBar();
             process1 = new System.Diagnostics.Process();
             image = new Amiga.ImageBox();
+            equalizingAllImagesInDirectoryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             menuStrip1.SuspendLayout();
             statusStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)image).BeginInit();
@@ -404,7 +405,7 @@
             // 
             // toolStripMenuItem1
             // 
-            toolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] { cutSpriteToolStripMenuItem, toolStripSeparator8, spriteSheetCutterToolStripMenuItem, toolStripMenuItem3, toolStripSeparator9, controlWordsCalculatorToolStripMenuItem, animationToolStripMenuItem, paletteEqualizerToolStripMenuItem });
+            toolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] { cutSpriteToolStripMenuItem, toolStripSeparator8, spriteSheetCutterToolStripMenuItem, toolStripMenuItem3, toolStripSeparator9, controlWordsCalculatorToolStripMenuItem, animationToolStripMenuItem, paletteEqualizerToolStripMenuItem, equalizingAllImagesInDirectoryToolStripMenuItem });
             toolStripMenuItem1.Name = "toolStripMenuItem1";
             toolStripMenuItem1.Size = new System.Drawing.Size(74, 29);
             toolStripMenuItem1.Text = "Sprite";
@@ -412,26 +413,26 @@
             // cutSpriteToolStripMenuItem
             // 
             cutSpriteToolStripMenuItem.Name = "cutSpriteToolStripMenuItem";
-            cutSpriteToolStripMenuItem.Size = new System.Drawing.Size(313, 34);
+            cutSpriteToolStripMenuItem.Size = new System.Drawing.Size(467, 34);
             cutSpriteToolStripMenuItem.Text = "Cut Sprite From Image";
             cutSpriteToolStripMenuItem.Click += cutSpriteToolStripMenuItem_Click;
             // 
             // toolStripSeparator8
             // 
             toolStripSeparator8.Name = "toolStripSeparator8";
-            toolStripSeparator8.Size = new System.Drawing.Size(310, 6);
+            toolStripSeparator8.Size = new System.Drawing.Size(464, 6);
             // 
             // spriteSheetCutterToolStripMenuItem
             // 
             spriteSheetCutterToolStripMenuItem.Name = "spriteSheetCutterToolStripMenuItem";
-            spriteSheetCutterToolStripMenuItem.Size = new System.Drawing.Size(313, 34);
+            spriteSheetCutterToolStripMenuItem.Size = new System.Drawing.Size(467, 34);
             spriteSheetCutterToolStripMenuItem.Text = "Sprite Sheet Splitter";
             spriteSheetCutterToolStripMenuItem.Click += sprireSheetCutterToolStripMenuItem_Click;
             // 
             // toolStripMenuItem3
             // 
             toolStripMenuItem3.Name = "toolStripMenuItem3";
-            toolStripMenuItem3.Size = new System.Drawing.Size(313, 34);
+            toolStripMenuItem3.Size = new System.Drawing.Size(467, 34);
             toolStripMenuItem3.Text = "Sprite Sheet Maker";
             toolStripMenuItem3.Visible = false;
             toolStripMenuItem3.Click += toolStripMenuItem3_Click;
@@ -439,26 +440,26 @@
             // toolStripSeparator9
             // 
             toolStripSeparator9.Name = "toolStripSeparator9";
-            toolStripSeparator9.Size = new System.Drawing.Size(310, 6);
+            toolStripSeparator9.Size = new System.Drawing.Size(464, 6);
             // 
             // controlWordsCalculatorToolStripMenuItem
             // 
             controlWordsCalculatorToolStripMenuItem.Name = "controlWordsCalculatorToolStripMenuItem";
-            controlWordsCalculatorToolStripMenuItem.Size = new System.Drawing.Size(313, 34);
+            controlWordsCalculatorToolStripMenuItem.Size = new System.Drawing.Size(467, 34);
             controlWordsCalculatorToolStripMenuItem.Text = "Control Words Calculator";
             controlWordsCalculatorToolStripMenuItem.Visible = false;
             // 
             // animationToolStripMenuItem
             // 
             animationToolStripMenuItem.Name = "animationToolStripMenuItem";
-            animationToolStripMenuItem.Size = new System.Drawing.Size(313, 34);
+            animationToolStripMenuItem.Size = new System.Drawing.Size(467, 34);
             animationToolStripMenuItem.Text = "Animation";
             animationToolStripMenuItem.Click += animationToolStripMenuItem_Click;
             // 
             // paletteEqualizerToolStripMenuItem
             // 
             paletteEqualizerToolStripMenuItem.Name = "paletteEqualizerToolStripMenuItem";
-            paletteEqualizerToolStripMenuItem.Size = new System.Drawing.Size(313, 34);
+            paletteEqualizerToolStripMenuItem.Size = new System.Drawing.Size(467, 34);
             paletteEqualizerToolStripMenuItem.Text = "Palette Equalizer";
             paletteEqualizerToolStripMenuItem.Click += paletteEqualizerToolStripMenuItem_Click;
             // 
@@ -688,6 +689,13 @@
             image.MouseMove += image_MouseMove;
             image.MouseUp += image_MouseUp;
             // 
+            // equalizingAllImagesInDirectoryToolStripMenuItem
+            // 
+            equalizingAllImagesInDirectoryToolStripMenuItem.Name = "equalizingAllImagesInDirectoryToolStripMenuItem";
+            equalizingAllImagesInDirectoryToolStripMenuItem.Size = new System.Drawing.Size(467, 34);
+            equalizingAllImagesInDirectoryToolStripMenuItem.Text = "Equalizing Palette For All Images In Directory";
+            equalizingAllImagesInDirectoryToolStripMenuItem.Click += equalizingAllImagesInDirectoryToolStripMenuItem_Click;
+            // 
             // MainForm
             // 
             AutoScaleDimensions = new System.Drawing.SizeF(10F, 25F);
@@ -800,6 +808,7 @@
         private System.Windows.Forms.ToolStripMenuItem equlizePalletsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem paletteEqualizerToolStripMenuItem;
         public Amiga.ImageBox image;
+        private System.Windows.Forms.ToolStripMenuItem equalizingAllImagesInDirectoryToolStripMenuItem;
     }
 }
 

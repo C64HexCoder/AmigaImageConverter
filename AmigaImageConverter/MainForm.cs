@@ -385,9 +385,9 @@ namespace AmigaImageConverter
         private void pallateToolStripMenuItem_Click(object sender, EventArgs e)
         {
             //ColorPalette colorPalette = bitplane.Pallate;
-            if (vr.bitplane.Pallate != null || iffImage.bmp != null)
+            if (vr.bitplane.Palette != null || iffImage.bmp != null)
             {
-                pallate.imagePallate.SetPalette(vr.bitplane.Pallate);
+                pallate.imagePallate.SetPalette(vr.bitplane.Palette);
                 pallate.ShowDialog();
             }
             else
@@ -399,7 +399,7 @@ namespace AmigaImageConverter
             SelectBackgroundColor selectBGColor = new SelectBackgroundColor();
             if (vr.bitplane.bitmap != null)
             {
-                selectBGColor.pallete.SetPalette(vr.bitplane.Pallate);
+                selectBGColor.pallete.SetPalette(vr.bitplane.Palette);
                 if (selectBGColor.ShowDialog() == DialogResult.OK)
                 {
                     if (formState == FormState.Animation)
@@ -424,7 +424,7 @@ namespace AmigaImageConverter
         private void autoCorpToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Point StartPos = new Point(vr.bitplane.bitmap.Width, vr.bitplane.Height), StopPos = new Point(0, 0);
-            Color backgroundColor = vr.bitplane.Pallate[0];
+            Color backgroundColor = vr.bitplane.Palette[0];
 
             for (int y = vr.bitplane.Height - 1; y >= 0; y--)
                 for (int x = vr.bitplane.Width - 1; x >= 0; x--)
@@ -1489,6 +1489,13 @@ namespace AmigaImageConverter
                 CreateEqualizingPanel();
         }
 
-      
+        private void equalizingAllImagesInDirectoryToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            EqualizingImagesInDirectory equalizingImagesInDirectory = new EqualizingImagesInDirectory();
+            if (equalizingImagesInDirectory.ShowDialog() == DialogResult.OK)
+            {
+
+            }
+        }
     }
 }
