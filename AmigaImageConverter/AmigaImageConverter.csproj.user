@@ -72,6 +72,9 @@
     <Compile Update="Resize.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="SaveAFolderAs.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="SaveSprite.cs">
       <SubType>Form</SubType>
     </Compile>

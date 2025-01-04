@@ -23,7 +23,6 @@ namespace AmigaImageConverter
         {
             InitializeComponent();
             this.imageBox = imageBox;
-            backgroundColorBox.color = pv.bitplane.palette[0];
         }
 
         private void paletteLoadBtn_Click(object sender, EventArgs e)
@@ -42,8 +41,7 @@ namespace AmigaImageConverter
         {
             pv.bitplane.EqualizePalette(sprite.palette);
             imageBox.Image = pv.bitplane.CreateBitmap();
-            localImageBox.Image = pv.bitplane.bmp;
-            localImageBox.AutoScale();
+     
             MessageBox.Show("Palette Converted Succsesfully", "Palette Conversion Finished", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
