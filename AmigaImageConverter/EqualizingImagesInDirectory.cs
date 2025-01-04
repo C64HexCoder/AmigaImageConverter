@@ -20,8 +20,25 @@ namespace AmigaImageConverter
         public EqualizingImagesInDirectory()
         {
             InitializeComponent();
+            saveOptionCbox.SelectedIndex = 1;
         }
 
+        public enum SaveOptions
+        {
+            Overrite,
+            ChangeName,
+        }
+
+        public SaveOptions SaveOption
+        {
+            get
+            {
+                if (saveOptionCbox.SelectedIndex == 0)
+                    return SaveOptions.Overrite;
+                else
+                    return SaveOptions.ChangeName;
+            }
+        }
         private void selectDirBtn_Click(object sender, EventArgs e)
         {
             FolderBrowserDialog dialog = new FolderBrowserDialog();
@@ -50,8 +67,25 @@ namespace AmigaImageConverter
         private void equalizeAllBtn_Click(object sender, EventArgs e)
         {
             string[] fileNames;// = new string[];
+            if (folderTBox.Text  == "Select Folder ")
+            {
+                
+                MessageBox.Show("No Folder Selected\n" +
+                    "Please Select a Folder you wich to work on\n" +
+                    "and try again.", "No Folder Selected", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+                
+            }
             fileNames = Directory.GetFiles(folderTBox.Text);
             Sprite sprite = new Sprite();
+
+            if (destPalette ==  null)
+            {
+                MessageBox.Show("No Destination Palette Chosen\n" +
+                    "Please Load A Palette you whish to change for\n" +
+                    "and try again.", "No Destination Palette", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
 
             progressBar.Maximum = fileNames.Length-1;
 
@@ -62,9 +96,14 @@ namespace AmigaImageConverter
 
                 if (!sprite.ComparePalettes(destPalette))
                 {
+                    string saveFileName = Path.GetFileNameWithoutExtension(fileNames[i]);
+
                     sprite.EqualizePalette(destPalette);
-                    string saveFileName = Path.GetFileNameWithoutExtension(fileNames[i]) + stringToAddTb.Text + ".iff";
-                    sprite.SaveILBM(saveFileName);
+                    if (SaveOption == SaveOptions.ChangeName)
+                    {
+                         saveFileName = saveFileName + stringToAddTb.Text + ".iff";
+                    }
+                        sprite.SaveILBM(saveFileName);
 
                         
                 }

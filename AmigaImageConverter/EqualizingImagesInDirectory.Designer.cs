@@ -39,7 +39,7 @@
             progressBar = new System.Windows.Forms.ProgressBar();
             groupBox2 = new System.Windows.Forms.GroupBox();
             stringToAddTb = new System.Windows.Forms.TextBox();
-            comboBox1 = new System.Windows.Forms.ComboBox();
+            saveOptionCbox = new System.Windows.Forms.ComboBox();
             destPaletteGB.SuspendLayout();
             groupBox1.SuspendLayout();
             groupBox2.SuspendLayout();
@@ -132,7 +132,7 @@
             // groupBox2
             // 
             groupBox2.Controls.Add(stringToAddTb);
-            groupBox2.Controls.Add(comboBox1);
+            groupBox2.Controls.Add(saveOptionCbox);
             groupBox2.Location = new System.Drawing.Point(18, 239);
             groupBox2.Name = "groupBox2";
             groupBox2.Size = new System.Drawing.Size(300, 128);
@@ -148,14 +148,14 @@
             stringToAddTb.TabIndex = 1;
             stringToAddTb.Text = "_PalFixed";
             // 
-            // comboBox1
+            // saveOptionCbox
             // 
-            comboBox1.FormattingEnabled = true;
-            comboBox1.Items.AddRange(new object[] { "Overwrite", "Add To File Name" });
-            comboBox1.Location = new System.Drawing.Point(6, 30);
-            comboBox1.Name = "comboBox1";
-            comboBox1.Size = new System.Drawing.Size(282, 33);
-            comboBox1.TabIndex = 0;
+            saveOptionCbox.FormattingEnabled = true;
+            saveOptionCbox.Items.AddRange(new object[] { "Overwrite", "Add To File Name" });
+            saveOptionCbox.Location = new System.Drawing.Point(6, 30);
+            saveOptionCbox.Name = "saveOptionCbox";
+            saveOptionCbox.Size = new System.Drawing.Size(282, 33);
+            saveOptionCbox.TabIndex = 0;
             // 
             // EqualizingImagesInDirectory
             // 
@@ -192,7 +192,7 @@
         private Amiga.ColorsGrid colorsGrid;
         private System.Windows.Forms.ProgressBar progressBar;
         private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox saveOptionCbox;
         private System.Windows.Forms.TextBox stringToAddTb;
     }
 }
