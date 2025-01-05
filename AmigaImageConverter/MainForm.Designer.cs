@@ -80,6 +80,7 @@
             controlWordsCalculatorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             animationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             paletteEqualizerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            equalizingAllImagesInDirectoryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             colorsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             pallateToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             selectBackgroundToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -109,7 +110,7 @@
             vScrollBar = new System.Windows.Forms.VScrollBar();
             process1 = new System.Diagnostics.Process();
             image = new Amiga.ImageBox();
-            equalizingAllImagesInDirectoryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            saveAllFilesInDirectoryAsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             menuStrip1.SuspendLayout();
             statusStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)image).BeginInit();
@@ -405,7 +406,7 @@
             // 
             // toolStripMenuItem1
             // 
-            toolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] { cutSpriteToolStripMenuItem, toolStripSeparator8, spriteSheetCutterToolStripMenuItem, toolStripMenuItem3, toolStripSeparator9, controlWordsCalculatorToolStripMenuItem, animationToolStripMenuItem, paletteEqualizerToolStripMenuItem, equalizingAllImagesInDirectoryToolStripMenuItem });
+            toolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] { cutSpriteToolStripMenuItem, toolStripSeparator8, spriteSheetCutterToolStripMenuItem, toolStripMenuItem3, toolStripSeparator9, controlWordsCalculatorToolStripMenuItem, animationToolStripMenuItem, paletteEqualizerToolStripMenuItem, equalizingAllImagesInDirectoryToolStripMenuItem, saveAllFilesInDirectoryAsToolStripMenuItem });
             toolStripMenuItem1.Name = "toolStripMenuItem1";
             toolStripMenuItem1.Size = new System.Drawing.Size(74, 29);
             toolStripMenuItem1.Text = "Sprite";
@@ -463,6 +464,13 @@
             paletteEqualizerToolStripMenuItem.Text = "Palette Equalizer";
             paletteEqualizerToolStripMenuItem.Click += paletteEqualizerToolStripMenuItem_Click;
             // 
+            // equalizingAllImagesInDirectoryToolStripMenuItem
+            // 
+            equalizingAllImagesInDirectoryToolStripMenuItem.Name = "equalizingAllImagesInDirectoryToolStripMenuItem";
+            equalizingAllImagesInDirectoryToolStripMenuItem.Size = new System.Drawing.Size(467, 34);
+            equalizingAllImagesInDirectoryToolStripMenuItem.Text = "Equalizing Palette For All Images In Directory";
+            equalizingAllImagesInDirectoryToolStripMenuItem.Click += equalizingAllImagesInDirectoryToolStripMenuItem_Click;
+            // 
             // colorsToolStripMenuItem
             // 
             colorsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] { pallateToolStripMenuItem, selectBackgroundToolStripMenuItem, equlizePalletsToolStripMenuItem });
@@ -473,21 +481,21 @@
             // pallateToolStripMenuItem
             // 
             pallateToolStripMenuItem.Name = "pallateToolStripMenuItem";
-            pallateToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
+            pallateToolStripMenuItem.Size = new System.Drawing.Size(260, 34);
             pallateToolStripMenuItem.Text = "Pallate";
             pallateToolStripMenuItem.Click += pallateToolStripMenuItem_Click;
             // 
             // selectBackgroundToolStripMenuItem
             // 
             selectBackgroundToolStripMenuItem.Name = "selectBackgroundToolStripMenuItem";
-            selectBackgroundToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
+            selectBackgroundToolStripMenuItem.Size = new System.Drawing.Size(260, 34);
             selectBackgroundToolStripMenuItem.Text = "Select Background";
             selectBackgroundToolStripMenuItem.Click += selectBackgroundToolStripMenuItem_Click;
             // 
             // equlizePalletsToolStripMenuItem
             // 
             equlizePalletsToolStripMenuItem.Name = "equlizePalletsToolStripMenuItem";
-            equlizePalletsToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
+            equlizePalletsToolStripMenuItem.Size = new System.Drawing.Size(260, 34);
             equlizePalletsToolStripMenuItem.Text = "Equlize Pallets";
             // 
             // audioToolStripMenuItem
@@ -689,12 +697,12 @@
             image.MouseMove += image_MouseMove;
             image.MouseUp += image_MouseUp;
             // 
-            // equalizingAllImagesInDirectoryToolStripMenuItem
+            // saveAllFilesInDirectoryAsToolStripMenuItem
             // 
-            equalizingAllImagesInDirectoryToolStripMenuItem.Name = "equalizingAllImagesInDirectoryToolStripMenuItem";
-            equalizingAllImagesInDirectoryToolStripMenuItem.Size = new System.Drawing.Size(467, 34);
-            equalizingAllImagesInDirectoryToolStripMenuItem.Text = "Equalizing Palette For All Images In Directory";
-            equalizingAllImagesInDirectoryToolStripMenuItem.Click += equalizingAllImagesInDirectoryToolStripMenuItem_Click;
+            saveAllFilesInDirectoryAsToolStripMenuItem.Name = "saveAllFilesInDirectoryAsToolStripMenuItem";
+            saveAllFilesInDirectoryAsToolStripMenuItem.Size = new System.Drawing.Size(467, 34);
+            saveAllFilesInDirectoryAsToolStripMenuItem.Text = "Save All Files In Directory As";
+            saveAllFilesInDirectoryAsToolStripMenuItem.Click += saveAllFilesInDirectoryAsToolStripMenuItem_Click;
             // 
             // MainForm
             // 
@@ -809,6 +817,7 @@
         private System.Windows.Forms.ToolStripMenuItem paletteEqualizerToolStripMenuItem;
         public Amiga.ImageBox image;
         private System.Windows.Forms.ToolStripMenuItem equalizingAllImagesInDirectoryToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem saveAllFilesInDirectoryAsToolStripMenuItem;
     }
 }
 

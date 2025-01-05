@@ -54,6 +54,9 @@
     <Compile Update="LinkObjectConfig.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="LoadBox.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Update="LoadImage.cs">
       <SubType>Form</SubType>
     </Compile>

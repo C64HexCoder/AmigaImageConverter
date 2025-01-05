@@ -1497,5 +1497,14 @@ namespace AmigaImageConverter
 
             }
         }
+
+        private void saveAllFilesInDirectoryAsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SaveAFolderAs saveAFolderAs = new SaveAFolderAs();
+            if (saveAFolderAs.ShowDialog() == DialogResult.OK)
+            {
+
+            }
+        }
     }
 }
