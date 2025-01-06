@@ -142,6 +142,9 @@ namespace AmigaImageConverter
                 folderNameTextBox.Text = dialog.SelectedPath;
 
                 fileNames = Directory.GetFiles(dialog.SelectedPath);
+
+                if (fileNames.Length == 0)
+                    MessageBox.Show ("No files found in the Folder","No Files Found",MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -149,6 +152,14 @@ namespace AmigaImageConverter
         {
             Point SprPos = new Point(Xpos, Ypos);
             progressBar.Maximum = fileNames.Length - 1;
+
+            if (fileNames.Length == 0)
+            {
+                MessageBox.Show ("No files found!!!\n" +
+                    "Please select a Folder with IFF files to load as sprites","Files not found",MessageBoxButtons.OK,MessageBoxIcon.Error);
+
+                return;
+            }
 
             if (relativeCheckBox.Checked)
                 SprPos = Sprite.ConvertAbsoluteToPhysicalPosition(Xpos, Ypos);
@@ -164,20 +175,20 @@ namespace AmigaImageConverter
                 if (sprite.Width > SpriteWidth)
                 {
                     sprites = sprite.SplitSpriteToWidth(SpriteWidth);
-                    int extNum = 0;
+                    int pNum = 0;
                     foreach (Sprite spr in sprites)
                     {
-                        spr.Name = spriteName + "_P"+extNum++;
+                        spr.Name = spriteName + "_P"+pNum++;
                         switch (FileFormat)
                         {
                             case FileFormats.Assembly:
-                                spr.SaveAsAssemblerSourceFile(newFileName, Sprite.MemoryType.CHIP, SprPos.X, SprPos.Y, false, true);
+                                spr.SaveAsAssemblerSourceFile(newFileName, Sprite.MemoryType.CHIP, SprPos.X+pNum*SpriteWidth, SprPos.Y, false, true);
                                 break;
                             case FileFormats.CPP:
-                                spr.SaveAsCPPSourceFile(newFileName, Sprite.MemoryType.CHIP, SprPos.X, SprPos.Y, false, true);
+                                spr.SaveAsCPPSourceFile(newFileName, Sprite.MemoryType.CHIP, SprPos.X+pNum*SpriteWidth, SprPos.Y, false, true);
                                 break;
                             case FileFormats.Binary:
-                                string tmpFilename = Path.GetFileNameWithoutExtension(fileNames[i]) + extNum + fileExtensionComboBox.SelectedItem;
+                                string tmpFilename = Path.GetFileNameWithoutExtension(fileNames[i]) + pNum + fileExtensionComboBox.SelectedItem;
                                 spr.SaveAsBinaryFile(tmpFilename);
                                 break;
                         }
