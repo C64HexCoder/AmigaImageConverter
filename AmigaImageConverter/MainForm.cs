@@ -145,15 +145,19 @@ namespace AmigaImageConverter
                     switch (loadImageDlg.algorithemCB.SelectedIndex)
                     {
                         case 0:
-                            vr.bitplane.bitmap = await Task.Run(() => KMeansQuant.ReduceColors(bmp, loadImageDlg.ImageNumOfColors));
+                            vr.bitplane.bitmap = await Task.Run(() => KMeansQuant.ReduceColors12bitRGB(bmp, loadImageDlg.ImageNumOfColors));
                             break;
 
                         case 1:
+                            vr.bitplane.bitmap = await Task.Run(() => KMeansQuant.ReduceColors(bmp, loadImageDlg.ImageNumOfColors));
+                            break;
+
+                        case 2:
                             MedianCut mc = new MedianCut();
                             vr.bitplane.bitmap = await Task.Run(() => vr.bitplane.bitmap = mc.ReduceColors(bmp));
                             break;
 
-                        case 2:
+                        case 3:
                             DeepCycle dp = new DeepCycle();
                             vr.bitplane.bitmap = await Task.Run(() => dp.ReduceColors(bmp, DeepCycle.ColorAvaragingMethod.RelaativeToNumberOfInstances));
                             break;
