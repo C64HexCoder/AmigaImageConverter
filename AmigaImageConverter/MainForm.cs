@@ -145,7 +145,7 @@ namespace AmigaImageConverter
                     switch (loadImageDlg.algorithemCB.SelectedIndex)
                     {
                         case 0:
-                            vr.bitplane.bitmap = await Task.Run(() => KMeansQuant.ReduceColors12bitRGB(bmp, loadImageDlg.ImageNumOfColors));
+                            vr.bitplane.bitmap =/* await Task.Run(() => */KMeansQuant.ReduceColors12bitRGB(bmp, loadImageDlg.ImageNumOfColors)/*)*/;
                             break;
 
                         case 1:

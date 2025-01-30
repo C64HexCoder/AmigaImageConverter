@@ -90,8 +90,7 @@ namespace AmigaImageConverter
             {
                 toolStripStatusLabel.Text = "No Transparent color found in the Image.";
             }
-
-            ImageNumOfColors = 16;  // The default num of color to reduce to
+                    
             float ScaleFactor;
 
             ScaleFactor = (float)imageBox.Height / (float)bmp.Height;
@@ -180,7 +179,13 @@ namespace AmigaImageConverter
             get { return (int)heightNumericUpDown.Value; }
         }
 
-        public int ImageNumOfColors = 16;
+        public int ImageNumOfColors
+        {
+            get
+            {
+                return int.Parse(colorComboBox.SelectedItem.ToString());
+            }
+        }
 
         public bool ImageTransparent
         {
