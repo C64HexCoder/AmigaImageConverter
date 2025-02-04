@@ -6,11 +6,16 @@ MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AmigaImageConverter", "AmigaImageConverter\AmigaImageConverter.csproj", "{9A166D5F-6C6E-41AD-AEDC-F23B84949F0B}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Amiga", "..\Amiga\Amiga\Amiga.csproj", "{5835B169-F500-46E5-9A1F-2895EE9A1017}"
+	ProjectSection(ProjectDependencies) = postProject
+		{1497D588-08B5-43B1-8F4E-2BD6F0881296} = {1497D588-08B5-43B1-8F4E-2BD6F0881296}
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{12B9A721-3973-420D-ACFE-DDA685C807AE}"
 	ProjectSection(SolutionItems) = preProject
 		.editorconfig = .editorconfig
 	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Trees", "Trees\Trees.csproj", "{1497D588-08B5-43B1-8F4E-2BD6F0881296}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -36,6 +41,14 @@ Global
 		{5835B169-F500-46E5-9A1F-2895EE9A1017}.Release|Any CPU.Build.0 = Release|Any CPU
 		{5835B169-F500-46E5-9A1F-2895EE9A1017}.Release|x64.ActiveCfg = Release|x64
 		{5835B169-F500-46E5-9A1F-2895EE9A1017}.Release|x64.Build.0 = Release|x64
+		{1497D588-08B5-43B1-8F4E-2BD6F0881296}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1497D588-08B5-43B1-8F4E-2BD6F0881296}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1497D588-08B5-43B1-8F4E-2BD6F0881296}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{1497D588-08B5-43B1-8F4E-2BD6F0881296}.Debug|x64.Build.0 = Debug|Any CPU
+		{1497D588-08B5-43B1-8F4E-2BD6F0881296}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1497D588-08B5-43B1-8F4E-2BD6F0881296}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1497D588-08B5-43B1-8F4E-2BD6F0881296}.Release|x64.ActiveCfg = Release|Any CPU
+		{1497D588-08B5-43B1-8F4E-2BD6F0881296}.Release|x64.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
