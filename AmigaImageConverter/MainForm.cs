@@ -153,7 +153,7 @@ namespace AmigaImageConverter
                             break;
 
                         case 2:
-                            vr.bitplane.bitmap = OctreeQuantization.ReduceColors(bmp,loadImageDlg.ImageNumOfColors,OctreeQuantization.Algorithem.LessUsed);
+                            vr.bitplane.bitmap = OctreeQuantization.ReduceColors(bmp,loadImageDlg.ImageNumOfColors,OctreeQuantization.Algorithem.CloseColorsAndLessUsed);
                             break;
 
                         case 3:
