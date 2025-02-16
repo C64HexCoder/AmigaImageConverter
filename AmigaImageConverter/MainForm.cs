@@ -151,17 +151,19 @@ namespace AmigaImageConverter
                         case 1:
                             vr.bitplane.bitmap = await Task.Run(() => KMeansQuant.ReduceColors(bmp, loadImageDlg.ImageNumOfColors));
                             break;
-
                         case 2:
+                            vr.bitplane.bitmap = OctreeQuantization.ReduceColors(bmp, loadImageDlg.ImageNumOfColors, OctreeQuantization.Algorithem.OnePass);
+                            break;
+                        case 3:
                             vr.bitplane.bitmap = OctreeQuantization.ReduceColors(bmp,loadImageDlg.ImageNumOfColors,OctreeQuantization.Algorithem.CloseColorsAndLessUsed);
                             break;
 
-                        case 3:
+                        case 4:
                             MedianCut mc = new MedianCut();
                             vr.bitplane.bitmap =/* await Task.Run(() =>*/ vr.bitplane.bitmap = mc.ReduceColors(bmp);//);
                             break;
 
-                        case 4:
+                        case 5:
                             DeepCycle dp = new DeepCycle();
                             vr.bitplane.bitmap = await Task.Run(() => dp.ReduceColors(bmp, DeepCycle.ColorAvaragingMethod.RelaativeToNumberOfInstances));
                             break;
