@@ -71,6 +71,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Amiga\Amiga\Amiga.csproj" />
+    <ProjectReference Include="..\Sorting\Sorting.csproj" />
   </ItemGroup>
   <ItemGroup>
     <Compile Update="Properties\Settings.Designer.cs">

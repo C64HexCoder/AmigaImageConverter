@@ -19,6 +19,7 @@ using Microsoft.VisualBasic.Devices;
 using Microsoft.Win32;
 using System.Runtime.CompilerServices;
 using System.Diagnostics.Eventing.Reader;
+using Sorting;
 
 namespace AmigaImageConverter
 {
@@ -42,6 +43,7 @@ namespace AmigaImageConverter
         SpriteSlicing spriteSlicing; //= new SpriteSlicing();
         Animation animation;
         PaletteQulalizerBtn paleEqua;
+
         enum FormState
         {
             Image,
@@ -152,22 +154,18 @@ namespace AmigaImageConverter
                             vr.bitplane.bitmap = await Task.Run(() => KMeansQuant.ReduceColors(bmp, loadImageDlg.ImageNumOfColors));
                             break;
                         case 2:
-                            vr.bitplane.bitmap = OctreeQuantization.ReduceColors(bmp, loadImageDlg.ImageNumOfColors, OctreeQuantization.Algorithem.OnePass);
+                            vr.bitplane.bitmap = OctreeQuantization.ReduceColors(bmp, loadImageDlg.ImageNumOfColors, OctreeQuantization.Algorithem.CloseColorsAndLessUsed);
                             break;
                         case 3:
-                            vr.bitplane.bitmap = OctreeQuantization.ReduceColors(bmp,loadImageDlg.ImageNumOfColors,OctreeQuantization.Algorithem.CloseColorsAndLessUsed);
-                            break;
-
-                        case 4:
                             MedianCut mc = new MedianCut();
-                            vr.bitplane.bitmap =/* await Task.Run(() =>*/ vr.bitplane.bitmap = mc.ReduceColors(bmp);//);
+                            vr.bitplane.bitmap =/* await Task.Run(() =>*/ mc.Quanitize(bmp,loadImageDlg.ImageNumOfColors);//);
+                            //vr.bitplane.bitmap = mc.ReduceColors(bmp,loadImageDlg.ImageNumOfColors);
                             break;
-
-                        case 5:
+                        case 4:
                             DeepCycle dp = new DeepCycle();
                             vr.bitplane.bitmap = await Task.Run(() => dp.ReduceColors(bmp, DeepCycle.ColorAvaragingMethod.RelaativeToNumberOfInstances));
                             break;
-                  
+
                     }
                     menuStrip1.Enabled = true;
 
@@ -1516,6 +1514,15 @@ namespace AmigaImageConverter
             {
 
             }
+        }
+
+        private void quickSortToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            int[] array = { 8,2,4,7,1,3,9,6,5,20,100,80,95,88,0,4};
+            QuickSort QS = new QuickSort();
+
+            QS.SortArray(ref array);
+
         }
     }
 }
