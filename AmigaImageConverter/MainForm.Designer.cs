@@ -742,7 +742,7 @@
             Icon = (System.Drawing.Icon)resources.GetObject("$this.Icon");
             MainMenuStrip = menuStrip1;
             Margin = new System.Windows.Forms.Padding(1, 2, 1, 2);
-            MinimumSize = new System.Drawing.Size(500, 400);
+            MinimumSize = new System.Drawing.Size(1094, 854);
             Name = "MainForm";
             StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             Text = "Amiga Image Converter";

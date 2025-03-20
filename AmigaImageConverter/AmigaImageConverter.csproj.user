@@ -110,6 +110,9 @@
     <EmbeddedResource Update="LoadImage.resx">
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Update="MainForm.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Update="Settings.resx">
       <SubType>Designer</SubType>
     </EmbeddedResource>
