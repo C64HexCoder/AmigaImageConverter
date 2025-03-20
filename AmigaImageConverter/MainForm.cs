@@ -106,6 +106,8 @@ namespace AmigaImageConverter
         {
             image.Invalidate();
         }
+
+        MedianCut mc = new MedianCut();
         private async void loadImageToolStripMenuItem_Click(object sender, EventArgs e)
         {
             image.MouseWheelZoom = true;
@@ -157,8 +159,9 @@ namespace AmigaImageConverter
                             vr.bitplane.bitmap = OctreeQuantization.ReduceColors(bmp, loadImageDlg.ImageNumOfColors, OctreeQuantization.Algorithem.CloseColorsAndLessUsed);
                             break;
                         case 3:
-                            MedianCut mc = new MedianCut();
-                            vr.bitplane.bitmap =/* await Task.Run(() =>*/ mc.Quanitize(bmp,loadImageDlg.ImageNumOfColors);//);
+
+                            mc.ProgressBarChanged += MedianCutProgressBar;
+                            vr.bitplane.bitmap = mc.Quanitize(bmp,loadImageDlg.ImageNumOfColors);
                             //vr.bitplane.bitmap = mc.ReduceColors(bmp,loadImageDlg.ImageNumOfColors);
                             break;
                         case 4:
@@ -257,6 +260,13 @@ namespace AmigaImageConverter
 
             //spriteCut.widthNumUD.Maximum = image.Width;
             //spriteCut.heightNumUD.Maximum = image.Height;
+        }
+
+        public void MedianCutProgressBar (object sender, MedianCut.ProgressBarEventArgs e)
+        {
+            toolStripProgressBar.Minimum = e.Min;
+            toolStripProgressBar.Maximum = e.Max;
+            toolStripProgressBar.Value = e.Position;
         }
 
         private void ProgressBarEvent(object sender, KMeansQuant.ProgressBarEventArgs e)
@@ -1390,6 +1400,9 @@ namespace AmigaImageConverter
         private void image_ScaleEvent(object sender, Amiga.ImageBox.ScalingEventArgs e)
         {
             vr.imageScalingFactoer = e.ScaleFactoer;
+            //Height = image.Height + 120;
+            //Width = image.Width;
+            //Height += statusStrip.Height;
         }
 
         private void CreateSpriteSlicingPanel()
@@ -1399,15 +1412,15 @@ namespace AmigaImageConverter
 
             spriteSlicing.ImageUpdated += ImageUpdate;
             //spriteSlicing.Left = this.Right - spriteSlicing.Width;
-            if (Width - image.Right > spriteSlicing.Width)
-            {
+          //  if (Width - image.Right > spriteSlicing.Width)
+          //  {
                 spriteSlicing.Dock = DockStyle.Right;
-            }
+          /*  }
             else
             {
                 spriteSlicing.Left = image.Right + 2;
-            }
-            spriteSlicing.Height = image.Height;
+            }*/
+            //spriteSlicing.Height = image.Height;
             //this.Width += image.Width - spriteSlicing.Width;
         }
 
@@ -1416,14 +1429,15 @@ namespace AmigaImageConverter
             spriteCut = new SpriteCut();
             Controls.Add(spriteCut);
 
-            if (Width - image.Right > spriteCut.Width)
-            {
+           // if (Width - image.Right > spriteCut.Width)
+           // {
                 spriteCut.Dock = DockStyle.Right;
-            }
-            else
-            {
-                spriteCut.Left = image.Right + 2;
-            }
+           // }
+           // else
+            //{
+              //  spriteCut.Left = image.Right + 2;
+            //}
+            //Width += spriteCut.Width+25;
             //this.Width += image.Width - spriteSlicing.Width;
         }
 
@@ -1433,6 +1447,7 @@ namespace AmigaImageConverter
             Controls.Remove(spriteCut);
             spriteSlicing = null;
             spriteCut = null;
+            //Width = image.Width;
         }
 
         private void toolStripMenuItem3_Click(object sender, EventArgs e)

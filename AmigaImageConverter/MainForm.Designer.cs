@@ -97,6 +97,7 @@
             calculateBlitterLFByteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             dDFCalculatorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             sPRxPOSSPRxCTLConverterToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            quickSortToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             aboutMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             openImageFileDialog = new System.Windows.Forms.OpenFileDialog();
@@ -111,10 +112,11 @@
             vScrollBar = new System.Windows.Forms.VScrollBar();
             process1 = new System.Diagnostics.Process();
             image = new Amiga.ImageBox();
-            quickSortToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            imagePanel = new System.Windows.Forms.Panel();
             menuStrip1.SuspendLayout();
             statusStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)image).BeginInit();
+            imagePanel.SuspendLayout();
             SuspendLayout();
             // 
             // menuStrip1
@@ -489,21 +491,21 @@
             // pallateToolStripMenuItem
             // 
             pallateToolStripMenuItem.Name = "pallateToolStripMenuItem";
-            pallateToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
+            pallateToolStripMenuItem.Size = new System.Drawing.Size(260, 34);
             pallateToolStripMenuItem.Text = "Pallate";
             pallateToolStripMenuItem.Click += pallateToolStripMenuItem_Click;
             // 
             // selectBackgroundToolStripMenuItem
             // 
             selectBackgroundToolStripMenuItem.Name = "selectBackgroundToolStripMenuItem";
-            selectBackgroundToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
+            selectBackgroundToolStripMenuItem.Size = new System.Drawing.Size(260, 34);
             selectBackgroundToolStripMenuItem.Text = "Select Background";
             selectBackgroundToolStripMenuItem.Click += selectBackgroundToolStripMenuItem_Click;
             // 
             // equlizePalletsToolStripMenuItem
             // 
             equlizePalletsToolStripMenuItem.Name = "equlizePalletsToolStripMenuItem";
-            equlizePalletsToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
+            equlizePalletsToolStripMenuItem.Size = new System.Drawing.Size(260, 34);
             equlizePalletsToolStripMenuItem.Text = "Equlize Pallets";
             // 
             // audioToolStripMenuItem
@@ -582,6 +584,13 @@
             sPRxPOSSPRxCTLConverterToolStripMenuItem.Text = "SPRxPOS SPRxCTL Converter";
             sPRxPOSSPRxCTLConverterToolStripMenuItem.Click += sPRxPOSSPRxCTLConverterToolStripMenuItem_Click;
             // 
+            // quickSortToolStripMenuItem
+            // 
+            quickSortToolStripMenuItem.Name = "quickSortToolStripMenuItem";
+            quickSortToolStripMenuItem.Size = new System.Drawing.Size(341, 34);
+            quickSortToolStripMenuItem.Text = "Quick Sort";
+            quickSortToolStripMenuItem.Click += quickSortToolStripMenuItem_Click;
+            // 
             // aboutToolStripMenuItem
             // 
             aboutToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] { aboutMenuItem });
@@ -646,18 +655,20 @@
             // 
             // hScrollBar
             // 
+            hScrollBar.Dock = System.Windows.Forms.DockStyle.Bottom;
             hScrollBar.Location = new System.Drawing.Point(0, 736);
             hScrollBar.Name = "hScrollBar";
-            hScrollBar.Size = new System.Drawing.Size(1062, 30);
+            hScrollBar.Size = new System.Drawing.Size(1072, 30);
             hScrollBar.TabIndex = 5;
             hScrollBar.Visible = false;
             hScrollBar.ValueChanged += hScrollBar_ValueChanged;
             // 
             // vScrollBar
             // 
-            vScrollBar.Location = new System.Drawing.Point(1032, 40);
+            vScrollBar.Dock = System.Windows.Forms.DockStyle.Right;
+            vScrollBar.Location = new System.Drawing.Point(1042, 33);
             vScrollBar.Name = "vScrollBar";
-            vScrollBar.Size = new System.Drawing.Size(30, 697);
+            vScrollBar.Size = new System.Drawing.Size(30, 703);
             vScrollBar.TabIndex = 6;
             vScrollBar.Visible = false;
             vScrollBar.ValueChanged += vScrollBar_ValueChanged;
@@ -677,10 +688,10 @@
             // image
             // 
             image.AutoCenter = false;
-            image.AutoScaleImageBox = false;
+            image.AutoScaleImageBox = true;
             image.HrizontalScrollBar = null;
             image.Image = null;
-            image.Location = new System.Drawing.Point(0, 34);
+            image.Location = new System.Drawing.Point(10, 2);
             image.Margin = new System.Windows.Forms.Padding(1, 2, 1, 2);
             image.MaxImageScale = 5;
             image.MinimumSize = new System.Drawing.Size(200, 200);
@@ -689,8 +700,7 @@
             image.OriginalImage = null;
             image.ScaleFactor = 6;
             image.ScaleFactorFloat = 1F;
-            image.Size = new System.Drawing.Size(1031, 700);
-            image.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            image.Size = new System.Drawing.Size(1031, 699);
             image.TabIndex = 3;
             image.TabStop = false;
             image.VerticalScrollBar = null;
@@ -705,23 +715,26 @@
             image.MouseMove += image_MouseMove;
             image.MouseUp += image_MouseUp;
             // 
-            // quickSortToolStripMenuItem
+            // imagePanel
             // 
-            quickSortToolStripMenuItem.Name = "quickSortToolStripMenuItem";
-            quickSortToolStripMenuItem.Size = new System.Drawing.Size(341, 34);
-            quickSortToolStripMenuItem.Text = "Quick Sort";
-            quickSortToolStripMenuItem.Click += quickSortToolStripMenuItem_Click;
+            imagePanel.AutoSize = true;
+            imagePanel.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            imagePanel.Controls.Add(image);
+            imagePanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            imagePanel.Location = new System.Drawing.Point(0, 33);
+            imagePanel.Name = "imagePanel";
+            imagePanel.Size = new System.Drawing.Size(1042, 703);
+            imagePanel.TabIndex = 7;
             // 
             // MainForm
             // 
-            AutoScaleDimensions = new System.Drawing.SizeF(10F, 25F);
-            AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             AutoSize = true;
             AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             ClientSize = new System.Drawing.Size(1072, 798);
+            Controls.Add(imagePanel);
             Controls.Add(vScrollBar);
             Controls.Add(hScrollBar);
-            Controls.Add(image);
             Controls.Add(menuStrip1);
             Controls.Add(statusStrip);
             DoubleBuffered = true;
@@ -738,6 +751,7 @@
             statusStrip.ResumeLayout(false);
             statusStrip.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)image).EndInit();
+            imagePanel.ResumeLayout(false);
             ResumeLayout(false);
             PerformLayout();
         }
@@ -827,6 +841,7 @@
         private System.Windows.Forms.ToolStripMenuItem equalizingAllImagesInDirectoryToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem saveAllFilesInDirectoryAsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem quickSortToolStripMenuItem;
+        private System.Windows.Forms.Panel imagePanel;
     }
 }
 
