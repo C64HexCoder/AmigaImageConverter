@@ -161,7 +161,7 @@ namespace AmigaImageConverter
                         case 3:
 
                             mc.ProgressBarChanged += MedianCutProgressBar;
-                            vr.bitplane.bitmap = mc.Quanitize(bmp,loadImageDlg.ImageNumOfColors);
+                            vr.bitplane.bitmap = mc.Quanitize(bmp, loadImageDlg.ImageNumOfColors);
                             //vr.bitplane.bitmap = mc.ReduceColors(bmp,loadImageDlg.ImageNumOfColors);
                             break;
                         case 4:
@@ -262,7 +262,7 @@ namespace AmigaImageConverter
             //spriteCut.heightNumUD.Maximum = image.Height;
         }
 
-        public void MedianCutProgressBar (object sender, MedianCut.ProgressBarEventArgs e)
+        public void MedianCutProgressBar(object sender, MedianCut.ProgressBarEventArgs e)
         {
             toolStripProgressBar.Minimum = e.Min;
             toolStripProgressBar.Maximum = e.Max;
@@ -1412,14 +1412,14 @@ namespace AmigaImageConverter
 
             spriteSlicing.ImageUpdated += ImageUpdate;
             //spriteSlicing.Left = this.Right - spriteSlicing.Width;
-          //  if (Width - image.Right > spriteSlicing.Width)
-          //  {
-                spriteSlicing.Dock = DockStyle.Right;
-          /*  }
-            else
-            {
-                spriteSlicing.Left = image.Right + 2;
-            }*/
+            //  if (Width - image.Right > spriteSlicing.Width)
+            //  {
+            spriteSlicing.Dock = DockStyle.Right;
+            /*  }
+              else
+              {
+                  spriteSlicing.Left = image.Right + 2;
+              }*/
             //spriteSlicing.Height = image.Height;
             //this.Width += image.Width - spriteSlicing.Width;
         }
@@ -1429,13 +1429,13 @@ namespace AmigaImageConverter
             spriteCut = new SpriteCut();
             Controls.Add(spriteCut);
 
-           // if (Width - image.Right > spriteCut.Width)
-           // {
-                spriteCut.Dock = DockStyle.Right;
-           // }
-           // else
+            // if (Width - image.Right > spriteCut.Width)
+            // {
+            spriteCut.Dock = DockStyle.Right;
+            // }
+            // else
             //{
-              //  spriteCut.Left = image.Right + 2;
+            //  spriteCut.Left = image.Right + 2;
             //}
             //Width += spriteCut.Width+25;
             //this.Width += image.Width - spriteSlicing.Width;
@@ -1533,7 +1533,7 @@ namespace AmigaImageConverter
 
         private void quickSortToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            int[] array = { 8,2,4,7,1,3,9,6,5,20,100,80,95,88,0,4};
+            int[] array = { 8, 2, 4, 7, 1, 3, 9, 6, 5, 20, 100, 80, 95, 88, 0, 4 };
             QuickSort QS = new QuickSort();
 
             QS.SortArray(ref array);
