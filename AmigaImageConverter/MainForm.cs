@@ -110,6 +110,8 @@ namespace AmigaImageConverter
         MedianCut mc = new MedianCut();
         private async void loadImageToolStripMenuItem_Click(object sender, EventArgs e)
         {
+     
+
             image.MouseWheelZoom = true;
             formState = FormState.Image;
             vr.spriteRec.IsSpriteCut = false;
@@ -893,6 +895,12 @@ namespace AmigaImageConverter
 
         private void resizeToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            if (bmp == null)
+            {
+                MessageBox.Show("Can't resize, no image was loaded.\nLoad image first", "Image missing", MessageBoxButtons.OK);
+                return;
+            }
+
             Resize resize = new Resize();
             if (resize.ShowDialog() == DialogResult.OK)
             {
