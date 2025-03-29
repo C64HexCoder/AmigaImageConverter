@@ -161,12 +161,12 @@
             // algorithemCB
             // 
             algorithemCB.FormattingEnabled = true;
-            algorithemCB.Items.AddRange(new object[] { "K Means 12bit", "K Means 24bit", "OcTree", "MedianCut", "Deap Cycle" });
+            algorithemCB.Items.AddRange(new object[] { "K Means", "OcTree", "MedianCut" });
             algorithemCB.Location = new System.Drawing.Point(6, 30);
             algorithemCB.Name = "algorithemCB";
             algorithemCB.Size = new System.Drawing.Size(260, 33);
             algorithemCB.TabIndex = 0;
-            algorithemCB.Text = "K Means 12bit";
+            algorithemCB.Text = "K Means";
             // 
             // groupBox2
             // 

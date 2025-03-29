@@ -97,7 +97,6 @@
             calculateBlitterLFByteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             dDFCalculatorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             sPRxPOSSPRxCTLConverterToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            quickSortToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             aboutMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             openImageFileDialog = new System.Windows.Forms.OpenFileDialog();
@@ -296,6 +295,7 @@
             imageToolStripMenuItem.Name = "imageToolStripMenuItem";
             imageToolStripMenuItem.Size = new System.Drawing.Size(78, 29);
             imageToolStripMenuItem.Text = "Image";
+            imageToolStripMenuItem.MouseHover += DisableMenuItemsIfNoImageExist;
             // 
             // resizeToolStripMenuItem
             // 
@@ -329,6 +329,7 @@
             addWordToolStripMenuItem.Size = new System.Drawing.Size(277, 34);
             addWordToolStripMenuItem.Tag = "Image";
             addWordToolStripMenuItem.Text = "Add Blitter Word";
+            addWordToolStripMenuItem.MouseHover += DisableMenuItem;
             // 
             // addBlitWordComboBox
             // 
@@ -413,6 +414,7 @@
             toolStripMenuItem1.Name = "toolStripMenuItem1";
             toolStripMenuItem1.Size = new System.Drawing.Size(74, 29);
             toolStripMenuItem1.Text = "Sprite";
+            toolStripMenuItem1.MouseHover += DisableMenuItemsIfNoImageExist;
             // 
             // cutSpriteToolStripMenuItem
             // 
@@ -487,6 +489,7 @@
             colorsToolStripMenuItem.Name = "colorsToolStripMenuItem";
             colorsToolStripMenuItem.Size = new System.Drawing.Size(79, 29);
             colorsToolStripMenuItem.Text = "Colors";
+            colorsToolStripMenuItem.MouseHover += DisableMenuItemsIfNoImageExist;
             // 
             // pallateToolStripMenuItem
             // 
@@ -511,9 +514,11 @@
             // audioToolStripMenuItem
             // 
             audioToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] { sineWaveGeneratorToolStripMenuItem, waveGeneratorToolStripMenuItem });
+            audioToolStripMenuItem.Enabled = false;
             audioToolStripMenuItem.Name = "audioToolStripMenuItem";
             audioToolStripMenuItem.Size = new System.Drawing.Size(76, 29);
             audioToolStripMenuItem.Text = "Audio";
+            audioToolStripMenuItem.Visible = false;
             // 
             // sineWaveGeneratorToolStripMenuItem
             // 
@@ -548,6 +553,7 @@
             booksToolStripMenuItem.Name = "booksToolStripMenuItem";
             booksToolStripMenuItem.Size = new System.Drawing.Size(77, 29);
             booksToolStripMenuItem.Text = "Books";
+            booksToolStripMenuItem.Visible = false;
             // 
             // amigaHardwareReferenceManualToolStripMenuItem
             // 
@@ -558,7 +564,7 @@
             // 
             // toolsToolStripMenuItem
             // 
-            toolsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] { calculateBlitterLFByteToolStripMenuItem, dDFCalculatorToolStripMenuItem, sPRxPOSSPRxCTLConverterToolStripMenuItem, quickSortToolStripMenuItem });
+            toolsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] { calculateBlitterLFByteToolStripMenuItem, dDFCalculatorToolStripMenuItem, sPRxPOSSPRxCTLConverterToolStripMenuItem });
             toolsToolStripMenuItem.Name = "toolsToolStripMenuItem";
             toolsToolStripMenuItem.Size = new System.Drawing.Size(69, 29);
             toolsToolStripMenuItem.Text = "Tools";
@@ -583,13 +589,6 @@
             sPRxPOSSPRxCTLConverterToolStripMenuItem.Size = new System.Drawing.Size(341, 34);
             sPRxPOSSPRxCTLConverterToolStripMenuItem.Text = "SPRxPOS SPRxCTL Converter";
             sPRxPOSSPRxCTLConverterToolStripMenuItem.Click += sPRxPOSSPRxCTLConverterToolStripMenuItem_Click;
-            // 
-            // quickSortToolStripMenuItem
-            // 
-            quickSortToolStripMenuItem.Name = "quickSortToolStripMenuItem";
-            quickSortToolStripMenuItem.Size = new System.Drawing.Size(341, 34);
-            quickSortToolStripMenuItem.Text = "Quick Sort";
-            quickSortToolStripMenuItem.Click += quickSortToolStripMenuItem_Click;
             // 
             // aboutToolStripMenuItem
             // 
@@ -840,7 +839,6 @@
         public Amiga.ImageBox image;
         private System.Windows.Forms.ToolStripMenuItem equalizingAllImagesInDirectoryToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem saveAllFilesInDirectoryAsToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem quickSortToolStripMenuItem;
         private System.Windows.Forms.Panel imagePanel;
     }
 }

@@ -110,7 +110,7 @@ namespace AmigaImageConverter
         MedianCut mc = new MedianCut();
         private async void loadImageToolStripMenuItem_Click(object sender, EventArgs e)
         {
-     
+
 
             image.MouseWheelZoom = true;
             formState = FormState.Image;
@@ -150,26 +150,23 @@ namespace AmigaImageConverter
                     menuStrip1.Enabled = false;
                     switch (loadImageDlg.algorithemCB.SelectedIndex)
                     {
-                        case 0:
-                            vr.bitplane.bitmap =/* await Task.Run(() => */KMeansQuant.ReduceColors12bitRGB(bmp, loadImageDlg.ImageNumOfColors)/*)*/;
-                            break;
 
-                        case 1:
+                        case 0:
                             vr.bitplane.bitmap = await Task.Run(() => KMeansQuant.ReduceColors(bmp, loadImageDlg.ImageNumOfColors));
                             break;
-                        case 2:
+                        case 1:
                             vr.bitplane.bitmap = OctreeQuantization.ReduceColors(bmp, loadImageDlg.ImageNumOfColors, OctreeQuantization.Algorithem.CloseColorsAndLessUsed);
                             break;
-                        case 3:
+                        case 2:
 
                             mc.ProgressBarChanged += MedianCutProgressBar;
                             vr.bitplane.bitmap = mc.Quanitize(bmp, loadImageDlg.ImageNumOfColors);
                             //vr.bitplane.bitmap = mc.ReduceColors(bmp,loadImageDlg.ImageNumOfColors);
                             break;
-                        case 4:
+                      /*  case 3:
                             DeepCycle dp = new DeepCycle();
                             vr.bitplane.bitmap = await Task.Run(() => dp.ReduceColors(bmp, DeepCycle.ColorAvaragingMethod.RelaativeToNumberOfInstances));
-                            break;
+                            break;*/
 
                     }
                     menuStrip1.Enabled = true;
@@ -797,6 +794,8 @@ namespace AmigaImageConverter
 
         private void setImageWidthToolStripMenuItem_MouseHover(object sender, EventArgs e)
         {
+            ToolStripMenuItem menuItem = sender as ToolStripMenuItem;
+
             if (vr.bitplane.bitmap != null)
             {
                 toolStripChangeWidthTextBox.Enabled = true;
@@ -806,6 +805,21 @@ namespace AmigaImageConverter
             else
             {
                 toolStripChangeWidthTextBox.Enabled = false;
+            }
+        }
+
+        private void DisableMenuItem(object sender, EventArgs e)
+        {
+            ToolStripMenuItem menuItem = sender as ToolStripMenuItem;
+
+            if (vr.bitplane.bitmap != null)
+            {
+                menuItem.Enabled = true;
+
+            }
+            else
+            {
+                menuItem.Enabled = false;
             }
         }
 
@@ -897,7 +911,7 @@ namespace AmigaImageConverter
         {
             if (bmp == null)
             {
-                MessageBox.Show("Can't resize, no image was loaded.\nLoad image first", "Image missing", MessageBoxButtons.OK);
+                NoImageMsgBox.Show();
                 return;
             }
 
@@ -1539,13 +1553,20 @@ namespace AmigaImageConverter
             }
         }
 
-        private void quickSortToolStripMenuItem_Click(object sender, EventArgs e)
+        private void DisableMenuItemsIfNoImageExist(object sender, EventArgs e)
         {
-            int[] array = { 8, 2, 4, 7, 1, 3, 9, 6, 5, 20, 100, 80, 95, 88, 0, 4 };
-            QuickSort QS = new QuickSort();
-
-            QS.SortArray(ref array);
-
+            ToolStripMenuItem menuItem = sender as ToolStripMenuItem;
+            foreach (object item in menuItem.DropDownItems)
+            {
+                if (item.GetType() == typeof(ToolStripMenuItem))
+                {
+                    
+                    if (vr.bitplane.bitmap != null)
+                        ((ToolStripMenuItem)item).Enabled = true;
+                    else
+                        ((ToolStripMenuItem)item).Enabled = false;
+                }
+            }
         }
     }
 }
