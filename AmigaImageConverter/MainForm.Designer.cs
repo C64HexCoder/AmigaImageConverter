@@ -71,7 +71,7 @@
             informationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
             c64ImageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            spriteMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             cutSpriteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             toolStripSeparator8 = new System.Windows.Forms.ToolStripSeparator();
             spriteSheetCutterToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -121,7 +121,7 @@
             // menuStrip1
             // 
             menuStrip1.ImageScalingSize = new System.Drawing.Size(32, 32);
-            menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] { fileToolStripMenuItem, imageToolStripMenuItem, toolStripMenuItem1, colorsToolStripMenuItem, audioToolStripMenuItem, settingsToolStripMenuItem, booksToolStripMenuItem, toolsToolStripMenuItem, aboutToolStripMenuItem });
+            menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] { fileToolStripMenuItem, imageToolStripMenuItem, spriteMenuItem, colorsToolStripMenuItem, audioToolStripMenuItem, settingsToolStripMenuItem, booksToolStripMenuItem, toolsToolStripMenuItem, aboutToolStripMenuItem });
             menuStrip1.Location = new System.Drawing.Point(0, 0);
             menuStrip1.Name = "menuStrip1";
             menuStrip1.Padding = new System.Windows.Forms.Padding(4, 2, 0, 2);
@@ -408,13 +408,13 @@
             c64ImageToolStripMenuItem.Visible = false;
             c64ImageToolStripMenuItem.Click += c64ImageToolStripMenuItem_Click;
             // 
-            // toolStripMenuItem1
+            // spriteMenuItem
             // 
-            toolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] { cutSpriteToolStripMenuItem, toolStripSeparator8, spriteSheetCutterToolStripMenuItem, toolStripMenuItem3, toolStripSeparator9, controlWordsCalculatorToolStripMenuItem, animationToolStripMenuItem, paletteEqualizerToolStripMenuItem, equalizingAllImagesInDirectoryToolStripMenuItem, saveAllFilesInDirectoryAsToolStripMenuItem });
-            toolStripMenuItem1.Name = "toolStripMenuItem1";
-            toolStripMenuItem1.Size = new System.Drawing.Size(74, 29);
-            toolStripMenuItem1.Text = "Sprite";
-            toolStripMenuItem1.MouseHover += DisableMenuItemsIfNoImageExist;
+            spriteMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] { cutSpriteToolStripMenuItem, toolStripSeparator8, spriteSheetCutterToolStripMenuItem, toolStripMenuItem3, toolStripSeparator9, controlWordsCalculatorToolStripMenuItem, animationToolStripMenuItem, paletteEqualizerToolStripMenuItem, equalizingAllImagesInDirectoryToolStripMenuItem, saveAllFilesInDirectoryAsToolStripMenuItem });
+            spriteMenuItem.Name = "spriteMenuItem";
+            spriteMenuItem.Size = new System.Drawing.Size(74, 29);
+            spriteMenuItem.Text = "Sprite";
+            spriteMenuItem.MouseHover += DisableMenuItemsIfNoImageExist;
             // 
             // cutSpriteToolStripMenuItem
             // 
@@ -433,7 +433,7 @@
             spriteSheetCutterToolStripMenuItem.Name = "spriteSheetCutterToolStripMenuItem";
             spriteSheetCutterToolStripMenuItem.Size = new System.Drawing.Size(467, 34);
             spriteSheetCutterToolStripMenuItem.Text = "Sprite Sheet Splitter";
-            spriteSheetCutterToolStripMenuItem.Click += sprireSheetCutterToolStripMenuItem_Click;
+            spriteSheetCutterToolStripMenuItem.Click += spriteSheetSlicerToolStripMenuItem_Click;
             // 
             // toolStripMenuItem3
             // 
@@ -574,6 +574,7 @@
             calculateBlitterLFByteToolStripMenuItem.Name = "calculateBlitterLFByteToolStripMenuItem";
             calculateBlitterLFByteToolStripMenuItem.Size = new System.Drawing.Size(341, 34);
             calculateBlitterLFByteToolStripMenuItem.Text = "Calculate Blitter LF Byte";
+            calculateBlitterLFByteToolStripMenuItem.Visible = false;
             calculateBlitterLFByteToolStripMenuItem.Click += calculateBlitterLFByteToolStripMenuItem_Click;
             // 
             // dDFCalculatorToolStripMenuItem
@@ -771,7 +772,7 @@
         private System.Windows.Forms.ToolStripStatusLabel toolStripFileName;
         private System.Windows.Forms.ToolStripStatusLabel toolStripResolutionLabel;
         private System.Windows.Forms.ToolStripStatusLabel toolStripDepthLabel;
-        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem spriteMenuItem;
         private System.Windows.Forms.ToolStripMenuItem cutSpriteToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem saveImageAsSpriteToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem imageToolStripMenuItem;

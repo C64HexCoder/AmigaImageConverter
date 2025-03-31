@@ -101,6 +101,7 @@
             Controls.Add(colorsGrid);
             Name = "Animation";
             Size = new System.Drawing.Size(257, 479);
+            Tag = "Side Panel";
             ((System.ComponentModel.ISupportInitialize)numericUpDown1).EndInit();
             ((System.ComponentModel.ISupportInitialize)numericUpDown2).EndInit();
             ResumeLayout(false);

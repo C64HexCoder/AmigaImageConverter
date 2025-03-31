@@ -560,35 +560,9 @@ namespace AmigaImageConverter
 
         }
 
-        private void sprireSheetCutterToolStripMenuItem_Click(object sender, EventArgs e)
+        private void spriteSheetSlicerToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            ToolStripMenuItem tsmi = (ToolStripMenuItem)sender;
-
-            if (!tsmi.Checked)
-            {
-                Controls.Remove(spriteCut);
-                spriteCut = null;
-                CreateSpriteSlicingPanel();
-                image.MouseWheelZoom = false;
-
-                //this.Controls.Add(spriteSlicing);
-
-                formState = FormState.SpriteSplit;
-                sprites.Clear();
-                tsmi.Checked = true;
-                cutSpriteToolStripMenuItem.Checked = false;
-            }
-            else
-            {
-                Controls.Remove(spriteSlicing);
-                spriteSlicing = null;
-                image.MouseWheelZoom = true;
-                tsmi.Checked = false;
-                formState = FormState.Image;
-            }
-
-
-
+            AddRemoveSidePanel(sender, e, CreateSpriteSlicingPanel, spriteSlicing);
         }
 
 
@@ -1096,29 +1070,43 @@ namespace AmigaImageConverter
 
         private void cutSpriteToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            AddRemoveSidePanel(sender, e, CreateSpriteCutPanel,spriteCut);
+        }
+
+        delegate void CreateSidePanel();
+        private void AddRemoveSidePanel (object sender, EventArgs e,CreateSidePanel createPanelFunc,UserControl myControl)
+        {
             ToolStripMenuItem tsmi = (ToolStripMenuItem)sender;
+
+            CleanCheckedMenuItems((ToolStripMenuItem) sender);
 
             if (!tsmi.Checked)
             {
+                CloseAllSidePanels();
                 image.MouseWheelZoom = false;
-                Controls.Remove(spriteSlicing);
-                spriteSlicing = null;
-                formState = FormState.SpriteCut;
-                CreateSpriteCutPanel();
+                createPanelFunc();
                 sprites.Clear();
                 tsmi.Checked = true;
-                spriteSheetCutterToolStripMenuItem.Checked = false;
             }
             else
             {
                 image.MouseWheelZoom = true;
-                Controls.Remove(spriteCut);
-                spriteCut = null;
+                Controls.Remove(myControl);
                 formState = FormState.Image;
                 tsmi.Checked = false;
             }
 
 
+        }
+
+        private void CleanCheckedMenuItems (ToolStripMenuItem sender)
+        {
+            foreach (Object item in spriteMenuItem.DropDownItems)
+            {
+                if (item is ToolStripMenuItem)
+                    if (((ToolStripMenuItem)item).Checked && item != sender)
+                        ((ToolStripMenuItem)item).Checked = false;
+            }
         }
 
         private void saveSpriteAsMenuItem_Click(object sender, EventArgs e)
@@ -1430,37 +1418,38 @@ namespace AmigaImageConverter
         private void CreateSpriteSlicingPanel()
         {
             spriteSlicing = new SpriteSlicing();
+
             Controls.Add(spriteSlicing);
 
             spriteSlicing.ImageUpdated += ImageUpdate;
-            //spriteSlicing.Left = this.Right - spriteSlicing.Width;
-            //  if (Width - image.Right > spriteSlicing.Width)
-            //  {
+            formState = FormState.SpriteSplit;
             spriteSlicing.Dock = DockStyle.Right;
-            /*  }
-              else
-              {
-                  spriteSlicing.Left = image.Right + 2;
-              }*/
-            //spriteSlicing.Height = image.Height;
-            //this.Width += image.Width - spriteSlicing.Width;
+        }
+
+        private void CloseAllSidePanels()
+        {
+            foreach (Object userControl in Controls)
+            {
+                Type type = userControl.GetType();
+
+               // if (userControl.GetType() == typeof(Control))
+            //    {
+                    if (((Control)userControl).Tag == "Side Panel")
+                    {
+                        Controls.Remove(((UserControl)userControl));
+                        ((UserControl)userControl).Dispose();
+                    }
+              //  }
+            }
         }
 
         private void CreateSpriteCutPanel()
         {
             spriteCut = new SpriteCut();
             Controls.Add(spriteCut);
-
-            // if (Width - image.Right > spriteCut.Width)
-            // {
+            formState = FormState.SpriteCut;
             spriteCut.Dock = DockStyle.Right;
-            // }
-            // else
-            //{
-            //  spriteCut.Left = image.Right + 2;
-            //}
-            //Width += spriteCut.Width+25;
-            //this.Width += image.Width - spriteSlicing.Width;
+  
         }
 
         private void DisableAllSidePanels()
@@ -1479,23 +1468,15 @@ namespace AmigaImageConverter
 
         private void animationToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            CreateAnimationControl();
+            AddRemoveSidePanel(sender, e, CreateAnimationControl,animation);
         }
 
         private void CreateAnimationControl()
         {
             animation = new Animation();
             Controls.Add(animation);
-
-            if (Width - image.Right > animation.Width)
-            {
-                animation.Dock = DockStyle.Right;
-            }
-            else
-            {
-                animation.Left = image.Right + 2;
-            }
-            //this.Width += image.Width - spriteSlicing.Width;
+            formState = FormState.Animation;
+            animation.Dock = DockStyle.Right;    
         }
 
         private void CreateEqualizingPanel()

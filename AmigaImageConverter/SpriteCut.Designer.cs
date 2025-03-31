@@ -69,6 +69,7 @@
             imageCutGB.Size = new System.Drawing.Size(225, 730);
             imageCutGB.TabIndex = 8;
             imageCutGB.TabStop = false;
+            imageCutGB.Tag = "";
             imageCutGB.Text = "Sprite Cutter";
             // 
             // spriteCutPreviewIB
@@ -200,6 +201,7 @@
             Controls.Add(imageCutGB);
             Name = "SpriteCut";
             Size = new System.Drawing.Size(231, 736);
+            Tag = "Side Panel";
             imageCutGB.ResumeLayout(false);
             imageCutGB.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)spriteCutPreviewIB).EndInit();
