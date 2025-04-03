@@ -171,5 +171,10 @@ namespace AmigaImageConverter
             if (sp.ShowDialog(this) == DialogResult.Continue)
                 MessageBox.Show("Sprite Files/s Created Successfully", "Succsess", MessageBoxButtons.OK);
         }
+
+        public void Update ()
+        {
+            spriteSelectNud_ValueChanged (spriteSelectNud,new EventArgs());
+        }
     }
 }

@@ -338,7 +338,7 @@ namespace AmigaImageConverter
                     {
                         image.SizeMode = PictureBoxSizeMode.AutoSize;
 
-                        image.ScaleToMax(0.8f);
+                        image.ScaleToMax(0.7f);
                     }
                     else
                     {
@@ -809,8 +809,10 @@ namespace AmigaImageConverter
             }
         }
 
-        private void alignWidthToolStripMenuItem_MouseHover(object sender, EventArgs e)
+ /*       private void alignWidthToolStripMenuItem_MouseHover(object sender, EventArgs e)
         {
+            // Don't need this Method anymore since i've wrote a code that when bitmap is null
+            // Then all the MenuItem in the Image submenu are disabled
             ToolStripMenuItem tsmi = (ToolStripMenuItem)sender;
 
             if (vr.bitplane.bitmap != null)
@@ -820,7 +822,7 @@ namespace AmigaImageConverter
             }
             else
                 alignWidthComboBox.Enabled = false;
-        }
+        }*/
 
         private void displayMaskToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -914,8 +916,24 @@ namespace AmigaImageConverter
             VScrollBar vScrollBar = (VScrollBar)sender;
             image.DrawImagePart(hScrollBar.Value, vScrollBar.Value);
         }
-
         private void ScaleToMax()
+        {
+            int ScalingFactor = (int)settings.PrevScaleFactor;
+
+            image.SizeMode = PictureBoxSizeMode.AutoSize;
+            //       if (vr.bitplane.Width * ScalingFactor > 0.8 * SystemInformation.VirtualScreen.Width || vr.bitplane.Height * ScalingFactor > 0.8 * SystemInformation.VirtualScreen.Height)
+            //     {   // Scaled image bigger then the screen
+
+            int XscaleFactor = (int)Math.Round((float)ScreenWidth * 0.8f / (float)vr.bitplane.Width);
+            int YscaleFactor = (int)Math.Round((float)ScreenHeight * 0.8f / (float)vr.bitplane.Height);
+
+            ScalingFactor = XscaleFactor > YscaleFactor ? YscaleFactor : XscaleFactor;
+
+            image.ScaleImage(ScalingFactor);
+            
+
+        }
+        private void ScaleToMaxFloat()
         {
             float ScalingFactor = (int)settings.PrevScaleFactor;
 
@@ -1253,8 +1271,8 @@ namespace AmigaImageConverter
             }
             spriteCut.widthNumUD.Maximum = image.Width;
             spriteCut.heightNumUD.Maximum = image.Height;
-            spriteCut.widthNumUD.Value = vr.spriteRec.Width / image.ScaleFactor;
-            spriteCut.heightNumUD.Value = vr.spriteRec.Height / image.ScaleFactor;
+            spriteCut.widthNumUD.Value = vr.spriteRec.Width / vr.imageScalingFactoer;
+            spriteCut.heightNumUD.Value = vr.spriteRec.Height / vr.imageScalingFactoer;
 
         }
 
@@ -1410,6 +1428,10 @@ namespace AmigaImageConverter
         private void image_ScaleEvent(object sender, Amiga.ImageBox.ScalingEventArgs e)
         {
             vr.imageScalingFactoer = e.ScaleFactoer;
+            if (formState == FormState.SpriteSplit)
+            {
+                spriteSlicing.Update();
+            }
             //Height = image.Height + 120;
             //Width = image.Width;
             //Height += statusStrip.Height;
@@ -1507,13 +1529,8 @@ namespace AmigaImageConverter
 
         private void paletteEqualizerToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (paletteEqualizerToolStripMenuItem.Checked)
-            {
-                this.Controls.Remove(paleEqua);
-                paletteEqualizerToolStripMenuItem.Checked = false;
-            }
-            else
-                CreateEqualizingPanel();
+            AddRemoveSidePanel(sender, e, CreateEqualizingPanel, paleEqua);
+            CreateEqualizingPanel();
         }
 
         private void equalizingAllImagesInDirectoryToolStripMenuItem_Click(object sender, EventArgs e)

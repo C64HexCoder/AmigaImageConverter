@@ -85,7 +85,6 @@
             OKBtn.TabIndex = 4;
             OKBtn.Text = "OK";
             OKBtn.UseVisualStyleBackColor = true;
-            OKBtn.Click += OKBtn_Click;
             // 
             // cancelBtn
             // 

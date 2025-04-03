@@ -165,11 +165,6 @@ namespace AmigaImageConverter
             }
         }
 
-        private void OKBtn_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void byteRbox_CheckedChanged(object sender, EventArgs e)
         {
             vr.outputSize = Bitplane.DataType.Byte;

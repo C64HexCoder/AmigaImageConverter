@@ -312,7 +312,6 @@
             alignWidthToolStripMenuItem.Tag = "Image";
             alignWidthToolStripMenuItem.Text = "Align Width To";
             alignWidthToolStripMenuItem.ToolTipText = " Round image width to Byte/Word/Long/Double long and align it";
-            alignWidthToolStripMenuItem.MouseHover += alignWidthToolStripMenuItem_MouseHover;
             // 
             // alignWidthComboBox
             // 
