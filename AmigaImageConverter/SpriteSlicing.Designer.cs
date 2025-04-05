@@ -216,6 +216,7 @@
             Name = "SpriteSlicing";
             Size = new System.Drawing.Size(231, 733);
             Tag = "Side Panel";
+            VisibleChanged += SpriteSlicing_VisibleChanged;
             SlicingGb.ResumeLayout(false);
             SlicingGb.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)spritePerImageUDN).EndInit();

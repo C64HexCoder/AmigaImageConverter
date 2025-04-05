@@ -16,8 +16,9 @@ namespace AmigaImageConverter
     {
         List<Sprite> sprites = new List<Sprite>();
         PublicVariables vr = PublicVariables.instance;
-        
-        public bool isSliced {  get; set; } = false;
+
+        public event Action SlicePanelClosed;
+        public bool isSliced { get; set; } = false;
 
         public event EventHandler ImageUpdated;
 
@@ -68,7 +69,7 @@ namespace AmigaImageConverter
             int SpriteXPos = SpriteNum % SpritePerRaw, SpriteYPos = SpriteNum / SpritePerRaw;
 
             vr.spriteRec.LineWIdth = 4;
-            vr.spriteRec.X = SpriteXPos * SprireWidth  * vr.imageScalingFactoer;
+            vr.spriteRec.X = SpriteXPos * SprireWidth * vr.imageScalingFactoer;
             vr.spriteRec.Y = SpriteYPos * SpriteHeight * vr.imageScalingFactoer;
             vr.spriteRec.Width = SprireWidth * vr.imageScalingFactoer;
             vr.spriteRec.Height = SpriteHeight * vr.imageScalingFactoer;
@@ -172,9 +173,16 @@ namespace AmigaImageConverter
                 MessageBox.Show("Sprite Files/s Created Successfully", "Succsess", MessageBoxButtons.OK);
         }
 
-        public void Update ()
+        public void Update()
         {
-            spriteSelectNud_ValueChanged (spriteSelectNud,new EventArgs());
+            spriteSelectNud_ValueChanged(spriteSelectNud, new EventArgs());
+        }
+
+        private void SpriteSlicing_VisibleChanged(object sender, EventArgs e)
+        {
+            vr.spriteRec.Enable = false;
+            ImageUpdated?.Invoke(this, EventArgs.Empty);
+
         }
     }
 }

@@ -1467,7 +1467,7 @@ namespace AmigaImageConverter
 
         private void CreateSpriteCutPanel()
         {
-            spriteCut = new SpriteCut();
+            spriteCut = new SpriteCut(ref image);
             Controls.Add(spriteCut);
             formState = FormState.SpriteCut;
             spriteCut.Dock = DockStyle.Right;

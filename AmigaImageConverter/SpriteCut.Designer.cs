@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             imageCutGB = new System.Windows.Forms.GroupBox();
+            autoTrimCheckBox = new System.Windows.Forms.CheckBox();
             spriteCutPreviewIB = new Amiga.ImageBox();
             label6 = new System.Windows.Forms.Label();
             spritePerImageCutNud = new System.Windows.Forms.NumericUpDown();
@@ -54,6 +55,7 @@
             // 
             imageCutGB.AutoSize = true;
             imageCutGB.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            imageCutGB.Controls.Add(autoTrimCheckBox);
             imageCutGB.Controls.Add(spriteCutPreviewIB);
             imageCutGB.Controls.Add(label6);
             imageCutGB.Controls.Add(spritePerImageCutNud);
@@ -72,6 +74,16 @@
             imageCutGB.Tag = "";
             imageCutGB.Text = "Sprite Cutter";
             // 
+            // autoTrimCheckBox
+            // 
+            autoTrimCheckBox.AutoSize = true;
+            autoTrimCheckBox.Location = new System.Drawing.Point(6, 318);
+            autoTrimCheckBox.Name = "autoTrimCheckBox";
+            autoTrimCheckBox.Size = new System.Drawing.Size(191, 29);
+            autoTrimCheckBox.TabIndex = 16;
+            autoTrimCheckBox.Text = "Auto Trim Selection";
+            autoTrimCheckBox.UseVisualStyleBackColor = true;
+            // 
             // spriteCutPreviewIB
             // 
             spriteCutPreviewIB.AutoCenter = false;
@@ -79,14 +91,14 @@
             spriteCutPreviewIB.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             spriteCutPreviewIB.HrizontalScrollBar = null;
             spriteCutPreviewIB.Image = null;
-            spriteCutPreviewIB.Location = new System.Drawing.Point(6, 318);
+            spriteCutPreviewIB.Location = new System.Drawing.Point(6, 353);
             spriteCutPreviewIB.MaxImageScale = 4;
             spriteCutPreviewIB.MouseWheelZoom = false;
             spriteCutPreviewIB.Name = "spriteCutPreviewIB";
             spriteCutPreviewIB.OriginalImage = null;
             spriteCutPreviewIB.ScaleFactor = 1;
             spriteCutPreviewIB.ScaleFactorFloat = 1F;
-            spriteCutPreviewIB.Size = new System.Drawing.Size(213, 305);
+            spriteCutPreviewIB.Size = new System.Drawing.Size(213, 270);
             spriteCutPreviewIB.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             spriteCutPreviewIB.TabIndex = 15;
             spriteCutPreviewIB.TabStop = false;
@@ -128,6 +140,7 @@
             heightNumUD.Name = "heightNumUD";
             heightNumUD.Size = new System.Drawing.Size(77, 31);
             heightNumUD.TabIndex = 1;
+            heightNumUD.KeyDown += heightNumUD_KeyDown;
             // 
             // widthNumUD
             // 
@@ -135,6 +148,8 @@
             widthNumUD.Name = "widthNumUD";
             widthNumUD.Size = new System.Drawing.Size(80, 31);
             widthNumUD.TabIndex = 0;
+            widthNumUD.ValueChanged += widthNumUD_ValueChanged;
+            widthNumUD.KeyDown += widthNumUD_KeyDown;
             // 
             // spriteNameSCTB
             // 
@@ -229,5 +244,6 @@
         public System.Windows.Forms.Button spriteCutSaveButton;
         public System.Windows.Forms.NumericUpDown spriteSelectorNud;
         private Amiga.ImageBox spriteCutPreviewIB;
+        private System.Windows.Forms.CheckBox autoTrimCheckBox;
     }
 }

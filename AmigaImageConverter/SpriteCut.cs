@@ -16,10 +16,15 @@ namespace AmigaImageConverter
     {
         List<Sprite> sprites = new List<Sprite>();
         PublicVariables vr = PublicVariables.instance;
-        
+        ImageBox spreedSheet = null;
         public SpriteCut()
         {
             InitializeComponent();
+        }
+        public SpriteCut(ref ImageBox image)
+        {
+            InitializeComponent();
+            spreedSheet = image;
         }
 
         public void SetWidth(int width)
@@ -30,14 +35,22 @@ namespace AmigaImageConverter
         {
             heightNumUD.Value = height / vr.imageScalingFactoer;
         }
+
+        private bool AutoTrim
+        {
+            get
+            {
+                return autoTrimCheckBox.Checked;
+            }
+        }
         private void cutSpriteBtn_Click(object sender, EventArgs e)
         {
-            Bitmap bitmap = new Bitmap(vr.spriteRec.Width/vr.imageScalingFactoer, vr.spriteRec.Height/vr.imageScalingFactoer);
+            Bitmap bitmap = new Bitmap(vr.spriteRec.Width / vr.imageScalingFactoer, vr.spriteRec.Height / vr.imageScalingFactoer);
             Graphics gfx = Graphics.FromImage(bitmap);
             Sprite sprite = new Sprite();
             sprite.Name = spriteNameSCTB.Text;
 
-            Rectangle OriginalSizeRect = new Rectangle(vr.spriteRec.X / vr.imageScalingFactoer,vr.spriteRec.Y / vr.imageScalingFactoer,vr.spriteRec.Width/vr.imageScalingFactoer,vr.spriteRec.Height/vr.imageScalingFactoer);
+            Rectangle OriginalSizeRect = new Rectangle(vr.spriteRec.X / vr.imageScalingFactoer, vr.spriteRec.Y / vr.imageScalingFactoer, vr.spriteRec.Width / vr.imageScalingFactoer, vr.spriteRec.Height / vr.imageScalingFactoer);
             gfx.DrawImage(vr.bitplane.bitmap, 0, 0, OriginalSizeRect, GraphicsUnit.Pixel);
 
             spriteCutPreviewIB.Image = bitmap;
@@ -76,6 +89,29 @@ namespace AmigaImageConverter
             sp.sprites = sprites;
             if (sp.ShowDialog(this) == DialogResult.Continue)
                 MessageBox.Show("Sprite Files/s Created Successfully", "Succsess", MessageBoxButtons.OK);
+        }
+
+        private void widthNumUD_ValueChanged(object sender, EventArgs e)
+        {
+            //vr.spriteRec.SpriteRec.Width = (int)((NumericUpDown)sender).Value;
+        }
+
+        private void widthNumUD_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                vr.spriteRec.SpriteRec.Width = (int)((NumericUpDown)sender).Value;
+                spreedSheet.Invalidate();
+            }
+        }
+
+        private void heightNumUD_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                vr.spriteRec.SpriteRec.Height = (int)((NumericUpDown)sender).Value;
+                spreedSheet.Invalidate();
+            }
         }
     }
 }
