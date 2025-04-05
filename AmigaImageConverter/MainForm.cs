@@ -1171,8 +1171,16 @@ namespace AmigaImageConverter
                 return;
 
             Graphics gfx = image.CreateGraphics();
+            Color penColor;
+
             vr.spriteRec.LineWIdth = 4;
-            Pen p = new Pen(Color.Black, vr.spriteRec.LineWIdth);
+
+            if (vr.bitplane.Palette == null)
+                penColor = Color.Black;
+            else
+                penColor = Color.FromArgb(0x0ff - vr.bitplane.Palette[0].R, 0xff - vr.bitplane.Palette[0].G, 0xff - vr.bitplane.Palette[0].B);
+
+            Pen p = new Pen(penColor, vr.spriteRec.LineWIdth);
 
             image.Refresh();
 
@@ -1292,7 +1300,13 @@ namespace AmigaImageConverter
         private void image_Paint(object sender, PaintEventArgs e)
         {
             Graphics g = e.Graphics;
-            Pen p = new(Color.Black, vr.spriteRec.LineWIdth);
+            Color penColor;
+            if (vr.bitplane.Palette == null)
+                penColor = Color.Black;
+            else
+                penColor = Color.FromArgb(0x0ff - vr.bitplane.Palette[0].R, 0xff - vr.bitplane.Palette[0].G,0xff-vr.bitplane.Palette[0].B);
+
+            Pen p = new(penColor, vr.spriteRec.LineWIdth);
 
             if (formState == FormState.SpriteSplit || formState == FormState.SpriteCut)
             {
