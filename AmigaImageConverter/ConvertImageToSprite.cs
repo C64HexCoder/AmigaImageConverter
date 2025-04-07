@@ -19,8 +19,8 @@ namespace AmigaImageConverter
         List<Sprite> sprites = new List<Sprite>();
         Sprite sprite = new Sprite();
 
-        PublicVariables.SpriteCutRec SpriteCutRec = new PublicVariables.SpriteCutRec();
-        List<PublicVariables.SpriteCutRec> spriteCutRecs = new List<PublicVariables.SpriteCutRec>();
+        PublicVariables.CutRec SpriteCutRec = new PublicVariables.CutRec();
+        List<PublicVariables.CutRec> spriteCutRecs = new List<PublicVariables.CutRec>();
         List<Rectangle> spriteRects = new List<Rectangle>();
         private int ScaleFactor = 4;
 
@@ -72,7 +72,7 @@ namespace AmigaImageConverter
 
                 //PublicVariables.SpriteCutRec.ScaleFactor = image.ScaleFactor;
 
-                foreach (PublicVariables.SpriteCutRec spriteCutRec in spriteCutRecs)
+                foreach (PublicVariables.CutRec spriteCutRec in spriteCutRecs)
                 {
                     e.Graphics.DrawRectangle(new Pen(Color.Black, 2), spriteCutRec.PreviewRec);
                 }

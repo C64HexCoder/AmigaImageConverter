@@ -1311,7 +1311,7 @@ namespace AmigaImageConverter
             if (formState == FormState.SpriteSplit || formState == FormState.SpriteCut)
             {
                 if (vr.spriteRec.Enable)
-                    g.DrawRectangle(p, vr.spriteRec.SpriteRec);
+                    g.DrawRectangle(p, vr.spriteRec.Bounds);
             }
         }
 

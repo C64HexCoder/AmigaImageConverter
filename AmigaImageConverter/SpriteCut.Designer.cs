@@ -217,6 +217,7 @@
             Name = "SpriteCut";
             Size = new System.Drawing.Size(231, 736);
             Tag = "Side Panel";
+            Leave += SpriteCut_Leave;
             imageCutGB.ResumeLayout(false);
             imageCutGB.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)spriteCutPreviewIB).EndInit();

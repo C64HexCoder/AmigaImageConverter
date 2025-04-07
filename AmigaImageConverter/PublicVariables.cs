@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -21,7 +22,7 @@ namespace AmigaImageConverter
         public ushort BaseColorRegister = 0x180;
         public byte bpp = 4;
         public Bitplane bitplane = new Bitplane();
-        public SpriteCutRec spriteRec;
+        public CutRec spriteRec;
         public Sprite[] Sprites = new Sprite[100];
 
         public static PublicVariables instance
@@ -35,14 +36,14 @@ namespace AmigaImageConverter
             set { _instance = value; }
         }
 
-        public struct SpriteCutRec
+        public struct CutRec
         {
             private int _X2, _Y2;
             public static int ScaleFactor = 1;
-            public SpriteCutRec()
+            public CutRec()
             {
-                SpriteRec.X = 0;
-                SpriteRec.Y = 0;
+                Bounds.X = 0;
+                Bounds.Y = 0;
                 _X2 = 0;
                 Y2 = 0;
 
@@ -50,7 +51,7 @@ namespace AmigaImageConverter
                 Height = 0;
             }
 
-            public SpriteCutRec(int x, int y, int width, int height)
+            public CutRec(int x, int y, int width, int height)
             {
                 X = x; Y = y; Width = width; Height = height;
             }
@@ -58,40 +59,40 @@ namespace AmigaImageConverter
             public bool Enable { get; set; }
             public int LineWIdth { get; set; } = 4;
 
-            public int X { get => SpriteRec.X; set => SpriteRec.X = value; }
-            public int Y { get => SpriteRec.Y; set => SpriteRec.Y = value; }
+            public int X { get => Bounds.X; set => Bounds.X = value; }
+            public int Y { get => Bounds.Y; set => Bounds.Y = value; }
             public int Width
             {
-                get => SpriteRec.Width;
+                get => Bounds.Width;
                 set
                 {
-                    SpriteRec.Width = value;
-                    X2 = SpriteRec.Width + SpriteRec.X;
+                    Bounds.Width = value;
+                    X2 = Bounds.Width + Bounds.X;
                 }
             }
             public int Height
             {
-                get => SpriteRec.Height;
+                get => Bounds.Height;
 
                 set
                 {
-                    SpriteRec.Height = value;
-                    _Y2 = SpriteRec.Height + SpriteRec.Y;
+                    Bounds.Height = value;
+                    _Y2 = Bounds.Height + Bounds.Y;
                 }
             }
 
             public int X2
             {
-                get => (SpriteRec.X + SpriteRec.Width);
-                set { SpriteRec.Width = value - SpriteRec.X; }
+                get => (Bounds.X + Bounds.Width);
+                set { Bounds.Width = value - Bounds.X; }
             }
 
             public int Y2
             {
-                get => (SpriteRec.Y + SpriteRec.Height);
+                get => (Bounds.Y + Bounds.Height);
                 set
                 {
-                    SpriteRec.Height = value - SpriteRec.Y;
+                    Bounds.Height = value - Bounds.Y;
                 }
             }
 
@@ -104,8 +105,24 @@ namespace AmigaImageConverter
               
             }
 
+
+            public void SetZoomedBounds (int x,int y,int width,int height)
+            {
+                X = x / ScaleFactor;
+                Y = y / ScaleFactor;
+                Width = Width / ScaleFactor;
+                Height = Height / ScaleFactor;
+            }
+
+            public Bitmap CutImage ()
+            {
+                Bitmap cutBitmap = new Bitmap(Width/ScaleFactor,Height/ScaleFactor);
+
+                return cutBitmap;
+            }
+
             public bool IsSpriteCut = false;
-            public Rectangle SpriteRec;
+            public Rectangle Bounds;
         };
 
 

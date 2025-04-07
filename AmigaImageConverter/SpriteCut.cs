@@ -100,7 +100,7 @@ namespace AmigaImageConverter
         {
             if (e.KeyCode == Keys.Enter)
             {
-                vr.spriteRec.SpriteRec.Width = (int)((NumericUpDown)sender).Value;
+                vr.spriteRec.Bounds.Width = (int)((NumericUpDown)sender).Value * vr.imageScalingFactoer;
                 spreedSheet.Invalidate();
             }
         }
@@ -109,9 +109,15 @@ namespace AmigaImageConverter
         {
             if (e.KeyCode == Keys.Enter)
             {
-                vr.spriteRec.SpriteRec.Height = (int)((NumericUpDown)sender).Value;
+                vr.spriteRec.Bounds.Height = (int)((NumericUpDown)sender).Value * vr.imageScalingFactoer;
                 spreedSheet.Invalidate();
             }
+        }
+
+        private void SpriteCut_Leave(object sender, EventArgs e)
+        {
+            vr.spriteRec.Enable = false;
+            spreedSheet.Invalidate();
         }
     }
 }
