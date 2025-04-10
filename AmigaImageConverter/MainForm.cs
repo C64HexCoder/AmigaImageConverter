@@ -44,6 +44,14 @@ namespace AmigaImageConverter
         Animation animation;
         PaletteQulalizerBtn paleEqua;
 
+        public class LoadImageEventArgs : EventArgs
+        {
+            public Bitmap bitmap;
+        }
+
+        public delegate void LoadImageEventHandler(object sender, LoadImageEventArgs e);
+        public event LoadImageEventHandler ImageLoaded;
+
         enum FormState
         {
             Image,
@@ -259,6 +267,10 @@ namespace AmigaImageConverter
 
             //spriteCut.widthNumUD.Maximum = image.Width;
             //spriteCut.heightNumUD.Maximum = image.Height;
+            LoadImageEventArgs loadImageEventArgs = new LoadImageEventArgs();
+            loadImageEventArgs.bitmap = vr.bitplane.bitmap;
+
+            ImageLoaded?.Invoke(this, loadImageEventArgs);
         }
 
         public void MedianCutProgressBar(object sender, MedianCut.ProgressBarEventArgs e)
@@ -1510,6 +1522,7 @@ namespace AmigaImageConverter
         private void CreateAnimationControl()
         {
             animation = new Animation();
+            ImageLoaded += LoadImageEvent;
             Controls.Add(animation);
             formState = FormState.Animation;
             animation.Dock = DockStyle.Right;    
@@ -1527,16 +1540,9 @@ namespace AmigaImageConverter
             }
 
             Controls.Add(paleEqua);
-
-            if (Width - image.Right > paleEqua.Width)
-            {
-                paleEqua.Dock = DockStyle.Right;
+            paleEqua.Dock = DockStyle.Right;
                 //paleEqua.Top = menuStrip1.Bottom;
-            }
-            else
-            {
-                paleEqua.Left = image.Right + 2;
-            }
+     
             paletteEqualizerToolStripMenuItem.Checked = true;
             //this.Width += image.Width - spriteSlicing.Width;
         }
@@ -1544,7 +1550,6 @@ namespace AmigaImageConverter
         private void paletteEqualizerToolStripMenuItem_Click(object sender, EventArgs e)
         {
             AddRemoveSidePanel(sender, e, CreateEqualizingPanel, paleEqua);
-            CreateEqualizingPanel();
         }
 
         private void equalizingAllImagesInDirectoryToolStripMenuItem_Click(object sender, EventArgs e)
@@ -1579,6 +1584,11 @@ namespace AmigaImageConverter
                         ((ToolStripMenuItem)item).Enabled = false;
                 }
             }
+        }
+
+        public void LoadImageEvent (object sender,LoadImageEventArgs e)
+        {
+            int test = 1;
         }
     }
 }

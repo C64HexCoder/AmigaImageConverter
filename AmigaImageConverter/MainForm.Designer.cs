@@ -692,7 +692,7 @@
             image.Image = null;
             image.Location = new System.Drawing.Point(10, 2);
             image.Margin = new System.Windows.Forms.Padding(1, 2, 1, 2);
-            image.MaxImageScale = 5;
+            image.MaxImageScale = 10;
             image.MinimumSize = new System.Drawing.Size(200, 200);
             image.MouseWheelZoom = true;
             image.Name = "image";

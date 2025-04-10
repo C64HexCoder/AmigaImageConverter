@@ -97,6 +97,7 @@
             Margin = new System.Windows.Forms.Padding(0);
             Name = "PaletteQulalizerBtn";
             Size = new System.Drawing.Size(259, 488);
+            Tag = "Side Panel";
             groupBox1.ResumeLayout(false);
             groupBox1.PerformLayout();
             ResumeLayout(false);
