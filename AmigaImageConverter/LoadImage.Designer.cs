@@ -47,6 +47,7 @@
             statusStrip = new System.Windows.Forms.StatusStrip();
             imageBox = new Amiga.ImageBox();
             sidePael = new System.Windows.Forms.Panel();
+            autoCropBtn = new System.Windows.Forms.Button();
             label3 = new System.Windows.Forms.Label();
             smoothingModeCB = new System.Windows.Forms.ComboBox();
             label5 = new System.Windows.Forms.Label();
@@ -81,7 +82,7 @@
             // resizeMethodCBox
             // 
             resizeMethodCBox.FormattingEnabled = true;
-            resizeMethodCBox.Items.AddRange(new object[] { "Manual", "Resize to 320 Pix WIdth", "Resize to 640 Pix Width" });
+            resizeMethodCBox.Items.AddRange(new object[] { "Manual", "Resize to 16 Pix Width", "Resize to 32 Pix Width", "Resize to 64 Pix Width", "Resize to 320 Pix WIdth", "Resize to 640 Pix Width" });
             resizeMethodCBox.Location = new System.Drawing.Point(3, 35);
             resizeMethodCBox.Name = "resizeMethodCBox";
             resizeMethodCBox.Size = new System.Drawing.Size(258, 33);
@@ -174,7 +175,7 @@
             groupBox2.Controls.Add(bgColorPictureBox);
             groupBox2.Location = new System.Drawing.Point(6, 439);
             groupBox2.Name = "groupBox2";
-            groupBox2.Size = new System.Drawing.Size(273, 127);
+            groupBox2.Size = new System.Drawing.Size(273, 107);
             groupBox2.TabIndex = 3;
             groupBox2.TabStop = false;
             groupBox2.Text = "Backgrount Color";
@@ -200,7 +201,7 @@
             // 
             // doItButton
             // 
-            doItButton.Location = new System.Drawing.Point(159, 557);
+            doItButton.Location = new System.Drawing.Point(159, 608);
             doItButton.Name = "doItButton";
             doItButton.Size = new System.Drawing.Size(111, 33);
             doItButton.TabIndex = 4;
@@ -219,7 +220,7 @@
             statusStrip.BackColor = System.Drawing.SystemColors.ControlLight;
             statusStrip.ImageScalingSize = new System.Drawing.Size(24, 24);
             statusStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] { toolStripStatusLabel });
-            statusStrip.Location = new System.Drawing.Point(0, 625);
+            statusStrip.Location = new System.Drawing.Point(0, 692);
             statusStrip.Name = "statusStrip";
             statusStrip.Size = new System.Drawing.Size(1002, 32);
             statusStrip.TabIndex = 5;
@@ -238,7 +239,7 @@
             imageBox.OriginalImage = null;
             imageBox.ScaleFactor = 1;
             imageBox.ScaleFactorFloat = 1F;
-            imageBox.Size = new System.Drawing.Size(686, 587);
+            imageBox.Size = new System.Drawing.Size(686, 654);
             imageBox.TabIndex = 6;
             imageBox.TabStop = false;
             imageBox.VerticalScrollBar = null;
@@ -246,6 +247,7 @@
             // 
             // sidePael
             // 
+            sidePael.Controls.Add(autoCropBtn);
             sidePael.Controls.Add(label3);
             sidePael.Controls.Add(smoothingModeCB);
             sidePael.Controls.Add(label5);
@@ -256,8 +258,18 @@
             sidePael.Controls.Add(doItButton);
             sidePael.Location = new System.Drawing.Point(711, 15);
             sidePael.Name = "sidePael";
-            sidePael.Size = new System.Drawing.Size(273, 590);
+            sidePael.Size = new System.Drawing.Size(273, 654);
             sidePael.TabIndex = 7;
+            // 
+            // autoCropBtn
+            // 
+            autoCropBtn.Location = new System.Drawing.Point(12, 552);
+            autoCropBtn.Name = "autoCropBtn";
+            autoCropBtn.Size = new System.Drawing.Size(258, 34);
+            autoCropBtn.TabIndex = 9;
+            autoCropBtn.Text = "Auto Crop";
+            autoCropBtn.UseVisualStyleBackColor = true;
+            autoCropBtn.Click += autoCropBtn_Click;
             // 
             // label3
             // 
@@ -298,7 +310,7 @@
             // hScrollBar
             // 
             hScrollBar.LargeChange = 100;
-            hScrollBar.Location = new System.Drawing.Point(6, 605);
+            hScrollBar.Location = new System.Drawing.Point(0, 672);
             hScrollBar.Name = "hScrollBar";
             hScrollBar.Size = new System.Drawing.Size(699, 20);
             hScrollBar.SmallChange = 2;
@@ -311,7 +323,7 @@
             AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             AutoSize = true;
             AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            ClientSize = new System.Drawing.Size(1002, 657);
+            ClientSize = new System.Drawing.Size(1002, 724);
             Controls.Add(hScrollBar);
             Controls.Add(sidePael);
             Controls.Add(imageBox);
@@ -363,5 +375,6 @@
         private System.Windows.Forms.ComboBox interpulationCB;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.ComboBox smoothingModeCB;
+        private System.Windows.Forms.Button autoCropBtn;
     }
 }

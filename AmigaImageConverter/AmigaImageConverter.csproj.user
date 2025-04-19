@@ -57,10 +57,10 @@
     <Compile Update="LoadBox.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Update="LoadImage.cs">
+    <Compile Update="ConvertImageToSprite.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="ConvertImageToSprite.cs">
+    <Compile Update="LoadImage.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="MainForm.cs">

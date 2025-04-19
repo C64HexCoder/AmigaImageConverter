@@ -140,17 +140,7 @@ namespace AmigaImageConverter
                     LoadImageDialog loadImageDlg = new LoadImageDialog(bmp);
                     if (loadImageDlg.ShowDialog() == DialogResult.OK)
                     {
-                        // Change image size if user requested to do so in LoadImageDlg
-                        if (loadImageDlg.RequestedImageWidth != bmp.Width || loadImageDlg.RequestedImageHeight != bmp.Height)
-                        {
-                            Bitmap NewBitmap = new Bitmap(loadImageDlg.RequestedImageWidth, loadImageDlg.RequestedImageHeight);
-                            Graphics g = Graphics.FromImage(NewBitmap);
-                            g.SmoothingMode = loadImageDlg.smoothingMode;
-                            g.InterpolationMode = loadImageDlg.interpolationMode;
-                            g.DrawImage(bmp, 0, 0, loadImageDlg.RequestedImageWidth, loadImageDlg.RequestedImageHeight);
-                            g.Dispose();
-                            bmp = NewBitmap;
-                        }
+                        bmp = loadImageDlg.bmp;
                     }
                     else return;
 

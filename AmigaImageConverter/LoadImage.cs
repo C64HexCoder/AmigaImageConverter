@@ -5,11 +5,14 @@ using System.Windows.Forms;
 using System.Threading.Tasks;
 using System.Diagnostics.Eventing.Reader;
 using System.Drawing.Drawing2D;
+using AmigaImageConverter.Properties;
+using static System.Net.Mime.MediaTypeNames;
 namespace AmigaImageConverter
 {
     public partial class LoadImageDialog : Form
     {
-        Bitmap bmp, ScaledBitmap;
+        Bitmap ScaledBitmap;
+        private Bitmap _bmp;
         bool isWidthHeightUpdated = false;
         public LoadImageDialog()
         {
@@ -22,8 +25,19 @@ namespace AmigaImageConverter
 
         }
 
-        public SmoothingMode smoothingMode { 
-            
+        public Bitmap bmp
+        {
+            get { return _bmp; }
+            set
+            {
+                imageBox.Image = _bmp = value; 
+                resizeMethodCBox_SelectedIndexChanged (resizeMethodCBox,new EventArgs ());
+            }
+        }
+
+        public SmoothingMode smoothingMode
+        {
+
             get
             {
                 switch (smoothingModeCB.SelectedIndex)
@@ -40,7 +54,7 @@ namespace AmigaImageConverter
                         return SmoothingMode.Default;
                 }
             }
-                
+
         }
         public InterpolationMode interpolationMode
         {
@@ -66,14 +80,13 @@ namespace AmigaImageConverter
                         return InterpolationMode.Default;
                 }
             }
-           
+
         }
         public LoadImageDialog(Bitmap bitmap)
         {
             InitializeComponent();
-            imageBox.Image = bitmap;
-            widthNumericUpDown.Value = bitmap.Width;
-            heightNumericUpDown.Value = bitmap.Height;
+            bmp = bitmap;
+
             bgColorPictureBox.BackColor = findBackgroundColor(bitmap);
             colorComboBox.SelectedIndex = 3;
             interpulationCB.SelectedIndex = 2;
@@ -90,7 +103,7 @@ namespace AmigaImageConverter
             {
                 toolStripStatusLabel.Text = "No Transparent color found in the Image.";
             }
-                    
+
             float ScaleFactor;
 
             ScaleFactor = (float)imageBox.Height / (float)bmp.Height;
@@ -240,6 +253,17 @@ namespace AmigaImageConverter
 
         private void doItButton_Click(object sender, EventArgs e)
         {
+            if (RequestedImageWidth != bmp.Width || RequestedImageHeight != bmp.Height)
+            {
+                Bitmap NewBitmap = new Bitmap(RequestedImageWidth, RequestedImageHeight);
+                Graphics g = Graphics.FromImage(NewBitmap);
+                g.SmoothingMode = smoothingMode;
+                g.InterpolationMode = interpolationMode;
+                g.DrawImage(bmp, 0, 0, RequestedImageWidth, RequestedImageHeight);
+                g.Dispose();
+                bmp = NewBitmap;
+            }
+
             if (widthNumericUpDown.Value > 640 || heightNumericUpDown.Value > 512)
             {
                 if (MessageBox.Show("The image is too big to fit into 2M chip memory, are you sure you want to continue?", "Image too big", MessageBoxButtons.OKCancel) == DialogResult.OK)
@@ -258,51 +282,85 @@ namespace AmigaImageConverter
         private void resizeMethodCBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             ComboBox comboBox = (ComboBox)sender;
+            float HeightToWidth;
 
-            if (comboBox.SelectedIndex > 0)
+        
+            switch (comboBox.SelectedIndex) 
             {
-                if (comboBox.SelectedIndex == 1)
-                {
-                    widthNumericUpDown.Value = 320;
-                    float HeightToWidth = (float)bmp.Height / (float)bmp.Width;
+                case 0:
+                    widthNumericUpDown.Enabled = true;
+                    heightNumericUpDown.Enabled = true;
+
+                    widthNumericUpDown.Value = bmp.Width;
+                    heightNumericUpDown.Value = bmp.Height;
+                    break;
+                case 1:
+                    widthNumericUpDown.Enabled = false;
+                    heightNumericUpDown.Enabled = false;
+
+                    widthNumericUpDown.Value = 16;
+                    HeightToWidth = (float)bmp.Height / (float)bmp.Width;
                     heightNumericUpDown.Value = (int)Math.Round(widthNumericUpDown.Value * (decimal)HeightToWidth);
                     heightNumericUpDown.Refresh();
-                }
-                else
-                {
-                    float WidthToHeight = (float)bmp.Width / (float)bmp.Height;
-                    widthNumericUpDown.Value = 640;
-                    widthNumericUpDown.Value = (int)Math.Round(heightNumericUpDown.Value * (decimal)WidthToHeight);
-                }
+                    break;
+                case 2:
+                    widthNumericUpDown.Enabled = false;
+                    heightNumericUpDown.Enabled = false;
 
-                widthNumericUpDown.Enabled = false;
-                heightNumericUpDown.Enabled = false;
+                    widthNumericUpDown.Value = 32;
+                    HeightToWidth = (float)bmp.Height / (float)bmp.Width;
+                    heightNumericUpDown.Value = (int)Math.Round(widthNumericUpDown.Value * (decimal)HeightToWidth);
+                    heightNumericUpDown.Refresh();
+                    break;
+                case 3:
+                    widthNumericUpDown.Enabled = false;
+                    heightNumericUpDown.Enabled = false;
+
+                    widthNumericUpDown.Value = 64;
+                    HeightToWidth = (float)bmp.Height / (float)bmp.Width;
+                    heightNumericUpDown.Value = (int)Math.Round(widthNumericUpDown.Value * (decimal)HeightToWidth);
+                    heightNumericUpDown.Refresh();
+                    break;
+                case 4:
+                    widthNumericUpDown.Enabled = false;
+                    heightNumericUpDown.Enabled = false;
+
+                    widthNumericUpDown.Value = 320;
+                    HeightToWidth = (float)bmp.Height / (float)bmp.Width;
+                    heightNumericUpDown.Value = (int)Math.Round(widthNumericUpDown.Value * (decimal)HeightToWidth);
+                    heightNumericUpDown.Refresh();
+                    break;
+                case 5:
+                    widthNumericUpDown.Enabled = false;
+                    heightNumericUpDown.Enabled = false;
+
+                    widthNumericUpDown.Value = 640;
+                    HeightToWidth = (float)bmp.Height / (float)bmp.Width;
+                    heightNumericUpDown.Value = (int)Math.Round(widthNumericUpDown.Value * (decimal)HeightToWidth);
+                    heightNumericUpDown.Refresh();
+                    break;  
             }
-            else
-            {
-                widthNumericUpDown.Enabled = true;
-                heightNumericUpDown.Enabled = true;
-            }
+            
         }
 
         private void widthNumericUpDown_Leave(object sender, EventArgs e)
         {
-            if (bmp != null && isWidthHeightUpdated) 
-                {
-                    float HeightToWidth = (float)bmp.Height / (float)bmp.Width;
-                    heightNumericUpDown.Value = (int)Math.Round(widthNumericUpDown.Value * (decimal)HeightToWidth);
-                    heightNumericUpDown.Refresh();
-                    isWidthHeightUpdated = false;
-                }
+            if (bmp != null && isWidthHeightUpdated)
+            {
+                float HeightToWidth = (float)bmp.Height / (float)bmp.Width;
+                heightNumericUpDown.Value = (int)Math.Round(widthNumericUpDown.Value * (decimal)HeightToWidth);
+                heightNumericUpDown.Refresh();
+                isWidthHeightUpdated = false;
+            }
         }
 
         private void heightNumericUpDown_Leave(object sender, EventArgs e)
         {
             if (bmp != null && isWidthHeightUpdated)
             {
-                    float WidthToHeight = (float)bmp.Width / (float)bmp.Height;
-                    widthNumericUpDown.Value = (int)Math.Round(heightNumericUpDown.Value * (decimal)WidthToHeight);
-                    isWidthHeightUpdated = false;
+                float WidthToHeight = (float)bmp.Width / (float)bmp.Height;
+                widthNumericUpDown.Value = (int)Math.Round(heightNumericUpDown.Value * (decimal)WidthToHeight);
+                isWidthHeightUpdated = false;
             }
         }
 
@@ -331,5 +389,39 @@ namespace AmigaImageConverter
                 isWidthHeightUpdated = true;
         }
 
+        private void autoCropBtn_Click(object sender, EventArgs e)
+        {
+     
+            Point StartPos = new Point(imageBox.Width, imageBox.Height), StopPos = new Point(0, 0);
+            Color backgroundColor = bgColorPictureBox.BackColor;
+
+            for (int y = imageBox.Height - 1; y >= 0; y--)
+                for (int x = imageBox.Width - 1; x >= 0; x--)
+                {
+                    Color pixel = ((Bitmap)imageBox.Image).GetPixel(x, y);
+                    if (pixel.R != backgroundColor.R || pixel.G != backgroundColor.G || pixel.B != backgroundColor.B)
+                    //if (pixel != backgroundColor) // Dont have a clue why its not working
+                    {
+                        if (x < StartPos.X)
+                            StartPos.X = x;
+
+                        if (y < StartPos.Y)
+                            StartPos.Y = y;
+
+                        if (x > StopPos.X) StopPos.X = x;
+                        if (y > StopPos.Y) StopPos.Y = y;
+                    }
+                }
+
+            int NewWidth = StopPos.X - StartPos.X + 1, NewHeight = StopPos.Y - StartPos.Y + 1;
+            Bitmap corpedImage = new Bitmap(NewWidth, NewHeight);
+            Graphics g = Graphics.FromImage(corpedImage);
+            Rectangle destRec = new Rectangle(0, 0, NewWidth, NewHeight);
+            g.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.None;
+            g.DrawImage(imageBox.Image, destRec, StartPos.X, StartPos.Y, NewWidth, NewHeight, GraphicsUnit.Pixel);
+            g.Dispose();
+            imageBox.Image = bmp = corpedImage;
+        
+        }
     }
 }
