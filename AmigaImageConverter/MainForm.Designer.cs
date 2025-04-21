@@ -112,6 +112,7 @@
             process1 = new System.Diagnostics.Process();
             image = new Amiga.ImageBox();
             imagePanel = new System.Windows.Forms.Panel();
+            outlinkToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             menuStrip1.SuspendLayout();
             statusStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)image).BeginInit();
@@ -291,7 +292,7 @@
             // 
             // imageToolStripMenuItem
             // 
-            imageToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] { resizeToolStripMenuItem, alignWidthToolStripMenuItem, addWordToolStripMenuItem, removeBlitterWorldToolStripMenuItem3, setImageWidthToolStripMenuItem, autoCorpToolStripMenuItem, displayMaskToolStripMenuItem, informationToolStripMenuItem, toolStripSeparator4, c64ImageToolStripMenuItem });
+            imageToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] { resizeToolStripMenuItem, alignWidthToolStripMenuItem, addWordToolStripMenuItem, removeBlitterWorldToolStripMenuItem3, setImageWidthToolStripMenuItem, autoCorpToolStripMenuItem, outlinkToolStripMenuItem, displayMaskToolStripMenuItem, informationToolStripMenuItem, toolStripSeparator4, c64ImageToolStripMenuItem });
             imageToolStripMenuItem.Name = "imageToolStripMenuItem";
             imageToolStripMenuItem.Size = new System.Drawing.Size(78, 29);
             imageToolStripMenuItem.Text = "Image";
@@ -725,6 +726,13 @@
             imagePanel.Size = new System.Drawing.Size(1042, 703);
             imagePanel.TabIndex = 7;
             // 
+            // outlinkToolStripMenuItem
+            // 
+            outlinkToolStripMenuItem.Name = "outlinkToolStripMenuItem";
+            outlinkToolStripMenuItem.Size = new System.Drawing.Size(277, 34);
+            outlinkToolStripMenuItem.Text = "Outline";
+            outlinkToolStripMenuItem.Click += outlinkToolStripMenuItem_Click;
+            // 
             // MainForm
             // 
             AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -840,6 +848,7 @@
         private System.Windows.Forms.ToolStripMenuItem equalizingAllImagesInDirectoryToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem saveAllFilesInDirectoryAsToolStripMenuItem;
         private System.Windows.Forms.Panel imagePanel;
+        private System.Windows.Forms.ToolStripMenuItem outlinkToolStripMenuItem;
     }
 }
 

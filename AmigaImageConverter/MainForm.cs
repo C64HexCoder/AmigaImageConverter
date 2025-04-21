@@ -161,10 +161,10 @@ namespace AmigaImageConverter
                             vr.bitplane.bitmap = mc.Quanitize(bmp, loadImageDlg.ImageNumOfColors);
                             //vr.bitplane.bitmap = mc.ReduceColors(bmp,loadImageDlg.ImageNumOfColors);
                             break;
-                      /*  case 3:
-                            DeepCycle dp = new DeepCycle();
-                            vr.bitplane.bitmap = await Task.Run(() => dp.ReduceColors(bmp, DeepCycle.ColorAvaragingMethod.RelaativeToNumberOfInstances));
-                            break;*/
+                            /*  case 3:
+                                  DeepCycle dp = new DeepCycle();
+                                  vr.bitplane.bitmap = await Task.Run(() => dp.ReduceColors(bmp, DeepCycle.ColorAvaragingMethod.RelaativeToNumberOfInstances));
+                                  break;*/
 
                     }
                     menuStrip1.Enabled = true;
@@ -811,20 +811,20 @@ namespace AmigaImageConverter
             }
         }
 
- /*       private void alignWidthToolStripMenuItem_MouseHover(object sender, EventArgs e)
-        {
-            // Don't need this Method anymore since i've wrote a code that when bitmap is null
-            // Then all the MenuItem in the Image submenu are disabled
-            ToolStripMenuItem tsmi = (ToolStripMenuItem)sender;
+        /*       private void alignWidthToolStripMenuItem_MouseHover(object sender, EventArgs e)
+               {
+                   // Don't need this Method anymore since i've wrote a code that when bitmap is null
+                   // Then all the MenuItem in the Image submenu are disabled
+                   ToolStripMenuItem tsmi = (ToolStripMenuItem)sender;
 
-            if (vr.bitplane.bitmap != null)
-            {
-                alignWidthComboBox.Enabled = true;
-                CheckImageAlignment();
-            }
-            else
-                alignWidthComboBox.Enabled = false;
-        }*/
+                   if (vr.bitplane.bitmap != null)
+                   {
+                       alignWidthComboBox.Enabled = true;
+                       CheckImageAlignment();
+                   }
+                   else
+                       alignWidthComboBox.Enabled = false;
+               }*/
 
         private void displayMaskToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -932,7 +932,7 @@ namespace AmigaImageConverter
             ScalingFactor = XscaleFactor > YscaleFactor ? YscaleFactor : XscaleFactor;
 
             image.ScaleImage(ScalingFactor);
-            
+
 
         }
         private void ScaleToMaxFloat()
@@ -1090,15 +1090,15 @@ namespace AmigaImageConverter
 
         private void cutSpriteToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            AddRemoveSidePanel(sender, e, CreateSpriteCutPanel,spriteCut);
+            AddRemoveSidePanel(sender, e, CreateSpriteCutPanel, spriteCut);
         }
 
         delegate void CreateSidePanel();
-        private void AddRemoveSidePanel (object sender, EventArgs e,CreateSidePanel createPanelFunc,UserControl myControl)
+        private void AddRemoveSidePanel(object sender, EventArgs e, CreateSidePanel createPanelFunc, UserControl myControl)
         {
             ToolStripMenuItem tsmi = (ToolStripMenuItem)sender;
 
-            CleanCheckedMenuItems((ToolStripMenuItem) sender);
+            CleanCheckedMenuItems((ToolStripMenuItem)sender);
 
             if (!tsmi.Checked)
             {
@@ -1119,7 +1119,7 @@ namespace AmigaImageConverter
 
         }
 
-        private void CleanCheckedMenuItems (ToolStripMenuItem sender)
+        private void CleanCheckedMenuItems(ToolStripMenuItem sender)
         {
             foreach (Object item in spriteMenuItem.DropDownItems)
             {
@@ -1306,7 +1306,7 @@ namespace AmigaImageConverter
             if (vr.bitplane.Palette == null)
                 penColor = Color.Black;
             else
-                penColor = Color.FromArgb(0x0ff - vr.bitplane.Palette[0].R, 0xff - vr.bitplane.Palette[0].G,0xff-vr.bitplane.Palette[0].B);
+                penColor = Color.FromArgb(0x0ff - vr.bitplane.Palette[0].R, 0xff - vr.bitplane.Palette[0].G, 0xff - vr.bitplane.Palette[0].B);
 
             Pen p = new(penColor, vr.spriteRec.LineWIdth);
 
@@ -1470,14 +1470,14 @@ namespace AmigaImageConverter
             {
                 Type type = userControl.GetType();
 
-               // if (userControl.GetType() == typeof(Control))
-            //    {
-                    if (((Control)userControl).Tag == "Side Panel")
-                    {
-                        Controls.Remove(((UserControl)userControl));
-                        ((UserControl)userControl).Dispose();
-                    }
-              //  }
+                // if (userControl.GetType() == typeof(Control))
+                //    {
+                if (((Control)userControl).Tag == "Side Panel")
+                {
+                    Controls.Remove(((UserControl)userControl));
+                    ((UserControl)userControl).Dispose();
+                }
+                //  }
             }
         }
 
@@ -1487,7 +1487,7 @@ namespace AmigaImageConverter
             Controls.Add(spriteCut);
             formState = FormState.SpriteCut;
             spriteCut.Dock = DockStyle.Right;
-  
+
         }
 
         private void DisableAllSidePanels()
@@ -1506,7 +1506,7 @@ namespace AmigaImageConverter
 
         private void animationToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            AddRemoveSidePanel(sender, e, CreateAnimationControl,animation);
+            AddRemoveSidePanel(sender, e, CreateAnimationControl, animation);
         }
 
         private void CreateAnimationControl()
@@ -1515,7 +1515,7 @@ namespace AmigaImageConverter
             ImageLoaded += LoadImageEvent;
             Controls.Add(animation);
             formState = FormState.Animation;
-            animation.Dock = DockStyle.Right;    
+            animation.Dock = DockStyle.Right;
         }
 
         private void CreateEqualizingPanel()
@@ -1531,8 +1531,8 @@ namespace AmigaImageConverter
 
             Controls.Add(paleEqua);
             paleEqua.Dock = DockStyle.Right;
-                //paleEqua.Top = menuStrip1.Bottom;
-     
+            //paleEqua.Top = menuStrip1.Bottom;
+
             paletteEqualizerToolStripMenuItem.Checked = true;
             //this.Width += image.Width - spriteSlicing.Width;
         }
@@ -1567,7 +1567,7 @@ namespace AmigaImageConverter
             {
                 if (item.GetType() == typeof(ToolStripMenuItem))
                 {
-                    
+
                     if (vr.bitplane.bitmap != null)
                         ((ToolStripMenuItem)item).Enabled = true;
                     else
@@ -1576,9 +1576,19 @@ namespace AmigaImageConverter
             }
         }
 
-        public void LoadImageEvent (object sender,LoadImageEventArgs e)
+        public void LoadImageEvent(object sender, LoadImageEventArgs e)
         {
             int test = 1;
+        }
+
+        private void outlinkToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Bitmap bitmap = null;
+            bitmap = vr.bitplane.OutLine();
+            image.Image = bitmap;
+            vr.bitplane.bitmap = bitmap;
+
+            image.Invalidate();
         }
     }
 }
