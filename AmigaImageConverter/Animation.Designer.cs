@@ -35,8 +35,11 @@
             imageSelectNum = new System.Windows.Forms.NumericUpDown();
             executeBtn = new System.Windows.Forms.Button();
             addImageButton = new System.Windows.Forms.Button();
+            maxSpriteHeightNumeric = new System.Windows.Forms.NumericUpDown();
+            label2 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)numericUpDown1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)imageSelectNum).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)maxSpriteHeightNumeric).BeginInit();
             SuspendLayout();
             // 
             // colorsGrid
@@ -82,7 +85,7 @@
             // 
             // executeBtn
             // 
-            executeBtn.Location = new System.Drawing.Point(3, 489);
+            executeBtn.Location = new System.Drawing.Point(3, 543);
             executeBtn.Name = "executeBtn";
             executeBtn.Size = new System.Drawing.Size(248, 34);
             executeBtn.TabIndex = 6;
@@ -91,7 +94,7 @@
             // 
             // addImageButton
             // 
-            addImageButton.Location = new System.Drawing.Point(3, 406);
+            addImageButton.Location = new System.Drawing.Point(3, 460);
             addImageButton.Name = "addImageButton";
             addImageButton.Size = new System.Drawing.Size(248, 34);
             addImageButton.TabIndex = 7;
@@ -99,12 +102,31 @@
             addImageButton.UseVisualStyleBackColor = true;
             addImageButton.Click += addImageButton_Click;
             // 
+            // maxSpriteHeightNumeric
+            // 
+            maxSpriteHeightNumeric.Location = new System.Drawing.Point(112, 406);
+            maxSpriteHeightNumeric.Name = "maxSpriteHeightNumeric";
+            maxSpriteHeightNumeric.ReadOnly = true;
+            maxSpriteHeightNumeric.Size = new System.Drawing.Size(139, 31);
+            maxSpriteHeightNumeric.TabIndex = 8;
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Location = new System.Drawing.Point(3, 408);
+            label2.Name = "label2";
+            label2.Size = new System.Drawing.Size(103, 25);
+            label2.TabIndex = 9;
+            label2.Text = "Max Height";
+            // 
             // Animation
             // 
             AutoScaleDimensions = new System.Drawing.SizeF(10F, 25F);
             AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             AutoSize = true;
             AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            Controls.Add(label2);
+            Controls.Add(maxSpriteHeightNumeric);
             Controls.Add(addImageButton);
             Controls.Add(executeBtn);
             Controls.Add(imageSelectNum);
@@ -113,10 +135,11 @@
             Controls.Add(comboBox1);
             Controls.Add(colorsGrid);
             Name = "Animation";
-            Size = new System.Drawing.Size(257, 526);
+            Size = new System.Drawing.Size(257, 580);
             Tag = "Side Panel";
             ((System.ComponentModel.ISupportInitialize)numericUpDown1).EndInit();
             ((System.ComponentModel.ISupportInitialize)imageSelectNum).EndInit();
+            ((System.ComponentModel.ISupportInitialize)maxSpriteHeightNumeric).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -129,5 +152,7 @@
         private System.Windows.Forms.Button executeBtn;
         public ColorsGrid colorsGrid;
         private System.Windows.Forms.Button addImageButton;
+        private System.Windows.Forms.NumericUpDown maxSpriteHeightNumeric;
+        private System.Windows.Forms.Label label2;
     }
 }

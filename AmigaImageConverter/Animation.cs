@@ -61,6 +61,9 @@ namespace AmigaImageConverter
             sprites.Add(sprite);
             imageSelectNum.Value = sprites.Count - 1;
 
+            if (sprite.Height > maxSpriteHeightNumeric.Value)
+                maxSpriteHeightNumeric.Value = sprite.Height;
+
         }
 
         private void imageSelectNum_ValueChanged(object sender, EventArgs e)
