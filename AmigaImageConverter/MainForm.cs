@@ -179,7 +179,7 @@ namespace AmigaImageConverter
                 // copy the image that we have losded in bitplane class into the imageBox to display it
                 image.Image = vr.bitplane.bitmap;
 
-                float ScalingFactor = (int)settings.PrevScaleFactor;
+                float ScalingFactor = (int)settings.ScaleFactor;
 
                 // if image after scaling using ScalingFactor is to bit to fit on screen then....
 
@@ -195,7 +195,8 @@ namespace AmigaImageConverter
                 // Manual scalling
                 else
                 {
-                    PredefinedScale();
+                    image.ScaleImage();
+                    //PredefinedScale();
                 }
 
                 toolStripScalingFactorLabel.Text += ScalingFactor.ToString();
@@ -338,8 +339,8 @@ namespace AmigaImageConverter
         {
             if (settings.ShowDialog() == DialogResult.OK)
             {
-                if (settings.valueChanged == true)
-                {
+               // if (settings.valueChanged == true)
+                //{
                     if (settings.ScaleToMax)
                     {
                         image.SizeMode = PictureBoxSizeMode.AutoSize;
@@ -348,6 +349,7 @@ namespace AmigaImageConverter
                     }
                     else
                     {
+                        image.ScaleFactor = settings.ScaleFactor;
                         image.Width = defaultimageWidth;
                         image.Height = defaultimageHeight;
                         // setting to autosize just for now.
@@ -375,7 +377,7 @@ namespace AmigaImageConverter
                         //   hScrollBar.Maximum = image.Image.Width - image.Width;
                     }
 
-                }
+                //}
             }
         }
 
@@ -542,7 +544,7 @@ namespace AmigaImageConverter
                 if (spriteDialog.ShowDialog() == DialogResult.OK)
                 {
                     image.Image = vr.bitplane.bitmap;
-                    image.ScaleImage((int)settings.PrevScaleFactor);
+                    image.ScaleImage((int)settings.ScaleFactor);
                 }
             }
 
@@ -924,7 +926,7 @@ namespace AmigaImageConverter
         }
         private void ScaleToMax()
         {
-            int ScalingFactor = (int)settings.PrevScaleFactor;
+            int ScalingFactor = (int)settings.ScaleFactor;
 
             image.SizeMode = PictureBoxSizeMode.AutoSize;
             //       if (vr.bitplane.Width * ScalingFactor > 0.8 * SystemInformation.VirtualScreen.Width || vr.bitplane.Height * ScalingFactor > 0.8 * SystemInformation.VirtualScreen.Height)
@@ -941,7 +943,7 @@ namespace AmigaImageConverter
         }
         private void ScaleToMaxFloat()
         {
-            float ScalingFactor = (int)settings.PrevScaleFactor;
+            float ScalingFactor = (int)settings.ScaleFactor;
 
             image.SizeMode = PictureBoxSizeMode.AutoSize;
             //       if (vr.bitplane.Width * ScalingFactor > 0.8 * SystemInformation.VirtualScreen.Width || vr.bitplane.Height * ScalingFactor > 0.8 * SystemInformation.VirtualScreen.Height)
@@ -958,10 +960,10 @@ namespace AmigaImageConverter
 
         private void PredefinedScale()
         {
-            float scaleFactor = (int)settings.PrevScaleFactor;
+            float scaleFactor = (int)image.ScaleFactor;
 
-            int XSize = (int)settings.PrevScaleFactor * image.Image.Width > ScreenWidth ? (int)(ScreenWidth * 0.8f) : (int)settings.PrevScaleFactor * image.Image.Width;
-            int YSize = (int)settings.PrevScaleFactor * image.Image.Height > ScreenHeight ? (int)(ScreenHeight * 0.8f) : (int)settings.PrevScaleFactor * image.Image.Height;
+            int XSize = (int)settings.ScaleFactor * image.Image.Width > ScreenWidth ? (int)(ScreenWidth * 0.8f) : (int)settings.ScaleFactor * image.Image.Width;
+            int YSize = (int)settings.ScaleFactor * image.Image.Height > ScreenHeight ? (int)(ScreenHeight * 0.8f) : (int)settings.ScaleFactor * image.Image.Height;
 
 
             image.Size = new Size(XSize, YSize);
@@ -970,7 +972,7 @@ namespace AmigaImageConverter
 
 
 
-            image.ScaleImage((int)settings.PrevScaleFactor);
+            image.ScaleImage(image.ScaleFactor);
         }
 
         private void NoScaleing()
@@ -978,7 +980,7 @@ namespace AmigaImageConverter
             image.Width = defaultimageWidth;
             image.Height = defaultimageHeight;
             image.SizeMode = PictureBoxSizeMode.Normal;
-            image.ScaleImage((int)settings.PrevScaleFactor);
+            image.ScaleImage((int)settings.ScaleFactor);
         }
 
         private void SaveLinkFileToolStripMenuItem_Click(object sender, EventArgs e)

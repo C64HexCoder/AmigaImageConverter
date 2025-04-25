@@ -121,11 +121,11 @@ namespace AmigaImageConverter
             }
         }
 
-        public decimal PrevScaleFactor
+        public int ScaleFactor
         {
             get
             {
-                return previewScalingNud.Value;
+                return (int)previewScalingNud.Value;
             }
         }
 
