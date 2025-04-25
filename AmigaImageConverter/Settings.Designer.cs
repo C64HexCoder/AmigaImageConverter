@@ -28,11 +28,14 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             OKBtn = new System.Windows.Forms.Button();
             cancelBtn = new System.Windows.Forms.Button();
             tabDisplay = new System.Windows.Forms.TabPage();
-            groupBox4 = new System.Windows.Forms.GroupBox();
-            scaleToMaxCheckBox = new System.Windows.Forms.CheckBox();
+            scalingGroupBox = new System.Windows.Forms.GroupBox();
+            predefinedScalingRadioBox = new System.Windows.Forms.RadioButton();
+            autoScalingRadioBox = new System.Windows.Forms.RadioButton();
+            scaleToMaxRadioBox = new System.Windows.Forms.RadioButton();
             previewScalingNud = new System.Windows.Forms.NumericUpDown();
             tabFormat = new System.Windows.Forms.TabPage();
             checkBox1 = new System.Windows.Forms.CheckBox();
@@ -54,15 +57,16 @@
             bitsPpCombo = new System.Windows.Forms.ComboBox();
             tabControl1 = new System.Windows.Forms.TabControl();
             tabFileExt = new System.Windows.Forms.TabPage();
-            groupBox5 = new System.Windows.Forms.GroupBox();
             groupBox6 = new System.Windows.Forms.GroupBox();
-            radioButton1 = new System.Windows.Forms.RadioButton();
-            radioButton2 = new System.Windows.Forms.RadioButton();
-            radioButton3 = new System.Windows.Forms.RadioButton();
             radioButton4 = new System.Windows.Forms.RadioButton();
+            radioButton3 = new System.Windows.Forms.RadioButton();
+            groupBox5 = new System.Windows.Forms.GroupBox();
             radioButton5 = new System.Windows.Forms.RadioButton();
+            radioButton2 = new System.Windows.Forms.RadioButton();
+            radioButton1 = new System.Windows.Forms.RadioButton();
+            toolTip = new System.Windows.Forms.ToolTip(components);
             tabDisplay.SuspendLayout();
-            groupBox4.SuspendLayout();
+            scalingGroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)previewScalingNud).BeginInit();
             tabFormat.SuspendLayout();
             AligmentGb.SuspendLayout();
@@ -72,8 +76,8 @@
             groupBox3.SuspendLayout();
             tabControl1.SuspendLayout();
             tabFileExt.SuspendLayout();
-            groupBox5.SuspendLayout();
             groupBox6.SuspendLayout();
+            groupBox5.SuspendLayout();
             SuspendLayout();
             // 
             // OKBtn
@@ -97,7 +101,7 @@
             // 
             // tabDisplay
             // 
-            tabDisplay.Controls.Add(groupBox4);
+            tabDisplay.Controls.Add(scalingGroupBox);
             tabDisplay.Location = new System.Drawing.Point(4, 34);
             tabDisplay.Name = "tabDisplay";
             tabDisplay.Padding = new System.Windows.Forms.Padding(3);
@@ -106,39 +110,62 @@
             tabDisplay.Text = "Display";
             tabDisplay.UseVisualStyleBackColor = true;
             // 
-            // groupBox4
+            // scalingGroupBox
             // 
-            groupBox4.Controls.Add(scaleToMaxCheckBox);
-            groupBox4.Controls.Add(previewScalingNud);
-            groupBox4.Location = new System.Drawing.Point(7, 6);
-            groupBox4.Name = "groupBox4";
-            groupBox4.Size = new System.Drawing.Size(300, 112);
-            groupBox4.TabIndex = 11;
-            groupBox4.TabStop = false;
-            groupBox4.Text = "Preview Scaling";
+            scalingGroupBox.Controls.Add(predefinedScalingRadioBox);
+            scalingGroupBox.Controls.Add(autoScalingRadioBox);
+            scalingGroupBox.Controls.Add(scaleToMaxRadioBox);
+            scalingGroupBox.Controls.Add(previewScalingNud);
+            scalingGroupBox.Location = new System.Drawing.Point(7, 6);
+            scalingGroupBox.Name = "scalingGroupBox";
+            scalingGroupBox.Size = new System.Drawing.Size(300, 182);
+            scalingGroupBox.TabIndex = 11;
+            scalingGroupBox.TabStop = false;
+            scalingGroupBox.Text = "Preview Scaling";
             // 
-            // scaleToMaxCheckBox
+            // predefinedScalingRadioBox
             // 
-            scaleToMaxCheckBox.AutoSize = true;
-            scaleToMaxCheckBox.Checked = true;
-            scaleToMaxCheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
-            scaleToMaxCheckBox.Location = new System.Drawing.Point(6, 30);
-            scaleToMaxCheckBox.Name = "scaleToMaxCheckBox";
-            scaleToMaxCheckBox.Size = new System.Drawing.Size(139, 29);
-            scaleToMaxCheckBox.TabIndex = 0;
-            scaleToMaxCheckBox.Text = "Scale To Max";
-            scaleToMaxCheckBox.UseVisualStyleBackColor = true;
-            scaleToMaxCheckBox.CheckedChanged += scaleToMaxCheckBox_CheckedChanged;
-            scaleToMaxCheckBox.CheckStateChanged += autoCheckBox_CheckStateChanged;
+            predefinedScalingRadioBox.AutoSize = true;
+            predefinedScalingRadioBox.Location = new System.Drawing.Point(6, 100);
+            predefinedScalingRadioBox.Name = "predefinedScalingRadioBox";
+            predefinedScalingRadioBox.Size = new System.Drawing.Size(190, 29);
+            predefinedScalingRadioBox.TabIndex = 12;
+            predefinedScalingRadioBox.TabStop = true;
+            predefinedScalingRadioBox.Text = "Pre Defined Scaling";
+            predefinedScalingRadioBox.UseVisualStyleBackColor = true;
+            predefinedScalingRadioBox.CheckedChanged += predefinedScalingRadioBox_CheckedChanged;
+            // 
+            // autoScalingRadioBox
+            // 
+            autoScalingRadioBox.AutoSize = true;
+            autoScalingRadioBox.Location = new System.Drawing.Point(6, 65);
+            autoScalingRadioBox.Name = "autoScalingRadioBox";
+            autoScalingRadioBox.Size = new System.Drawing.Size(222, 29);
+            autoScalingRadioBox.TabIndex = 11;
+            autoScalingRadioBox.TabStop = true;
+            autoScalingRadioBox.Text = "AutoScale To Form Size";
+            autoScalingRadioBox.UseVisualStyleBackColor = true;
+            // 
+            // scaleToMaxRadioBox
+            // 
+            scaleToMaxRadioBox.AutoSize = true;
+            scaleToMaxRadioBox.Location = new System.Drawing.Point(6, 30);
+            scaleToMaxRadioBox.Name = "scaleToMaxRadioBox";
+            scaleToMaxRadioBox.Size = new System.Drawing.Size(137, 29);
+            scaleToMaxRadioBox.TabIndex = 10;
+            scaleToMaxRadioBox.TabStop = true;
+            scaleToMaxRadioBox.Text = "Scale to Max";
+            scaleToMaxRadioBox.UseVisualStyleBackColor = true;
             // 
             // previewScalingNud
             // 
-            previewScalingNud.Location = new System.Drawing.Point(6, 65);
+            previewScalingNud.Location = new System.Drawing.Point(6, 135);
             previewScalingNud.Maximum = new decimal(new int[] { 20, 0, 0, 0 });
             previewScalingNud.Minimum = new decimal(new int[] { 1, 0, 0, 0 });
             previewScalingNud.Name = "previewScalingNud";
             previewScalingNud.Size = new System.Drawing.Size(180, 31);
             previewScalingNud.TabIndex = 9;
+            toolTip.SetToolTip(previewScalingNud, "Predefined scaling factor");
             previewScalingNud.Value = new decimal(new int[] { 2, 0, 0, 0 });
             previewScalingNud.ValueChanged += previewScalingNud_ValueChanged;
             // 
@@ -367,18 +394,6 @@
             tabFileExt.Text = "File Extensions";
             tabFileExt.UseVisualStyleBackColor = true;
             // 
-            // groupBox5
-            // 
-            groupBox5.Controls.Add(radioButton5);
-            groupBox5.Controls.Add(radioButton2);
-            groupBox5.Controls.Add(radioButton1);
-            groupBox5.Location = new System.Drawing.Point(7, 13);
-            groupBox5.Name = "groupBox5";
-            groupBox5.Size = new System.Drawing.Size(175, 161);
-            groupBox5.TabIndex = 0;
-            groupBox5.TabStop = false;
-            groupBox5.Text = "C/C++";
-            // 
             // groupBox6
             // 
             groupBox6.Controls.Add(radioButton4);
@@ -389,39 +404,6 @@
             groupBox6.TabIndex = 1;
             groupBox6.TabStop = false;
             groupBox6.Text = "Assembler";
-            // 
-            // radioButton1
-            // 
-            radioButton1.AutoSize = true;
-            radioButton1.Location = new System.Drawing.Point(6, 30);
-            radioButton1.Name = "radioButton1";
-            radioButton1.Size = new System.Drawing.Size(49, 29);
-            radioButton1.TabIndex = 0;
-            radioButton1.TabStop = true;
-            radioButton1.Text = ".c";
-            radioButton1.UseVisualStyleBackColor = true;
-            // 
-            // radioButton2
-            // 
-            radioButton2.AutoSize = true;
-            radioButton2.Location = new System.Drawing.Point(6, 65);
-            radioButton2.Name = "radioButton2";
-            radioButton2.Size = new System.Drawing.Size(71, 29);
-            radioButton2.TabIndex = 1;
-            radioButton2.TabStop = true;
-            radioButton2.Text = ".cpp";
-            radioButton2.UseVisualStyleBackColor = true;
-            // 
-            // radioButton3
-            // 
-            radioButton3.AutoSize = true;
-            radioButton3.Location = new System.Drawing.Point(6, 30);
-            radioButton3.Name = "radioButton3";
-            radioButton3.Size = new System.Drawing.Size(141, 29);
-            radioButton3.TabIndex = 1;
-            radioButton3.TabStop = true;
-            radioButton3.Text = "radioButton3";
-            radioButton3.UseVisualStyleBackColor = true;
             // 
             // radioButton4
             // 
@@ -434,6 +416,29 @@
             radioButton4.Text = "radioButton4";
             radioButton4.UseVisualStyleBackColor = true;
             // 
+            // radioButton3
+            // 
+            radioButton3.AutoSize = true;
+            radioButton3.Location = new System.Drawing.Point(6, 30);
+            radioButton3.Name = "radioButton3";
+            radioButton3.Size = new System.Drawing.Size(141, 29);
+            radioButton3.TabIndex = 1;
+            radioButton3.TabStop = true;
+            radioButton3.Text = "radioButton3";
+            radioButton3.UseVisualStyleBackColor = true;
+            // 
+            // groupBox5
+            // 
+            groupBox5.Controls.Add(radioButton5);
+            groupBox5.Controls.Add(radioButton2);
+            groupBox5.Controls.Add(radioButton1);
+            groupBox5.Location = new System.Drawing.Point(7, 13);
+            groupBox5.Name = "groupBox5";
+            groupBox5.Size = new System.Drawing.Size(175, 161);
+            groupBox5.TabIndex = 0;
+            groupBox5.TabStop = false;
+            groupBox5.Text = "C/C++";
+            // 
             // radioButton5
             // 
             radioButton5.AutoSize = true;
@@ -444,6 +449,28 @@
             radioButton5.TabStop = true;
             radioButton5.Text = ".h";
             radioButton5.UseVisualStyleBackColor = true;
+            // 
+            // radioButton2
+            // 
+            radioButton2.AutoSize = true;
+            radioButton2.Location = new System.Drawing.Point(6, 65);
+            radioButton2.Name = "radioButton2";
+            radioButton2.Size = new System.Drawing.Size(71, 29);
+            radioButton2.TabIndex = 1;
+            radioButton2.TabStop = true;
+            radioButton2.Text = ".cpp";
+            radioButton2.UseVisualStyleBackColor = true;
+            // 
+            // radioButton1
+            // 
+            radioButton1.AutoSize = true;
+            radioButton1.Location = new System.Drawing.Point(6, 30);
+            radioButton1.Name = "radioButton1";
+            radioButton1.Size = new System.Drawing.Size(49, 29);
+            radioButton1.TabIndex = 0;
+            radioButton1.TabStop = true;
+            radioButton1.Text = ".c";
+            radioButton1.UseVisualStyleBackColor = true;
             // 
             // Settings
             // 
@@ -457,8 +484,8 @@
             StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             Text = "Settings";
             tabDisplay.ResumeLayout(false);
-            groupBox4.ResumeLayout(false);
-            groupBox4.PerformLayout();
+            scalingGroupBox.ResumeLayout(false);
+            scalingGroupBox.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)previewScalingNud).EndInit();
             tabFormat.ResumeLayout(false);
             tabFormat.PerformLayout();
@@ -472,10 +499,10 @@
             groupBox3.ResumeLayout(false);
             tabControl1.ResumeLayout(false);
             tabFileExt.ResumeLayout(false);
-            groupBox5.ResumeLayout(false);
-            groupBox5.PerformLayout();
             groupBox6.ResumeLayout(false);
             groupBox6.PerformLayout();
+            groupBox5.ResumeLayout(false);
+            groupBox5.PerformLayout();
             ResumeLayout(false);
         }
 
@@ -483,8 +510,7 @@
         private System.Windows.Forms.Button OKBtn;
         private System.Windows.Forms.Button cancelBtn;
         private System.Windows.Forms.TabPage tabDisplay;
-        private System.Windows.Forms.GroupBox groupBox4;
-        private System.Windows.Forms.CheckBox scaleToMaxCheckBox;
+        private System.Windows.Forms.GroupBox scalingGroupBox;
         public System.Windows.Forms.NumericUpDown previewScalingNud;
         private System.Windows.Forms.TabPage tabFormat;
         private System.Windows.Forms.GroupBox groupBox2;
@@ -513,5 +539,9 @@
         private System.Windows.Forms.RadioButton radioButton5;
         private System.Windows.Forms.RadioButton radioButton2;
         private System.Windows.Forms.RadioButton radioButton1;
+        private System.Windows.Forms.ToolTip toolTip;
+        private System.Windows.Forms.RadioButton predefinedScalingRadioBox;
+        private System.Windows.Forms.RadioButton autoScalingRadioBox;
+        private System.Windows.Forms.RadioButton scaleToMaxRadioBox;
     }
 }

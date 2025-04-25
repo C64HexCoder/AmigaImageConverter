@@ -19,9 +19,11 @@ namespace AmigaImageConverter
         List<Sprite> sprites = new List<Sprite>();
         PublicVariables pv = PublicVariables.instance;
         Resize resize = new AmigaImageConverter.Resize();
-        public Animation()
+        ImageBox ImageBox = null;
+        public Animation(ImageBox imgBox)
         {
             InitializeComponent();
+            ImageBox = imgBox;
 
             if (pv.bitplane.bitmap != null)
             {
@@ -37,18 +39,41 @@ namespace AmigaImageConverter
             }
         }
 
-        public void AddImage ()
+        public void AddImage()
         {
             Sprite sprite = pv.bitplane.CreateSprite();
             sprites.Add(sprite);
 
         }
-        public void LoadImage (Bitmap bitmap)
+        public void LoadImage(Bitmap bitmap)
         {
-            
+
         }
         private void executeBtn_Click(object sender, EventArgs e)
         {
+
+        }
+
+        private void addImageButton_Click(object sender, EventArgs e)
+        {
+
+            Sprite sprite = pv.bitplane.CreateSprite();
+            sprites.Add(sprite);
+            imageSelectNum.Value = sprites.Count - 1;
+
+        }
+
+        private void imageSelectNum_ValueChanged(object sender, EventArgs e)
+        {
+            NumericUpDown imageSelect = sender as NumericUpDown;
+
+            if (sprites.Count > imageSelect.Value)
+            {
+                ImageBox.Image = (sprites[(int)imageSelect.Value].bitmap); 
+                ImageBox.ScaleImage();
+                ImageBox.Invalidate();
+                colorsGrid.SetPalette(sprites[(int)imageSelect.Value].palette);
+            }
 
         }
     }

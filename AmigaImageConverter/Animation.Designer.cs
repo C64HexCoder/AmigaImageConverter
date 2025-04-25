@@ -32,11 +32,11 @@
             comboBox1 = new System.Windows.Forms.ComboBox();
             label1 = new System.Windows.Forms.Label();
             numericUpDown1 = new System.Windows.Forms.NumericUpDown();
-            numericUpDown2 = new System.Windows.Forms.NumericUpDown();
+            imageSelectNum = new System.Windows.Forms.NumericUpDown();
             executeBtn = new System.Windows.Forms.Button();
-            button1 = new System.Windows.Forms.Button();
+            addImageButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)numericUpDown1).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)numericUpDown2).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)imageSelectNum).BeginInit();
             SuspendLayout();
             // 
             // colorsGrid
@@ -72,12 +72,13 @@
             numericUpDown1.Size = new System.Drawing.Size(198, 31);
             numericUpDown1.TabIndex = 4;
             // 
-            // numericUpDown2
+            // imageSelectNum
             // 
-            numericUpDown2.Location = new System.Drawing.Point(3, 293);
-            numericUpDown2.Name = "numericUpDown2";
-            numericUpDown2.Size = new System.Drawing.Size(248, 31);
-            numericUpDown2.TabIndex = 5;
+            imageSelectNum.Location = new System.Drawing.Point(3, 293);
+            imageSelectNum.Name = "imageSelectNum";
+            imageSelectNum.Size = new System.Drawing.Size(248, 31);
+            imageSelectNum.TabIndex = 5;
+            imageSelectNum.ValueChanged += imageSelectNum_ValueChanged;
             // 
             // executeBtn
             // 
@@ -88,14 +89,15 @@
             executeBtn.Text = "Excecute";
             executeBtn.UseVisualStyleBackColor = true;
             // 
-            // button1
+            // addImageButton
             // 
-            button1.Location = new System.Drawing.Point(3, 406);
-            button1.Name = "button1";
-            button1.Size = new System.Drawing.Size(248, 34);
-            button1.TabIndex = 7;
-            button1.Text = "Add Image";
-            button1.UseVisualStyleBackColor = true;
+            addImageButton.Location = new System.Drawing.Point(3, 406);
+            addImageButton.Name = "addImageButton";
+            addImageButton.Size = new System.Drawing.Size(248, 34);
+            addImageButton.TabIndex = 7;
+            addImageButton.Text = "Add Image";
+            addImageButton.UseVisualStyleBackColor = true;
+            addImageButton.Click += addImageButton_Click;
             // 
             // Animation
             // 
@@ -103,9 +105,9 @@
             AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             AutoSize = true;
             AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            Controls.Add(button1);
+            Controls.Add(addImageButton);
             Controls.Add(executeBtn);
-            Controls.Add(numericUpDown2);
+            Controls.Add(imageSelectNum);
             Controls.Add(numericUpDown1);
             Controls.Add(label1);
             Controls.Add(comboBox1);
@@ -114,7 +116,7 @@
             Size = new System.Drawing.Size(257, 526);
             Tag = "Side Panel";
             ((System.ComponentModel.ISupportInitialize)numericUpDown1).EndInit();
-            ((System.ComponentModel.ISupportInitialize)numericUpDown2).EndInit();
+            ((System.ComponentModel.ISupportInitialize)imageSelectNum).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -123,9 +125,9 @@
         private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.NumericUpDown numericUpDown1;
-        private System.Windows.Forms.NumericUpDown numericUpDown2;
+        private System.Windows.Forms.NumericUpDown imageSelectNum;
         private System.Windows.Forms.Button executeBtn;
         public ColorsGrid colorsGrid;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button addImageButton;
     }
 }

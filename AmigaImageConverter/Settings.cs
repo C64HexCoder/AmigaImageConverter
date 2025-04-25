@@ -34,7 +34,7 @@ namespace AmigaImageConverter
             bool result = Convert.ToBoolean(regEdit.regKey.GetValue("AutoScaling"));
             if (result != null)
             {
-                scaleToMaxCheckBox.Checked = result;
+                scaleToMaxRadioBox.Checked = result;
             }
 
             var ScalingFactor = regEdit.regKey.GetValue("ScaleFactor", RegistryValueKind.DWord);
@@ -73,11 +73,14 @@ namespace AmigaImageConverter
             {
                 alignLongRb.Checked = Convert.ToBoolean(align);
             }
+
+            previewScalingNud.Enabled = predefinedScalingRadioBox.Checked;
         }
 
         public enum ScaleType
         {
             ScaleToMax,
+            AutoScale,
             Predefined
         }
 
@@ -85,25 +88,35 @@ namespace AmigaImageConverter
         {
             get
             {
-                return scaleToMaxCheckBox.Checked;
+                return scaleToMaxRadioBox.Checked;
             }
         }
 
         public ScaleType ScalingType
         {
-            get { return scaleToMaxCheckBox.Checked == true ? ScaleType.ScaleToMax : ScaleType.Predefined; }
+            get 
+            { 
+                if (scaleToMaxRadioBox.Checked)
+                    return ScaleType.ScaleToMax;
+                else if (autoScalingRadioBox.Checked)
+                    return ScaleType.AutoScale;
+                else
+                    return ScaleType.Predefined;
+            }
 
             set
             {
                 if (value == ScaleType.ScaleToMax)
                 {
-                    scaleToMaxCheckBox.Checked = true;
-                    previewScalingNud.Enabled = false;
+                    scaleToMaxRadioBox.Checked = true;
+                }
+                else if (value == ScaleType.AutoScale)
+                {
+                    autoScalingRadioBox.Checked = true;
                 }
                 else
                 {
-                    scaleToMaxCheckBox.Checked = false;
-                    previewScalingNud.Enabled = true;
+                    predefinedScalingRadioBox.Checked= true;
                 }
             }
         }
@@ -267,6 +280,13 @@ namespace AmigaImageConverter
         {
             regEdit.regKey.SetValue("AlignLong", alignLongRb.Checked);
 
+        }
+
+        private void predefinedScalingRadioBox_CheckedChanged(object sender, EventArgs e)
+        {
+            RadioButton radioButton = (RadioButton)sender;
+            previewScalingNud.Enabled = radioButton.Checked;
+            
         }
     }
 }

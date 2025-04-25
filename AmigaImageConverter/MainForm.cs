@@ -188,6 +188,10 @@ namespace AmigaImageConverter
                 {       // Auto scaling modde
                     ScaleToMax();
                 }
+                else if (settings.ScalingType == Settings.ScaleType.AutoScale)
+                {
+                    image.AutoScale();
+                }
                 // Manual scalling
                 else
                 {
@@ -1511,7 +1515,7 @@ namespace AmigaImageConverter
 
         private void CreateAnimationControl()
         {
-            animation = new Animation();
+            animation = new Animation(image);
             ImageLoaded += LoadImageEvent;
             Controls.Add(animation);
             formState = FormState.Animation;
