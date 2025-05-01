@@ -89,6 +89,7 @@
             OKBtn.TabIndex = 4;
             OKBtn.Text = "OK";
             OKBtn.UseVisualStyleBackColor = true;
+            OKBtn.Click += OKBtn_Click;
             // 
             // cancelBtn
             // 
@@ -126,6 +127,7 @@
             // predefinedScalingRadioBox
             // 
             predefinedScalingRadioBox.AutoSize = true;
+            predefinedScalingRadioBox.Checked = true;
             predefinedScalingRadioBox.Location = new System.Drawing.Point(6, 100);
             predefinedScalingRadioBox.Name = "predefinedScalingRadioBox";
             predefinedScalingRadioBox.Size = new System.Drawing.Size(190, 29);
@@ -142,7 +144,6 @@
             autoScalingRadioBox.Name = "autoScalingRadioBox";
             autoScalingRadioBox.Size = new System.Drawing.Size(222, 29);
             autoScalingRadioBox.TabIndex = 11;
-            autoScalingRadioBox.TabStop = true;
             autoScalingRadioBox.Text = "AutoScale To Form Size";
             autoScalingRadioBox.UseVisualStyleBackColor = true;
             // 
@@ -153,7 +154,6 @@
             scaleToMaxRadioBox.Name = "scaleToMaxRadioBox";
             scaleToMaxRadioBox.Size = new System.Drawing.Size(137, 29);
             scaleToMaxRadioBox.TabIndex = 10;
-            scaleToMaxRadioBox.TabStop = true;
             scaleToMaxRadioBox.Text = "Scale to Max";
             scaleToMaxRadioBox.UseVisualStyleBackColor = true;
             // 

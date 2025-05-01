@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             colorsGrid = new ColorsGrid();
             comboBox1 = new System.Windows.Forms.ComboBox();
             label1 = new System.Windows.Forms.Label();
@@ -37,9 +38,16 @@
             addImageButton = new System.Windows.Forms.Button();
             maxSpriteHeightNumeric = new System.Windows.Forms.NumericUpDown();
             label2 = new System.Windows.Forms.Label();
+            groupBox1 = new System.Windows.Forms.GroupBox();
+            equalizeButton = new System.Windows.Forms.Button();
+            heightNumeric = new System.Windows.Forms.NumericUpDown();
+            label3 = new System.Windows.Forms.Label();
+            toolTip = new System.Windows.Forms.ToolTip(components);
             ((System.ComponentModel.ISupportInitialize)numericUpDown1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)imageSelectNum).BeginInit();
             ((System.ComponentModel.ISupportInitialize)maxSpriteHeightNumeric).BeginInit();
+            groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)heightNumeric).BeginInit();
             SuspendLayout();
             // 
             // colorsGrid
@@ -85,16 +93,17 @@
             // 
             // executeBtn
             // 
-            executeBtn.Location = new System.Drawing.Point(3, 543);
+            executeBtn.Location = new System.Drawing.Point(3, 633);
             executeBtn.Name = "executeBtn";
             executeBtn.Size = new System.Drawing.Size(248, 34);
             executeBtn.TabIndex = 6;
             executeBtn.Text = "Excecute";
             executeBtn.UseVisualStyleBackColor = true;
+            executeBtn.Click += executeBtn_Click;
             // 
             // addImageButton
             // 
-            addImageButton.Location = new System.Drawing.Point(3, 460);
+            addImageButton.Location = new System.Drawing.Point(3, 580);
             addImageButton.Name = "addImageButton";
             addImageButton.Size = new System.Drawing.Size(248, 34);
             addImageButton.TabIndex = 7;
@@ -104,20 +113,62 @@
             // 
             // maxSpriteHeightNumeric
             // 
-            maxSpriteHeightNumeric.Location = new System.Drawing.Point(112, 406);
+            maxSpriteHeightNumeric.Location = new System.Drawing.Point(127, 70);
             maxSpriteHeightNumeric.Name = "maxSpriteHeightNumeric";
             maxSpriteHeightNumeric.ReadOnly = true;
-            maxSpriteHeightNumeric.Size = new System.Drawing.Size(139, 31);
+            maxSpriteHeightNumeric.Size = new System.Drawing.Size(112, 31);
             maxSpriteHeightNumeric.TabIndex = 8;
             // 
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new System.Drawing.Point(3, 408);
+            label2.Location = new System.Drawing.Point(6, 72);
             label2.Name = "label2";
             label2.Size = new System.Drawing.Size(103, 25);
             label2.TabIndex = 9;
             label2.Text = "Max Height";
+            // 
+            // groupBox1
+            // 
+            groupBox1.Controls.Add(equalizeButton);
+            groupBox1.Controls.Add(heightNumeric);
+            groupBox1.Controls.Add(label3);
+            groupBox1.Controls.Add(maxSpriteHeightNumeric);
+            groupBox1.Controls.Add(label2);
+            groupBox1.Location = new System.Drawing.Point(3, 406);
+            groupBox1.Name = "groupBox1";
+            groupBox1.Size = new System.Drawing.Size(245, 156);
+            groupBox1.TabIndex = 10;
+            groupBox1.TabStop = false;
+            groupBox1.Text = "Sprite Height";
+            // 
+            // equalizeButton
+            // 
+            equalizeButton.Location = new System.Drawing.Point(127, 116);
+            equalizeButton.Name = "equalizeButton";
+            equalizeButton.Size = new System.Drawing.Size(112, 34);
+            equalizeButton.TabIndex = 12;
+            equalizeButton.Text = "Equalize";
+            toolTip.SetToolTip(equalizeButton, "Equalize all sprites height");
+            equalizeButton.UseVisualStyleBackColor = true;
+            equalizeButton.Click += equalizeButton_Click;
+            // 
+            // heightNumeric
+            // 
+            heightNumeric.Location = new System.Drawing.Point(127, 30);
+            heightNumeric.Name = "heightNumeric";
+            heightNumeric.ReadOnly = true;
+            heightNumeric.Size = new System.Drawing.Size(112, 31);
+            heightNumeric.TabIndex = 10;
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Location = new System.Drawing.Point(6, 32);
+            label3.Name = "label3";
+            label3.Size = new System.Drawing.Size(65, 25);
+            label3.TabIndex = 11;
+            label3.Text = "Height";
             // 
             // Animation
             // 
@@ -125,8 +176,7 @@
             AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             AutoSize = true;
             AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            Controls.Add(label2);
-            Controls.Add(maxSpriteHeightNumeric);
+            Controls.Add(groupBox1);
             Controls.Add(addImageButton);
             Controls.Add(executeBtn);
             Controls.Add(imageSelectNum);
@@ -135,11 +185,14 @@
             Controls.Add(comboBox1);
             Controls.Add(colorsGrid);
             Name = "Animation";
-            Size = new System.Drawing.Size(257, 580);
+            Size = new System.Drawing.Size(257, 670);
             Tag = "Side Panel";
             ((System.ComponentModel.ISupportInitialize)numericUpDown1).EndInit();
             ((System.ComponentModel.ISupportInitialize)imageSelectNum).EndInit();
             ((System.ComponentModel.ISupportInitialize)maxSpriteHeightNumeric).EndInit();
+            groupBox1.ResumeLayout(false);
+            groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)heightNumeric).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -154,5 +207,10 @@
         private System.Windows.Forms.Button addImageButton;
         private System.Windows.Forms.NumericUpDown maxSpriteHeightNumeric;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.NumericUpDown heightNumeric;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Button equalizeButton;
+        private System.Windows.Forms.ToolTip toolTip;
     }
 }

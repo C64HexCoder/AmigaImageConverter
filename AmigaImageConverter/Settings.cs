@@ -94,8 +94,8 @@ namespace AmigaImageConverter
 
         public ScaleType ScalingType
         {
-            get 
-            { 
+            get
+            {
                 if (scaleToMaxRadioBox.Checked)
                     return ScaleType.ScaleToMax;
                 else if (autoScalingRadioBox.Checked)
@@ -116,7 +116,7 @@ namespace AmigaImageConverter
                 }
                 else
                 {
-                    predefinedScalingRadioBox.Checked= true;
+                    predefinedScalingRadioBox.Checked = true;
                 }
             }
         }
@@ -286,7 +286,12 @@ namespace AmigaImageConverter
         {
             RadioButton radioButton = (RadioButton)sender;
             previewScalingNud.Enabled = radioButton.Checked;
-            
+
+        }
+
+        private void OKBtn_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

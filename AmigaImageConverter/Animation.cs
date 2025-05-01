@@ -45,10 +45,7 @@ namespace AmigaImageConverter
             sprites.Add(sprite);
 
         }
-        public void LoadImage(Bitmap bitmap)
-        {
-
-        }
+      
         private void executeBtn_Click(object sender, EventArgs e)
         {
 
@@ -72,12 +69,24 @@ namespace AmigaImageConverter
 
             if (sprites.Count > imageSelect.Value)
             {
-                ImageBox.Image = (sprites[(int)imageSelect.Value].bitmap); 
+                ImageBox.Image = (sprites[(int)imageSelect.Value].bitmap);
                 ImageBox.ScaleImage();
                 ImageBox.Invalidate();
                 colorsGrid.SetPalette(sprites[(int)imageSelect.Value].palette);
+                heightNumeric.Value = sprites[(int)imageSelect.Value].Height;
             }
 
+        }
+
+        private void equalizeButton_Click(object sender, EventArgs e)
+        {
+            foreach (Sprite sprite in sprites)
+            {
+                sprite.ResizeHeight((int)maxSpriteHeightNumeric.Value, Sprite.Alignment.Bottom);
+            }
+            ImageBox.Image = sprites[(int)imageSelectNum.Value].bitmap;
+            ImageBox.ScaleImage();
+            ImageBox.Invalidate();
         }
     }
 }

@@ -858,7 +858,7 @@ namespace AmigaImageConverter
                         OpenFileDialog paletteDlg = new OpenFileDialog();
                         if (paletteDlg.ShowDialog() == DialogResult.OK)
                         {
-                            iffImage.Load(paletteDlg.FileName);
+                            iffImage.NewLoad(paletteDlg.FileName);
                             vr.bitplane.palette = iffImage.palette;
                             image.Image = vr.bitplane.CreateBitmap();
                             //image.Refresh();
