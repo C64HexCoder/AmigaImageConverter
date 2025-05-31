@@ -127,12 +127,11 @@
             // predefinedScalingRadioBox
             // 
             predefinedScalingRadioBox.AutoSize = true;
-            predefinedScalingRadioBox.Checked = true;
             predefinedScalingRadioBox.Location = new System.Drawing.Point(6, 100);
             predefinedScalingRadioBox.Name = "predefinedScalingRadioBox";
             predefinedScalingRadioBox.Size = new System.Drawing.Size(190, 29);
             predefinedScalingRadioBox.TabIndex = 12;
-            predefinedScalingRadioBox.TabStop = true;
+            predefinedScalingRadioBox.Tag = "PDF";
             predefinedScalingRadioBox.Text = "Pre Defined Scaling";
             predefinedScalingRadioBox.UseVisualStyleBackColor = true;
             predefinedScalingRadioBox.CheckedChanged += predefinedScalingRadioBox_CheckedChanged;
@@ -140,10 +139,13 @@
             // autoScalingRadioBox
             // 
             autoScalingRadioBox.AutoSize = true;
+            autoScalingRadioBox.Checked = true;
             autoScalingRadioBox.Location = new System.Drawing.Point(6, 65);
             autoScalingRadioBox.Name = "autoScalingRadioBox";
             autoScalingRadioBox.Size = new System.Drawing.Size(222, 29);
             autoScalingRadioBox.TabIndex = 11;
+            autoScalingRadioBox.TabStop = true;
+            autoScalingRadioBox.Tag = "ASTF";
             autoScalingRadioBox.Text = "AutoScale To Form Size";
             autoScalingRadioBox.UseVisualStyleBackColor = true;
             // 
@@ -154,6 +156,7 @@
             scaleToMaxRadioBox.Name = "scaleToMaxRadioBox";
             scaleToMaxRadioBox.Size = new System.Drawing.Size(137, 29);
             scaleToMaxRadioBox.TabIndex = 10;
+            scaleToMaxRadioBox.Tag = "STM";
             scaleToMaxRadioBox.Text = "Scale to Max";
             scaleToMaxRadioBox.UseVisualStyleBackColor = true;
             // 

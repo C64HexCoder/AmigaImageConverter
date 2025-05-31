@@ -31,10 +31,17 @@ namespace AmigaImageConverter
 
             Alignment = vr.Alignment;
 
-            bool result = Convert.ToBoolean(regEdit.regKey.GetValue("AutoScaling"));
+            String result = (String) regEdit.regKey.GetValue("AutoScaling");
             if (result != null)
             {
-                scaleToMaxRadioBox.Checked = result;
+                foreach (Control control in scalingGroupBox.Controls)
+                {
+                    if (control is RadioButton && control.Tag.ToString() == result)
+                    {
+                        ((RadioButton)control).Checked = true;
+                    }
+                }
+
             }
 
             var ScalingFactor = regEdit.regKey.GetValue("ScaleFactor", RegistryValueKind.DWord);
@@ -291,7 +298,14 @@ namespace AmigaImageConverter
 
         private void OKBtn_Click(object sender, EventArgs e)
         {
-
+            foreach (RadioButton rb in scalingGroupBox.Controls)
+            {
+                if (rb.Checked)
+                {
+                    regEdit.regKey.SetValue ("AutoScaling",rb.Tag);
+                    break;
+                }
+            }
         }
     }
 }
