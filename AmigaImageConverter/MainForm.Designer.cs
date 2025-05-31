@@ -67,6 +67,7 @@
             setImageWidthToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             toolStripChangeWidthTextBox = new System.Windows.Forms.ToolStripTextBox();
             autoCorpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            outlinkToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             displayMaskToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             informationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
@@ -112,7 +113,6 @@
             process1 = new System.Diagnostics.Process();
             image = new Amiga.ImageBox();
             imagePanel = new System.Windows.Forms.Panel();
-            outlinkToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             menuStrip1.SuspendLayout();
             statusStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)image).BeginInit();
@@ -380,6 +380,13 @@
             autoCorpToolStripMenuItem.Size = new System.Drawing.Size(277, 34);
             autoCorpToolStripMenuItem.Text = "Auto Corp";
             autoCorpToolStripMenuItem.Click += autoCorpToolStripMenuItem_Click;
+            // 
+            // outlinkToolStripMenuItem
+            // 
+            outlinkToolStripMenuItem.Name = "outlinkToolStripMenuItem";
+            outlinkToolStripMenuItem.Size = new System.Drawing.Size(277, 34);
+            outlinkToolStripMenuItem.Text = "Outline";
+            outlinkToolStripMenuItem.Click += outlinkToolStripMenuItem_Click;
             // 
             // displayMaskToolStripMenuItem
             // 
@@ -691,6 +698,7 @@
             image.AutoScaleImageBox = true;
             image.HrizontalScrollBar = null;
             image.Image = null;
+            image.LimitMouseWeelZoom = false;
             image.Location = new System.Drawing.Point(10, 2);
             image.Margin = new System.Windows.Forms.Padding(1, 2, 1, 2);
             image.MaxImageScale = 10;
@@ -725,13 +733,6 @@
             imagePanel.Name = "imagePanel";
             imagePanel.Size = new System.Drawing.Size(1042, 703);
             imagePanel.TabIndex = 7;
-            // 
-            // outlinkToolStripMenuItem
-            // 
-            outlinkToolStripMenuItem.Name = "outlinkToolStripMenuItem";
-            outlinkToolStripMenuItem.Size = new System.Drawing.Size(277, 34);
-            outlinkToolStripMenuItem.Text = "Outline";
-            outlinkToolStripMenuItem.Click += outlinkToolStripMenuItem_Click;
             // 
             // MainForm
             // 
