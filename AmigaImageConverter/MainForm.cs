@@ -232,7 +232,7 @@ namespace AmigaImageConverter
                 }
                 else
                 {
-                    hScrollBar.Visible = false;
+                    vScrollBar.Visible = false;
                 }
 
                 if (image.Image.Height > image.Height)
@@ -1454,6 +1454,7 @@ namespace AmigaImageConverter
             {
                 spriteSlicing.Update();
             }
+            toolStripScalingFactorLabel.Text = "Scale Factor is: " + vr.imageScalingFactoer;
             //Height = image.Height + 120;
             //Width = image.Width;
             //Height += statusStrip.Height;
