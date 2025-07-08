@@ -199,7 +199,6 @@ namespace AmigaImageConverter
                     //PredefinedScale();
                 }
 
-                toolStripScalingFactorLabel.Text += ScalingFactor.ToString();
 
 
 
