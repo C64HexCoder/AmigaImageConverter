@@ -88,6 +88,7 @@
             resizeMethodCBox.Size = new System.Drawing.Size(258, 33);
             resizeMethodCBox.TabIndex = 4;
             resizeMethodCBox.SelectedIndexChanged += resizeMethodCBox_SelectedIndexChanged;
+            resizeMethodCBox.Layout += resizeMethodCBox_Layout;
             // 
             // heightNumericUpDown
             // 
@@ -232,6 +233,7 @@
             imageBox.AutoScaleImageBox = false;
             imageBox.HrizontalScrollBar = null;
             imageBox.Image = null;
+            imageBox.LimitMouseWeelZoom = false;
             imageBox.Location = new System.Drawing.Point(19, 15);
             imageBox.MaxImageScale = 4;
             imageBox.MouseWheelZoom = false;

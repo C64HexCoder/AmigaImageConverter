@@ -186,7 +186,7 @@ namespace AmigaImageConverter
                 // Auto scaling
                 if (settings.ScalingType == Settings.ScaleType.ScaleToMax)
                 {       // Auto scaling modde
-                    ScaleToMax();
+                    image.ScaleToMax(0.8f);
                 }
                 else if (settings.ScalingType == Settings.ScaleType.AutoScale)
                 {
@@ -923,23 +923,8 @@ namespace AmigaImageConverter
             VScrollBar vScrollBar = (VScrollBar)sender;
             image.DrawImagePart(hScrollBar.Value, vScrollBar.Value);
         }
-        private void ScaleToMax()
-        {
-            int ScalingFactor = (int)settings.ScaleFactor;
-
-            image.SizeMode = PictureBoxSizeMode.AutoSize;
-            //       if (vr.bitplane.Width * ScalingFactor > 0.8 * SystemInformation.VirtualScreen.Width || vr.bitplane.Height * ScalingFactor > 0.8 * SystemInformation.VirtualScreen.Height)
-            //     {   // Scaled image bigger then the screen
-
-            int XscaleFactor = (int)Math.Round((float)ScreenWidth * 0.8f / (float)vr.bitplane.Width);
-            int YscaleFactor = (int)Math.Round((float)ScreenHeight * 0.8f / (float)vr.bitplane.Height);
-
-            ScalingFactor = XscaleFactor > YscaleFactor ? YscaleFactor : XscaleFactor;
-
-            image.ScaleImage(ScalingFactor);
-
-
-        }
+     
+      
         private void ScaleToMaxFloat()
         {
             float ScalingFactor = (int)settings.ScaleFactor;

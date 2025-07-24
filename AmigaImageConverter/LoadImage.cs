@@ -30,8 +30,8 @@ namespace AmigaImageConverter
             get { return _bmp; }
             set
             {
-                imageBox.Image = _bmp = value; 
-                resizeMethodCBox_SelectedIndexChanged (resizeMethodCBox,new EventArgs ());
+                imageBox.Image = _bmp = value;
+                resizeMethodCBox_SelectedIndexChanged(resizeMethodCBox, new EventArgs());
             }
         }
 
@@ -107,6 +107,7 @@ namespace AmigaImageConverter
             float ScaleFactor;
 
             ScaleFactor = (float)imageBox.Height / (float)bmp.Height;
+
 
 
             if (bitmap.Width < ScreenWidth * 0.8)
@@ -284,8 +285,8 @@ namespace AmigaImageConverter
             ComboBox comboBox = (ComboBox)sender;
             float HeightToWidth;
 
-        
-            switch (comboBox.SelectedIndex) 
+
+            switch (comboBox.SelectedIndex)
             {
                 case 0:
                     widthNumericUpDown.Enabled = true;
@@ -338,9 +339,9 @@ namespace AmigaImageConverter
                     HeightToWidth = (float)bmp.Height / (float)bmp.Width;
                     heightNumericUpDown.Value = (int)Math.Round(widthNumericUpDown.Value * (decimal)HeightToWidth);
                     heightNumericUpDown.Refresh();
-                    break;  
+                    break;
             }
-            
+
         }
 
         private void widthNumericUpDown_Leave(object sender, EventArgs e)
@@ -391,7 +392,7 @@ namespace AmigaImageConverter
 
         private void autoCropBtn_Click(object sender, EventArgs e)
         {
-     
+
             Point StartPos = new Point(imageBox.Width, imageBox.Height), StopPos = new Point(0, 0);
             Color backgroundColor = bgColorPictureBox.BackColor;
 
@@ -421,7 +422,13 @@ namespace AmigaImageConverter
             g.DrawImage(imageBox.Image, destRec, StartPos.X, StartPos.Y, NewWidth, NewHeight, GraphicsUnit.Pixel);
             g.Dispose();
             imageBox.Image = bmp = corpedImage;
-        
+
+        }
+
+        private void resizeMethodCBox_Layout(object sender, LayoutEventArgs e)
+        {
+            if (bmp.Width > 640 || bmp.Height > 512)
+                resizeMethodCBox.SelectedValue = 4;
         }
     }
 }
