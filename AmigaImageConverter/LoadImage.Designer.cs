@@ -1,4 +1,4 @@
-﻿namespace AmigaImageConverter
+namespace AmigaImageConverter
 {
     partial class LoadImageDialog
     {
@@ -54,6 +54,7 @@
             interpulationCB = new System.Windows.Forms.ComboBox();
             toolTip = new System.Windows.Forms.ToolTip(components);
             hScrollBar = new System.Windows.Forms.HScrollBar();
+            pictureBox1 = new System.Windows.Forms.PictureBox();
             resizeGroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)heightNumericUpDown).BeginInit();
             ((System.ComponentModel.ISupportInitialize)widthNumericUpDown).BeginInit();
@@ -63,6 +64,7 @@
             statusStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)imageBox).BeginInit();
             sidePael.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
             // resizeGroupBox
@@ -319,6 +321,14 @@
             hScrollBar.TabIndex = 8;
             hScrollBar.ValueChanged += hScrollBar_ValueChanged;
             // 
+            // pictureBox1
+            // 
+            pictureBox1.Location = new System.Drawing.Point(579, 488);
+            pictureBox1.Name = "pictureBox1";
+            pictureBox1.Size = new System.Drawing.Size(150, 75);
+            pictureBox1.TabIndex = 9;
+            pictureBox1.TabStop = false;
+            // 
             // LoadImageDialog
             // 
             AutoScaleDimensions = new System.Drawing.SizeF(10F, 25F);
@@ -326,6 +336,7 @@
             AutoSize = true;
             AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             ClientSize = new System.Drawing.Size(1002, 724);
+            Controls.Add(pictureBox1);
             Controls.Add(hScrollBar);
             Controls.Add(sidePael);
             Controls.Add(imageBox);
@@ -347,6 +358,7 @@
             ((System.ComponentModel.ISupportInitialize)imageBox).EndInit();
             sidePael.ResumeLayout(false);
             sidePael.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -378,5 +390,6 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.ComboBox smoothingModeCB;
         private System.Windows.Forms.Button autoCropBtn;
+        private System.Windows.Forms.PictureBox pictureBox1;
     }
 }
