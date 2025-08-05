@@ -45,7 +45,6 @@ namespace AmigaImageConverter
             doItButton = new System.Windows.Forms.Button();
             toolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             statusStrip = new System.Windows.Forms.StatusStrip();
-            imageBox = new Amiga.ImageBox();
             sidePael = new System.Windows.Forms.Panel();
             autoCropBtn = new System.Windows.Forms.Button();
             label3 = new System.Windows.Forms.Label();
@@ -54,7 +53,7 @@ namespace AmigaImageConverter
             interpulationCB = new System.Windows.Forms.ComboBox();
             toolTip = new System.Windows.Forms.ToolTip(components);
             hScrollBar = new System.Windows.Forms.HScrollBar();
-            pictureBox1 = new System.Windows.Forms.PictureBox();
+            imageBox = new Amiga.PictureBox();
             resizeGroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)heightNumericUpDown).BeginInit();
             ((System.ComponentModel.ISupportInitialize)widthNumericUpDown).BeginInit();
@@ -62,9 +61,8 @@ namespace AmigaImageConverter
             groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)bgColorPictureBox).BeginInit();
             statusStrip.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)imageBox).BeginInit();
             sidePael.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)imageBox).BeginInit();
             SuspendLayout();
             // 
             // resizeGroupBox
@@ -229,26 +227,6 @@ namespace AmigaImageConverter
             statusStrip.TabIndex = 5;
             statusStrip.Text = "statusStrip1";
             // 
-            // imageBox
-            // 
-            imageBox.AutoCenter = false;
-            imageBox.AutoScaleImageBox = false;
-            imageBox.HrizontalScrollBar = null;
-            imageBox.Image = null;
-            imageBox.LimitMouseWeelZoom = false;
-            imageBox.Location = new System.Drawing.Point(19, 15);
-            imageBox.MaxImageScale = 4;
-            imageBox.MouseWheelZoom = false;
-            imageBox.Name = "imageBox";
-            imageBox.OriginalImage = null;
-            imageBox.ScaleFactor = 1;
-            imageBox.ScaleFactorFloat = 1F;
-            imageBox.Size = new System.Drawing.Size(686, 654);
-            imageBox.TabIndex = 6;
-            imageBox.TabStop = false;
-            imageBox.VerticalScrollBar = null;
-            imageBox.MouseClick += imageBox_MouseClick;
-            // 
             // sidePael
             // 
             sidePael.Controls.Add(autoCropBtn);
@@ -321,13 +299,15 @@ namespace AmigaImageConverter
             hScrollBar.TabIndex = 8;
             hScrollBar.ValueChanged += hScrollBar_ValueChanged;
             // 
-            // pictureBox1
+            // imageBox
             // 
-            pictureBox1.Location = new System.Drawing.Point(579, 488);
-            pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new System.Drawing.Size(150, 75);
-            pictureBox1.TabIndex = 9;
-            pictureBox1.TabStop = false;
+            imageBox.InterpolationAlgorithm = Amiga.PictureBox.Algorithm.Bilinear;
+            imageBox.Location = new System.Drawing.Point(12, 18);
+            imageBox.Name = "imageBox";
+            imageBox.Size = new System.Drawing.Size(687, 651);
+            imageBox.SizeMode = Amiga.PictureBox.PictureBoxSizeMode.Scale;
+            imageBox.TabIndex = 9;
+            imageBox.TabStop = false;
             // 
             // LoadImageDialog
             // 
@@ -336,10 +316,9 @@ namespace AmigaImageConverter
             AutoSize = true;
             AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             ClientSize = new System.Drawing.Size(1002, 724);
-            Controls.Add(pictureBox1);
+            Controls.Add(imageBox);
             Controls.Add(hScrollBar);
             Controls.Add(sidePael);
-            Controls.Add(imageBox);
             Controls.Add(statusStrip);
             DoubleBuffered = true;
             Name = "LoadImageDialog";
@@ -355,10 +334,9 @@ namespace AmigaImageConverter
             ((System.ComponentModel.ISupportInitialize)bgColorPictureBox).EndInit();
             statusStrip.ResumeLayout(false);
             statusStrip.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)imageBox).EndInit();
             sidePael.ResumeLayout(false);
             sidePael.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)imageBox).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -379,7 +357,6 @@ namespace AmigaImageConverter
         private System.Windows.Forms.Button doItButton;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel;
         private System.Windows.Forms.StatusStrip statusStrip;
-        private Amiga.ImageBox imageBox;
         private System.Windows.Forms.Panel sidePael;
         private System.Windows.Forms.ToolTip toolTip;
         private System.Windows.Forms.HScrollBar hScrollBar;
@@ -390,6 +367,6 @@ namespace AmigaImageConverter
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.ComboBox smoothingModeCB;
         private System.Windows.Forms.Button autoCropBtn;
-        private System.Windows.Forms.PictureBox pictureBox1;
+        private Amiga.PictureBox imageBox;
     }
 }

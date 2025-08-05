@@ -1,4 +1,4 @@
-﻿using Amiga;
+using Amiga;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -97,7 +97,7 @@ namespace AmigaImageConverter
     
         private void selectedColorPb_Resize(object sender, EventArgs e)
         {
-            PictureBox pb = (PictureBox)sender;
+            System.Windows.Forms.PictureBox pb = (System.Windows.Forms.PictureBox)sender;
             //  idxNum.Top = pb.Top + (int)(pb.Height - idxNum.Height)/2;
             //   idxNum.Left = pb.Left+ (int)(pb.Width - idxNum.Width) / 2;
         }

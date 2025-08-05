@@ -110,7 +110,7 @@ namespace AmigaImageConverter
 
 
 
-            if (bitmap.Width < ScreenWidth * 0.8)
+           /* if (bitmap.Width < ScreenWidth * 0.8)
             {
                 imageBox.ScaleImage(ScaleFactor);
                 imageBox.SizeMode = PictureBoxSizeMode.AutoSize;
@@ -131,7 +131,7 @@ namespace AmigaImageConverter
                 Task.Run(() => DrawImagePart(0));
 
 
-            }
+            }*/
 
             sidePael.Left = imageBox.Right + 2;
             hScrollBar.Width = imageBox.Width;
