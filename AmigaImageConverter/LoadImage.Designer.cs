@@ -306,6 +306,7 @@ namespace AmigaImageConverter
             // 
             // hScrollBar1
             // 
+            hScrollBar1.Enabled = false;
             hScrollBar1.Location = new System.Drawing.Point(12, 646);
             hScrollBar1.Name = "hScrollBar1";
             hScrollBar1.Size = new System.Drawing.Size(665, 26);

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -134,6 +134,12 @@ namespace AmigaImageConverter
 
                 bmp = new Bitmap(openImageFileDialog.FileName);
 
+                if (bmp.PixelFormat == PixelFormat.Undefined)
+                {
+                    MessageBox.Show("The image format is not supported, please use a different image.", "Unsupported Image Format", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
                 // If image is not Pallate base (True Color)
                 if (bmp.PixelFormat != PixelFormat.Format8bppIndexed && bmp.PixelFormat != PixelFormat.Format4bppIndexed && bmp.PixelFormat != PixelFormat.Format1bppIndexed)
                 {
@@ -144,6 +150,7 @@ namespace AmigaImageConverter
                     }
                     else return;
 
+                    // If the user selected to reduce colors then we will do it here
 
                     menuStrip1.Enabled = false;
                     switch (loadImageDlg.algorithemCB.SelectedIndex)
