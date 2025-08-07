@@ -52,8 +52,9 @@ namespace AmigaImageConverter
             label5 = new System.Windows.Forms.Label();
             interpulationCB = new System.Windows.Forms.ComboBox();
             toolTip = new System.Windows.Forms.ToolTip(components);
-            hScrollBar = new System.Windows.Forms.HScrollBar();
             imageBox = new Amiga.PictureBox();
+            hScrollBar1 = new System.Windows.Forms.HScrollBar();
+            vScrollBar1 = new System.Windows.Forms.VScrollBar();
             resizeGroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)heightNumericUpDown).BeginInit();
             ((System.ComponentModel.ISupportInitialize)widthNumericUpDown).BeginInit();
@@ -289,25 +290,34 @@ namespace AmigaImageConverter
             interpulationCB.Size = new System.Drawing.Size(260, 33);
             interpulationCB.TabIndex = 5;
             // 
-            // hScrollBar
-            // 
-            hScrollBar.LargeChange = 100;
-            hScrollBar.Location = new System.Drawing.Point(0, 672);
-            hScrollBar.Name = "hScrollBar";
-            hScrollBar.Size = new System.Drawing.Size(699, 20);
-            hScrollBar.SmallChange = 2;
-            hScrollBar.TabIndex = 8;
-            hScrollBar.ValueChanged += hScrollBar_ValueChanged;
-            // 
             // imageBox
             // 
-            imageBox.InterpolationAlgorithm = Amiga.PictureBox.Algorithm.Bilinear;
+            imageBox.HorizontalScrollBar = hScrollBar1;
+            imageBox.Image = null;
+            imageBox.InterpolationAlgorithm = System.Drawing.Drawing2D.InterpolationMode.NearestNeighbor;
             imageBox.Location = new System.Drawing.Point(12, 18);
             imageBox.Name = "imageBox";
-            imageBox.Size = new System.Drawing.Size(687, 651);
-            imageBox.SizeMode = Amiga.PictureBox.PictureBoxSizeMode.Scale;
+            imageBox.Size = new System.Drawing.Size(665, 624);
+            imageBox.SizeMode = Amiga.PictureBox.PictureBoxSizeMode.Normal;
+            imageBox.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.HighQuality;
             imageBox.TabIndex = 9;
             imageBox.TabStop = false;
+            imageBox.VerticalScrollBar = vScrollBar1;
+            // 
+            // hScrollBar1
+            // 
+            hScrollBar1.Location = new System.Drawing.Point(12, 646);
+            hScrollBar1.Name = "hScrollBar1";
+            hScrollBar1.Size = new System.Drawing.Size(665, 26);
+            hScrollBar1.TabIndex = 10;
+            // 
+            // vScrollBar1
+            // 
+            vScrollBar1.Enabled = false;
+            vScrollBar1.Location = new System.Drawing.Point(680, 18);
+            vScrollBar1.Name = "vScrollBar1";
+            vScrollBar1.Size = new System.Drawing.Size(26, 624);
+            vScrollBar1.TabIndex = 11;
             // 
             // LoadImageDialog
             // 
@@ -316,8 +326,9 @@ namespace AmigaImageConverter
             AutoSize = true;
             AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             ClientSize = new System.Drawing.Size(1002, 724);
+            Controls.Add(vScrollBar1);
+            Controls.Add(hScrollBar1);
             Controls.Add(imageBox);
-            Controls.Add(hScrollBar);
             Controls.Add(sidePael);
             Controls.Add(statusStrip);
             DoubleBuffered = true;
@@ -359,7 +370,6 @@ namespace AmigaImageConverter
         private System.Windows.Forms.StatusStrip statusStrip;
         private System.Windows.Forms.Panel sidePael;
         private System.Windows.Forms.ToolTip toolTip;
-        private System.Windows.Forms.HScrollBar hScrollBar;
         private System.Windows.Forms.ComboBox resizeMethodCBox;
         public System.Windows.Forms.ComboBox algorithemCB;
         private System.Windows.Forms.Label label5;
@@ -368,5 +378,7 @@ namespace AmigaImageConverter
         private System.Windows.Forms.ComboBox smoothingModeCB;
         private System.Windows.Forms.Button autoCropBtn;
         private Amiga.PictureBox imageBox;
+        private System.Windows.Forms.HScrollBar hScrollBar1;
+        private System.Windows.Forms.VScrollBar vScrollBar1;
     }
 }

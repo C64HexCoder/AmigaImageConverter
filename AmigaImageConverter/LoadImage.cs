@@ -110,32 +110,30 @@ namespace AmigaImageConverter
 
 
 
-           /* if (bitmap.Width < ScreenWidth * 0.8)
-            {
-                imageBox.ScaleImage(ScaleFactor);
-                imageBox.SizeMode = PictureBoxSizeMode.AutoSize;
-                hScrollBar.Visible = false;
-            }
-            else
-            {
-                ScaledBitmap = ScaleImage(bitmap, ScaleFactor);
-                //imageBox.Image = ScaledBitmap;
+            /* if (bitmap.Width < ScreenWidth * 0.8)
+             {
+                 imageBox.ScaleImage(ScaleFactor);
+                 imageBox.SizeMode = PictureBoxSizeMode.AutoSize;
+                 hScrollBar.Visible = false;
+             }
+             else
+             {
+                 ScaledBitmap = ScaleImage(bitmap, ScaleFactor);
+                 //imageBox.Image = ScaledBitmap;
 
-                //imageBox.SizeMode = PictureBoxSizeMode.AutoSize;
-                imageBox.Width = (int)(ScreenWidth * 0.8);
-                imageBox.Image = new Bitmap(imageBox.Width, imageBox.Height, Graphics.FromImage(bitmap));
+                 //imageBox.SizeMode = PictureBoxSizeMode.AutoSize;
+                 imageBox.Width = (int)(ScreenWidth * 0.8);
+                 imageBox.Image = new Bitmap(imageBox.Width, imageBox.Height, Graphics.FromImage(bitmap));
 
-                hScrollBar.Visible = true;
-                hScrollBar.Maximum = ScaledBitmap.Width - imageBox.Width; //(int)((float)imageBox.Width / (float)imageBox.Image.Width * 100);
+                 hScrollBar.Visible = true;
+                 hScrollBar.Maximum = ScaledBitmap.Width - imageBox.Width; //(int)((float)imageBox.Width / (float)imageBox.Image.Width * 100);
 
-                Task.Run(() => DrawImagePart(0));
+                 Task.Run(() => DrawImagePart(0));
 
 
-            }*/
+             }*/
 
             sidePael.Left = imageBox.Right + 2;
-            hScrollBar.Width = imageBox.Width;
-            hScrollBar.Top = imageBox.Bottom + 2;
 
         }
 
@@ -274,12 +272,7 @@ namespace AmigaImageConverter
                 DialogResult = DialogResult.OK;
         }
 
-        private void hScrollBar_ValueChanged(object sender, EventArgs e)
-        {
-            DrawImagePart(hScrollBar.Value);
-            imageBox.Invalidate();
-        }
-
+      
         private void resizeMethodCBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             ComboBox comboBox = (ComboBox)sender;
@@ -430,5 +423,6 @@ namespace AmigaImageConverter
             if (bmp.Width > 640 || bmp.Height > 512)
                 resizeMethodCBox.SelectedValue = 4;
         }
+
     }
 }
