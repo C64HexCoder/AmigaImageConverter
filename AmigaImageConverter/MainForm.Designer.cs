@@ -698,7 +698,7 @@ namespace AmigaImageConverter
             image.Name = "image";
             image.ScaleFactor = 1F;
             image.Size = new System.Drawing.Size(1027, 700);
-            image.SizeMode = Amiga.PictureBox.PictureBoxSizeMode.Scale;
+            image.SizeMode = Amiga.PictureBox.PictureBoxSizeMode.ScaleToFit;
             image.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.None;
             image.TabIndex = 7;
             image.TabStop = false;

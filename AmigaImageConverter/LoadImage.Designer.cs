@@ -293,6 +293,7 @@ namespace AmigaImageConverter
             // imageBox
             // 
             imageBox.HorizontalScrollBar = hScrollBar1;
+            imageBox.HorizontalScrollBarAlignment = Amiga.PictureBox.ScrollBarAlignment.Bottom;
             imageBox.Image = null;
             imageBox.InterpolationAlgorithm = System.Drawing.Drawing2D.InterpolationMode.NearestNeighbor;
             imageBox.Location = new System.Drawing.Point(12, 18);
@@ -304,21 +305,22 @@ namespace AmigaImageConverter
             imageBox.TabIndex = 9;
             imageBox.TabStop = false;
             imageBox.VerticalScrollBar = vScrollBar1;
+            imageBox.VerticalScrollBarAlignment = Amiga.PictureBox.ScrollBarAlignment.Right;
             // 
             // hScrollBar1
             // 
             hScrollBar1.Enabled = false;
-            hScrollBar1.Location = new System.Drawing.Point(12, 646);
+            hScrollBar1.Location = new System.Drawing.Point(12, 642);
             hScrollBar1.Name = "hScrollBar1";
-            hScrollBar1.Size = new System.Drawing.Size(665, 26);
+            hScrollBar1.Size = new System.Drawing.Size(665, 624);
             hScrollBar1.TabIndex = 10;
             // 
             // vScrollBar1
             // 
             vScrollBar1.Enabled = false;
-            vScrollBar1.Location = new System.Drawing.Point(660, 18);
+            vScrollBar1.Location = new System.Drawing.Point(0, 0);
             vScrollBar1.Name = "vScrollBar1";
-            vScrollBar1.Size = new System.Drawing.Size(32, 624);
+            vScrollBar1.Size = new System.Drawing.Size(645, 624);
             vScrollBar1.TabIndex = 11;
             // 
             // LoadImageDialog
