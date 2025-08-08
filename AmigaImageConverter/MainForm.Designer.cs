@@ -696,9 +696,9 @@ namespace AmigaImageConverter
             image.InterpolationAlgorithm = System.Drawing.Drawing2D.InterpolationMode.NearestNeighbor;
             image.Location = new System.Drawing.Point(12, 36);
             image.Name = "image";
-            image.ScaleFactor = 6F;
+            image.ScaleFactor = 1F;
             image.Size = new System.Drawing.Size(1027, 700);
-            image.SizeMode = Amiga.PictureBox.PictureBoxSizeMode.Normal;
+            image.SizeMode = Amiga.PictureBox.PictureBoxSizeMode.Scale;
             image.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.None;
             image.TabIndex = 7;
             image.TabStop = false;
