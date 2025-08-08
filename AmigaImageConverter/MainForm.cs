@@ -120,7 +120,7 @@ namespace AmigaImageConverter
         {
 
 
-            image.MouseWheelZoom = true;
+            //image.MouseWheelZoom = true;
             formState = FormState.Image;
             vr.spriteRec.IsSpriteCut = false;
 
@@ -190,21 +190,7 @@ namespace AmigaImageConverter
 
                 // if image after scaling using ScalingFactor is to bit to fit on screen then....
 
-                // Auto scaling
-                if (settings.ScalingType == Settings.ScaleType.ScaleToMax)
-                {       // Auto scaling modde
-                    image.ScaleToMax(0.8f);
-                }
-                else if (settings.ScalingType == Settings.ScaleType.AutoScale)
-                {
-                    image.AutoScale();
-                }
-                // Manual scalling
-                else
-                {
-                    image.ScaleImage();
-                    //PredefinedScale();
-                }
+       
 
 
 
@@ -347,42 +333,7 @@ namespace AmigaImageConverter
             {
                // if (settings.valueChanged == true)
                 //{
-                    if (settings.ScaleToMax)
-                    {
-                        image.SizeMode = PictureBoxSizeMode.AutoSize;
-
-                        image.ScaleToMax(0.7f);
-                    }
-                    else
-                    {
-                        image.ScaleFactor = settings.ScaleFactor;
-                        image.Width = defaultimageWidth;
-                        image.Height = defaultimageHeight;
-                        // setting to autosize just for now.
-                        //image.SizeMode = PictureBoxSizeMode.AutoSize;
-                        image.Image = vr.bitplane.bitmap;
-                        image.ScaleImage((int)settings.previewScalingNud.Value);
-
-
-                        hScrollBar.Top = image.Bottom;
-                        hScrollBar.Left = image.Left;
-                        hScrollBar.Width = image.Width;
-                        vScrollBar.Left = image.Right;
-                        vScrollBar.Height = image.Height;
-                        statusStrip.Top = hScrollBar.Bottom;
-                        statusStrip.Left = hScrollBar.Left;
-                        statusStrip.Width = hScrollBar.Width;
-                        //ButtomPanel.Top = hScrollBar.Bottom + 2;
-                        //ButtomPanel.Width = image.Width;
-                        //ButtomPanel.Height = statusStrip.Height;
-
-                        ButtomPanel.Width = image.Width;
-                        ButtomPanel.Top = image.Bottom + 2;
-
-                        // if (image.Image != null)
-                        //   hScrollBar.Maximum = image.Image.Width - image.Width;
-                    }
-
+   
                 //}
             }
         }
@@ -485,7 +436,6 @@ namespace AmigaImageConverter
             g.Dispose();
             vr.bitplane.bitmap = corpedImage;
             image.Image = vr.bitplane.bitmap;
-            image.ScaleImage((int)settings.previewScalingNud.Value);
             ButtomPanel.Top = image.Bottom + 1;
             ButtomPanel.Width = image.Width < 500 ? 500 : image.Width;
             CheckImageAlignment();
@@ -521,7 +471,6 @@ namespace AmigaImageConverter
 
             }
             image.Image = vr.bitplane.bitmap;
-            image.ScaleImage((int)settings.previewScalingNud.Value);
 
             toolStripResolutionLabel.Text = vr.bitplane.bitmap.Width + "x" + vr.bitplane.bitmap.Height;
         }
@@ -550,7 +499,6 @@ namespace AmigaImageConverter
                 if (spriteDialog.ShowDialog() == DialogResult.OK)
                 {
                     image.Image = vr.bitplane.bitmap;
-                    image.ScaleImage((int)settings.ScaleFactor);
                 }
             }
 
@@ -715,7 +663,6 @@ namespace AmigaImageConverter
                     {
                         vr.bitplane.AddBlitterWord(Bitplane.BlitWord.Left);
                         image.Image = vr.bitplane.bitmap;
-                        image.ScaleImage((int)settings.previewScalingNud.Value);
                         toolStripResolutionLabel.Text = vr.bitplane.Width + "x" + vr.bitplane.bitmap.Height;
                         if (AddedBlitWord == BlitWord.None)
                             AddedBlitWord = BlitWord.Left;
@@ -730,7 +677,6 @@ namespace AmigaImageConverter
                     {
                         vr.bitplane.AddBlitterWord(Bitplane.BlitWord.Right);
                         image.Image = vr.bitplane.bitmap;
-                        image.ScaleImage((int)settings.previewScalingNud.Value);
                         toolStripResolutionLabel.Text = vr.bitplane.Width + "x" + vr.bitplane.bitmap.Height;
                         if (AddedBlitWord == BlitWord.None)
                             AddedBlitWord = BlitWord.Right;
@@ -745,7 +691,6 @@ namespace AmigaImageConverter
                     {
                         vr.bitplane.AddBlitterWord(Bitplane.BlitWord.Both);
                         image.Image = vr.bitplane.bitmap;
-                        image.ScaleImage((int)settings.previewScalingNud.Value);
                         toolStripResolutionLabel.Text = vr.bitplane.Width + "x" + vr.bitplane.bitmap.Height;
 
                         AddedBlitWord = BlitWord.Both;
@@ -819,7 +764,6 @@ namespace AmigaImageConverter
             {
                 vr.bitplane.ChangeWidth(int.Parse(tstb.Text));
                 image.Image = vr.bitplane.bitmap;
-                image.ScaleImage((int)settings.previewScalingNud.Value);
             }
         }
 
@@ -855,8 +799,6 @@ namespace AmigaImageConverter
                 vr.bitplane.LoadIFF(iffFile.FileName);
                 image.Image = vr.bitplane.bitmap;
 
-                image.MaxImageScale = Height / image.Image.Height;
-                image.ScaleImage((int)settings.previewScalingNud.Value);
 
                 if (vr.bitplane.bitmap == null)
                     if (MessageBox.Show("Whould you like to load palette?\nWith the absence of palette no image will be displayed!", "Missing Palette", MessageBoxButtons.OKCancel) == DialogResult.OK)
@@ -911,24 +853,16 @@ namespace AmigaImageConverter
                 if (vr.bitplane.Width != image.Image.Width || vr.bitplane.Height != image.Image.Height)
                 {
                     image.Image = vr.bitplane.bitmap;
-                    image.SizeMode = PictureBoxSizeMode.AutoSize;
-                    image.ScaleImage((float)settings.previewScalingNud.Value);
 
                 }
             }
         }
 
-        private void hScrollBar_ValueChanged(object sender, EventArgs e)
-        {
-            HScrollBar hScrollBar = (HScrollBar)sender;
-
-            image.DrawImagePart(hScrollBar.Value, vScrollBar.Value);
-        }
+       
 
         private void vScrollBar_ValueChanged(object sender, EventArgs e)
         {
             VScrollBar vScrollBar = (VScrollBar)sender;
-            image.DrawImagePart(hScrollBar.Value, vScrollBar.Value);
         }
      
       
@@ -936,7 +870,7 @@ namespace AmigaImageConverter
         {
             float ScalingFactor = (int)settings.ScaleFactor;
 
-            image.SizeMode = PictureBoxSizeMode.AutoSize;
+            image.SizeMode = (Amiga.PictureBox.PictureBoxSizeMode)PictureBoxSizeMode.AutoSize;
             //       if (vr.bitplane.Width * ScalingFactor > 0.8 * SystemInformation.VirtualScreen.Width || vr.bitplane.Height * ScalingFactor > 0.8 * SystemInformation.VirtualScreen.Height)
             //     {   // Scaled image bigger then the screen
 
@@ -945,33 +879,27 @@ namespace AmigaImageConverter
 
             ScalingFactor = XscaleFactor > YscaleFactor ? YscaleFactor : XscaleFactor;
 
-            image.ScaleImage(ScalingFactor);
 
         }
 
         private void PredefinedScale()
         {
-            float scaleFactor = (int)image.ScaleFactor;
 
             int XSize = (int)settings.ScaleFactor * image.Image.Width > ScreenWidth ? (int)(ScreenWidth * 0.8f) : (int)settings.ScaleFactor * image.Image.Width;
             int YSize = (int)settings.ScaleFactor * image.Image.Height > ScreenHeight ? (int)(ScreenHeight * 0.8f) : (int)settings.ScaleFactor * image.Image.Height;
 
 
             image.Size = new Size(XSize, YSize);
-            image.SizeMode = PictureBoxSizeMode.Normal;
+            image.SizeMode = (Amiga.PictureBox.PictureBoxSizeMode)PictureBoxSizeMode.Normal;
 
 
-
-
-            image.ScaleImage(image.ScaleFactor);
         }
 
         private void NoScaleing()
         {
             image.Width = defaultimageWidth;
             image.Height = defaultimageHeight;
-            image.SizeMode = PictureBoxSizeMode.Normal;
-            image.ScaleImage((int)settings.ScaleFactor);
+            image.SizeMode = (Amiga.PictureBox.PictureBoxSizeMode)PictureBoxSizeMode.Normal;
         }
 
         private void SaveLinkFileToolStripMenuItem_Click(object sender, EventArgs e)
@@ -1063,7 +991,6 @@ namespace AmigaImageConverter
             //obj.DrawFont('G', 0, 0,5);
             image.Image = obj.CreatePreview(); ;
             //image.Image = obj.fonts[(int)('G' - 0x20)];
-            image.ScaleImage(4);
             //Refresh();
 
         }
@@ -1100,14 +1027,14 @@ namespace AmigaImageConverter
             if (!tsmi.Checked)
             {
                 CloseAllSidePanels();
-                image.MouseWheelZoom = false;
+                //image.MouseWheelZoom = false;
                 createPanelFunc();
                 sprites.Clear();
                 tsmi.Checked = true;
             }
             else
             {
-                image.MouseWheelZoom = true;
+                //image.MouseWheelZoom = true;
                 Controls.Remove(myControl);
                 formState = FormState.Image;
                 tsmi.Checked = false;
@@ -1352,7 +1279,6 @@ namespace AmigaImageConverter
         {
 
             NumericUpDown newWidth = (NumericUpDown)sender;
-            vr.spriteRec.Width = (int)newWidth.Value * image.ScaleFactor;
             image.Invalidate();
         }
 
@@ -1374,7 +1300,6 @@ namespace AmigaImageConverter
         {
             NumericUpDown newHeight = (NumericUpDown)sender;
 
-            vr.spriteRec.Height = (int)newHeight.Value * image.ScaleFactor;
         }
 
         private void loadAmigaPaletterMI_Click(object sender, EventArgs e)

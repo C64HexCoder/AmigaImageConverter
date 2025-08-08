@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -19,8 +19,8 @@ namespace AmigaImageConverter
         List<Sprite> sprites = new List<Sprite>();
         PublicVariables pv = PublicVariables.instance;
         Resize resize = new AmigaImageConverter.Resize();
-        ImageBox ImageBox = null;
-        public Animation(ImageBox imgBox)
+        Amiga.PictureBox ImageBox = null;
+        public Animation(Amiga.PictureBox imgBox)
         {
             InitializeComponent();
             ImageBox = imgBox;
@@ -70,7 +70,6 @@ namespace AmigaImageConverter
             if (sprites.Count > imageSelect.Value)
             {
                 ImageBox.Image = (sprites[(int)imageSelect.Value].bitmap);
-                ImageBox.ScaleImage();
                 ImageBox.Invalidate();
                 colorsGrid.SetPalette(sprites[(int)imageSelect.Value].palette);
                 heightNumeric.Value = sprites[(int)imageSelect.Value].Height;
@@ -85,7 +84,6 @@ namespace AmigaImageConverter
                 sprite.ResizeHeight((int)maxSpriteHeightNumeric.Value, Sprite.Alignment.Bottom);
             }
             ImageBox.Image = sprites[(int)imageSelectNum.Value].bitmap;
-            ImageBox.ScaleImage();
             ImageBox.Invalidate();
         }
     }

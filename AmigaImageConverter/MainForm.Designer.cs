@@ -1,4 +1,4 @@
-﻿namespace AmigaImageConverter
+namespace AmigaImageConverter
 {
     partial class MainForm
     {
@@ -111,12 +111,10 @@
             hScrollBar = new System.Windows.Forms.HScrollBar();
             vScrollBar = new System.Windows.Forms.VScrollBar();
             process1 = new System.Diagnostics.Process();
-            image = new Amiga.ImageBox();
-            imagePanel = new System.Windows.Forms.Panel();
+            image = new Amiga.PictureBox();
             menuStrip1.SuspendLayout();
             statusStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)image).BeginInit();
-            imagePanel.SuspendLayout();
             SuspendLayout();
             // 
             // menuStrip1
@@ -668,7 +666,6 @@
             hScrollBar.Size = new System.Drawing.Size(1072, 30);
             hScrollBar.TabIndex = 5;
             hScrollBar.Visible = false;
-            hScrollBar.ValueChanged += hScrollBar_ValueChanged;
             // 
             // vScrollBar
             // 
@@ -694,45 +691,18 @@
             // 
             // image
             // 
-            image.AutoCenter = false;
-            image.AutoScaleImageBox = true;
-            image.HrizontalScrollBar = null;
+            image.HorizontalScrollBar = hScrollBar;
             image.Image = null;
-            image.LimitMouseWeelZoom = false;
-            image.Location = new System.Drawing.Point(10, 2);
-            image.Margin = new System.Windows.Forms.Padding(1, 2, 1, 2);
-            image.MaxImageScale = 10;
-            image.MinimumSize = new System.Drawing.Size(200, 200);
-            image.MouseWheelZoom = true;
+            image.InterpolationAlgorithm = System.Drawing.Drawing2D.InterpolationMode.NearestNeighbor;
+            image.Location = new System.Drawing.Point(12, 36);
             image.Name = "image";
-            image.OriginalImage = null;
-            image.ScaleFactor = 6;
-            image.ScaleFactorFloat = 1F;
-            image.Size = new System.Drawing.Size(1031, 699);
-            image.TabIndex = 3;
+            image.ScaleFactor = 6F;
+            image.Size = new System.Drawing.Size(1027, 700);
+            image.SizeMode = Amiga.PictureBox.PictureBoxSizeMode.Normal;
+            image.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.None;
+            image.TabIndex = 7;
             image.TabStop = false;
-            image.VerticalScrollBar = null;
-            image.ScaleEvent += image_ScaleEvent;
-            image.HorizontalScrollBarChanged += image_HorizontalScrollBarChanged;
-            image.VerticalScrollBarChanged += image_VerticalScrollBarChanged;
-            image.LoadCompleted += image_LoadCompleted;
-            image.SizeChanged += image_SizeChanged;
-            image.Paint += image_Paint;
-            image.MouseClick += image_MouseClick;
-            image.MouseDown += image_MouseDown;
-            image.MouseMove += image_MouseMove;
-            image.MouseUp += image_MouseUp;
-            // 
-            // imagePanel
-            // 
-            imagePanel.AutoSize = true;
-            imagePanel.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            imagePanel.Controls.Add(image);
-            imagePanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            imagePanel.Location = new System.Drawing.Point(0, 33);
-            imagePanel.Name = "imagePanel";
-            imagePanel.Size = new System.Drawing.Size(1042, 703);
-            imagePanel.TabIndex = 7;
+            image.VerticalScrollBar = vScrollBar;
             // 
             // MainForm
             // 
@@ -740,7 +710,7 @@
             AutoSize = true;
             AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             ClientSize = new System.Drawing.Size(1072, 798);
-            Controls.Add(imagePanel);
+            Controls.Add(image);
             Controls.Add(vScrollBar);
             Controls.Add(hScrollBar);
             Controls.Add(menuStrip1);
@@ -759,7 +729,6 @@
             statusStrip.ResumeLayout(false);
             statusStrip.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)image).EndInit();
-            imagePanel.ResumeLayout(false);
             ResumeLayout(false);
             PerformLayout();
         }
@@ -845,11 +814,10 @@
         private System.Windows.Forms.ToolStripMenuItem animationToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem equlizePalletsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem paletteEqualizerToolStripMenuItem;
-        public Amiga.ImageBox image;
         private System.Windows.Forms.ToolStripMenuItem equalizingAllImagesInDirectoryToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem saveAllFilesInDirectoryAsToolStripMenuItem;
-        private System.Windows.Forms.Panel imagePanel;
         private System.Windows.Forms.ToolStripMenuItem outlinkToolStripMenuItem;
+        private Amiga.PictureBox image;
     }
 }
 

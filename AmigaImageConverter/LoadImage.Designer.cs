@@ -297,7 +297,8 @@ namespace AmigaImageConverter
             imageBox.InterpolationAlgorithm = System.Drawing.Drawing2D.InterpolationMode.NearestNeighbor;
             imageBox.Location = new System.Drawing.Point(12, 18);
             imageBox.Name = "imageBox";
-            imageBox.Size = new System.Drawing.Size(665, 624);
+            imageBox.ScaleFactor = 1F;
+            imageBox.Size = new System.Drawing.Size(645, 624);
             imageBox.SizeMode = Amiga.PictureBox.PictureBoxSizeMode.Normal;
             imageBox.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.HighQuality;
             imageBox.TabIndex = 9;
@@ -315,9 +316,9 @@ namespace AmigaImageConverter
             // vScrollBar1
             // 
             vScrollBar1.Enabled = false;
-            vScrollBar1.Location = new System.Drawing.Point(680, 18);
+            vScrollBar1.Location = new System.Drawing.Point(660, 18);
             vScrollBar1.Name = "vScrollBar1";
-            vScrollBar1.Size = new System.Drawing.Size(26, 624);
+            vScrollBar1.Size = new System.Drawing.Size(32, 624);
             vScrollBar1.TabIndex = 11;
             // 
             // LoadImageDialog

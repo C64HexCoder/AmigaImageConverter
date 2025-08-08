@@ -1,4 +1,4 @@
-﻿using Amiga;
+using Amiga;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -16,12 +16,12 @@ namespace AmigaImageConverter
     {
         List<Sprite> sprites = new List<Sprite>();
         PublicVariables vr = PublicVariables.instance;
-        ImageBox spreedSheet = null;
+        Amiga.PictureBox spreedSheet = null;
         public SpriteCut()
         {
             InitializeComponent();
         }
-        public SpriteCut(ref ImageBox image)
+        public SpriteCut(ref Amiga.PictureBox image)
         {
             InitializeComponent();
             spreedSheet = image;
