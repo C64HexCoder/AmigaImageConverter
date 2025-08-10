@@ -98,6 +98,7 @@ namespace AmigaImageConverter
             calculateBlitterLFByteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             dDFCalculatorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             sPRxPOSSPRxCTLConverterToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            form1ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             aboutMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             openImageFileDialog = new System.Windows.Forms.OpenFileDialog();
@@ -569,7 +570,7 @@ namespace AmigaImageConverter
             // 
             // toolsToolStripMenuItem
             // 
-            toolsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] { calculateBlitterLFByteToolStripMenuItem, dDFCalculatorToolStripMenuItem, sPRxPOSSPRxCTLConverterToolStripMenuItem });
+            toolsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] { calculateBlitterLFByteToolStripMenuItem, dDFCalculatorToolStripMenuItem, sPRxPOSSPRxCTLConverterToolStripMenuItem, form1ToolStripMenuItem });
             toolsToolStripMenuItem.Name = "toolsToolStripMenuItem";
             toolsToolStripMenuItem.Size = new System.Drawing.Size(69, 29);
             toolsToolStripMenuItem.Text = "Tools";
@@ -595,6 +596,13 @@ namespace AmigaImageConverter
             sPRxPOSSPRxCTLConverterToolStripMenuItem.Size = new System.Drawing.Size(341, 34);
             sPRxPOSSPRxCTLConverterToolStripMenuItem.Text = "SPRxPOS SPRxCTL Converter";
             sPRxPOSSPRxCTLConverterToolStripMenuItem.Click += sPRxPOSSPRxCTLConverterToolStripMenuItem_Click;
+            // 
+            // form1ToolStripMenuItem
+            // 
+            form1ToolStripMenuItem.Name = "form1ToolStripMenuItem";
+            form1ToolStripMenuItem.Size = new System.Drawing.Size(341, 34);
+            form1ToolStripMenuItem.Text = "Form1";
+            form1ToolStripMenuItem.Click += form1ToolStripMenuItem_Click;
             // 
             // aboutToolStripMenuItem
             // 
@@ -661,9 +669,9 @@ namespace AmigaImageConverter
             // hScrollBar
             // 
             hScrollBar.Dock = System.Windows.Forms.DockStyle.Bottom;
-            hScrollBar.Location = new System.Drawing.Point(0, 736);
+            hScrollBar.Location = new System.Drawing.Point(0, 746);
             hScrollBar.Name = "hScrollBar";
-            hScrollBar.Size = new System.Drawing.Size(1072, 30);
+            hScrollBar.Size = new System.Drawing.Size(1072, 20);
             hScrollBar.TabIndex = 5;
             hScrollBar.Visible = false;
             // 
@@ -672,7 +680,7 @@ namespace AmigaImageConverter
             vScrollBar.Dock = System.Windows.Forms.DockStyle.Right;
             vScrollBar.Location = new System.Drawing.Point(1042, 33);
             vScrollBar.Name = "vScrollBar";
-            vScrollBar.Size = new System.Drawing.Size(30, 703);
+            vScrollBar.Size = new System.Drawing.Size(30, 713);
             vScrollBar.TabIndex = 6;
             vScrollBar.Visible = false;
             vScrollBar.ValueChanged += vScrollBar_ValueChanged;
@@ -691,18 +699,21 @@ namespace AmigaImageConverter
             // 
             // image
             // 
-            image.HorizontalScrollBar = hScrollBar;
+            image.HorizontalScrollBar = null;
+            image.HScrollBarAlignment = Amiga.PictureBox.HorizontalScrollBarAlignment.Bottom;
             image.Image = null;
             image.InterpolationAlgorithm = System.Drawing.Drawing2D.InterpolationMode.NearestNeighbor;
             image.Location = new System.Drawing.Point(12, 36);
             image.Name = "image";
             image.ScaleFactor = 1F;
+            image.ScrollBarsWidth = 30;
             image.Size = new System.Drawing.Size(1027, 700);
             image.SizeMode = Amiga.PictureBox.PictureBoxSizeMode.ScaleToFit;
             image.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.None;
             image.TabIndex = 7;
             image.TabStop = false;
-            image.VerticalScrollBar = vScrollBar;
+            image.VerticalScrollBar = null;
+            image.VScrollBarAlignment = Amiga.PictureBox.VerticalScrollBarAlignment.Right;
             // 
             // MainForm
             // 
@@ -818,6 +829,7 @@ namespace AmigaImageConverter
         private System.Windows.Forms.ToolStripMenuItem saveAllFilesInDirectoryAsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem outlinkToolStripMenuItem;
         private Amiga.PictureBox image;
+        private System.Windows.Forms.ToolStripMenuItem form1ToolStripMenuItem;
     }
 }
 

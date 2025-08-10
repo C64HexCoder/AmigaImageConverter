@@ -190,7 +190,7 @@ namespace AmigaImageConverter
 
                 // if image after scaling using ScalingFactor is to bit to fit on screen then....
 
-       
+
 
 
 
@@ -331,9 +331,9 @@ namespace AmigaImageConverter
         {
             if (settings.ShowDialog() == DialogResult.OK)
             {
-               // if (settings.valueChanged == true)
+                // if (settings.valueChanged == true)
                 //{
-   
+
                 //}
             }
         }
@@ -858,14 +858,14 @@ namespace AmigaImageConverter
             }
         }
 
-       
+
 
         private void vScrollBar_ValueChanged(object sender, EventArgs e)
         {
             VScrollBar vScrollBar = (VScrollBar)sender;
         }
-     
-      
+
+
         private void ScaleToMaxFloat()
         {
             float ScalingFactor = (int)settings.ScaleFactor;
@@ -1512,6 +1512,12 @@ namespace AmigaImageConverter
             vr.bitplane.bitmap = bitmap;
 
             image.Invalidate();
+        }
+
+        private void form1ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Form1 form1 = new Form1();
+            form1.ShowDialog();
         }
     }
 }
