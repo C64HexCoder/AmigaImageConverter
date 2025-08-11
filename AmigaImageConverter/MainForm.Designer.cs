@@ -714,6 +714,11 @@ namespace AmigaImageConverter
             image.TabStop = false;
             image.VerticalScrollBar = null;
             image.VScrollBarAlignment = Amiga.PictureBox.VerticalScrollBarAlignment.Right;
+            image.Paint += image_Paint;
+            image.MouseClick += image_MouseClick;
+            image.MouseDown += image_MouseDown;
+            image.MouseMove += image_MouseMove;
+            image.MouseUp += image_MouseUp;
             // 
             // MainForm
             // 
