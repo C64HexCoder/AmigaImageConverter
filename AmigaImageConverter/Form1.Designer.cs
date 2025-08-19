@@ -34,17 +34,22 @@ namespace AmigaImageConverter
             // 
             // exPictureBox1
             // 
+            exPictureBox1.HScrollAlignment = Amiga.PictureBox.HorizontalScrollBarAlignment.Bottom;
             exPictureBox1.Image = (System.Drawing.Image)resources.GetObject("exPictureBox1.Image");
-            exPictureBox1.Location = new System.Drawing.Point(12, 12);
+            exPictureBox1.InterpulationAlgorithem = System.Drawing.Drawing2D.InterpolationMode.NearestNeighbor;
+            exPictureBox1.Location = new System.Drawing.Point(12, 14);
             exPictureBox1.Name = "exPictureBox1";
-            exPictureBox1.Size = new System.Drawing.Size(760, 402);
-            exPictureBox1.TabIndex = 4;
+            exPictureBox1.Size = new System.Drawing.Size(968, 720);
+            exPictureBox1.SizeMode = Amiga.PictureBox.PictureBoxSizeMode.Scale;
+            exPictureBox1.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.None;
+            exPictureBox1.TabIndex = 0;
+            exPictureBox1.VScrollAlignment = Amiga.PictureBox.VerticalScrollBarAlignment.Right;
             // 
             // Form1
             // 
             AutoScaleDimensions = new System.Drawing.SizeF(10F, 25F);
             AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            ClientSize = new System.Drawing.Size(800, 450);
+            ClientSize = new System.Drawing.Size(992, 746);
             Controls.Add(exPictureBox1);
             Name = "Form1";
             Text = "Form1";

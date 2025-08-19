@@ -29,6 +29,7 @@ namespace AmigaImageConverter
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(LoadImageDialog));
             resizeGroupBox = new System.Windows.Forms.GroupBox();
             resizeMethodCBox = new System.Windows.Forms.ComboBox();
             heightNumericUpDown = new System.Windows.Forms.NumericUpDown();
@@ -52,9 +53,7 @@ namespace AmigaImageConverter
             label5 = new System.Windows.Forms.Label();
             interpulationCB = new System.Windows.Forms.ComboBox();
             toolTip = new System.Windows.Forms.ToolTip(components);
-            imageBox = new Amiga.PictureBox();
-            hScrollBar = new System.Windows.Forms.HScrollBar();
-            vScrollBar = new System.Windows.Forms.VScrollBar();
+            imageBox = new Amiga.ExPictureBox();
             resizeGroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)heightNumericUpDown).BeginInit();
             ((System.ComponentModel.ISupportInitialize)widthNumericUpDown).BeginInit();
@@ -63,7 +62,6 @@ namespace AmigaImageConverter
             ((System.ComponentModel.ISupportInitialize)bgColorPictureBox).BeginInit();
             statusStrip.SuspendLayout();
             sidePael.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)imageBox).BeginInit();
             SuspendLayout();
             // 
             // resizeGroupBox
@@ -224,7 +222,7 @@ namespace AmigaImageConverter
             statusStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] { toolStripStatusLabel });
             statusStrip.Location = new System.Drawing.Point(0, 692);
             statusStrip.Name = "statusStrip";
-            statusStrip.Size = new System.Drawing.Size(1002, 32);
+            statusStrip.Size = new System.Drawing.Size(1160, 32);
             statusStrip.TabIndex = 5;
             statusStrip.Text = "statusStrip1";
             // 
@@ -239,7 +237,7 @@ namespace AmigaImageConverter
             sidePael.Controls.Add(resizeGroupBox);
             sidePael.Controls.Add(groupBox1);
             sidePael.Controls.Add(doItButton);
-            sidePael.Location = new System.Drawing.Point(711, 15);
+            sidePael.Location = new System.Drawing.Point(875, 12);
             sidePael.Name = "sidePael";
             sidePael.Size = new System.Drawing.Size(273, 654);
             sidePael.TabIndex = 7;
@@ -292,35 +290,11 @@ namespace AmigaImageConverter
             // 
             // imageBox
             // 
-            imageBox.HorizontalScrollBar = hScrollBar;
-            imageBox.HScrollBarAlignment = Amiga.PictureBox.HorizontalScrollBarAlignment.Bottom;
-            imageBox.Image = null;
-            imageBox.InterpolationAlgorithm = System.Drawing.Drawing2D.InterpolationMode.NearestNeighbor;
-            imageBox.Location = new System.Drawing.Point(12, 18);
+            imageBox.Image = (System.Drawing.Image)resources.GetObject("imageBox.Image");
+            imageBox.Location = new System.Drawing.Point(12, 15);
             imageBox.Name = "imageBox";
-            imageBox.ScaleFactor = 1F;
-            imageBox.ScrollBarsWidth = 30;
-            imageBox.Size = new System.Drawing.Size(663, 638);
-            imageBox.SizeMode = Amiga.PictureBox.PictureBoxSizeMode.Scale;
-            imageBox.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.HighQuality;
-            imageBox.TabIndex = 9;
-            imageBox.TabStop = false;
-            imageBox.VerticalScrollBar = vScrollBar;
-            imageBox.VScrollBarAlignment = Amiga.PictureBox.VerticalScrollBarAlignment.Right;
-            // 
-            // hScrollBar
-            // 
-            hScrollBar.Location = new System.Drawing.Point(12, 656);
-            hScrollBar.Name = "hScrollBar";
-            hScrollBar.Size = new System.Drawing.Size(663, 30);
-            hScrollBar.TabIndex = 10;
-            // 
-            // vScrollBar
-            // 
-            vScrollBar.Location = new System.Drawing.Point(675, 18);
-            vScrollBar.Name = "vScrollBar";
-            vScrollBar.Size = new System.Drawing.Size(30, 638);
-            vScrollBar.TabIndex = 12;
+            imageBox.Size = new System.Drawing.Size(845, 651);
+            imageBox.TabIndex = 8;
             // 
             // LoadImageDialog
             // 
@@ -328,9 +302,7 @@ namespace AmigaImageConverter
             AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             AutoSize = true;
             AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            ClientSize = new System.Drawing.Size(1002, 724);
-            Controls.Add(vScrollBar);
-            Controls.Add(hScrollBar);
+            ClientSize = new System.Drawing.Size(1160, 724);
             Controls.Add(imageBox);
             Controls.Add(sidePael);
             Controls.Add(statusStrip);
@@ -350,7 +322,6 @@ namespace AmigaImageConverter
             statusStrip.PerformLayout();
             sidePael.ResumeLayout(false);
             sidePael.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)imageBox).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -370,7 +341,6 @@ namespace AmigaImageConverter
         private System.Windows.Forms.CheckBox transparentCheckBox;
         private System.Windows.Forms.Button doItButton;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel;
-        private System.Windows.Forms.StatusStrip statusStrip;
         private System.Windows.Forms.Panel sidePael;
         private System.Windows.Forms.ToolTip toolTip;
         private System.Windows.Forms.ComboBox resizeMethodCBox;
@@ -380,8 +350,7 @@ namespace AmigaImageConverter
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.ComboBox smoothingModeCB;
         private System.Windows.Forms.Button autoCropBtn;
-        private Amiga.PictureBox imageBox;
-        private System.Windows.Forms.HScrollBar hScrollBar;
-        private System.Windows.Forms.VScrollBar vScrollBar;
+        private System.Windows.Forms.StatusStrip statusStrip;
+        private Amiga.ExPictureBox imageBox;
     }
 }

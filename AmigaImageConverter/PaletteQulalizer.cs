@@ -14,12 +14,12 @@ namespace AmigaImageConverter
 {
     public partial class PaletteQulalizerBtn : UserControl
     {
-        Amiga.PictureBox imageBox;
+        Amiga.ExPictureBox imageBox;
         Sprite sprite = new Sprite();
         PublicVariables pv = PublicVariables.instance;
         byte BackgroundColorIdx = 0;
 
-        public PaletteQulalizerBtn(ref Amiga.PictureBox imageBox)
+        public PaletteQulalizerBtn(ref Amiga.ExPictureBox imageBox)
         {
             InitializeComponent();
             this.imageBox = imageBox;

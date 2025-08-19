@@ -202,14 +202,6 @@ namespace AmigaImageConverter
                 toolStripDepthLabel.Text = $"{vr.bitplane.NumOfBitmaps} Bitmaps, new Width: {vr.bitplane.actualWidth}";
 
 
-                hScrollBar.Top = image.Bottom;
-                hScrollBar.Left = image.Left;
-                hScrollBar.Width = image.Width;
-                vScrollBar.Left = image.Right;
-                vScrollBar.Height = image.Height;
-                statusStrip.Top = hScrollBar.Bottom;
-                statusStrip.Left = hScrollBar.Left;
-                statusStrip.Width = hScrollBar.Width;
 
                 //ButtomPanel.Top = hScrollBar.Bottom + 2;
                 //ButtomPanel.Width = image.Width;
@@ -224,7 +216,6 @@ namespace AmigaImageConverter
                 }
                 else
                 {
-                    vScrollBar.Visible = false;
                 }
 
                 if (image.Image.Height > image.Height)
@@ -232,7 +223,7 @@ namespace AmigaImageConverter
                     //vScrollBar.Maximum = image.Image.Height - image.Height;
                     //vScrollBar.Visible = true;
                 }
-                else { hScrollBar.Visible = false; }
+                else { }
 
 
                 switch (vr.bitplane.bitmap.PixelFormat)
@@ -638,8 +629,8 @@ namespace AmigaImageConverter
 
                 int MouseX = e.X, MouseY = e.Y;
 
-                int SprireWidth = (int)(image.Width / SpritesPerRaw);
-                int SpriteHeight = (int)(image.Height / spriteSlicing.numOfRawsNud.Value);
+                int SprireWidth = (int)(image.Image.Width / SpritesPerRaw);
+                int SpriteHeight = (int)(image.Image.Height / spriteSlicing.numOfRawsNud.Value);
 
 
                 int SpriteXPos = (int)MouseX / SprireWidth, SpriteYPos = (int)MouseY / SpriteHeight;
@@ -969,14 +960,12 @@ namespace AmigaImageConverter
 
         private void image_HorizontalScrollBarChanged(object sender, ImageBox.ScrollBarEventArgs args)
         {
-            hScrollBar.Maximum = args.Maximum;
-            hScrollBar.Visible = args.Enabled;
+
         }
 
         private void image_VerticalScrollBarChanged(object sender, ImageBox.ScrollBarEventArgs args)
         {
-            vScrollBar.Maximum = args.Maximum;
-            vScrollBar.Visible = args.Enabled;
+
         }
 
         private void loadAmigaFonttoolStripMenuItem_Click(object sender, EventArgs e)
@@ -1096,7 +1085,7 @@ namespace AmigaImageConverter
             if (formState != FormState.SpriteCut)
                 return;
 
-            Graphics gfx = image.CreateGraphics();
+            Graphics gfx = image.Graphics;
             Color penColor;
 
             vr.spriteRec.LineWIdth = 4;
@@ -1117,8 +1106,11 @@ namespace AmigaImageConverter
                     case SpriteCutState.Cut:
                         if (e.X > vr.spriteRec.X && e.Y > vr.spriteRec.Y)
                         {
-                            Rectangle temp = new Rectangle(vr.spriteRec.X, vr.spriteRec.Y, e.X - vr.spriteRec.X, e.Y - vr.spriteRec.Y);
-                            gfx.DrawRectangle(p, temp);
+                            //Rectangle temp = new Rectangle(vr.spriteRec.X, vr.spriteRec.Y, e.X - vr.spriteRec.X, e.Y - vr.spriteRec.Y);
+                            //gfx.DrawRectangle(p, temp);
+                            //image.DrawOverlayRectangle(temp);
+                            vr.spriteRec.Width = e.X - vr.spriteRec.X;
+                            vr.spriteRec.Height = e.Y - vr.spriteRec.Y;
 
                         }
                         break;
@@ -1130,6 +1122,8 @@ namespace AmigaImageConverter
                         vr.spriteRec.Y = e.Y;
                         vr.spriteRec.Width = NewWidth;
                         vr.spriteRec.Height = NewHeight;
+
+                        image.DrawOverlayRectangle(vr.spriteRec.Bounds);
                         break;
 
                     case SpriteCutState.PanSW:
@@ -1167,6 +1161,7 @@ namespace AmigaImageConverter
                         break;
                 }
 
+
             }
             else
             {
@@ -1203,10 +1198,12 @@ namespace AmigaImageConverter
                     spriteCutState = SpriteCutState.Cut;
                 }
             }
-            spriteCut.widthNumUD.Maximum = image.Width;
-            spriteCut.heightNumUD.Maximum = image.Height;
-            spriteCut.widthNumUD.Value = vr.spriteRec.Width / vr.imageScalingFactoer;
-            spriteCut.heightNumUD.Value = vr.spriteRec.Height / vr.imageScalingFactoer;
+            spriteCut.widthNumUD.Maximum = image.Image.Width;
+            spriteCut.heightNumUD.Maximum = image.Image.Height;
+            spriteCut.widthNumUD.Value = (int)(vr.spriteRec.Width / image.ScaldeFactor);
+            spriteCut.heightNumUD.Value = (int)(vr.spriteRec.Height / image.ScaldeFactor);
+
+            image.DrawOverlayRectangle(vr.spriteRec.Bounds);
 
         }
 
@@ -1219,13 +1216,14 @@ namespace AmigaImageConverter
                 vr.spriteRec.Height = e.Y - vr.spriteRec.Y;
                 vr.spriteRec.IsSpriteCut = true;
             }
-
-            image.Invalidate();
+            image.DrawOverlayRectangle(vr.spriteRec.Bounds);
+            //image.InvalidateImage();
         }
 
         private void image_Paint(object sender, PaintEventArgs e)
         {
             Graphics g = e.Graphics;
+            //Graphics g = image.Gfx;
             Color penColor;
             if (vr.bitplane.Palette == null)
                 penColor = Color.Black;
@@ -1237,7 +1235,8 @@ namespace AmigaImageConverter
             if (formState == FormState.SpriteSplit || formState == FormState.SpriteCut)
             {
                 if (vr.spriteRec.Enable)
-                    g.DrawRectangle(p, vr.spriteRec.Bounds);
+                    //g.DrawRectangle(p, vr.spriteRec.Bounds);
+                    image.DrawOverlayRectangle(vr.spriteRec.Bounds);
             }
         }
 
@@ -1378,7 +1377,7 @@ namespace AmigaImageConverter
 
         private void CreateSpriteSlicingPanel()
         {
-            spriteSlicing = new SpriteSlicing();
+            spriteSlicing = new SpriteSlicing(ref image);
 
             Controls.Add(spriteSlicing);
 
@@ -1518,6 +1517,11 @@ namespace AmigaImageConverter
         {
             Form1 form1 = new Form1();
             form1.ShowDialog();
+        }
+
+        private void image_Click(object sender, EventArgs e)
+        {
+            int test = 1;
         }
     }
 }

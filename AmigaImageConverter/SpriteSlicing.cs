@@ -1,4 +1,4 @@
-﻿using Amiga;
+using Amiga;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -16,16 +16,17 @@ namespace AmigaImageConverter
     {
         List<Sprite> sprites = new List<Sprite>();
         PublicVariables vr = PublicVariables.instance;
+        ExPictureBox pictureBox;
 
         public event Action SlicePanelClosed;
         public bool isSliced { get; set; } = false;
 
         public event EventHandler ImageUpdated;
 
-        public SpriteSlicing()
+        public SpriteSlicing(ref Amiga.ExPictureBox picBox)
         {
             InitializeComponent();
-
+            pictureBox = picBox;
         }
         public int ImagesPerRaw
         {
@@ -69,10 +70,10 @@ namespace AmigaImageConverter
             int SpriteXPos = SpriteNum % SpritePerRaw, SpriteYPos = SpriteNum / SpritePerRaw;
 
             vr.spriteRec.LineWIdth = 4;
-            vr.spriteRec.X = SpriteXPos * SprireWidth * vr.imageScalingFactoer;
-            vr.spriteRec.Y = SpriteYPos * SpriteHeight * vr.imageScalingFactoer;
-            vr.spriteRec.Width = SprireWidth * vr.imageScalingFactoer;
-            vr.spriteRec.Height = SpriteHeight * vr.imageScalingFactoer;
+            vr.spriteRec.X = (int)(SpriteXPos * SprireWidth * pictureBox.ScaldeFactor);
+            vr.spriteRec.Y = (int)(SpriteYPos * SpriteHeight * pictureBox.ScaldeFactor);
+            vr.spriteRec.Width = (int)(SprireWidth * pictureBox.ScaldeFactor);
+            vr.spriteRec.Height = (int)(SpriteHeight * pictureBox.ScaldeFactor);
 
             ImageUpdated?.Invoke(this, EventArgs.Empty);
         }

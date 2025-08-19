@@ -16,12 +16,12 @@ namespace AmigaImageConverter
     {
         List<Sprite> sprites = new List<Sprite>();
         PublicVariables vr = PublicVariables.instance;
-        Amiga.PictureBox spreedSheet = null;
+        Amiga.ExPictureBox spreedSheet = null;
         public SpriteCut()
         {
             InitializeComponent();
         }
-        public SpriteCut(ref Amiga.PictureBox image)
+        public SpriteCut(ref Amiga.ExPictureBox image)
         {
             InitializeComponent();
             spreedSheet = image;
@@ -29,11 +29,11 @@ namespace AmigaImageConverter
 
         public void SetWidth(int width)
         {
-            widthNumUD.Value = width / vr.imageScalingFactoer;
+            widthNumUD.Value = (int)(width / spreedSheet.ScaldeFactor);
         }
         public void SetHeight(int height)
         {
-            heightNumUD.Value = height / vr.imageScalingFactoer;
+            heightNumUD.Value = (int)(height / spreedSheet.ScaldeFactor);
         }
 
         private bool AutoTrim
@@ -45,12 +45,12 @@ namespace AmigaImageConverter
         }
         private void cutSpriteBtn_Click(object sender, EventArgs e)
         {
-            Bitmap bitmap = new Bitmap(vr.spriteRec.Width / vr.imageScalingFactoer, vr.spriteRec.Height / vr.imageScalingFactoer);
+            Bitmap bitmap = new Bitmap((int)(vr.spriteRec.Width / spreedSheet.ScaldeFactor), (int)(vr.spriteRec.Height / spreedSheet.ScaldeFactor));
             Graphics gfx = Graphics.FromImage(bitmap);
             Sprite sprite = new Sprite();
             sprite.Name = spriteNameSCTB.Text;
 
-            Rectangle OriginalSizeRect = new Rectangle(vr.spriteRec.X / vr.imageScalingFactoer, vr.spriteRec.Y / vr.imageScalingFactoer, vr.spriteRec.Width / vr.imageScalingFactoer, vr.spriteRec.Height / vr.imageScalingFactoer);
+            Rectangle OriginalSizeRect = new Rectangle((int)(vr.spriteRec.X / spreedSheet.ScaldeFactor), (int)(vr.spriteRec.Y / spreedSheet.ScaldeFactor), (int)(vr.spriteRec.Width / spreedSheet.ScaldeFactor), (int)(vr.spriteRec.Height / spreedSheet.ScaldeFactor));
             gfx.DrawImage(vr.bitplane.bitmap, 0, 0, OriginalSizeRect, GraphicsUnit.Pixel);
 
             spriteCutPreviewIB.Image = bitmap;

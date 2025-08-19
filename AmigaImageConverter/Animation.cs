@@ -19,8 +19,8 @@ namespace AmigaImageConverter
         List<Sprite> sprites = new List<Sprite>();
         PublicVariables pv = PublicVariables.instance;
         Resize resize = new AmigaImageConverter.Resize();
-        Amiga.PictureBox ImageBox = null;
-        public Animation(Amiga.PictureBox imgBox)
+        Amiga.ExPictureBox ImageBox = null;
+        public Animation(Amiga.ExPictureBox imgBox)
         {
             InitializeComponent();
             ImageBox = imgBox;

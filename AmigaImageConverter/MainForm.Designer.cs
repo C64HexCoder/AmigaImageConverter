@@ -109,13 +109,10 @@ namespace AmigaImageConverter
             toolStripResolutionLabel = new System.Windows.Forms.ToolStripStatusLabel();
             toolStripDepthLabel = new System.Windows.Forms.ToolStripStatusLabel();
             toolStripScalingFactorLabel = new System.Windows.Forms.ToolStripStatusLabel();
-            hScrollBar = new System.Windows.Forms.HScrollBar();
-            vScrollBar = new System.Windows.Forms.VScrollBar();
             process1 = new System.Diagnostics.Process();
-            image = new Amiga.PictureBox();
+            image = new Amiga.ExPictureBox();
             menuStrip1.SuspendLayout();
             statusStrip.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)image).BeginInit();
             SuspendLayout();
             // 
             // menuStrip1
@@ -666,25 +663,6 @@ namespace AmigaImageConverter
             toolStripScalingFactorLabel.Size = new System.Drawing.Size(121, 25);
             toolStripScalingFactorLabel.Text = "Scaling Factor";
             // 
-            // hScrollBar
-            // 
-            hScrollBar.Dock = System.Windows.Forms.DockStyle.Bottom;
-            hScrollBar.Location = new System.Drawing.Point(0, 746);
-            hScrollBar.Name = "hScrollBar";
-            hScrollBar.Size = new System.Drawing.Size(1072, 20);
-            hScrollBar.TabIndex = 5;
-            hScrollBar.Visible = false;
-            // 
-            // vScrollBar
-            // 
-            vScrollBar.Dock = System.Windows.Forms.DockStyle.Right;
-            vScrollBar.Location = new System.Drawing.Point(1042, 33);
-            vScrollBar.Name = "vScrollBar";
-            vScrollBar.Size = new System.Drawing.Size(30, 713);
-            vScrollBar.TabIndex = 6;
-            vScrollBar.Visible = false;
-            vScrollBar.ValueChanged += vScrollBar_ValueChanged;
-            // 
             // process1
             // 
             process1.StartInfo.Domain = "";
@@ -699,26 +677,24 @@ namespace AmigaImageConverter
             // 
             // image
             // 
-            image.HorizontalScrollBar = null;
-            image.HScrollBarAlignment = Amiga.PictureBox.HorizontalScrollBarAlignment.Bottom;
+            image.Dock = System.Windows.Forms.DockStyle.Fill;
+            image.HScrollAlignment = Amiga.PictureBox.HorizontalScrollBarAlignment.Bottom;
             image.Image = null;
-            image.InterpolationAlgorithm = System.Drawing.Drawing2D.InterpolationMode.NearestNeighbor;
-            image.Location = new System.Drawing.Point(12, 36);
+            image.InterpulationAlgorithem = System.Drawing.Drawing2D.InterpolationMode.NearestNeighbor;
+            image.Location = new System.Drawing.Point(0, 33);
             image.Name = "image";
-            image.ScaleFactor = 1F;
-            image.ScrollBarsWidth = 30;
-            image.Size = new System.Drawing.Size(1027, 700);
-            image.SizeMode = Amiga.PictureBox.PictureBoxSizeMode.ScaleToFit;
+            image.ScaldeFactor = 1F;
+            image.ScaleStep = 0.1F;
+            image.Size = new System.Drawing.Size(1072, 733);
+            image.SizeMode = Amiga.PictureBox.PictureBoxSizeMode.Scale;
             image.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.None;
-            image.TabIndex = 7;
-            image.TabStop = false;
-            image.VerticalScrollBar = null;
-            image.VScrollBarAlignment = Amiga.PictureBox.VerticalScrollBarAlignment.Right;
-            image.Paint += image_Paint;
+            image.TabIndex = 3;
+            image.VScrollAlignment = Amiga.PictureBox.VerticalScrollBarAlignment.Right;
+            image.ImagePaint += image_Paint;
             image.MouseClick += image_MouseClick;
-            image.MouseDown += image_MouseDown;
-            image.MouseMove += image_MouseMove;
-            image.MouseUp += image_MouseUp;
+            image.ImageMouseDown += image_MouseDown;
+            image.ImageMouseMove += image_MouseMove;
+            image.ImageMouseUp += image_MouseUp;
             // 
             // MainForm
             // 
@@ -727,8 +703,6 @@ namespace AmigaImageConverter
             AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             ClientSize = new System.Drawing.Size(1072, 798);
             Controls.Add(image);
-            Controls.Add(vScrollBar);
-            Controls.Add(hScrollBar);
             Controls.Add(menuStrip1);
             Controls.Add(statusStrip);
             DoubleBuffered = true;
@@ -744,7 +718,6 @@ namespace AmigaImageConverter
             menuStrip1.PerformLayout();
             statusStrip.ResumeLayout(false);
             statusStrip.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)image).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -795,8 +768,6 @@ namespace AmigaImageConverter
         private System.Windows.Forms.ToolStripMenuItem aCBMToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
         private System.Windows.Forms.ToolStripMenuItem resizeToolStripMenuItem;
-        private System.Windows.Forms.HScrollBar hScrollBar;
-        private System.Windows.Forms.VScrollBar vScrollBar;
         private System.Windows.Forms.ToolStripStatusLabel toolStripScalingFactorLabel;
         public System.Windows.Forms.StatusStrip statusStrip;
         private System.Windows.Forms.ToolStripMenuItem SaveLinkFileToolStripMenuItem;
@@ -833,8 +804,8 @@ namespace AmigaImageConverter
         private System.Windows.Forms.ToolStripMenuItem equalizingAllImagesInDirectoryToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem saveAllFilesInDirectoryAsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem outlinkToolStripMenuItem;
-        private Amiga.PictureBox image;
         private System.Windows.Forms.ToolStripMenuItem form1ToolStripMenuItem;
+        private Amiga.ExPictureBox image;
     }
 }
 
