@@ -62,20 +62,23 @@ namespace AmigaImageConverter
         }
         private void RectangleSprite(int SpriteNum)
         {
-            int SprireWidth = (int)(vr.bitplane.Width / ImagesPerRawNud.Value / spritePerImageUDN.Value);
-            int SpriteHeight = (int)(vr.bitplane.Height / numOfRawsNud.Value);
+            int SprireWidth = (int)(pictureBox.Image.Width / ImagesPerRawNud.Value / spritePerImageUDN.Value);
+            int SpriteHeight = (int)(pictureBox.Image.Height / numOfRawsNud.Value);
             int SpritePerRaw = (int)(ImagesPerRawNud.Value * spritePerImageUDN.Value);
 
             sprImageBox.Image = sprites[SpriteNum].bitmap;
             int SpriteXPos = SpriteNum % SpritePerRaw, SpriteYPos = SpriteNum / SpritePerRaw;
 
+            //pictureBox.ClearOverlayRectangles();
             vr.spriteRec.LineWIdth = 4;
             vr.spriteRec.X = (int)(SpriteXPos * SprireWidth * pictureBox.ScaldeFactor);
             vr.spriteRec.Y = (int)(SpriteYPos * SpriteHeight * pictureBox.ScaldeFactor);
             vr.spriteRec.Width = (int)(SprireWidth * pictureBox.ScaldeFactor);
             vr.spriteRec.Height = (int)(SpriteHeight * pictureBox.ScaldeFactor);
 
-            ImageUpdated?.Invoke(this, EventArgs.Empty);
+            //pictureBox.DrawOverlayRectangle(vr.spriteRec.X,vr.spriteRec.Y,vr.spriteRec.Width,vr.spriteRec.Height);
+            pictureBox.DrawOverlayRectangle(vr.spriteRec.PreviewRec);
+            //pictureBox.pictureBox.Invalidate();
         }
 
         private void SliceBtn_Click(object sender, EventArgs e)

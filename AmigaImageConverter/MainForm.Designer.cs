@@ -683,18 +683,19 @@ namespace AmigaImageConverter
             image.InterpulationAlgorithem = System.Drawing.Drawing2D.InterpolationMode.NearestNeighbor;
             image.Location = new System.Drawing.Point(0, 33);
             image.Name = "image";
+            image.OverlayLineWidth = 4;
+            image.OverlayRectangleColor = System.Drawing.Color.Red;
+            image.OverlayRectangleEnabled = false;
             image.ScaldeFactor = 1F;
             image.ScaleStep = 0.1F;
+            image.ScrollbarVisible = false;
             image.Size = new System.Drawing.Size(1072, 733);
             image.SizeMode = Amiga.PictureBox.PictureBoxSizeMode.Scale;
             image.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.None;
             image.TabIndex = 3;
             image.VScrollAlignment = Amiga.PictureBox.VerticalScrollBarAlignment.Right;
-            image.ImagePaint += image_Paint;
             image.MouseClick += image_MouseClick;
-            image.ImageMouseDown += image_MouseDown;
-            image.ImageMouseMove += image_MouseMove;
-            image.ImageMouseUp += image_MouseUp;
+            image.ImageMouseClick += image_MouseClick;
             // 
             // MainForm
             // 

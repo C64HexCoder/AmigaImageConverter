@@ -628,13 +628,20 @@ namespace AmigaImageConverter
                 int SpritesPerRaw = (int)(spriteSlicing.ImagesPerRawNud.Value * spriteSlicing.spritePerImageUDN.Value);
 
                 int MouseX = e.X, MouseY = e.Y;
+                // If the mouse is out of the image then return
+                if (MouseX > image.Image.Width * image.ScaldeFactor || MouseY > image.Image.Height * image.ScaldeFactor)
+                    return;
 
-                int SprireWidth = (int)(image.Image.Width / SpritesPerRaw);
-                int SpriteHeight = (int)(image.Image.Height / spriteSlicing.numOfRawsNud.Value);
+                // Add the scroll bar value to the mouse position to get the real position on the image
+                MouseX += image.HorizontalScroll.Value;
+                MouseY+= image.HorizontalScroll.Value;
+
+                int SprireWidth = (int)(image.Image.Width * image.ScaldeFactor / SpritesPerRaw);
+                int SpriteHeight = (int)((int)(image.Image.Height * image.ScaldeFactor) / spriteSlicing.numOfRawsNud.Value);
 
 
                 int SpriteXPos = (int)MouseX / SprireWidth, SpriteYPos = (int)MouseY / SpriteHeight;
-
+             
                 spriteSlicing.spriteSelectNud.Value = SpriteXPos + SpriteYPos * SpritesPerRaw;
 
                 //image.Invalidate();
@@ -1106,9 +1113,6 @@ namespace AmigaImageConverter
                     case SpriteCutState.Cut:
                         if (e.X > vr.spriteRec.X && e.Y > vr.spriteRec.Y)
                         {
-                            //Rectangle temp = new Rectangle(vr.spriteRec.X, vr.spriteRec.Y, e.X - vr.spriteRec.X, e.Y - vr.spriteRec.Y);
-                            //gfx.DrawRectangle(p, temp);
-                            //image.DrawOverlayRectangle(temp);
                             vr.spriteRec.Width = e.X - vr.spriteRec.X;
                             vr.spriteRec.Height = e.Y - vr.spriteRec.Y;
 
@@ -1217,7 +1221,6 @@ namespace AmigaImageConverter
                 vr.spriteRec.IsSpriteCut = true;
             }
             image.DrawOverlayRectangle(vr.spriteRec.Bounds);
-            //image.InvalidateImage();
         }
 
         private void image_Paint(object sender, PaintEventArgs e)
