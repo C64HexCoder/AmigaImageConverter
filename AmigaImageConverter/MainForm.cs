@@ -633,8 +633,8 @@ namespace AmigaImageConverter
                     return;
 
                 // Add the scroll bar value to the mouse position to get the real position on the image
-                MouseX += image.HorizontalScroll.Value;
-                MouseY+= image.HorizontalScroll.Value;
+                //MouseX += image.HorizontalScroll.Value;
+                //MouseY+= image.HorizontalScroll.Value;
 
                 int SprireWidth = (int)(image.Image.Width * image.ScaldeFactor / SpritesPerRaw);
                 int SpriteHeight = (int)((int)(image.Image.Height * image.ScaldeFactor) / spriteSlicing.numOfRawsNud.Value);

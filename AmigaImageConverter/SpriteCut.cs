@@ -25,7 +25,10 @@ namespace AmigaImageConverter
         {
             InitializeComponent();
             spreedSheet = image;
+            image.OverlayRectangleEnabled = true;
         }
+
+         ~SpriteCut() { spreedSheet.OverlayRectangleEnabled = false; }
 
         public void SetWidth(int width)
         {
@@ -45,13 +48,10 @@ namespace AmigaImageConverter
         }
         private void cutSpriteBtn_Click(object sender, EventArgs e)
         {
-            Bitmap bitmap = new Bitmap((int)(vr.spriteRec.Width / spreedSheet.ScaldeFactor), (int)(vr.spriteRec.Height / spreedSheet.ScaldeFactor));
-            Graphics gfx = Graphics.FromImage(bitmap);
+            Bitmap bitmap = spreedSheet.CutImage();
             Sprite sprite = new Sprite();
             sprite.Name = spriteNameSCTB.Text;
 
-            Rectangle OriginalSizeRect = new Rectangle((int)(vr.spriteRec.X / spreedSheet.ScaldeFactor), (int)(vr.spriteRec.Y / spreedSheet.ScaldeFactor), (int)(vr.spriteRec.Width / spreedSheet.ScaldeFactor), (int)(vr.spriteRec.Height / spreedSheet.ScaldeFactor));
-            gfx.DrawImage(vr.bitplane.bitmap, 0, 0, OriginalSizeRect, GraphicsUnit.Pixel);
 
             spriteCutPreviewIB.Image = bitmap;
             widthNumUD.Value = bitmap.Width;
