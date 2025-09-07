@@ -28,7 +28,7 @@ namespace AmigaImageConverter
             image.OverlayRectangleEnabled = true;
         }
 
-         ~SpriteCut() { spreedSheet.OverlayRectangleEnabled = false; }
+        ~SpriteCut() { spreedSheet.OverlayRectangleEnabled = false; }
 
         public void SetWidth(int width)
         {
@@ -118,6 +118,11 @@ namespace AmigaImageConverter
         {
             vr.spriteRec.Enable = false;
             spreedSheet.Invalidate();
+        }
+
+        private void imageCutGB_Leave(object sender, EventArgs e)
+        {
+            spreedSheet.OverlayRectangleEnabled = false;
         }
     }
 }

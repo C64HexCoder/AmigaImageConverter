@@ -73,6 +73,7 @@ namespace AmigaImageConverter
             imageCutGB.TabStop = false;
             imageCutGB.Tag = "";
             imageCutGB.Text = "Sprite Cutter";
+            imageCutGB.Leave += imageCutGB_Leave;
             // 
             // autoTrimCheckBox
             // 
