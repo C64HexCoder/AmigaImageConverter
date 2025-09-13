@@ -120,6 +120,7 @@ namespace AmigaImageConverter
             spreedSheet.Invalidate();
         }
 
+        
         private void imageCutGB_Leave(object sender, EventArgs e)
         {
             spreedSheet.OverlayRectangleEnabled = false;
