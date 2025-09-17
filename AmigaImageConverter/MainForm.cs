@@ -820,9 +820,25 @@ namespace AmigaImageConverter
             SaveFileDialog iffFile = new SaveFileDialog();
             iffFile.Filter = "Amiga IFF|*.iff;*.ilbm;*.pbm;*.acbm";
 
+            if (!vr.bitplane.IsImageOn16BitBoundary())
+            {
+                MessageBox.Show("The image width is not on a 16 bit boundary.\n" +
+                "Saving the image in this state will make it unusuable on an Amiga.\n" +
+                "Resize the image and try again.", "Image Width Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
+                return;
+            }
+                
+
             if (iffFile.ShowDialog() == DialogResult.OK)
             {
-                vr.bitplane.SaveILBM(iffFile.FileName,settings.CompressIFFBODY);
+                IFFSave iFFSave = new IFFSave();
+                if (iFFSave.ShowDialog() == DialogResult.OK)
+                {
+                    // Need to check if the image on 16 bit boundry
+                    vr.bitplane.SaveILBM(iffFile.FileName, iFFSave.CompressbODY);
+                }
+
             }
         }
 
