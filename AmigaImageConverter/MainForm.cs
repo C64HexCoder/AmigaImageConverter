@@ -822,7 +822,7 @@ namespace AmigaImageConverter
 
             if (iffFile.ShowDialog() == DialogResult.OK)
             {
-                vr.bitplane.SaveILBM(iffFile.FileName);
+                vr.bitplane.SaveILBM(iffFile.FileName,settings.CompressIFFBODY);
             }
         }
 
