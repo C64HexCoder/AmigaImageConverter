@@ -64,9 +64,11 @@ namespace AmigaImageConverter
             radioButton5 = new System.Windows.Forms.RadioButton();
             radioButton2 = new System.Windows.Forms.RadioButton();
             radioButton1 = new System.Windows.Forms.RadioButton();
-            toolTip = new System.Windows.Forms.ToolTip(components);
             tabIFF = new System.Windows.Forms.TabPage();
+            groupBox4 = new System.Windows.Forms.GroupBox();
             compressedCheckBox = new System.Windows.Forms.CheckBox();
+            displayIFFDialogOnSaveCheckBox = new System.Windows.Forms.CheckBox();
+            toolTip = new System.Windows.Forms.ToolTip(components);
             tabDisplay.SuspendLayout();
             scalingGroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)previewScalingNud).BeginInit();
@@ -81,6 +83,7 @@ namespace AmigaImageConverter
             groupBox6.SuspendLayout();
             groupBox5.SuspendLayout();
             tabIFF.SuspendLayout();
+            groupBox4.SuspendLayout();
             SuspendLayout();
             // 
             // OKBtn
@@ -481,7 +484,8 @@ namespace AmigaImageConverter
             // 
             // tabIFF
             // 
-            tabIFF.Controls.Add(compressedCheckBox);
+            tabIFF.Controls.Add(groupBox4);
+            tabIFF.Controls.Add(displayIFFDialogOnSaveCheckBox);
             tabIFF.Location = new System.Drawing.Point(4, 34);
             tabIFF.Name = "tabIFF";
             tabIFF.Padding = new System.Windows.Forms.Padding(3);
@@ -490,15 +494,35 @@ namespace AmigaImageConverter
             tabIFF.Text = "IFF";
             tabIFF.UseVisualStyleBackColor = true;
             // 
+            // groupBox4
+            // 
+            groupBox4.Controls.Add(compressedCheckBox);
+            groupBox4.Location = new System.Drawing.Point(7, 6);
+            groupBox4.Name = "groupBox4";
+            groupBox4.Size = new System.Drawing.Size(300, 85);
+            groupBox4.TabIndex = 2;
+            groupBox4.TabStop = false;
+            groupBox4.Text = "ILBM";
+            // 
             // compressedCheckBox
             // 
             compressedCheckBox.AutoSize = true;
-            compressedCheckBox.Location = new System.Drawing.Point(7, 6);
+            compressedCheckBox.Location = new System.Drawing.Point(6, 30);
             compressedCheckBox.Name = "compressedCheckBox";
             compressedCheckBox.Size = new System.Drawing.Size(190, 29);
             compressedCheckBox.TabIndex = 0;
             compressedCheckBox.Text = "Compressed BODY";
             compressedCheckBox.UseVisualStyleBackColor = true;
+            // 
+            // displayIFFDialogOnSaveCheckBox
+            // 
+            displayIFFDialogOnSaveCheckBox.AutoSize = true;
+            displayIFFDialogOnSaveCheckBox.Location = new System.Drawing.Point(13, 111);
+            displayIFFDialogOnSaveCheckBox.Name = "displayIFFDialogOnSaveCheckBox";
+            displayIFFDialogOnSaveCheckBox.Size = new System.Drawing.Size(313, 29);
+            displayIFFDialogOnSaveCheckBox.TabIndex = 1;
+            displayIFFDialogOnSaveCheckBox.Text = "Display IFF  Setting Dialog on save";
+            displayIFFDialogOnSaveCheckBox.UseVisualStyleBackColor = true;
             // 
             // Settings
             // 
@@ -533,6 +557,8 @@ namespace AmigaImageConverter
             groupBox5.PerformLayout();
             tabIFF.ResumeLayout(false);
             tabIFF.PerformLayout();
+            groupBox4.ResumeLayout(false);
+            groupBox4.PerformLayout();
             ResumeLayout(false);
         }
 
@@ -575,5 +601,7 @@ namespace AmigaImageConverter
         private System.Windows.Forms.RadioButton scaleToMaxRadioBox;
         private System.Windows.Forms.TabPage tabIFF;
         private System.Windows.Forms.CheckBox compressedCheckBox;
+        private System.Windows.Forms.GroupBox groupBox4;
+        private System.Windows.Forms.CheckBox displayIFFDialogOnSaveCheckBox;
     }
 }

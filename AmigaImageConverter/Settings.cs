@@ -192,6 +192,11 @@ namespace AmigaImageConverter
             set { compressedCheckBox.Checked = value; }
         }
 
+        public bool displayIFFDialogOnSave
+        {   get { return displayIFFDialogOnSaveCheckBox.Checked; }
+            set { displayIFFDialogOnSaveCheckBox.Checked = value; }
+        }
+
         private void byteRbox_CheckedChanged(object sender, EventArgs e)
         {
             vr.outputSize = Bitplane.DataType.Byte;

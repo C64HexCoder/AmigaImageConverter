@@ -832,12 +832,18 @@ namespace AmigaImageConverter
 
             if (iffFile.ShowDialog() == DialogResult.OK)
             {
-                IFFSave iFFSave = new IFFSave();
-                if (iFFSave.ShowDialog() == DialogResult.OK)
+                if (settings.displayIFFDialogOnSave)
                 {
-                    // Need to check if the image on 16 bit boundry
-                    vr.bitplane.SaveILBM(iffFile.FileName, iFFSave.CompressbODY);
+                    IFFSave iFFSave = new IFFSave();
+                    if (iFFSave.ShowDialog() == DialogResult.OK)
+                    {
+                        // Need to check if the image on 16 bit boundry
+                        vr.bitplane.SaveILBM(iffFile.FileName, iFFSave.CompressbODY);
+                    }
                 }
+                else
+                    vr.bitplane.SaveILBM(iffFile.FileName, settings.CompressIFFBODY);
+
 
             }
         }
