@@ -132,7 +132,13 @@ namespace AmigaImageConverter
                 toolStripFileName.Text = openImageFileDialog.FileName;
 
 
-                bmp = new Bitmap(openImageFileDialog.FileName);
+                string path = openImageFileDialog.FileName;
+                if (!IsValidImageFile(path))
+                {
+                    MessageBox.Show("Selected file does not appear to be a supported or valid image.", "Invalid Image", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+                bmp = new Bitmap(path); // safe to create because signature matched
 
                 if (bmp.PixelFormat == PixelFormat.Undefined)
                 {
@@ -641,7 +647,7 @@ namespace AmigaImageConverter
 
 
                 int SpriteXPos = (int)MouseX / SprireWidth, SpriteYPos = (int)MouseY / SpriteHeight;
-             
+
                 spriteSlicing.spriteSelectNud.Value = SpriteXPos + SpriteYPos * SpritesPerRaw;
 
                 //image.Invalidate();
@@ -828,7 +834,7 @@ namespace AmigaImageConverter
 
                 return;
             }
-                
+
 
             if (iffFile.ShowDialog() == DialogResult.OK)
             {
@@ -946,22 +952,22 @@ namespace AmigaImageConverter
                 Stream sw = new FileStream(ObjSaveFileDialog.FileName, FileMode.Create);
                 BinaryWriter bw = new BinaryWriter(sw);
 
-                bw.Write(endian.Convert(0x000003e7));
+                bw.Write(Endian.Convert(0x000003e7));
                 bw.Write(0x00000000);
 
-                bw.Write(endian.Convert(0x000003E8));
-                bw.Write(endian.Convert(0x00000002));
-                bw.Write(endian.Convert(0x64617461));
-                bw.Write(endian.Convert(0x73656300));
+                bw.Write(Endian.Convert(0x000003E8));
+                bw.Write(Endian.Convert(0x00000002));
+                bw.Write(Endian.Convert(0x64617461));
+                bw.Write(Endian.Convert(0x73656300));
                 uint OutLong = MemoryType << 24 | 0x03EA;
-                bw.Write(endian.Convert(OutLong));
-                bw.Write((uint)endian.Convert(NumOfLongs));
+                bw.Write(Endian.Convert(OutLong));
+                bw.Write((uint)Endian.Convert(NumOfLongs));
 
                 vr.bitplane.SaveBitmapsAsLongBinaryFile(bw);
 
-                bw.Write(endian.Convert(0x000003ef));
+                bw.Write(Endian.Convert(0x000003ef));
                 int LongOut = 0x01000000 | NumOfLongsInExtarnalDescriptor;
-                bw.Write(endian.Convert(LongOut));
+                bw.Write(Endian.Convert(LongOut));
 
                 foreach (char c in linkObjectConfig.ExternalDescriptor)
                 {
@@ -975,7 +981,7 @@ namespace AmigaImageConverter
 
                 bw.Write(0x00000000);
                 bw.Write(0x00000000);
-                bw.Write(endian.Convert(0x000003f2));
+                bw.Write(Endian.Convert(0x000003f2));
 
                 sw.Flush();
                 sw.Close();
@@ -1547,6 +1553,88 @@ namespace AmigaImageConverter
         private void image_Click(object sender, EventArgs e)
         {
             int test = 1;
+        }
+
+        private void loadSpriteAnimationIFFToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            string error = "";
+            openImageFileDialog.Title = "Load Sprite Animation IFF File";
+            openImageFileDialog.Filter = "Amiga IFF|*.iff;*.ilbm";
+            if (openImageFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                if (!IFF.ValidateIFFFile(openImageFileDialog.FileName, out error))
+                {
+                    MessageBox.Show("The selected file is not a valid IFF file.\nError: " + error, "Invalid IFF File", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                List<Sprite> sprites;
+                IFF.LoadSpriteAnimation(openImageFileDialog.FileName, out sprites, out error);
+
+                animation = new Animation(image, sprites);
+                AddRemoveSidePanel(sender, e, () => { animation = new Animation(image, sprites); Controls.Add(animation); animation.Dock = DockStyle.Right; formState = FormState.Animation; }, animation);
+            }
+        }
+       
+        private bool IsValidImageFile(string path)
+        {
+            if (string.IsNullOrWhiteSpace(path) || !File.Exists(path))
+                return false;
+
+            var header = new byte[12];
+            int read;
+            try
+            {
+                using var fs = new FileStream(path, FileMode.Open, FileAccess.Read, FileShare.Read);
+                read = fs.Read(header, 0, header.Length);
+            }
+            catch
+            {
+                return false;
+            }
+
+            if (read < 4)
+                return false;
+
+            // PNG: 89 50 4E 47 0D 0A 1A 0A
+            if (read >= 8 &&
+                header[0] == 0x89 && header[1] == 0x50 && header[2] == 0x4E && header[3] == 0x47 &&
+                header[4] == 0x0D && header[5] == 0x0A && header[6] == 0x1A && header[7] == 0x0A)
+                return true;
+
+            // JPEG: FF D8 FF
+            if (header[0] == 0xFF && header[1] == 0xD8 && header[2] == 0xFF)
+                return true;
+
+            // BMP: 'B' 'M'
+            if (header[0] == 0x42 && header[1] == 0x4D)
+                return true;
+
+            // GIF: 'G' 'I' 'F' '8' '7'/'9' 'a'
+            if (header[0] == 0x47 && header[1] == 0x49 && header[2] == 0x46 && header[3] == 0x38)
+                return true;
+
+            // TIFF: little-endian "II*" or big-endian "MM*"
+            if ((header[0] == 0x49 && header[1] == 0x49 && header[2] == 0x2A && header[3] == 0x00) ||
+                (header[0] == 0x4D && header[1] == 0x4D && header[2] == 0x00 && header[3] == 0x2A))
+                return true;
+
+            // ICO: 00 00 01 00
+            if (header[0] == 0x00 && header[1] == 0x00 && header[2] == 0x01 && header[3] == 0x00)
+                return true;
+
+            // WEBP: "RIFF" .... "WEBP" (check first 12 bytes)
+            if (read >= 12 &&
+                header[0] == 0x52 && header[1] == 0x49 && header[2] == 0x46 && header[3] == 0x46 && // "RIFF"
+                header[8] == 0x57 && header[9] == 0x45 && header[10] == 0x42 && header[11] == 0x50)   // "WEBP"
+                return true;
+
+            // PSD: '8' 'B' 'P' 'S'
+            if (header[0] == 0x38 && header[1] == 0x42 && header[2] == 0x50 && header[3] == 0x53)
+                return true;
+
+            // Unknown/unsupported signature
+            return false;
         }
     }
 }

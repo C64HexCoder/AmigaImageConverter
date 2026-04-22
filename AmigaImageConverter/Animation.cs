@@ -39,10 +39,56 @@ namespace AmigaImageConverter
             }
         }
 
+        public Animation(ExPictureBox imgBox,List<Sprite> sprites)
+        {
+            InitializeComponent();
+            ImageBox = imgBox;
+            this.sprites = sprites;
+
+            colorsGrid.SetPalette(sprites[(int)imageSelectNum.Value].palette);
+            
+            if (pv.bitplane.bitmap != null)
+            {
+                if (pv.bitplane.bitmap.Width != 16 && pv.bitplane.bitmap.Width != 32 && pv.bitplane.bitmap.Width != 64)
+                {
+                    resizeImg.ShowDialog();
+                }
+
+                Sprite sprite = pv.bitplane.CreateSprite();
+
+                if (sprite != null)
+                    colorsGrid.SetPalette(sprite.palette);
+            }
+        }
+
+        // Method to set the sprites list
+        public void SetSprites(List<Sprite> sprites)
+        {
+            this.sprites = sprites;
+        }
+
+        // Method to update the displayed image based on the selected sprite
+        public void UpdateImage()
+        {
+            if (sprites.Count > 0)
+            {
+                ImageBox.Image = sprites[(int)imageSelectNum.Value].bitmap;
+                ImageBox.Invalidate();
+            }
+        }
+
         public void AddImage()
         {
             Sprite sprite = pv.bitplane.CreateSprite();
             sprites.Add(sprite);
+
+        }
+
+        public void LoadAnimation (string IFFFilePath)
+        {
+            InitializeComponent();
+            //Sprite.LoadMultipleImagesAutoPalette(IFFFilePath);
+
 
         }
       
