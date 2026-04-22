@@ -1,4 +1,4 @@
-﻿using Amiga;
+using Amiga;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -16,24 +16,27 @@ namespace AmigaImageConverter
     {
         List<Sprite> sprites = new List<Sprite>();
         PublicVariables vr = PublicVariables.instance;
-        ImageBox spreedSheet = null;
+        Amiga.ExPictureBox spreedSheet = null;
         public SpriteCut()
         {
             InitializeComponent();
         }
-        public SpriteCut(ref ImageBox image)
+        public SpriteCut(ref Amiga.ExPictureBox image)
         {
             InitializeComponent();
             spreedSheet = image;
+            image.OverlayRectangleEnabled = true;
         }
+
+        ~SpriteCut() { spreedSheet.OverlayRectangleEnabled = false; }
 
         public void SetWidth(int width)
         {
-            widthNumUD.Value = width / vr.imageScalingFactoer;
+            widthNumUD.Value = (int)(width / spreedSheet.ScaldeFactor);
         }
         public void SetHeight(int height)
         {
-            heightNumUD.Value = height / vr.imageScalingFactoer;
+            heightNumUD.Value = (int)(height / spreedSheet.ScaldeFactor);
         }
 
         private bool AutoTrim
@@ -45,13 +48,10 @@ namespace AmigaImageConverter
         }
         private void cutSpriteBtn_Click(object sender, EventArgs e)
         {
-            Bitmap bitmap = new Bitmap(vr.spriteRec.Width / vr.imageScalingFactoer, vr.spriteRec.Height / vr.imageScalingFactoer);
-            Graphics gfx = Graphics.FromImage(bitmap);
+            Bitmap bitmap = spreedSheet.CutImage();
             Sprite sprite = new Sprite();
             sprite.Name = spriteNameSCTB.Text;
 
-            Rectangle OriginalSizeRect = new Rectangle(vr.spriteRec.X / vr.imageScalingFactoer, vr.spriteRec.Y / vr.imageScalingFactoer, vr.spriteRec.Width / vr.imageScalingFactoer, vr.spriteRec.Height / vr.imageScalingFactoer);
-            gfx.DrawImage(vr.bitplane.bitmap, 0, 0, OriginalSizeRect, GraphicsUnit.Pixel);
 
             spriteCutPreviewIB.Image = bitmap;
             widthNumUD.Value = bitmap.Width;
@@ -118,6 +118,12 @@ namespace AmigaImageConverter
         {
             vr.spriteRec.Enable = false;
             spreedSheet.Invalidate();
+        }
+
+        
+        private void imageCutGB_Leave(object sender, EventArgs e)
+        {
+            spreedSheet.OverlayRectangleEnabled = false;
         }
     }
 }

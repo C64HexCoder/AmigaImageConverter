@@ -1,4 +1,4 @@
-﻿namespace AmigaImageConverter
+namespace AmigaImageConverter
 {
     partial class SaveSprite
     {
@@ -37,11 +37,15 @@
             imageBox = new Amiga.ImageBox();
             SpriteSaveBtn = new System.Windows.Forms.Button();
             currentSpriteNud = new System.Windows.Forms.NumericUpDown();
+            SingleFileRadioButton = new System.Windows.Forms.RadioButton();
+            multiFilesRadioButton = new System.Windows.Forms.RadioButton();
+            saveAsGB = new System.Windows.Forms.GroupBox();
             RangeGb.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)toNud).BeginInit();
             ((System.ComponentModel.ISupportInitialize)fromNud).BeginInit();
             ((System.ComponentModel.ISupportInitialize)imageBox).BeginInit();
             ((System.ComponentModel.ISupportInitialize)currentSpriteNud).BeginInit();
+            saveAsGB.SuspendLayout();
             SuspendLayout();
             // 
             // RangeGb
@@ -68,9 +72,9 @@
             // 
             // fromNud
             // 
-            fromNud.Location = new System.Drawing.Point(6, 62);
+            fromNud.Location = new System.Drawing.Point(0, 62);
             fromNud.Name = "fromNud";
-            fromNud.Size = new System.Drawing.Size(90, 31);
+            fromNud.Size = new System.Drawing.Size(96, 31);
             fromNud.TabIndex = 2;
             fromNud.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             fromNud.ValueChanged += fromNud_ValueChanged;
@@ -105,11 +109,16 @@
             // 
             // imageBox
             // 
+            imageBox.AutoCenter = false;
             imageBox.AutoScaleImageBox = false;
             imageBox.HrizontalScrollBar = null;
             imageBox.Image = null;
+            imageBox.LimitMouseWeelZoom = false;
             imageBox.Location = new System.Drawing.Point(238, 12);
+            imageBox.MaxImageScale = 4;
+            imageBox.MouseWheelZoom = false;
             imageBox.Name = "imageBox";
+            imageBox.OriginalImage = null;
             imageBox.ScaleFactor = 4;
             imageBox.ScaleFactorFloat = 1F;
             imageBox.Size = new System.Drawing.Size(301, 426);
@@ -137,11 +146,46 @@
             currentSpriteNud.TabIndex = 4;
             currentSpriteNud.ValueChanged += currentSpriteNud_ValueChanged;
             // 
+            // SingleFileRadioButton
+            // 
+            SingleFileRadioButton.AutoSize = true;
+            SingleFileRadioButton.Checked = true;
+            SingleFileRadioButton.Location = new System.Drawing.Point(6, 30);
+            SingleFileRadioButton.Name = "SingleFileRadioButton";
+            SingleFileRadioButton.Size = new System.Drawing.Size(116, 29);
+            SingleFileRadioButton.TabIndex = 1;
+            SingleFileRadioButton.TabStop = true;
+            SingleFileRadioButton.Text = "Single File";
+            SingleFileRadioButton.UseVisualStyleBackColor = true;
+            // 
+            // multiFilesRadioButton
+            // 
+            multiFilesRadioButton.AutoSize = true;
+            multiFilesRadioButton.Location = new System.Drawing.Point(6, 65);
+            multiFilesRadioButton.Name = "multiFilesRadioButton";
+            multiFilesRadioButton.Size = new System.Drawing.Size(136, 29);
+            multiFilesRadioButton.TabIndex = 2;
+            multiFilesRadioButton.Text = "Multipy Files";
+            multiFilesRadioButton.UseVisualStyleBackColor = true;
+            multiFilesRadioButton.CheckedChanged += MultiFilesRadioButton_CheckedChanged;
+            // 
+            // saveAsGB
+            // 
+            saveAsGB.Controls.Add(multiFilesRadioButton);
+            saveAsGB.Controls.Add(SingleFileRadioButton);
+            saveAsGB.Location = new System.Drawing.Point(12, 251);
+            saveAsGB.Name = "saveAsGB";
+            saveAsGB.Size = new System.Drawing.Size(200, 102);
+            saveAsGB.TabIndex = 5;
+            saveAsGB.TabStop = false;
+            saveAsGB.Text = "Save As";
+            // 
             // SaveSprite
             // 
             AutoScaleDimensions = new System.Drawing.SizeF(10F, 25F);
             AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             ClientSize = new System.Drawing.Size(545, 450);
+            Controls.Add(saveAsGB);
             Controls.Add(currentSpriteNud);
             Controls.Add(SpriteSaveBtn);
             Controls.Add(imageBox);
@@ -156,6 +200,8 @@
             ((System.ComponentModel.ISupportInitialize)fromNud).EndInit();
             ((System.ComponentModel.ISupportInitialize)imageBox).EndInit();
             ((System.ComponentModel.ISupportInitialize)currentSpriteNud).EndInit();
+            saveAsGB.ResumeLayout(false);
+            saveAsGB.PerformLayout();
             ResumeLayout(false);
         }
 
@@ -170,5 +216,8 @@
         private Amiga.ImageBox imageBox;
         private System.Windows.Forms.Button SpriteSaveBtn;
         private System.Windows.Forms.NumericUpDown currentSpriteNud;
+        private System.Windows.Forms.RadioButton SingleFileRadioButton;
+        private System.Windows.Forms.RadioButton multiFilesRadioButton;
+        private System.Windows.Forms.GroupBox saveAsGB;
     }
 }

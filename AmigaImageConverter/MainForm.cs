@@ -120,7 +120,7 @@ namespace AmigaImageConverter
         {
 
 
-            image.MouseWheelZoom = true;
+            //image.MouseWheelZoom = true;
             formState = FormState.Image;
             vr.spriteRec.IsSpriteCut = false;
 
@@ -132,7 +132,13 @@ namespace AmigaImageConverter
                 toolStripFileName.Text = openImageFileDialog.FileName;
 
 
-                bmp = new Bitmap(openImageFileDialog.FileName);
+                string path = openImageFileDialog.FileName;
+                if (!IsValidImageFile(path))
+                {
+                    MessageBox.Show("Selected file does not appear to be a supported or valid image.", "Invalid Image", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+                bmp = new Bitmap(path); // safe to create because signature matched
 
                 if (bmp.PixelFormat == PixelFormat.Undefined)
                 {
@@ -190,21 +196,7 @@ namespace AmigaImageConverter
 
                 // if image after scaling using ScalingFactor is to bit to fit on screen then....
 
-                // Auto scaling
-                if (settings.ScalingType == Settings.ScaleType.ScaleToMax)
-                {       // Auto scaling modde
-                    image.ScaleToMax(0.8f);
-                }
-                else if (settings.ScalingType == Settings.ScaleType.AutoScale)
-                {
-                    image.AutoScale();
-                }
-                // Manual scalling
-                else
-                {
-                    image.ScaleImage();
-                    //PredefinedScale();
-                }
+
 
 
 
@@ -216,14 +208,6 @@ namespace AmigaImageConverter
                 toolStripDepthLabel.Text = $"{vr.bitplane.NumOfBitmaps} Bitmaps, new Width: {vr.bitplane.actualWidth}";
 
 
-                hScrollBar.Top = image.Bottom;
-                hScrollBar.Left = image.Left;
-                hScrollBar.Width = image.Width;
-                vScrollBar.Left = image.Right;
-                vScrollBar.Height = image.Height;
-                statusStrip.Top = hScrollBar.Bottom;
-                statusStrip.Left = hScrollBar.Left;
-                statusStrip.Width = hScrollBar.Width;
 
                 //ButtomPanel.Top = hScrollBar.Bottom + 2;
                 //ButtomPanel.Width = image.Width;
@@ -238,7 +222,6 @@ namespace AmigaImageConverter
                 }
                 else
                 {
-                    vScrollBar.Visible = false;
                 }
 
                 if (image.Image.Height > image.Height)
@@ -246,7 +229,7 @@ namespace AmigaImageConverter
                     //vScrollBar.Maximum = image.Image.Height - image.Height;
                     //vScrollBar.Visible = true;
                 }
-                else { hScrollBar.Visible = false; }
+                else { }
 
 
                 switch (vr.bitplane.bitmap.PixelFormat)
@@ -345,43 +328,8 @@ namespace AmigaImageConverter
         {
             if (settings.ShowDialog() == DialogResult.OK)
             {
-               // if (settings.valueChanged == true)
+                // if (settings.valueChanged == true)
                 //{
-                    if (settings.ScaleToMax)
-                    {
-                        image.SizeMode = PictureBoxSizeMode.AutoSize;
-
-                        image.ScaleToMax(0.7f);
-                    }
-                    else
-                    {
-                        image.ScaleFactor = settings.ScaleFactor;
-                        image.Width = defaultimageWidth;
-                        image.Height = defaultimageHeight;
-                        // setting to autosize just for now.
-                        //image.SizeMode = PictureBoxSizeMode.AutoSize;
-                        image.Image = vr.bitplane.bitmap;
-                        image.ScaleImage((int)settings.previewScalingNud.Value);
-
-
-                        hScrollBar.Top = image.Bottom;
-                        hScrollBar.Left = image.Left;
-                        hScrollBar.Width = image.Width;
-                        vScrollBar.Left = image.Right;
-                        vScrollBar.Height = image.Height;
-                        statusStrip.Top = hScrollBar.Bottom;
-                        statusStrip.Left = hScrollBar.Left;
-                        statusStrip.Width = hScrollBar.Width;
-                        //ButtomPanel.Top = hScrollBar.Bottom + 2;
-                        //ButtomPanel.Width = image.Width;
-                        //ButtomPanel.Height = statusStrip.Height;
-
-                        ButtomPanel.Width = image.Width;
-                        ButtomPanel.Top = image.Bottom + 2;
-
-                        // if (image.Image != null)
-                        //   hScrollBar.Maximum = image.Image.Width - image.Width;
-                    }
 
                 //}
             }
@@ -485,7 +433,6 @@ namespace AmigaImageConverter
             g.Dispose();
             vr.bitplane.bitmap = corpedImage;
             image.Image = vr.bitplane.bitmap;
-            image.ScaleImage((int)settings.previewScalingNud.Value);
             ButtomPanel.Top = image.Bottom + 1;
             ButtomPanel.Width = image.Width < 500 ? 500 : image.Width;
             CheckImageAlignment();
@@ -521,7 +468,6 @@ namespace AmigaImageConverter
 
             }
             image.Image = vr.bitplane.bitmap;
-            image.ScaleImage((int)settings.previewScalingNud.Value);
 
             toolStripResolutionLabel.Text = vr.bitplane.bitmap.Width + "x" + vr.bitplane.bitmap.Height;
         }
@@ -550,7 +496,6 @@ namespace AmigaImageConverter
                 if (spriteDialog.ShowDialog() == DialogResult.OK)
                 {
                     image.Image = vr.bitplane.bitmap;
-                    image.ScaleImage((int)settings.ScaleFactor);
                 }
             }
 
@@ -689,9 +634,16 @@ namespace AmigaImageConverter
                 int SpritesPerRaw = (int)(spriteSlicing.ImagesPerRawNud.Value * spriteSlicing.spritePerImageUDN.Value);
 
                 int MouseX = e.X, MouseY = e.Y;
+                // If the mouse is out of the image then return
+                if (MouseX > image.Image.Width * image.ScaldeFactor || MouseY > image.Image.Height * image.ScaldeFactor)
+                    return;
 
-                int SprireWidth = (int)(image.Width / SpritesPerRaw);
-                int SpriteHeight = (int)(image.Height / spriteSlicing.numOfRawsNud.Value);
+                // Add the scroll bar value to the mouse position to get the real position on the image
+                //MouseX += image.HorizontalScroll.Value;
+                //MouseY+= image.HorizontalScroll.Value;
+
+                int SprireWidth = (int)(image.Image.Width * image.ScaldeFactor / SpritesPerRaw);
+                int SpriteHeight = (int)((int)(image.Image.Height * image.ScaldeFactor) / spriteSlicing.numOfRawsNud.Value);
 
 
                 int SpriteXPos = (int)MouseX / SprireWidth, SpriteYPos = (int)MouseY / SpriteHeight;
@@ -715,7 +667,6 @@ namespace AmigaImageConverter
                     {
                         vr.bitplane.AddBlitterWord(Bitplane.BlitWord.Left);
                         image.Image = vr.bitplane.bitmap;
-                        image.ScaleImage((int)settings.previewScalingNud.Value);
                         toolStripResolutionLabel.Text = vr.bitplane.Width + "x" + vr.bitplane.bitmap.Height;
                         if (AddedBlitWord == BlitWord.None)
                             AddedBlitWord = BlitWord.Left;
@@ -730,7 +681,6 @@ namespace AmigaImageConverter
                     {
                         vr.bitplane.AddBlitterWord(Bitplane.BlitWord.Right);
                         image.Image = vr.bitplane.bitmap;
-                        image.ScaleImage((int)settings.previewScalingNud.Value);
                         toolStripResolutionLabel.Text = vr.bitplane.Width + "x" + vr.bitplane.bitmap.Height;
                         if (AddedBlitWord == BlitWord.None)
                             AddedBlitWord = BlitWord.Right;
@@ -745,7 +695,6 @@ namespace AmigaImageConverter
                     {
                         vr.bitplane.AddBlitterWord(Bitplane.BlitWord.Both);
                         image.Image = vr.bitplane.bitmap;
-                        image.ScaleImage((int)settings.previewScalingNud.Value);
                         toolStripResolutionLabel.Text = vr.bitplane.Width + "x" + vr.bitplane.bitmap.Height;
 
                         AddedBlitWord = BlitWord.Both;
@@ -819,7 +768,6 @@ namespace AmigaImageConverter
             {
                 vr.bitplane.ChangeWidth(int.Parse(tstb.Text));
                 image.Image = vr.bitplane.bitmap;
-                image.ScaleImage((int)settings.previewScalingNud.Value);
             }
         }
 
@@ -855,8 +803,6 @@ namespace AmigaImageConverter
                 vr.bitplane.LoadIFF(iffFile.FileName);
                 image.Image = vr.bitplane.bitmap;
 
-                image.MaxImageScale = Height / image.Image.Height;
-                image.ScaleImage((int)settings.previewScalingNud.Value);
 
                 if (vr.bitplane.bitmap == null)
                     if (MessageBox.Show("Whould you like to load palette?\nWith the absence of palette no image will be displayed!", "Missing Palette", MessageBoxButtons.OKCancel) == DialogResult.OK)
@@ -880,9 +826,31 @@ namespace AmigaImageConverter
             SaveFileDialog iffFile = new SaveFileDialog();
             iffFile.Filter = "Amiga IFF|*.iff;*.ilbm;*.pbm;*.acbm";
 
+            if (!vr.bitplane.IsImageOn16BitBoundary())
+            {
+                MessageBox.Show("The image width is not on a 16 bit boundary.\n" +
+                "Saving the image in this state will make it unusuable on an Amiga.\n" +
+                "Resize the image and try again.", "Image Width Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
+                return;
+            }
+
+
             if (iffFile.ShowDialog() == DialogResult.OK)
             {
-                vr.bitplane.SaveILBM(iffFile.FileName);
+                if (settings.displayIFFDialogOnSave)
+                {
+                    IFFSave iFFSave = new IFFSave();
+                    if (iFFSave.ShowDialog() == DialogResult.OK)
+                    {
+                        // Need to check if the image on 16 bit boundry
+                        vr.bitplane.SaveILBM(iffFile.FileName, iFFSave.CompressbODY);
+                    }
+                }
+                else
+                    vr.bitplane.SaveILBM(iffFile.FileName, settings.CompressIFFBODY);
+
+
             }
         }
 
@@ -911,32 +879,24 @@ namespace AmigaImageConverter
                 if (vr.bitplane.Width != image.Image.Width || vr.bitplane.Height != image.Image.Height)
                 {
                     image.Image = vr.bitplane.bitmap;
-                    image.SizeMode = PictureBoxSizeMode.AutoSize;
-                    image.ScaleImage((float)settings.previewScalingNud.Value);
 
                 }
             }
         }
 
-        private void hScrollBar_ValueChanged(object sender, EventArgs e)
-        {
-            HScrollBar hScrollBar = (HScrollBar)sender;
 
-            image.DrawImagePart(hScrollBar.Value, vScrollBar.Value);
-        }
 
         private void vScrollBar_ValueChanged(object sender, EventArgs e)
         {
             VScrollBar vScrollBar = (VScrollBar)sender;
-            image.DrawImagePart(hScrollBar.Value, vScrollBar.Value);
         }
-     
-      
+
+
         private void ScaleToMaxFloat()
         {
             float ScalingFactor = (int)settings.ScaleFactor;
 
-            image.SizeMode = PictureBoxSizeMode.AutoSize;
+            image.SizeMode = (Amiga.PictureBox.PictureBoxSizeMode)PictureBoxSizeMode.AutoSize;
             //       if (vr.bitplane.Width * ScalingFactor > 0.8 * SystemInformation.VirtualScreen.Width || vr.bitplane.Height * ScalingFactor > 0.8 * SystemInformation.VirtualScreen.Height)
             //     {   // Scaled image bigger then the screen
 
@@ -945,33 +905,27 @@ namespace AmigaImageConverter
 
             ScalingFactor = XscaleFactor > YscaleFactor ? YscaleFactor : XscaleFactor;
 
-            image.ScaleImage(ScalingFactor);
 
         }
 
         private void PredefinedScale()
         {
-            float scaleFactor = (int)image.ScaleFactor;
 
             int XSize = (int)settings.ScaleFactor * image.Image.Width > ScreenWidth ? (int)(ScreenWidth * 0.8f) : (int)settings.ScaleFactor * image.Image.Width;
             int YSize = (int)settings.ScaleFactor * image.Image.Height > ScreenHeight ? (int)(ScreenHeight * 0.8f) : (int)settings.ScaleFactor * image.Image.Height;
 
 
             image.Size = new Size(XSize, YSize);
-            image.SizeMode = PictureBoxSizeMode.Normal;
+            image.SizeMode = (Amiga.PictureBox.PictureBoxSizeMode)PictureBoxSizeMode.Normal;
 
 
-
-
-            image.ScaleImage(image.ScaleFactor);
         }
 
         private void NoScaleing()
         {
             image.Width = defaultimageWidth;
             image.Height = defaultimageHeight;
-            image.SizeMode = PictureBoxSizeMode.Normal;
-            image.ScaleImage((int)settings.ScaleFactor);
+            image.SizeMode = (Amiga.PictureBox.PictureBoxSizeMode)PictureBoxSizeMode.Normal;
         }
 
         private void SaveLinkFileToolStripMenuItem_Click(object sender, EventArgs e)
@@ -998,22 +952,22 @@ namespace AmigaImageConverter
                 Stream sw = new FileStream(ObjSaveFileDialog.FileName, FileMode.Create);
                 BinaryWriter bw = new BinaryWriter(sw);
 
-                bw.Write(endian.Convert(0x000003e7));
+                bw.Write(Endian.Convert(0x000003e7));
                 bw.Write(0x00000000);
 
-                bw.Write(endian.Convert(0x000003E8));
-                bw.Write(endian.Convert(0x00000002));
-                bw.Write(endian.Convert(0x64617461));
-                bw.Write(endian.Convert(0x73656300));
+                bw.Write(Endian.Convert(0x000003E8));
+                bw.Write(Endian.Convert(0x00000002));
+                bw.Write(Endian.Convert(0x64617461));
+                bw.Write(Endian.Convert(0x73656300));
                 uint OutLong = MemoryType << 24 | 0x03EA;
-                bw.Write(endian.Convert(OutLong));
-                bw.Write((uint)endian.Convert(NumOfLongs));
+                bw.Write(Endian.Convert(OutLong));
+                bw.Write((uint)Endian.Convert(NumOfLongs));
 
                 vr.bitplane.SaveBitmapsAsLongBinaryFile(bw);
 
-                bw.Write(endian.Convert(0x000003ef));
+                bw.Write(Endian.Convert(0x000003ef));
                 int LongOut = 0x01000000 | NumOfLongsInExtarnalDescriptor;
-                bw.Write(endian.Convert(LongOut));
+                bw.Write(Endian.Convert(LongOut));
 
                 foreach (char c in linkObjectConfig.ExternalDescriptor)
                 {
@@ -1027,7 +981,7 @@ namespace AmigaImageConverter
 
                 bw.Write(0x00000000);
                 bw.Write(0x00000000);
-                bw.Write(endian.Convert(0x000003f2));
+                bw.Write(Endian.Convert(0x000003f2));
 
                 sw.Flush();
                 sw.Close();
@@ -1041,14 +995,12 @@ namespace AmigaImageConverter
 
         private void image_HorizontalScrollBarChanged(object sender, ImageBox.ScrollBarEventArgs args)
         {
-            hScrollBar.Maximum = args.Maximum;
-            hScrollBar.Visible = args.Enabled;
+
         }
 
         private void image_VerticalScrollBarChanged(object sender, ImageBox.ScrollBarEventArgs args)
         {
-            vScrollBar.Maximum = args.Maximum;
-            vScrollBar.Visible = args.Enabled;
+
         }
 
         private void loadAmigaFonttoolStripMenuItem_Click(object sender, EventArgs e)
@@ -1063,7 +1015,6 @@ namespace AmigaImageConverter
             //obj.DrawFont('G', 0, 0,5);
             image.Image = obj.CreatePreview(); ;
             //image.Image = obj.fonts[(int)('G' - 0x20)];
-            image.ScaleImage(4);
             //Refresh();
 
         }
@@ -1100,14 +1051,14 @@ namespace AmigaImageConverter
             if (!tsmi.Checked)
             {
                 CloseAllSidePanels();
-                image.MouseWheelZoom = false;
+                //image.MouseWheelZoom = false;
                 createPanelFunc();
                 sprites.Clear();
                 tsmi.Checked = true;
             }
             else
             {
-                image.MouseWheelZoom = true;
+                //image.MouseWheelZoom = true;
                 Controls.Remove(myControl);
                 formState = FormState.Image;
                 tsmi.Checked = false;
@@ -1169,7 +1120,7 @@ namespace AmigaImageConverter
             if (formState != FormState.SpriteCut)
                 return;
 
-            Graphics gfx = image.CreateGraphics();
+            Graphics gfx = image.Graphics;
             Color penColor;
 
             vr.spriteRec.LineWIdth = 4;
@@ -1190,8 +1141,8 @@ namespace AmigaImageConverter
                     case SpriteCutState.Cut:
                         if (e.X > vr.spriteRec.X && e.Y > vr.spriteRec.Y)
                         {
-                            Rectangle temp = new Rectangle(vr.spriteRec.X, vr.spriteRec.Y, e.X - vr.spriteRec.X, e.Y - vr.spriteRec.Y);
-                            gfx.DrawRectangle(p, temp);
+                            vr.spriteRec.Width = e.X - vr.spriteRec.X;
+                            vr.spriteRec.Height = e.Y - vr.spriteRec.Y;
 
                         }
                         break;
@@ -1203,6 +1154,8 @@ namespace AmigaImageConverter
                         vr.spriteRec.Y = e.Y;
                         vr.spriteRec.Width = NewWidth;
                         vr.spriteRec.Height = NewHeight;
+
+                        image.DrawOverlayRectangle(vr.spriteRec.Bounds);
                         break;
 
                     case SpriteCutState.PanSW:
@@ -1240,6 +1193,7 @@ namespace AmigaImageConverter
                         break;
                 }
 
+
             }
             else
             {
@@ -1276,10 +1230,12 @@ namespace AmigaImageConverter
                     spriteCutState = SpriteCutState.Cut;
                 }
             }
-            spriteCut.widthNumUD.Maximum = image.Width;
-            spriteCut.heightNumUD.Maximum = image.Height;
-            spriteCut.widthNumUD.Value = vr.spriteRec.Width / vr.imageScalingFactoer;
-            spriteCut.heightNumUD.Value = vr.spriteRec.Height / vr.imageScalingFactoer;
+            spriteCut.widthNumUD.Maximum = image.Image.Width;
+            spriteCut.heightNumUD.Maximum = image.Image.Height;
+            spriteCut.widthNumUD.Value = (int)(vr.spriteRec.Width / image.ScaldeFactor);
+            spriteCut.heightNumUD.Value = (int)(vr.spriteRec.Height / image.ScaldeFactor);
+
+            image.DrawOverlayRectangle(vr.spriteRec.Bounds);
 
         }
 
@@ -1292,13 +1248,13 @@ namespace AmigaImageConverter
                 vr.spriteRec.Height = e.Y - vr.spriteRec.Y;
                 vr.spriteRec.IsSpriteCut = true;
             }
-
-            image.Invalidate();
+            image.DrawOverlayRectangle(vr.spriteRec.Bounds);
         }
 
         private void image_Paint(object sender, PaintEventArgs e)
         {
             Graphics g = e.Graphics;
+            //Graphics g = image.Gfx;
             Color penColor;
             if (vr.bitplane.Palette == null)
                 penColor = Color.Black;
@@ -1310,7 +1266,8 @@ namespace AmigaImageConverter
             if (formState == FormState.SpriteSplit || formState == FormState.SpriteCut)
             {
                 if (vr.spriteRec.Enable)
-                    g.DrawRectangle(p, vr.spriteRec.Bounds);
+                    //g.DrawRectangle(p, vr.spriteRec.Bounds);
+                    image.DrawOverlayRectangle(vr.spriteRec.Bounds);
             }
         }
 
@@ -1352,7 +1309,6 @@ namespace AmigaImageConverter
         {
 
             NumericUpDown newWidth = (NumericUpDown)sender;
-            vr.spriteRec.Width = (int)newWidth.Value * image.ScaleFactor;
             image.Invalidate();
         }
 
@@ -1374,7 +1330,6 @@ namespace AmigaImageConverter
         {
             NumericUpDown newHeight = (NumericUpDown)sender;
 
-            vr.spriteRec.Height = (int)newHeight.Value * image.ScaleFactor;
         }
 
         private void loadAmigaPaletterMI_Click(object sender, EventArgs e)
@@ -1453,7 +1408,7 @@ namespace AmigaImageConverter
 
         private void CreateSpriteSlicingPanel()
         {
-            spriteSlicing = new SpriteSlicing();
+            spriteSlicing = new SpriteSlicing(ref image);
 
             Controls.Add(spriteSlicing);
 
@@ -1587,6 +1542,99 @@ namespace AmigaImageConverter
             vr.bitplane.bitmap = bitmap;
 
             image.Invalidate();
+        }
+
+        private void form1ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Form1 form1 = new Form1();
+            form1.ShowDialog();
+        }
+
+        private void image_Click(object sender, EventArgs e)
+        {
+            int test = 1;
+        }
+
+        private void loadSpriteAnimationIFFToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            string error = "";
+            openImageFileDialog.Title = "Load Sprite Animation IFF File";
+            openImageFileDialog.Filter = "Amiga IFF|*.iff;*.ilbm";
+            if (openImageFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                if (!IFF.ValidateIFFFile(openImageFileDialog.FileName, out error))
+                {
+                    MessageBox.Show("The selected file is not a valid IFF file.\nError: " + error, "Invalid IFF File", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                List<Sprite> sprites;
+                IFF.LoadSpriteAnimation(openImageFileDialog.FileName, out sprites, out error);
+
+                animation = new Animation(image, sprites);
+                AddRemoveSidePanel(sender, e, () => { animation = new Animation(image, sprites); Controls.Add(animation); animation.Dock = DockStyle.Right; formState = FormState.Animation; }, animation);
+            }
+        }
+       
+        private bool IsValidImageFile(string path)
+        {
+            if (string.IsNullOrWhiteSpace(path) || !File.Exists(path))
+                return false;
+
+            var header = new byte[12];
+            int read;
+            try
+            {
+                using var fs = new FileStream(path, FileMode.Open, FileAccess.Read, FileShare.Read);
+                read = fs.Read(header, 0, header.Length);
+            }
+            catch
+            {
+                return false;
+            }
+
+            if (read < 4)
+                return false;
+
+            // PNG: 89 50 4E 47 0D 0A 1A 0A
+            if (read >= 8 &&
+                header[0] == 0x89 && header[1] == 0x50 && header[2] == 0x4E && header[3] == 0x47 &&
+                header[4] == 0x0D && header[5] == 0x0A && header[6] == 0x1A && header[7] == 0x0A)
+                return true;
+
+            // JPEG: FF D8 FF
+            if (header[0] == 0xFF && header[1] == 0xD8 && header[2] == 0xFF)
+                return true;
+
+            // BMP: 'B' 'M'
+            if (header[0] == 0x42 && header[1] == 0x4D)
+                return true;
+
+            // GIF: 'G' 'I' 'F' '8' '7'/'9' 'a'
+            if (header[0] == 0x47 && header[1] == 0x49 && header[2] == 0x46 && header[3] == 0x38)
+                return true;
+
+            // TIFF: little-endian "II*" or big-endian "MM*"
+            if ((header[0] == 0x49 && header[1] == 0x49 && header[2] == 0x2A && header[3] == 0x00) ||
+                (header[0] == 0x4D && header[1] == 0x4D && header[2] == 0x00 && header[3] == 0x2A))
+                return true;
+
+            // ICO: 00 00 01 00
+            if (header[0] == 0x00 && header[1] == 0x00 && header[2] == 0x01 && header[3] == 0x00)
+                return true;
+
+            // WEBP: "RIFF" .... "WEBP" (check first 12 bytes)
+            if (read >= 12 &&
+                header[0] == 0x52 && header[1] == 0x49 && header[2] == 0x46 && header[3] == 0x46 && // "RIFF"
+                header[8] == 0x57 && header[9] == 0x45 && header[10] == 0x42 && header[11] == 0x50)   // "WEBP"
+                return true;
+
+            // PSD: '8' 'B' 'P' 'S'
+            if (header[0] == 0x38 && header[1] == 0x42 && header[2] == 0x50 && header[3] == 0x53)
+                return true;
+
+            // Unknown/unsupported signature
+            return false;
         }
     }
 }

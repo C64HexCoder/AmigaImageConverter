@@ -1,4 +1,4 @@
-﻿namespace AmigaImageConverter
+namespace AmigaImageConverter
 {
     partial class SpriteCut
     {
@@ -73,6 +73,7 @@
             imageCutGB.TabStop = false;
             imageCutGB.Tag = "";
             imageCutGB.Text = "Sprite Cutter";
+            imageCutGB.Leave += imageCutGB_Leave;
             // 
             // autoTrimCheckBox
             // 
@@ -91,6 +92,7 @@
             spriteCutPreviewIB.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             spriteCutPreviewIB.HrizontalScrollBar = null;
             spriteCutPreviewIB.Image = null;
+            spriteCutPreviewIB.LimitMouseWeelZoom = false;
             spriteCutPreviewIB.Location = new System.Drawing.Point(6, 353);
             spriteCutPreviewIB.MaxImageScale = 4;
             spriteCutPreviewIB.MouseWheelZoom = false;
@@ -137,6 +139,7 @@
             // heightNumUD
             // 
             heightNumUD.Location = new System.Drawing.Point(119, 35);
+            heightNumUD.Maximum = new decimal(new int[] { 1000000, 0, 0, 0 });
             heightNumUD.Name = "heightNumUD";
             heightNumUD.Size = new System.Drawing.Size(77, 31);
             heightNumUD.TabIndex = 1;
@@ -145,6 +148,7 @@
             // widthNumUD
             // 
             widthNumUD.Location = new System.Drawing.Point(15, 35);
+            widthNumUD.Maximum = new decimal(new int[] { 1000000, 0, 0, 0 });
             widthNumUD.Name = "widthNumUD";
             widthNumUD.Size = new System.Drawing.Size(80, 31);
             widthNumUD.TabIndex = 0;

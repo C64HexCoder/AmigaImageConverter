@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -44,6 +44,7 @@ namespace AmigaImageConverter
 
             }
 
+            
             var ScalingFactor = regEdit.regKey.GetValue("ScaleFactor", RegistryValueKind.DWord);
             if (ScalingFactor != null)
             {
@@ -183,6 +184,17 @@ namespace AmigaImageConverter
                         break;
                 }
             }
+        }
+
+        public bool CompressIFFBODY
+        {
+            get { return compressedCheckBox.Checked; }
+            set { compressedCheckBox.Checked = value; }
+        }
+
+        public bool displayIFFDialogOnSave
+        {   get { return displayIFFDialogOnSaveCheckBox.Checked; }
+            set { displayIFFDialogOnSaveCheckBox.Checked = value; }
         }
 
         private void byteRbox_CheckedChanged(object sender, EventArgs e)

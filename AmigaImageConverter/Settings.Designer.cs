@@ -1,4 +1,4 @@
-﻿namespace AmigaImageConverter
+namespace AmigaImageConverter
 {
     partial class Settings
     {
@@ -55,7 +55,7 @@
             groupBox3 = new System.Windows.Forms.GroupBox();
             colorRegistersCombo = new System.Windows.Forms.ComboBox();
             bitsPpCombo = new System.Windows.Forms.ComboBox();
-            tabControl1 = new System.Windows.Forms.TabControl();
+            IFFTab = new System.Windows.Forms.TabControl();
             tabFileExt = new System.Windows.Forms.TabPage();
             groupBox6 = new System.Windows.Forms.GroupBox();
             radioButton4 = new System.Windows.Forms.RadioButton();
@@ -64,6 +64,10 @@
             radioButton5 = new System.Windows.Forms.RadioButton();
             radioButton2 = new System.Windows.Forms.RadioButton();
             radioButton1 = new System.Windows.Forms.RadioButton();
+            tabIFF = new System.Windows.Forms.TabPage();
+            groupBox4 = new System.Windows.Forms.GroupBox();
+            compressedCheckBox = new System.Windows.Forms.CheckBox();
+            displayIFFDialogOnSaveCheckBox = new System.Windows.Forms.CheckBox();
             toolTip = new System.Windows.Forms.ToolTip(components);
             tabDisplay.SuspendLayout();
             scalingGroupBox.SuspendLayout();
@@ -74,10 +78,12 @@
             ((System.ComponentModel.ISupportInitialize)numInARowNud).BeginInit();
             groupBox1.SuspendLayout();
             groupBox3.SuspendLayout();
-            tabControl1.SuspendLayout();
+            IFFTab.SuspendLayout();
             tabFileExt.SuspendLayout();
             groupBox6.SuspendLayout();
             groupBox5.SuspendLayout();
+            tabIFF.SuspendLayout();
+            groupBox4.SuspendLayout();
             SuspendLayout();
             // 
             // OKBtn
@@ -375,16 +381,17 @@
             bitsPpCombo.Tag = "bpp";
             bitsPpCombo.SelectedIndexChanged += bitsPpCombo_SelectedIndexChanged;
             // 
-            // tabControl1
+            // IFFTab
             // 
-            tabControl1.Controls.Add(tabFormat);
-            tabControl1.Controls.Add(tabDisplay);
-            tabControl1.Controls.Add(tabFileExt);
-            tabControl1.Location = new System.Drawing.Point(1, 0);
-            tabControl1.Name = "tabControl1";
-            tabControl1.SelectedIndex = 0;
-            tabControl1.Size = new System.Drawing.Size(747, 327);
-            tabControl1.TabIndex = 12;
+            IFFTab.Controls.Add(tabFormat);
+            IFFTab.Controls.Add(tabDisplay);
+            IFFTab.Controls.Add(tabFileExt);
+            IFFTab.Controls.Add(tabIFF);
+            IFFTab.Location = new System.Drawing.Point(1, 0);
+            IFFTab.Name = "IFFTab";
+            IFFTab.SelectedIndex = 0;
+            IFFTab.Size = new System.Drawing.Size(747, 327);
+            IFFTab.TabIndex = 12;
             // 
             // tabFileExt
             // 
@@ -475,12 +482,54 @@
             radioButton1.Text = ".c";
             radioButton1.UseVisualStyleBackColor = true;
             // 
+            // tabIFF
+            // 
+            tabIFF.Controls.Add(groupBox4);
+            tabIFF.Controls.Add(displayIFFDialogOnSaveCheckBox);
+            tabIFF.Location = new System.Drawing.Point(4, 34);
+            tabIFF.Name = "tabIFF";
+            tabIFF.Padding = new System.Windows.Forms.Padding(3);
+            tabIFF.Size = new System.Drawing.Size(739, 289);
+            tabIFF.TabIndex = 4;
+            tabIFF.Text = "IFF";
+            tabIFF.UseVisualStyleBackColor = true;
+            // 
+            // groupBox4
+            // 
+            groupBox4.Controls.Add(compressedCheckBox);
+            groupBox4.Location = new System.Drawing.Point(7, 6);
+            groupBox4.Name = "groupBox4";
+            groupBox4.Size = new System.Drawing.Size(300, 85);
+            groupBox4.TabIndex = 2;
+            groupBox4.TabStop = false;
+            groupBox4.Text = "ILBM";
+            // 
+            // compressedCheckBox
+            // 
+            compressedCheckBox.AutoSize = true;
+            compressedCheckBox.Location = new System.Drawing.Point(6, 30);
+            compressedCheckBox.Name = "compressedCheckBox";
+            compressedCheckBox.Size = new System.Drawing.Size(190, 29);
+            compressedCheckBox.TabIndex = 0;
+            compressedCheckBox.Text = "Compressed BODY";
+            compressedCheckBox.UseVisualStyleBackColor = true;
+            // 
+            // displayIFFDialogOnSaveCheckBox
+            // 
+            displayIFFDialogOnSaveCheckBox.AutoSize = true;
+            displayIFFDialogOnSaveCheckBox.Location = new System.Drawing.Point(13, 111);
+            displayIFFDialogOnSaveCheckBox.Name = "displayIFFDialogOnSaveCheckBox";
+            displayIFFDialogOnSaveCheckBox.Size = new System.Drawing.Size(313, 29);
+            displayIFFDialogOnSaveCheckBox.TabIndex = 1;
+            displayIFFDialogOnSaveCheckBox.Text = "Display IFF  Setting Dialog on save";
+            displayIFFDialogOnSaveCheckBox.UseVisualStyleBackColor = true;
+            // 
             // Settings
             // 
             AutoScaleDimensions = new System.Drawing.SizeF(10F, 25F);
             AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             ClientSize = new System.Drawing.Size(751, 378);
-            Controls.Add(tabControl1);
+            Controls.Add(IFFTab);
             Controls.Add(cancelBtn);
             Controls.Add(OKBtn);
             Name = "Settings";
@@ -500,12 +549,16 @@
             groupBox1.ResumeLayout(false);
             groupBox1.PerformLayout();
             groupBox3.ResumeLayout(false);
-            tabControl1.ResumeLayout(false);
+            IFFTab.ResumeLayout(false);
             tabFileExt.ResumeLayout(false);
             groupBox6.ResumeLayout(false);
             groupBox6.PerformLayout();
             groupBox5.ResumeLayout(false);
             groupBox5.PerformLayout();
+            tabIFF.ResumeLayout(false);
+            tabIFF.PerformLayout();
+            groupBox4.ResumeLayout(false);
+            groupBox4.PerformLayout();
             ResumeLayout(false);
         }
 
@@ -528,7 +581,7 @@
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.ComboBox colorRegistersCombo;
         private System.Windows.Forms.ComboBox bitsPpCombo;
-        private System.Windows.Forms.TabControl tabControl1;
+        private System.Windows.Forms.TabControl IFFTab;
         public System.Windows.Forms.GroupBox AligmentGb;
         public System.Windows.Forms.RadioButton alignLongRb;
         public System.Windows.Forms.RadioButton alignWordRb;
@@ -546,5 +599,9 @@
         private System.Windows.Forms.RadioButton predefinedScalingRadioBox;
         private System.Windows.Forms.RadioButton autoScalingRadioBox;
         private System.Windows.Forms.RadioButton scaleToMaxRadioBox;
+        private System.Windows.Forms.TabPage tabIFF;
+        private System.Windows.Forms.CheckBox compressedCheckBox;
+        private System.Windows.Forms.GroupBox groupBox4;
+        private System.Windows.Forms.CheckBox displayIFFDialogOnSaveCheckBox;
     }
 }
