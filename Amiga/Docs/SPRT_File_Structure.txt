@@ -1,0 +1,71 @@
+SPRT IFF file structure (compact reference)
+
+All integers are stored big-endian (network order). All chunk IDs are 4 ASCII bytes (FourCC).
+Chunks are padded to an even size: if a chunk's data length is odd, one pad byte follows.
+
+Top-level layout:
+
+1) FORM header
+   - 4 bytes: ASCII "FORM"
+   - 4 bytes: FORM size (uint32 BE) = number of bytes following this field in the FORM
+   - 4 bytes: FORM type / BodyFormat = ASCII "SPRT" (FourCC)
+
+2) CMAP (shared palette)  [optional but used by SPRT writer in this project]
+   - 4 bytes: ASCII "CMAP"
+   - 4 bytes: chunk size (uint32 BE) = palette_bytes = numColors * 3
+   - palette_bytes bytes: palette entries as RGB triples (R,G,B) each 1 byte
+   - optional pad byte if chunk size is odd
+
+3) ANIM chunk (container for frames)
+   - 4 bytes: ASCII "ANIM"
+   - 4 bytes: chunk size (uint32 BE) = number of bytes in ANIM payload
+   - ANIM payload layout used here:
+       a) 2 bytes: frame count (big-endian unsigned short)
+       b) Repeated for each frame (frameCount times):
+           - BMHD chunk for the frame:
+               * 4 bytes: ASCII "BMHD"
+               * 4 bytes: chunk size (uint32 BE) — normally 20
+               * 20 bytes: BMHD fields (big-endian):
+                   - width (2)
+                   - height (2)
+                   - xOrigin (2)
+                   - yOrigin (2)
+                   - numPlanes (1)
+                   - mask (1)
+                   - compression (1)  (0 = none, 1 = ILBM RLE)
+                   - pad1 (1)
+                   - transClr (2)
+                   - xAspect (1)
+                   - yAspect (1)
+                   - pageWidth (2)
+                   - pageHeight (2)
+               * pad byte if BMHD data length odd (BMHD is 20 so usually even)
+
+           - BODY chunk for the frame:
+               * 4 bytes: ASCII "BODY"
+               * 4 bytes: chunk size (uint32 BE) = size of the body payload in bytes
+               * body payload: interleaved bitplane data (or compressed RLE blocks if compression != 0)
+                   - For uncompressed ILBM layout produced here: data is laid out by scanline,
+                     iterating y (0..height-1), then bitplane (0..numPlanes-1), then bytes across the scanline.
+                     bodySize = numPlanes * widthInBytes * height
+                     where widthInBytes = ((width + 15) / 16) * 2  (16-bit aligned, in bytes)
+                   - For RLE: ILBM per-scanline RLE encoding is used (packets with count byte, etc.)
+               * pad byte if body payload length is odd
+
+   - Note: ANIM chunk itself may contain subchunks (BMHD/BODY pairs); the library writes BMHD and BODY sequentially inside ANIM.
+
+4) Other FORM-level chunks: additional chunks may appear before/after ANIM (e.g., meta chunks). Unknown chunks should be skipped using the chunk size.
+
+Semantics and notes:
+- "SPRT" is a custom FORM type used by this project to represent a sprite animation with a shared palette.
+- CMAP describes the shared palette; its chunk size / 3 is the number of RGB entries actually provided.
+- BMHD.numPlanes defines how many bitplanes the BODY contains; the palette can be smaller than 2^numPlanes but typically matches (or is clamped).
+- All multi-byte numeric fields are written big-endian in IFF/Amiga files.
+- Chunks are padded to even sizes: after reading chunkSize bytes, if chunkSize is odd, skip one pad byte.
+
+Example (hex terms):
+  46 4F 52 4D   00 00 10 00   53 50 52 54    => "FORM" size 0x1000 "SPRT"
+  43 4D 41 50   00 00 00 30   ...palette data...
+  41 4E 49 4D   00 00 00 60   00 05   ...frames (BMHD/BODY pairs)...
+
+This document is a concise reference for the SPRT format as implemented in this repo.
