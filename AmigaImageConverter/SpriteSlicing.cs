@@ -81,8 +81,10 @@ namespace AmigaImageConverter
             //pictureBox.pictureBox.Invalidate();
         }
 
+
         private void SliceBtn_Click(object sender, EventArgs e)
         {
+    
             int SpritesPerRaw = (int)(ImagesPerRawNud.Value * spritePerImageUDN.Value);
             if (ImagesPerRawNud.Value == 0 || numOfRawsNud.Value == 0 || spriteWidthCb.SelectedIndex == -1)
             {
@@ -91,30 +93,32 @@ namespace AmigaImageConverter
             }
             sprites.Clear();
 
-            int SprireWidth = (int)(vr.bitplane.bitmap.Width / ImagesPerRawNud.Value / spritePerImageUDN.Value);
+            int SpriteWidth = (int)(vr.bitplane.bitmap.Width / ImagesPerRawNud.Value / spritePerImageUDN.Value);
             int SpriteHeight = (int)(vr.bitplane.bitmap.Height / numOfRawsNud.Value);
 
             int NumOfSprites = (int)(ImagesPerRawNud.Value * numOfRawsNud.Value * spritePerImageUDN.Value);
 
+            if (vr.bitplane.bitmap.Width % SpriteWidth != 0 ||
+               vr.bitplane.bitmap.Height % SpriteHeight != 0)
+            {
+                MessageBox.Show("Sprite sheet is not evenly divisible by the selected parameters.");
+                return;
+            }
+            // i need to decide the best way to slice the sprite when the sheet is divided evenly by the number of sprites.
             int SpriteNum = 0;
             for (int y = 0; y < numOfRawsNud.Value; y++)
             {
                 for (int x = 0; x < SpritesPerRaw; x++)
                 {
 
-                    Bitmap SprBmp = new Bitmap(SprireWidth, SpriteHeight);
+                    Bitmap SprBmp = new Bitmap(SpriteWidth, SpriteHeight);
                     SprBmp.SetResolution(vr.bitplane.bitmap.HorizontalResolution, vr.bitplane.bitmap.VerticalResolution);
                     Sprite sprite = new Sprite();
 
                     sprite.Name = spriteNameTxtbox.Text != "" ? spriteNameTxtbox.Text + SpriteNum++.ToString() : "SpriteName";
 
-
-                    Graphics gr = Graphics.FromImage(SprBmp);
-                    Rectangle sourceRec = new Rectangle(x * SprireWidth, y * SpriteHeight, SprireWidth, SpriteHeight);
-                    gr.DrawImage(vr.bitplane.bitmap, 0, 0, sourceRec, GraphicsUnit.Pixel);
-
-                    //pictureBox1.Update();
-                    gr.Dispose();
+                    Rectangle sourceRec = new Rectangle(x * SpriteWidth, y * SpriteHeight, SpriteWidth, SpriteHeight);
+                    SprBmp = vr.bitplane.bitmap.Clone(sourceRec, vr.bitplane.bitmap.PixelFormat);                 
 
                     Sprite.SpriteWidth SprWidth;
                     switch (spriteWidthCb.SelectedIndex)
