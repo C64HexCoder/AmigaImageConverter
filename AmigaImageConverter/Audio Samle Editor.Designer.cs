@@ -1,4 +1,4 @@
-﻿namespace AmigaImageConverter
+namespace AmigaImageConverter
 {
     partial class AudioSamleEditorDialog
     {
@@ -152,7 +152,7 @@
             Controls.Add(numericNumOfSamples);
             Controls.Add(comboBoxWaveform);
             Name = "AudioSamleEditorDialog";
-            Text = "Audio_Samle_Editor";
+            Text = "Audio Sample Editor";
             Paint += AudioSamleEditorDialog_Paint;
             ((System.ComponentModel.ISupportInitialize)numericNumOfSamples).EndInit();
             ((System.ComponentModel.ISupportInitialize)GraphPicBox).EndInit();

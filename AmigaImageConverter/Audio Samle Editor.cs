@@ -1,4 +1,4 @@
-﻿using Amiga;
+using Amiga;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
