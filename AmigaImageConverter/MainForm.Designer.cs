@@ -117,10 +117,12 @@ namespace AmigaImageConverter
             tabControl1 = new System.Windows.Forms.TabControl();
             tabPage1 = new System.Windows.Forms.TabPage();
             tabPage2 = new System.Windows.Forms.TabPage();
+            imageGrid1 = new Amiga.ImageGrid();
             menuStrip1.SuspendLayout();
             statusStrip.SuspendLayout();
             tabControl1.SuspendLayout();
             tabPage1.SuspendLayout();
+            tabPage2.SuspendLayout();
             SuspendLayout();
             // 
             // menuStrip1
@@ -746,13 +748,29 @@ namespace AmigaImageConverter
             // 
             // tabPage2
             // 
+            tabPage2.Controls.Add(imageGrid1);
             tabPage2.Location = new System.Drawing.Point(4, 34);
             tabPage2.Name = "tabPage2";
             tabPage2.Padding = new System.Windows.Forms.Padding(3);
             tabPage2.Size = new System.Drawing.Size(1064, 695);
             tabPage2.TabIndex = 1;
-            tabPage2.Text = "Sprite";
+            tabPage2.Text = "Sprite Editor";
             tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // imageGrid1
+            // 
+            imageGrid1.CellBorder = true;
+            imageGrid1.CellsOnX = 32;
+            imageGrid1.CellsOnY = 32;
+            imageGrid1.Dock = System.Windows.Forms.DockStyle.Left;
+            imageGrid1.DrawColor = System.Drawing.Color.Blue;
+            imageGrid1.GridImage = null;
+            imageGrid1.LineWidth = 2;
+            imageGrid1.Location = new System.Drawing.Point(3, 3);
+            imageGrid1.Name = "imageGrid1";
+            imageGrid1.Size = new System.Drawing.Size(675, 689);
+            imageGrid1.TabIndex = 0;
+            imageGrid1.Load += imageGrid1_Load;
             // 
             // MainForm
             // 
@@ -778,6 +796,7 @@ namespace AmigaImageConverter
             statusStrip.PerformLayout();
             tabControl1.ResumeLayout(false);
             tabPage1.ResumeLayout(false);
+            tabPage2.ResumeLayout(false);
             ResumeLayout(false);
             PerformLayout();
         }
@@ -872,6 +891,7 @@ namespace AmigaImageConverter
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.TabPage tabPage2;
+        private Amiga.ImageGrid imageGrid1;
     }
 }
 

@@ -1575,7 +1575,7 @@ namespace AmigaImageConverter
                 AddRemoveSidePanel(sender, e, () => { animation = new Animation(image, sprites); Controls.Add(animation); animation.Dock = DockStyle.Right; formState = FormState.Animation; }, animation);
             }
         }
-       
+
         private bool IsValidImageFile(string path)
         {
             if (string.IsNullOrWhiteSpace(path) || !File.Exists(path))
@@ -1635,6 +1635,11 @@ namespace AmigaImageConverter
 
             // Unknown/unsupported signature
             return false;
+        }
+
+        private void imageGrid1_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }
