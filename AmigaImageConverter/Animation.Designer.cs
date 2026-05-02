@@ -1,4 +1,4 @@
-﻿namespace AmigaImageConverter
+namespace AmigaImageConverter
 {
     partial class Animation
     {
@@ -156,6 +156,7 @@
             // heightNumeric
             // 
             heightNumeric.Location = new System.Drawing.Point(127, 30);
+            heightNumeric.Maximum = new decimal(new int[] { 350, 0, 0, 0 });
             heightNumeric.Name = "heightNumeric";
             heightNumeric.ReadOnly = true;
             heightNumeric.Size = new System.Drawing.Size(112, 31);

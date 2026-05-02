@@ -140,23 +140,7 @@ namespace AmigaImageConverter
                             break;
                         case 3:
                             // Save multiple sprites in a single IFF file with a common palette
-                            List<byte[,]> bitmaps = new List<byte[,]>();
-                            Color[] commonPalette = null;
-                            int width = 0, height = 0, numPlanes = 0;
-                            foreach (var sprite in sprites)
-                            {
-                                if (commonPalette == null)
-                                {
-                                    commonPalette = sprite.Palette;
-                                    numPlanes = sprite.Attached ? 4 : 2;
-                                }
-                                width = sprite.Width;
-                                height = sprite.Height;
-
-                                sprite.ConvertSpriteToBitplanes();
-                                bitmaps.Add(sprite.GetBitplanesArray());
-                            }
-                            SaveSpriteAnimationIFF(saveFileDialog.FileName, bitmaps, commonPalette, width, height, numPlanes);
+                            IFF.SaveSpriteAnimation(saveFileDialog.FileName, sprites);
                             break;
 
                     }

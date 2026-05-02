@@ -14,7 +14,7 @@ namespace AmigaImageConverter
 {
     public partial class Animation : UserControl
     {
-        Resize resizeImg = new Resize();
+        //Resize resizeImg = new Resize();
 
         List<Sprite> sprites = new List<Sprite>();
         PublicVariables pv = PublicVariables.instance;
@@ -27,10 +27,10 @@ namespace AmigaImageConverter
 
             if (pv.bitplane.bitmap != null)
             {
-                if (pv.bitplane.bitmap.Width != 16 && pv.bitplane.bitmap.Width != 32 && pv.bitplane.bitmap.Width != 64)
+               /* if (pv.bitplane.bitmap.Width != 16 && pv.bitplane.bitmap.Width != 32 && pv.bitplane.bitmap.Width != 64)
                 {
                     resizeImg.ShowDialog();
-                }
+                }*/
 
                 Sprite sprite = pv.bitplane.CreateSprite();
 
@@ -49,10 +49,10 @@ namespace AmigaImageConverter
             
             if (pv.bitplane.bitmap != null)
             {
-                if (pv.bitplane.bitmap.Width != 16 && pv.bitplane.bitmap.Width != 32 && pv.bitplane.bitmap.Width != 64)
+                /*if (pv.bitplane.bitmap.Width != 16 && pv.bitplane.bitmap.Width != 32 && pv.bitplane.bitmap.Width != 64)
                 {
-                    resizeImg.ShowDialog();
-                }
+                    //resizeImg.ShowDialog();
+                }*/
 
                 Sprite sprite = pv.bitplane.CreateSprite();
 

@@ -133,12 +133,25 @@ namespace AmigaImageConverter
 
 
                 string path = openImageFileDialog.FileName;
-                if (!IsValidImageFile(path))
+                string errorMessage = "";
+                if (IFF.ValidateIFFFile(path, out errorMessage))
+                {
+               
+                    iffImage.Load(path);
+                    bmp = iffImage.bmp;
+                }
+                else if (errorMessage != null  && errorMessage != "")
+                {
+                    MessageBox.Show("The image has some issues..., issues: " + errorMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+                else if (!IsValidImageFile(path))
                 {
                     MessageBox.Show("Selected file does not appear to be a supported or valid image.", "Invalid Image", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
-                bmp = new Bitmap(path); // safe to create because signature matched
+                else 
+                    bmp = new Bitmap(path); // safe to create because signature matched
 
                 if (bmp.PixelFormat == PixelFormat.Undefined)
                 {
@@ -1570,7 +1583,7 @@ namespace AmigaImageConverter
 
                 List<Sprite> sprites;
                 IFF.LoadSpriteAnimation(openImageFileDialog.FileName, out sprites, out error);
-
+                image.Image = sprites[0].bitmap;
                 animation = new Animation(image, sprites);
                 AddRemoveSidePanel(sender, e, () => { animation = new Animation(image, sprites); Controls.Add(animation); animation.Dock = DockStyle.Right; formState = FormState.Animation; }, animation);
             }
@@ -1638,6 +1651,11 @@ namespace AmigaImageConverter
         }
 
         private void imageGrid1_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void openImageFileDialog_FileOk(object sender, CancelEventArgs e)
         {
 
         }

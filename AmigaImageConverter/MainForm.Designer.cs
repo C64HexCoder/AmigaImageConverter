@@ -645,7 +645,8 @@ namespace AmigaImageConverter
             // 
             // openImageFileDialog
             // 
-            openImageFileDialog.Filter = "All image files|*.png;*.bmp|PNG Files|*.PNG|JPEG Files|*.JPG;*.JFIF|BMP Files|*.bmp|All Files|*.*";
+            openImageFileDialog.Filter = "All image files|*.png;*.bmp;*.iff|PNG Files|*.PNG|JPEG Files|*.JPG;*.JFIF|BMP Files|*.bmp|All Files|*.*|IFF Files (Amiga)|*.iff";
+            openImageFileDialog.FileOk += openImageFileDialog_FileOk;
             // 
             // saveSourceFileDialog
             // 
@@ -693,6 +694,7 @@ namespace AmigaImageConverter
             // 
             // process1
             // 
+            process1.StartInfo.CreateNewProcessGroup = false;
             process1.StartInfo.Domain = "";
             process1.StartInfo.LoadUserProfile = false;
             process1.StartInfo.Password = null;

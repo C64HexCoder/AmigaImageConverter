@@ -19,6 +19,7 @@ namespace AmigaImageConverter
         ExPictureBox pictureBox;
 
         public event Action SlicePanelClosed;
+        [DefaultValue(false)]
         public bool isSliced { get; set; } = false;
 
         public event EventHandler ImageUpdated;
@@ -53,6 +54,7 @@ namespace AmigaImageConverter
             }
         }
 
+        [DefaultValue(false)]
         public Bitmap ImageBox
         {
             set
@@ -84,7 +86,7 @@ namespace AmigaImageConverter
 
         private void SliceBtn_Click(object sender, EventArgs e)
         {
-    
+
             int SpritesPerRaw = (int)(ImagesPerRawNud.Value * spritePerImageUDN.Value);
             if (ImagesPerRawNud.Value == 0 || numOfRawsNud.Value == 0 || spriteWidthCb.SelectedIndex == -1)
             {
@@ -118,7 +120,7 @@ namespace AmigaImageConverter
                     sprite.Name = spriteNameTxtbox.Text != "" ? spriteNameTxtbox.Text + SpriteNum++.ToString() : "SpriteName";
 
                     Rectangle sourceRec = new Rectangle(x * SpriteWidth, y * SpriteHeight, SpriteWidth, SpriteHeight);
-                    SprBmp = vr.bitplane.bitmap.Clone(sourceRec, vr.bitplane.bitmap.PixelFormat);                 
+                    SprBmp = vr.bitplane.bitmap.Clone(sourceRec, vr.bitplane.bitmap.PixelFormat);
 
                     Sprite.SpriteWidth SprWidth;
                     switch (spriteWidthCb.SelectedIndex)
@@ -191,6 +193,13 @@ namespace AmigaImageConverter
             vr.spriteRec.Enable = false;
             ImageUpdated?.Invoke(this, EventArgs.Empty);
 
+        }
+
+        private void sprImageBox_Click(object sender, EventArgs e)
+        {
+            Pallate palette = new Pallate();
+            palette.imagePallate.SetPalette(sprites[(int)spriteSelectNud.Value].Palette);
+            palette.ShowDialog();
         }
     }
 }

@@ -1,4 +1,4 @@
-﻿namespace AmigaImageConverter
+namespace AmigaImageConverter
 {
     partial class SpriteSlicing
     {
@@ -133,10 +133,9 @@
             // 
             sprImageBox.AutoCenter = false;
             sprImageBox.AutoScaleImageBox = false;
-            sprImageBox.HrizontalScrollBar = null;
             sprImageBox.Image = null;
+            sprImageBox.LimitMouseWeelZoom = false;
             sprImageBox.Location = new System.Drawing.Point(6, 303);
-            sprImageBox.MaxImageScale = 4;
             sprImageBox.MouseWheelZoom = false;
             sprImageBox.Name = "sprImageBox";
             sprImageBox.OriginalImage = null;
@@ -147,6 +146,7 @@
             sprImageBox.TabIndex = 7;
             sprImageBox.TabStop = false;
             sprImageBox.VerticalScrollBar = null;
+            sprImageBox.Click += sprImageBox_Click;
             // 
             // spriteWidthCb
             // 

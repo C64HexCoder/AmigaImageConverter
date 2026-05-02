@@ -58,7 +58,7 @@ namespace AmigaImageConverter
         }
 
 
-
+        
         public int NumOfColors
         {
             get { return _NumOfColors; }
