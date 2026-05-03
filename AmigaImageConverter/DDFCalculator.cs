@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -30,6 +30,7 @@ namespace AmigaImageConverter
 
         }
 
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public ushort DisplayWindowWidth
         {
             get
@@ -43,6 +44,7 @@ namespace AmigaImageConverter
             }
         }
 
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public ushort DisplayWindowsHeight
         {
             get
@@ -55,6 +57,8 @@ namespace AmigaImageConverter
                 diwheightNum.Value = (ushort)displayWindowHeight;
             }
         }
+
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public ushort DIWSTRT
         {
             get
@@ -87,6 +91,7 @@ namespace AmigaImageConverter
             }
         }
 
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public ushort DIWSTOP
         {
             get

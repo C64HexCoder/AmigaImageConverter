@@ -36,6 +36,7 @@ namespace AmigaImageConverter
         }
 
         [Description("Select 12 or 24 bit Paletter")]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public PaletteFormat paletteFormat { get; set; }
  
 
@@ -58,7 +59,7 @@ namespace AmigaImageConverter
         }
 
 
-        
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public int NumOfColors
         {
             get { return _NumOfColors; }

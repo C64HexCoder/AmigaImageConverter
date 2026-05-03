@@ -34,6 +34,18 @@
     <PlatformTarget>AnyCPU</PlatformTarget>
     <AllowUnsafeBlocks>True</AllowUnsafeBlocks>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <NoWarn>1701;1702;WFO1000;WFO1001;WFO1002</NoWarn>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <NoWarn>1701;1702;WFO1000;WFO1001;WFO1002</NoWarn>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <NoWarn>1701;1702;WFO1000;WFO1001;WFO1002</NoWarn>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <NoWarn>1701;1702;WFO1000;WFO1001;WFO1002</NoWarn>
+  </PropertyGroup>
   <ItemGroup>
     <Compile Remove="ImageToSprite.cs" />
     <Compile Remove="ImageToSprite.Designer.cs" />

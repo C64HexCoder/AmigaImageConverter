@@ -15,7 +15,7 @@ namespace AmigaImageConverter
     public partial class SpriteSlicing : UserControl
     {
         List<Sprite> sprites = new List<Sprite>();
-        PublicVariables vr = PublicVariables.instance;
+        PublicVariables vr;
         ExPictureBox pictureBox;
 
         public event Action SlicePanelClosed;
@@ -24,10 +24,19 @@ namespace AmigaImageConverter
 
         public event EventHandler ImageUpdated;
 
+        public SpriteSlicing()
+        {
+            InitializeComponent();
+            if (!IsInDesignMode())
+                InitRuntime();
+
+        }
         public SpriteSlicing(ref Amiga.ExPictureBox picBox)
         {
             InitializeComponent();
             pictureBox = picBox;
+            if (!IsInDesignMode())
+                InitRuntime();
         }
         public int ImagesPerRaw
         {
@@ -64,6 +73,15 @@ namespace AmigaImageConverter
         }
         private void RectangleSprite(int SpriteNum)
         {
+            // השורה הזו אומרת: אם אנחנו בתוך ה-Designer של Visual Studio, תעצור הכל ותצא.
+            // אל תנסה לגשת ל-vr, אל תנסה לגשת ל-pictureBox, פשוט אל תעשה כלום.
+            if (this.DesignMode || LicenseManager.UsageMode == LicenseUsageMode.Designtime)
+                return;
+
+            // רק מכאן והלאה הקוד האמיתי שלך רץ (שרץ רק כשהאפליקציה פועלת)
+            if (vr == null || pictureBox == null || pictureBox.Image == null)
+                return;
+
             int SprireWidth = (int)(pictureBox.Image.Width / ImagesPerRawNud.Value / spritePerImageUDN.Value);
             int SpriteHeight = (int)(pictureBox.Image.Height / numOfRawsNud.Value);
             int SpritePerRaw = (int)(ImagesPerRawNud.Value * spritePerImageUDN.Value);
@@ -113,14 +131,9 @@ namespace AmigaImageConverter
                 for (int x = 0; x < SpritesPerRaw; x++)
                 {
 
-                    Bitmap SprBmp = new Bitmap(SpriteWidth, SpriteHeight);
-                    SprBmp.SetResolution(vr.bitplane.bitmap.HorizontalResolution, vr.bitplane.bitmap.VerticalResolution);
-                    Sprite sprite = new Sprite();
-
-                    sprite.Name = spriteNameTxtbox.Text != "" ? spriteNameTxtbox.Text + SpriteNum++.ToString() : "SpriteName";
-
                     Rectangle sourceRec = new Rectangle(x * SpriteWidth, y * SpriteHeight, SpriteWidth, SpriteHeight);
-                    SprBmp = vr.bitplane.bitmap.Clone(sourceRec, vr.bitplane.bitmap.PixelFormat);
+
+                    Bitplane slicedBitplane = vr.bitplane.Slice(sourceRec.X, sourceRec.Y, sourceRec.Width, sourceRec.Height);
 
                     Sprite.SpriteWidth SprWidth;
                     switch (spriteWidthCb.SelectedIndex)
@@ -139,7 +152,11 @@ namespace AmigaImageConverter
                             break;
                     }
                     //bitmaps.Add(SprBmp);
-                    sprite.ImportImage(SprBmp, SprWidth);
+
+
+                    Sprite sprite = slicedBitplane.CreateSprite(sourceRec.Width,sourceRec.Height);
+                    sprite.Name = spriteNameTxtbox.Text != "" ? spriteNameTxtbox.Text + SpriteNum++.ToString() : "SpriteName";
+
                     sprites.Add(sprite);
                 }
             }
@@ -201,5 +218,21 @@ namespace AmigaImageConverter
             palette.imagePallate.SetPalette(sprites[(int)spriteSelectNud.Value].Palette);
             palette.ShowDialog();
         }
+
+        private void InitRuntime()
+        {
+            vr = PublicVariables.instance;
+            // כל שאר האתחולים שלך
+        }
+
+        private bool IsInDesignMode()
+        {
+            return LicenseManager.UsageMode == LicenseUsageMode.Designtime ||
+                   DesignMode ||
+                   Site?.DesignMode == true;
+        }
+
     }
+
+
 }
