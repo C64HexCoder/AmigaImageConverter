@@ -44,6 +44,7 @@ namespace AmigaImageConverter
             InitializeComponent();
             ImageBox = imgBox;
             this.sprites = sprites;
+            imageSelectNum.Maximum = sprites.Count - 1;
 
             colorsGrid.SetPalette(sprites[(int)imageSelectNum.Value].palette);
             

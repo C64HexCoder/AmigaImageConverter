@@ -119,6 +119,8 @@ namespace AmigaImageConverter
             spritePerImageUDN.Size = new System.Drawing.Size(213, 31);
             spritePerImageUDN.TabIndex = 8;
             spritePerImageUDN.Value = new decimal(new int[] { 1, 0, 0, 0 });
+            spritePerImageUDN.ValueChanged += spritePerImageUDN_ValueChanged;
+            spritePerImageUDN.Scroll += spritePerImageUDN_Scroll;
             // 
             // spriteSelectNud
             // 
@@ -131,21 +133,12 @@ namespace AmigaImageConverter
             // 
             // sprImageBox
             // 
-            sprImageBox.AutoCenter = false;
-            sprImageBox.AutoScaleImageBox = false;
-            sprImageBox.Image = null;
-            sprImageBox.LimitMouseWeelZoom = false;
             sprImageBox.Location = new System.Drawing.Point(6, 303);
-            sprImageBox.MouseWheelZoom = false;
             sprImageBox.Name = "sprImageBox";
-            sprImageBox.OriginalImage = null;
-            sprImageBox.ScaleFactor = 1;
-            sprImageBox.ScaleFactorFloat = 1F;
             sprImageBox.Size = new System.Drawing.Size(213, 317);
             sprImageBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             sprImageBox.TabIndex = 7;
             sprImageBox.TabStop = false;
-            sprImageBox.VerticalScrollBar = null;
             sprImageBox.Click += sprImageBox_Click;
             // 
             // spriteWidthCb

@@ -154,7 +154,7 @@ namespace AmigaImageConverter
                     //bitmaps.Add(SprBmp);
 
 
-                    Sprite sprite = slicedBitplane.CreateSprite(sourceRec.Width,sourceRec.Height);
+                    Sprite sprite = slicedBitplane.CreateSprite(sourceRec.Width, sourceRec.Height);
                     sprite.Name = spriteNameTxtbox.Text != "" ? spriteNameTxtbox.Text + SpriteNum++.ToString() : "SpriteName";
 
                     sprites.Add(sprite);
@@ -232,6 +232,21 @@ namespace AmigaImageConverter
                    Site?.DesignMode == true;
         }
 
+        private void spritePerImageUDN_ValueChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void spritePerImageUDN_Scroll(object sender, ScrollEventArgs e)
+        {
+            if (e.ScrollOrientation == ScrollOrientation.VerticalScroll)
+            {
+                if (e.NewValue != 0)
+                    ImagesPerRawNud.Maximum = 100 / e.NewValue;
+                else
+                    ImagesPerRawNud.Maximum = 100;
+            }
+        }
     }
 
 
