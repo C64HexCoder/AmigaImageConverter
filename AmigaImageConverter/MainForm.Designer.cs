@@ -118,6 +118,7 @@ namespace AmigaImageConverter
             tabPage1 = new System.Windows.Forms.TabPage();
             tabPage2 = new System.Windows.Forms.TabPage();
             imageGrid1 = new Amiga.ImageGrid();
+            toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             menuStrip1.SuspendLayout();
             statusStrip.SuspendLayout();
             tabControl1.SuspendLayout();
@@ -310,7 +311,7 @@ namespace AmigaImageConverter
             // 
             // imageToolStripMenuItem
             // 
-            imageToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] { resizeToolStripMenuItem, alignWidthToolStripMenuItem, addWordToolStripMenuItem, removeBlitterWorldToolStripMenuItem3, setImageWidthToolStripMenuItem, corpMenuItem, autoCorpToolStripMenuItem, outlinkToolStripMenuItem, displayMaskToolStripMenuItem, informationToolStripMenuItem, toolStripSeparator4, c64ImageToolStripMenuItem });
+            imageToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] { resizeToolStripMenuItem, toolStripMenuItem1, alignWidthToolStripMenuItem, addWordToolStripMenuItem, removeBlitterWorldToolStripMenuItem3, setImageWidthToolStripMenuItem, corpMenuItem, autoCorpToolStripMenuItem, outlinkToolStripMenuItem, displayMaskToolStripMenuItem, informationToolStripMenuItem, toolStripSeparator4, c64ImageToolStripMenuItem });
             imageToolStripMenuItem.Name = "imageToolStripMenuItem";
             imageToolStripMenuItem.Size = new System.Drawing.Size(78, 29);
             imageToolStripMenuItem.Text = "Image";
@@ -397,6 +398,7 @@ namespace AmigaImageConverter
             corpMenuItem.Name = "corpMenuItem";
             corpMenuItem.Size = new System.Drawing.Size(277, 34);
             corpMenuItem.Text = "Corp";
+            corpMenuItem.Click += corpMenuItem_Click;
             // 
             // autoCorpToolStripMenuItem
             // 
@@ -774,6 +776,13 @@ namespace AmigaImageConverter
             imageGrid1.TabIndex = 0;
             imageGrid1.Load += imageGrid1_Load;
             // 
+            // toolStripMenuItem1
+            // 
+            toolStripMenuItem1.Name = "toolStripMenuItem1";
+            toolStripMenuItem1.Size = new System.Drawing.Size(277, 34);
+            toolStripMenuItem1.Text = "Risize Canvas";
+            toolStripMenuItem1.Click += toolStripMenuItem1_Click;
+            // 
             // MainForm
             // 
             AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -894,6 +903,7 @@ namespace AmigaImageConverter
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.TabPage tabPage2;
         private Amiga.ImageGrid imageGrid1;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
     }
 }
 

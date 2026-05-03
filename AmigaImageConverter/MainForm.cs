@@ -136,11 +136,11 @@ namespace AmigaImageConverter
                 string errorMessage = "";
                 if (IFF.ValidateIFFFile(path, out errorMessage))
                 {
-               
+
                     iffImage.Load(path);
                     bmp = iffImage.bmp;
                 }
-                else if (errorMessage != null  && errorMessage != "")
+                else if (errorMessage != null && errorMessage != "")
                 {
                     MessageBox.Show("The image has some issues..., issues: " + errorMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
@@ -150,7 +150,7 @@ namespace AmigaImageConverter
                     MessageBox.Show("Selected file does not appear to be a supported or valid image.", "Invalid Image", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
-                else 
+                else
                     bmp = new Bitmap(path); // safe to create because signature matched
 
                 if (bmp.PixelFormat == PixelFormat.Undefined)
@@ -1658,6 +1658,22 @@ namespace AmigaImageConverter
         private void openImageFileDialog_FileOk(object sender, CancelEventArgs e)
         {
 
+        }
+
+        private void corpMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void toolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            ResizeCanvas resizeCanvas = new ResizeCanvas(vr.bitplane.bitmap);
+            if (resizeCanvas.ShowDialog() == DialogResult.OK)
+            {
+                vr.bitplane.ResizeCanvas((int)resizeCanvas.widthNUD.Value, (int)resizeCanvas.heightNUD.Value);
+                image.Image = vr.bitplane.bitmap;
+                image.Invalidate();
+            }
         }
     }
 }
