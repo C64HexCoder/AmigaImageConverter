@@ -1,13 +1,7 @@
-﻿using Amiga;
+using Amiga;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace AmigaImageConverter
@@ -67,19 +61,19 @@ namespace AmigaImageConverter
         private void equalizeAllBtn_Click(object sender, EventArgs e)
         {
             string[] fileNames;// = new string[];
-            if (folderTBox.Text  == "Select Folder ")
+            if (folderTBox.Text == "Select Folder ")
             {
-                
+
                 MessageBox.Show("No Folder Selected\n" +
                     "Please Select a Folder you wich to work on\n" +
                     "and try again.", "No Folder Selected", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
-                
+
             }
             fileNames = Directory.GetFiles(folderTBox.Text);
             Sprite sprite = new Sprite();
 
-            if (destPalette ==  null)
+            if (destPalette == null)
             {
                 MessageBox.Show("No Destination Palette Chosen\n" +
                     "Please Load A Palette you whish to change for\n" +
@@ -87,11 +81,11 @@ namespace AmigaImageConverter
                 return;
             }
 
-            progressBar.Maximum = fileNames.Length-1;
+            progressBar.Maximum = fileNames.Length - 1;
 
             for (int i = 0; i < fileNames.Length; i++)
             {
-                
+
                 sprite.LoadIFF(fileNames[i]);
 
                 if (!sprite.ComparePalettes(destPalette))
@@ -101,16 +95,16 @@ namespace AmigaImageConverter
                     sprite.EqualizePalette(destPalette);
                     if (SaveOption == SaveOptions.ChangeName)
                     {
-                         saveFileName = saveFileName + stringToAddTb.Text + ".iff";
+                        saveFileName = saveFileName + stringToAddTb.Text + ".iff";
                     }
-                        sprite.SaveILBM(saveFileName);
+                    sprite.SaveILBM(saveFileName);
 
-                        
+
                 }
                 progressBar.Value = i;
 
             }
-            MessageBox.Show ("Finished Qualizing all the images in the folder","Equalizing succeeded",
+            MessageBox.Show("Finished Qualizing all the images in the folder", "Equalizing succeeded",
                 MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
     }

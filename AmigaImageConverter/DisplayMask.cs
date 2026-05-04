@@ -1,22 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
+using System;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace AmigaImageConverter
 {
     public partial class DisplayMask : Form
-    { PublicVariables vr = PublicVariables.instance;
+    {
+        PublicVariables vr = PublicVariables.instance;
 
         public DisplayMask()
         {
             InitializeComponent();
-      
+
         }
 
         private void DisplayMask_Activated(object sender, EventArgs e)
@@ -35,7 +30,8 @@ namespace AmigaImageConverter
         }
 
         private void saveBtn_Click(object sender, EventArgs e)
-        {   Settings setings = new Settings();
+        {
+            Settings setings = new Settings();
             vr.bitplane.SaveMaskAs(setings.outPutSize);
         }
     }

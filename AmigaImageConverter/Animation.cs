@@ -1,14 +1,7 @@
+using Amiga;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Security.Policy;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using Amiga;
 
 namespace AmigaImageConverter
 {
@@ -27,10 +20,10 @@ namespace AmigaImageConverter
 
             if (pv.bitplane.bitmap != null)
             {
-               /* if (pv.bitplane.bitmap.Width != 16 && pv.bitplane.bitmap.Width != 32 && pv.bitplane.bitmap.Width != 64)
-                {
-                    resizeImg.ShowDialog();
-                }*/
+                /* if (pv.bitplane.bitmap.Width != 16 && pv.bitplane.bitmap.Width != 32 && pv.bitplane.bitmap.Width != 64)
+                 {
+                     resizeImg.ShowDialog();
+                 }*/
 
                 Sprite sprite = pv.bitplane.CreateSprite();
 
@@ -39,7 +32,7 @@ namespace AmigaImageConverter
             }
         }
 
-        public Animation(ExPictureBox imgBox,List<Sprite> sprites)
+        public Animation(ExPictureBox imgBox, List<Sprite> sprites)
         {
             InitializeComponent();
             ImageBox = imgBox;
@@ -47,7 +40,7 @@ namespace AmigaImageConverter
             imageSelectNum.Maximum = sprites.Count - 1;
 
             colorsGrid.SetPalette(sprites[(int)imageSelectNum.Value].palette);
-            
+
             if (pv.bitplane.bitmap != null)
             {
                 /*if (pv.bitplane.bitmap.Width != 16 && pv.bitplane.bitmap.Width != 32 && pv.bitplane.bitmap.Width != 64)
@@ -85,14 +78,14 @@ namespace AmigaImageConverter
 
         }
 
-        public void LoadAnimation (string IFFFilePath)
+        public void LoadAnimation(string IFFFilePath)
         {
             InitializeComponent();
             //Sprite.LoadMultipleImagesAutoPalette(IFFFilePath);
 
 
         }
-      
+
         private void executeBtn_Click(object sender, EventArgs e)
         {
 

@@ -1,12 +1,6 @@
 using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
-using System.Diagnostics.Eventing.Reader;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace AmigaImageConverter
@@ -139,7 +133,7 @@ namespace AmigaImageConverter
             int tmpHeight = (int)((float)diwheightNum.Value * PixelHeight);
 
 
-            gfx.DrawRectangle(pen, 100 + (Hstart - 0x81)*PixelWidth, 100 + (Vstart - 0x2c) * PixelHeight, tmpWidth, tmpHeight);
+            gfx.DrawRectangle(pen, 100 + (Hstart - 0x81) * PixelWidth, 100 + (Vstart - 0x2c) * PixelHeight, tmpWidth, tmpHeight);
         }
 
         private void dmaWidthCB_SelectedIndexChanged(object sender, EventArgs e)
@@ -230,7 +224,7 @@ namespace AmigaImageConverter
             if (resolutionCB.SelectedIndex == 0)
             {
                 byte Margin = (byte)((320 - displayWindowWidth) / 2);
-                if (Margin >160)
+                if (Margin > 160)
                 {
                     MessageBox.Show("The Width can not be less then 160", "Width is too short");
                     return;

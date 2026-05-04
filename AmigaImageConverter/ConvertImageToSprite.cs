@@ -1,14 +1,9 @@
-﻿using System;
+using Amiga;
+using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using Amiga;
 
 namespace AmigaImageConverter
 {
@@ -42,7 +37,7 @@ namespace AmigaImageConverter
             switch (pv.bitplane.Width)
             {
                 case 64:
-                    sprWidth = Sprite.SpriteWidth._64Pixels; 
+                    sprWidth = Sprite.SpriteWidth._64Pixels;
                     break;
                 case 32:
                     sprWidth = Sprite.SpriteWidth._32Pixels;
@@ -51,7 +46,7 @@ namespace AmigaImageConverter
                     sprWidth = Sprite.SpriteWidth._16Pixels;
                     break;
 
-                 default:
+                default:
                     sprWidth = Sprite.SpriteWidth._16Pixels;
                     break;
 
@@ -95,10 +90,11 @@ namespace AmigaImageConverter
             if (saveFileDialog.ShowDialog() == DialogResult.OK)
             {
                 int spriteNum = 0;
-           
+
                 String fileName = Path.ChangeExtension(saveFileDialog.FileName, null);
 
-                switch (saveFileDialog.FilterIndex) { 
+                switch (saveFileDialog.FilterIndex)
+                {
                     case 1:
                         Path.ChangeExtension(saveFileDialog.FileName, "asm");
                         break;
@@ -106,7 +102,7 @@ namespace AmigaImageConverter
                     case 3:
                         Path.ChangeExtension(saveFileDialog.FileName, "cpp");
                         break;
-      
+
                 }
                 File.Delete(saveFileDialog.FileName);
                 int i = 0;
@@ -115,14 +111,14 @@ namespace AmigaImageConverter
                     switch (saveFileDialog.FilterIndex)
                     {
                         case 1:
-                            sprite.SaveAsAssemblerSourceFile(saveFileDialog.FileName, Sprite.MemoryType.CHIP, 10, 10, false,true);
+                            sprite.SaveAsAssemblerSourceFile(saveFileDialog.FileName, Sprite.MemoryType.CHIP, 10, 10, false, true);
                             break;
                         case 2:
                             newFileName = fileName + i + ".bin";
                             sprite.SaveAsBinaryFile(newFileName);
                             break;
                         case 3:
-                            sprite.SaveAsCPPSourceFile(saveFileDialog.FileName, Sprite.MemoryType.CHIP, 0, 0, false,true);
+                            sprite.SaveAsCPPSourceFile(saveFileDialog.FileName, Sprite.MemoryType.CHIP, 0, 0, false, true);
                             break;
 
                     }

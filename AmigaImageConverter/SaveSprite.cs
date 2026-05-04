@@ -1,14 +1,10 @@
 using Amiga;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Drawing.Text;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace AmigaImageConverter
@@ -29,7 +25,7 @@ namespace AmigaImageConverter
                 return multiFilesRadioButton.Checked;
             }
         }
-      
+
         public enum SaveFormat
         {
             SourceCode,
@@ -102,7 +98,7 @@ namespace AmigaImageConverter
         {
 
             SaveFileDialog saveFileDialog = new SaveFileDialog();
-       
+
             saveFileDialog.Filter = SaveAsMultiplyFiles
                 ? "Assembler Source Code|*.asm;*.s;*.a|C/Cpp Source Code|*.c;*.cpp|Binary File|*.bin|IFF ILBM File|*.iff;*.ilbm"
                 : "Assembler Source Code|*.asm;*.s;*.a|C/Cpp Source Code|*.c;*.cpp|IFF ILBM File|*.iff;*.ilbm";
@@ -146,7 +142,7 @@ namespace AmigaImageConverter
                     }
                 }
             }
-            
+
             Close();
 
         }

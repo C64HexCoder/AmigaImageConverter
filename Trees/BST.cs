@@ -1,21 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Runtime.InteropServices;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Trees
 {
     public unsafe class BST
     {
-        static BstNode* Root =  null; //(Node*)Marshal.AllocHGlobal(Marshal.SizeOf(typeof(Node)));
+        static BstNode* Root = null; //(Node*)Marshal.AllocHGlobal(Marshal.SizeOf(typeof(Node)));
 
-        private static void Insert (BstNode** node, uint data)
+        private static void Insert(BstNode** node, uint data)
         {
             if (*node == null)
             {
-                *node = (BstNode*)Marshal.AllocHGlobal (Marshal.SizeOf (typeof (BstNode)));
+                *node = (BstNode*)Marshal.AllocHGlobal(Marshal.SizeOf(typeof(BstNode)));
                 (*node)->Data = data;
                 (*node)->Left = null;
                 (*node)->Right = null;
@@ -29,7 +24,7 @@ namespace Trees
             }
             else
             {
-                Insert (&(*node)->Right, data);
+                Insert(&(*node)->Right, data);
             }
 
         }
@@ -42,7 +37,7 @@ namespace Trees
             {
                 return false;
             }
-            else if (data == node->Data) 
+            else if (data == node->Data)
                 return true;
 
             if (data <= node->Data)
@@ -53,7 +48,7 @@ namespace Trees
             return result;
         }
 
-        static private bool Delete(BstNode** node, BstNode* parent,uint data)
+        static private bool Delete(BstNode** node, BstNode* parent, uint data)
         {
             if (*node == null)
             {
@@ -67,16 +62,16 @@ namespace Trees
 
             if (data <= (*node)->Data)
             {
-                return Delete(&(*node)->Left, parent,data);
+                return Delete(&(*node)->Left, parent, data);
             }
             else
             {
-                return Delete (&(*node)->Right, parent, data);
+                return Delete(&(*node)->Right, parent, data);
             }
-                   
+
         }
 
-        static public void InsertTree (uint data)
+        static public void InsertTree(uint data)
         {
             fixed (BstNode** ppNode = &Root)
             {
@@ -84,15 +79,15 @@ namespace Trees
             }
         }
 
-        static public bool SearchTree (uint data)
+        static public bool SearchTree(uint data)
         {
-           return Search (Root, data); 
+            return Search(Root, data);
         }
 
-        static public void DeleteDataFromTree (uint data)
+        static public void DeleteDataFromTree(uint data)
         {
-            fixed(BstNode** ppRoot = &Root)
-                Delete(ppRoot,Root,data);
+            fixed (BstNode** ppRoot = &Root)
+                Delete(ppRoot, Root, data);
         }
     }
 

@@ -1,4 +1,4 @@
-﻿namespace Sorting
+namespace Sorting
 {
     public class QuickSort
     {
@@ -7,15 +7,15 @@
         public int[] SortArray(ref int[] array)
         {
             int pivot = array.Length - 1;
-            
-            Sort (array,0,array.Length-1);
-                
+
+            Sort(array, 0, array.Length - 1);
+
             return array;
         }
 
-        private void Sort(int[] array,int start,int stop)
+        private void Sort(int[] array, int start, int stop)
         {
-            int temp,pivot=stop,i=start-1,j=0;
+            int temp, pivot = stop, i = start - 1, j = 0;
 
             if (stop <= start)
                 return;
@@ -35,12 +35,12 @@
             array[i] = array[pivot];
             array[pivot] = temp;
             pivot = i;
-            
 
-        
-             Sort (array,start,pivot-1);
 
-             Sort (array,pivot+1,stop);
+
+            Sort(array, start, pivot - 1);
+
+            Sort(array, pivot + 1, stop);
         }
         //private void SortLeft
     }

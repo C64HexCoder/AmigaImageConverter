@@ -1,11 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Amiga;
+using System.Drawing;
 
 namespace AmigaImageConverter
 {
@@ -27,11 +21,12 @@ namespace AmigaImageConverter
 
         public static PublicVariables instance
         {
-            get { 
+            get
+            {
                 if (_instance == null)
                     instance = new PublicVariables();
 
-                return _instance; 
+                return _instance;
             }
             set { _instance = value; }
         }
@@ -100,13 +95,13 @@ namespace AmigaImageConverter
             {
                 get
                 {
-                    return new Rectangle(X*ScaleFactor, Y*ScaleFactor, Width*ScaleFactor, Height * ScaleFactor);
+                    return new Rectangle(X * ScaleFactor, Y * ScaleFactor, Width * ScaleFactor, Height * ScaleFactor);
                 }
-              
+
             }
 
 
-            public void SetZoomedBounds (int x,int y,int width,int height)
+            public void SetZoomedBounds(int x, int y, int width, int height)
             {
                 X = x / ScaleFactor;
                 Y = y / ScaleFactor;
@@ -114,9 +109,9 @@ namespace AmigaImageConverter
                 Height = Height / ScaleFactor;
             }
 
-            public Bitmap CutImage ()
+            public Bitmap CutImage()
             {
-                Bitmap cutBitmap = new Bitmap(Width/ScaleFactor,Height/ScaleFactor);
+                Bitmap cutBitmap = new Bitmap(Width / ScaleFactor, Height / ScaleFactor);
 
                 return cutBitmap;
             }

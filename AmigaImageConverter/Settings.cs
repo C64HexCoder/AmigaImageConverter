@@ -1,14 +1,7 @@
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 using Amiga;
 using Microsoft.Win32;
+using System;
+using System.Windows.Forms;
 
 namespace AmigaImageConverter
 {
@@ -31,7 +24,7 @@ namespace AmigaImageConverter
 
             Alignment = vr.Alignment;
 
-            String result = (String) regEdit.regKey.GetValue("AutoScaling");
+            String result = (String)regEdit.regKey.GetValue("AutoScaling");
             if (result != null)
             {
                 foreach (Control control in scalingGroupBox.Controls)
@@ -44,7 +37,7 @@ namespace AmigaImageConverter
 
             }
 
-            
+
             var ScalingFactor = regEdit.regKey.GetValue("ScaleFactor", RegistryValueKind.DWord);
             if (ScalingFactor != null)
             {
@@ -193,7 +186,8 @@ namespace AmigaImageConverter
         }
 
         public bool displayIFFDialogOnSave
-        {   get { return displayIFFDialogOnSaveCheckBox.Checked; }
+        {
+            get { return displayIFFDialogOnSaveCheckBox.Checked; }
             set { displayIFFDialogOnSaveCheckBox.Checked = value; }
         }
 
@@ -314,7 +308,7 @@ namespace AmigaImageConverter
             {
                 if (rb.Checked)
                 {
-                    regEdit.regKey.SetValue ("AutoScaling",rb.Tag);
+                    regEdit.regKey.SetValue("AutoScaling", rb.Tag);
                     break;
                 }
             }

@@ -1,20 +1,15 @@
 using Amiga;
 using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
 using System.Media;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace AmigaImageConverter
 {
     public partial class ColorsGrid : UserControl
     {
-       
+
         public int _NumOfColors = 4;
         public Color[] Colors = new Color[256];
         // 0 1 2 3 4  5  6  7
@@ -38,7 +33,7 @@ namespace AmigaImageConverter
         [Description("Select 12 or 24 bit Paletter")]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public PaletteFormat paletteFormat { get; set; }
- 
+
 
         public event EventHandler<SelectedColorEventArgs> ColorSelected;
 
@@ -95,7 +90,7 @@ namespace AmigaImageConverter
             panel.Invalidate();
         }
 
-    
+
         private void selectedColorPb_Resize(object sender, EventArgs e)
         {
             System.Windows.Forms.PictureBox pb = (System.Windows.Forms.PictureBox)sender;

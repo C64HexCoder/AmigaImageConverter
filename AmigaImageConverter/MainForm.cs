@@ -1,25 +1,13 @@
+using Amiga;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
-using System.Diagnostics;
 using System.Drawing;
 using System.Drawing.Imaging;
-using System.Formats.Asn1;
 using System.IO;
-using System.Linq;
-using System.Media;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using Amiga;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using static Amiga.Sprite;
-using Microsoft.VisualBasic.Devices;
-using Microsoft.Win32;
-using System.Runtime.CompilerServices;
-using System.Diagnostics.Eventing.Reader;
-using Sorting;
 
 namespace AmigaImageConverter
 {

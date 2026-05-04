@@ -1,12 +1,5 @@
-﻿using Amiga;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace AmigaImageConverter
@@ -34,10 +27,10 @@ namespace AmigaImageConverter
                 Graphics g = Graphics.FromImage(resizedBitmap);
                 g.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.None;
                 g.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.NearestNeighbor;
-                g.DrawImage (vr.bitplane.bitmap, 0, 0,NewWidth,NewHeight);
+                g.DrawImage(vr.bitplane.bitmap, 0, 0, NewWidth, NewHeight);
                 g.Dispose();
-                vr.bitplane.bitmap= resizedBitmap;
-                
+                vr.bitplane.bitmap = resizedBitmap;
+
                 Close();
             }
         }

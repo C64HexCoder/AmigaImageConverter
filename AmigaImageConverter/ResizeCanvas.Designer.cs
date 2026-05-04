@@ -34,6 +34,7 @@ namespace AmigaImageConverter
             heightNUD = new System.Windows.Forms.NumericUpDown();
             widthNUD = new System.Windows.Forms.NumericUpDown();
             ResizeButton = new System.Windows.Forms.Button();
+            colorBox1 = new Amiga.ColorBox();
             groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)heightNUD).BeginInit();
             ((System.ComponentModel.ISupportInitialize)widthNUD).BeginInit();
@@ -46,6 +47,7 @@ namespace AmigaImageConverter
             scaledImage.Image = null;
             scaledImage.InterpulationAlgorithem = System.Drawing.Drawing2D.InterpolationMode.NearestNeighbor;
             scaledImage.Location = new System.Drawing.Point(0, 0);
+            scaledImage.MouseWheelZoom = true;
             scaledImage.Name = "scaledImage";
             scaledImage.OverlayLineWidth = 4;
             scaledImage.OverlayRectangleColor = System.Drawing.Color.Red;
@@ -54,10 +56,11 @@ namespace AmigaImageConverter
             scaledImage.ScaleStep = 0.1F;
             scaledImage.ScrollbarVisible = false;
             scaledImage.Size = new System.Drawing.Size(370, 450);
-            scaledImage.SizeMode = Amiga.PictureBox.PictureBoxSizeMode.Normal;
+            scaledImage.SizeMode = Amiga.PictureBox.PictureBoxSizeMode.Scale;
             scaledImage.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.None;
             scaledImage.TabIndex = 0;
             scaledImage.VScrollAlignment = Amiga.PictureBox.VerticalScrollBarAlignment.Right;
+            scaledImage.Paint += scaledImage_Paint;
             // 
             // groupBox1
             // 
@@ -75,12 +78,15 @@ namespace AmigaImageConverter
             // ratioCheckBox
             // 
             ratioCheckBox.AutoSize = true;
+            ratioCheckBox.Checked = true;
+            ratioCheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
             ratioCheckBox.Location = new System.Drawing.Point(6, 67);
             ratioCheckBox.Name = "ratioCheckBox";
             ratioCheckBox.Size = new System.Drawing.Size(182, 29);
             ratioCheckBox.TabIndex = 2;
             ratioCheckBox.Text = "Keep Aspect Ratio";
             ratioCheckBox.UseVisualStyleBackColor = true;
+            ratioCheckBox.Click += ratioCheckBox_Click;
             // 
             // heightNUD
             // 
@@ -89,6 +95,7 @@ namespace AmigaImageConverter
             heightNUD.Name = "heightNUD";
             heightNUD.Size = new System.Drawing.Size(180, 31);
             heightNUD.TabIndex = 1;
+            heightNUD.ValueChanged += heightNUD_ValueChanged;
             // 
             // widthNUD
             // 
@@ -97,6 +104,7 @@ namespace AmigaImageConverter
             widthNUD.Name = "widthNUD";
             widthNUD.Size = new System.Drawing.Size(180, 31);
             widthNUD.TabIndex = 0;
+            widthNUD.ValueChanged += widthNUD_ValueChanged;
             // 
             // ResizeButton
             // 
@@ -110,11 +118,21 @@ namespace AmigaImageConverter
             ResizeButton.UseVisualStyleBackColor = true;
             ResizeButton.Click += ResizeButton_Click;
             // 
+            // colorBox1
+            // 
+            colorBox1.color = System.Drawing.SystemColors.Control;
+            colorBox1.Dock = System.Windows.Forms.DockStyle.Top;
+            colorBox1.Location = new System.Drawing.Point(370, 127);
+            colorBox1.Name = "colorBox1";
+            colorBox1.Size = new System.Drawing.Size(391, 46);
+            colorBox1.TabIndex = 3;
+            // 
             // ResizeCanvas
             // 
             AutoScaleDimensions = new System.Drawing.SizeF(10F, 25F);
             AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             ClientSize = new System.Drawing.Size(761, 450);
+            Controls.Add(colorBox1);
             Controls.Add(ResizeButton);
             Controls.Add(groupBox1);
             Controls.Add(scaledImage);
@@ -136,5 +154,6 @@ namespace AmigaImageConverter
         public Amiga.ExPictureBox scaledImage;
         public System.Windows.Forms.NumericUpDown widthNUD;
         public System.Windows.Forms.NumericUpDown heightNUD;
+        private Amiga.ColorBox colorBox1;
     }
 }

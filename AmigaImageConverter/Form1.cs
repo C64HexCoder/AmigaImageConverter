@@ -1,11 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace AmigaImageConverter
@@ -15,6 +7,13 @@ namespace AmigaImageConverter
         public Form1()
         {
             InitializeComponent();
+        }
+
+      
+
+        private void exPictureBox1_ImageMouseClick(object sender, MouseEventArgs e)
+        {
+            int i = 10;
         }
     }
 }

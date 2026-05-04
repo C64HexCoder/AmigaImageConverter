@@ -1,13 +1,6 @@
 using Amiga;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace AmigaImageConverter
@@ -41,7 +34,7 @@ namespace AmigaImageConverter
         {
             pv.bitplane.EqualizePalette(sprite.palette);
             imageBox.Image = pv.bitplane.CreateBitmap();
-     
+
             MessageBox.Show("Palette Converted Succsesfully", "Palette Conversion Finished", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
@@ -49,7 +42,7 @@ namespace AmigaImageConverter
         {
             ColorBox colorBox = (ColorBox)sender;
 
-            SelectBackgroundColor  selectBackgroundColor = new SelectBackgroundColor();
+            SelectBackgroundColor selectBackgroundColor = new SelectBackgroundColor();
             if (selectBackgroundColor.ShowDialog() == DialogResult.OK)
             {
                 colorBox.color = selectBackgroundColor.BackgroundColor;
