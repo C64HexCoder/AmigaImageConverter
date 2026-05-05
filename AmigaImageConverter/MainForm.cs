@@ -1658,7 +1658,7 @@ namespace AmigaImageConverter
             ResizeCanvas resizeCanvas = new ResizeCanvas(vr.bitplane.bitmap);
             if (resizeCanvas.ShowDialog() == DialogResult.OK)
             {
-                vr.bitplane.ResizeCanvas((int)resizeCanvas.widthNUD.Value, (int)resizeCanvas.heightNUD.Value);
+                vr.bitplane.ResizeCanvas((int)resizeCanvas.widthNUD.Value, (int)resizeCanvas.heightNUD.Value, true);
                 image.Image = vr.bitplane.bitmap;
                 image.Invalidate();
             }
