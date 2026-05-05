@@ -59,6 +59,7 @@ namespace AmigaImageConverter
             loadSpriteAnimationIFFToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             imageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             resizeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             alignWidthToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             alignWidthComboBox = new System.Windows.Forms.ToolStripComboBox();
             addWordToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -118,7 +119,6 @@ namespace AmigaImageConverter
             tabPage1 = new System.Windows.Forms.TabPage();
             tabPage2 = new System.Windows.Forms.TabPage();
             imageGrid1 = new Amiga.ImageGrid();
-            toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             menuStrip1.SuspendLayout();
             statusStrip.SuspendLayout();
             tabControl1.SuspendLayout();
@@ -324,6 +324,13 @@ namespace AmigaImageConverter
             resizeToolStripMenuItem.Text = "Resize";
             resizeToolStripMenuItem.Click += resizeToolStripMenuItem_Click;
             // 
+            // toolStripMenuItem1
+            // 
+            toolStripMenuItem1.Name = "toolStripMenuItem1";
+            toolStripMenuItem1.Size = new System.Drawing.Size(277, 34);
+            toolStripMenuItem1.Text = "Risize Canvas";
+            toolStripMenuItem1.Click += toolStripMenuItem1_Click;
+            // 
             // alignWidthToolStripMenuItem
             // 
             alignWidthToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] { alignWidthComboBox });
@@ -338,7 +345,6 @@ namespace AmigaImageConverter
             alignWidthComboBox.Items.AddRange(new object[] { "Byte", "Word", "Long", "Double Long" });
             alignWidthComboBox.Name = "alignWidthComboBox";
             alignWidthComboBox.Size = new System.Drawing.Size(140, 33);
-            alignWidthComboBox.ToolTipText = "The width alignment Of the Image";
             alignWidthComboBox.DropDownClosed += alignWidthComboBox_DropDownClosed;
             // 
             // addWordToolStripMenuItem
@@ -714,6 +720,7 @@ namespace AmigaImageConverter
             image.Image = null;
             image.InterpulationAlgorithem = System.Drawing.Drawing2D.InterpolationMode.NearestNeighbor;
             image.Location = new System.Drawing.Point(3, 3);
+            image.MouseWheelZoom = true;
             image.Name = "image";
             image.OverlayLineWidth = 4;
             image.OverlayRectangleColor = System.Drawing.Color.Red;
@@ -763,25 +770,12 @@ namespace AmigaImageConverter
             // 
             // imageGrid1
             // 
-            imageGrid1.CellBorder = true;
-            imageGrid1.CellsOnX = 32;
-            imageGrid1.CellsOnY = 32;
             imageGrid1.Dock = System.Windows.Forms.DockStyle.Left;
-            imageGrid1.DrawColor = System.Drawing.Color.Blue;
-            imageGrid1.GridImage = null;
-            imageGrid1.LineWidth = 2;
             imageGrid1.Location = new System.Drawing.Point(3, 3);
             imageGrid1.Name = "imageGrid1";
             imageGrid1.Size = new System.Drawing.Size(675, 689);
             imageGrid1.TabIndex = 0;
             imageGrid1.Load += imageGrid1_Load;
-            // 
-            // toolStripMenuItem1
-            // 
-            toolStripMenuItem1.Name = "toolStripMenuItem1";
-            toolStripMenuItem1.Size = new System.Drawing.Size(277, 34);
-            toolStripMenuItem1.Text = "Risize Canvas";
-            toolStripMenuItem1.Click += toolStripMenuItem1_Click;
             // 
             // MainForm
             // 

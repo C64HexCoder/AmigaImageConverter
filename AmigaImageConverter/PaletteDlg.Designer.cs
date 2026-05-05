@@ -1,6 +1,6 @@
-﻿namespace AmigaImageConverter
+namespace AmigaImageConverter
 {
-    partial class Pallate
+    partial class PaletteDlg
     {
         /// <summary>
         /// Required designer variable.

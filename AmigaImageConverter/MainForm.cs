@@ -18,7 +18,7 @@ namespace AmigaImageConverter
 
         Settings settings = new Settings();
         About about = new About();
-        Pallate pallate = new Pallate();
+        PaletteDlg pallate = new PaletteDlg();
         PublicVariables vr = PublicVariables.instance;
         Panel ButtomPanel = new Panel();
         List<Sprite> sprites = new List<Sprite>();

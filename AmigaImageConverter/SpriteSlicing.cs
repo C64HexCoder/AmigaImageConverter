@@ -209,7 +209,7 @@ namespace AmigaImageConverter
 
         private void sprImageBox_Click(object sender, EventArgs e)
         {
-            Pallate palette = new Pallate();
+            PaletteDlg palette = new PaletteDlg();
             palette.imagePallate.SetPalette(sprites[(int)spriteSelectNud.Value].Palette);
             palette.ShowDialog();
         }

@@ -87,6 +87,9 @@
     <ProjectReference Include="..\Sorting\Sorting.csproj" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Update="PaletteDlg.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="Properties\Settings.Designer.cs">
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <AutoGen>True</AutoGen>
