@@ -338,7 +338,6 @@ namespace AmigaImageConverter
             alignWidthToolStripMenuItem.Size = new System.Drawing.Size(277, 34);
             alignWidthToolStripMenuItem.Tag = "Image";
             alignWidthToolStripMenuItem.Text = "Align Width To";
-            alignWidthToolStripMenuItem.ToolTipText = " Round image width to Byte/Word/Long/Double long and align it";
             // 
             // alignWidthComboBox
             // 

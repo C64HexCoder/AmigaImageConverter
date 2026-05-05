@@ -457,13 +457,13 @@ namespace AmigaImageConverter
                 //    vr.bitplane.AlienWidth ()
                 //  break; 
                 case 1:
-                    vr.bitplane.AlienWidth(Bitplane.Alignment.Word);
+                    vr.bitplane.AlignWidth(Bitplane.Alignment.Word);
                     break;
                 case 2:
-                    vr.bitplane.AlienWidth(Bitplane.Alignment.Long);
+                    vr.bitplane.AlignWidth(Bitplane.Alignment.Long);
                     break;
                 case 3:
-                    vr.bitplane.AlienWidth(Bitplane.Alignment.DoubleLong);
+                    vr.bitplane.AlignWidth(Bitplane.Alignment.DoubleLong);
                     break;
 
 
