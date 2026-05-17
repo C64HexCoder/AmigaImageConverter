@@ -1562,7 +1562,7 @@ namespace AmigaImageConverter
         {
             string error = "";
             openImageFileDialog.Title = "Load Sprite Animation IFF File";
-            openImageFileDialog.Filter = "Amiga IFF|*.iff;*.ilbm";
+            openImageFileDialog.Filter = "Amiga IFF ANIM|*.anim";
             if (openImageFileDialog.ShowDialog() == DialogResult.OK)
             {
                 if (!IFF.ValidateIFFFile(openImageFileDialog.FileName, out error))

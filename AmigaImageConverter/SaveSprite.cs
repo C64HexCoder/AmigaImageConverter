@@ -100,8 +100,8 @@ namespace AmigaImageConverter
             SaveFileDialog saveFileDialog = new SaveFileDialog();
 
             saveFileDialog.Filter = SaveAsMultiplyFiles
-                ? "Assembler Source Code|*.asm;*.s;*.a|C/Cpp Source Code|*.c;*.cpp|Binary File|*.bin|IFF ILBM File|*.iff;*.ilbm"
-                : "Assembler Source Code|*.asm;*.s;*.a|C/Cpp Source Code|*.c;*.cpp|IFF ILBM File|*.iff;*.ilbm";
+                ? "Assembler Source Code|*.asm;*.s;*.a|C/Cpp Source Code|*.c;*.cpp|Binary File|*.bin|IFF ANIM File|*.anim"
+                : "Assembler Source Code|*.asm;*.s;*.a|C/Cpp Source Code|*.c;*.cpp|IFF ANIM File|*.anim";
 
             if (saveFileDialog.ShowDialog() == DialogResult.OK)
             {
