@@ -29,6 +29,7 @@ namespace AmigaImageConverter
         private void InitializeComponent()
         {
             groupBox1 = new System.Windows.Forms.GroupBox();
+            centerCheckbox = new System.Windows.Forms.CheckBox();
             label2 = new System.Windows.Forms.Label();
             alignCombobox = new System.Windows.Forms.ComboBox();
             ratioCheckBox = new System.Windows.Forms.CheckBox();
@@ -48,6 +49,7 @@ namespace AmigaImageConverter
             // 
             groupBox1.AutoSize = true;
             groupBox1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            groupBox1.Controls.Add(centerCheckbox);
             groupBox1.Controls.Add(label2);
             groupBox1.Controls.Add(alignCombobox);
             groupBox1.Controls.Add(ratioCheckBox);
@@ -59,6 +61,18 @@ namespace AmigaImageConverter
             groupBox1.TabIndex = 1;
             groupBox1.TabStop = false;
             groupBox1.Text = "Size";
+            // 
+            // centerCheckbox
+            // 
+            centerCheckbox.AutoSize = true;
+            centerCheckbox.Location = new System.Drawing.Point(258, 133);
+            centerCheckbox.Name = "centerCheckbox";
+            centerCheckbox.Size = new System.Drawing.Size(89, 29);
+            centerCheckbox.TabIndex = 5;
+            centerCheckbox.Text = "Center";
+            centerCheckbox.UseVisualStyleBackColor = true;
+            centerCheckbox.CheckedChanged += centerCheckbox_CheckedChanged;
+            centerCheckbox.Click += centerCheckbox_Click;
             // 
             // label2
             // 
@@ -90,7 +104,6 @@ namespace AmigaImageConverter
             ratioCheckBox.TabIndex = 2;
             ratioCheckBox.Text = "Keep Aspect Ratio";
             ratioCheckBox.UseVisualStyleBackColor = true;
-            ratioCheckBox.Click += ratioCheckBox_Click;
             // 
             // heightNUD
             // 
@@ -118,7 +131,6 @@ namespace AmigaImageConverter
             label1.Size = new System.Drawing.Size(239, 25);
             label1.TabIndex = 4;
             label1.Text = "Background Color (Fill Color)";
-            label1.Click += label1_Click;
             // 
             // ResizeButton
             // 
@@ -146,7 +158,6 @@ namespace AmigaImageConverter
             // 
             // scaledImage
             // 
-            scaledImage.Dock = System.Windows.Forms.DockStyle.Left;
             scaledImage.HorizontalScrollBar = null;
             scaledImage.HScrollBarAlignment = Amiga.PictureBox.HorizontalScrollBarAlignment.Bottom;
             scaledImage.Image = null;
@@ -166,7 +177,6 @@ namespace AmigaImageConverter
             scaledImage.TabStop = false;
             scaledImage.VerticalScrollBar = null;
             scaledImage.VScrollBarAlignment = Amiga.PictureBox.VerticalScrollBarAlignment.Right;
-            scaledImage.Click += scaledImage_Click;
             scaledImage.MouseClick += scaledImage_MouseClick;
             // 
             // ResizeCanvas
@@ -203,5 +213,6 @@ namespace AmigaImageConverter
         private Amiga.PictureBox scaledImage;
         private System.Windows.Forms.ComboBox alignCombobox;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.CheckBox centerCheckbox;
     }
 }

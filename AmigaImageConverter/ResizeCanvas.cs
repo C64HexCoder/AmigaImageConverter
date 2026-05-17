@@ -1,5 +1,6 @@
 using System;
 using System.Drawing;
+using System.Reflection;
 using System.Windows.Forms;
 
 namespace AmigaImageConverter
@@ -15,22 +16,28 @@ namespace AmigaImageConverter
 
         }
 
+        public Bitmap bitmap
+        {
+            get {  return scaledImage.Image as Bitmap; }
+        }
+
         public ResizeCanvas(Bitmap bitmap)
         {
             InitializeComponent();
             alignCombobox.SelectedIndex = 0;
 
-            Bitmap BorderedImage = new Bitmap(bitmap.Width + 8, bitmap.Height + 8);
+            Bitmap BorderedImage = new Bitmap(bitmap.Width + 16, bitmap.Height + 16);
             BorderedImage.SetResolution(bitmap.HorizontalResolution, bitmap.VerticalResolution);
-
+            Pen p = new Pen(Color.Green, 8);
             using (Graphics g = Graphics.FromImage(BorderedImage))
             {
                 g.Clear(Color.White);
-                g.DrawImage(bitmap, 4, 4);
-                g.DrawRectangle(Pens.Green, 0, 0, BorderedImage.Width - 4, BorderedImage.Height - 4);
+                g.DrawImage(bitmap, 8, 8);
+                g.DrawRectangle(p, 0, 0, BorderedImage.Width, BorderedImage.Height);
                 g.Dispose();
             }
             scaledImage.Image = BorderedImage;
+
 
             widthNUD.Value = bitmap.Width;
             heightNUD.Value = bitmap.Height;
@@ -38,56 +45,122 @@ namespace AmigaImageConverter
             //exPictureBox.Update();
         }
 
-        private void ResizeButton_Click(object sender, EventArgs e)
+        public int Width
         {
-            //publicVariables.bitplane.ResizeCanvas((int)widthNUD.Value, (int)heightNUD.Value);
+            get { return (int)widthNUD.Value; }
+            set { widthNUD.Value = value; }
         }
 
-        private void OnPaint(object sender, PaintEventArgs e)
+        public int Height
         {
-            Graphics g = e.Graphics;
-            g.Clear(Color.Black);
-            g.DrawRectangle(Pens.Green, 0, 0, scaledImage.Width - 1, scaledImage.Height - 1);
-            //e.Graphics.DrawImage(publicVariables.bitplane.GetBitmap(), 0, 0);
+            get { return (int)heightNUD.Value; }
+            set { heightNUD.Value = value; }
         }
 
-        private void scaledImage_Paint(object sender, PaintEventArgs e)
+        public void UpdatePreview(int width, int height)
         {
-            Graphics g = e.Graphics;
-            Pen pen = new Pen(Color.Green, 4);
-            //g.Clear(Color.White);
-            //g.DrawRectangle(pen, 0, 0, scaledImage.Image.Width - 4 , scaledImage.Image.Height - 4);
-        }
+            if (scaledImage.Image == null)
+                return;
 
-        private void ratioCheckBox_Click(object sender, EventArgs e)
-        {
+            Bitmap BorderedImage = new Bitmap(width + 16, height + 16);
+            BorderedImage.SetResolution(scaledImage.Image.HorizontalResolution, scaledImage.Image.VerticalResolution);
+            Pen p = new Pen(Color.Green, 8);
 
-        }
-
-        private void widthNUD_ValueChanged(object sender, EventArgs e)
-        {
-           
-            double HeightRatio = (double)publicVariables.bitplane.Height / (double)publicVariables.bitplane.Width;
-
-
-            if (ratioCheckBox.Checked)
+            Point dest = new Point(8, 8);
+            if (centerCheckbox.Checked)
             {
-                heightNUD.Value = (int)Math.Round((double)widthNUD.Value * HeightRatio);
+                dest = new Point((BorderedImage.Width - publicVariables.bitplane.bitmap.Width) / 2, (BorderedImage.Height - publicVariables.bitplane.bitmap.Height) / 2);
             }
-
-            Bitmap BorderedImage = new Bitmap((int)widthNUD.Value + 8, (int)heightNUD.Value + 8);
-            BorderedImage.SetResolution(publicVariables.bitplane.bitmap.HorizontalResolution, publicVariables.bitplane.bitmap.VerticalResolution);
             using (Graphics g = Graphics.FromImage(BorderedImage))
             {
                 g.Clear(Color.White);
-                g.DrawImage(publicVariables.bitplane.bitmap, 4, 4, publicVariables.bitplane.Width, publicVariables.bitplane.Height);
-                g.DrawRectangle(Pens.Green, 0, 0, BorderedImage.Width - 4, BorderedImage.Height - 4);
+                g.DrawImage(publicVariables.bitplane.bitmap, dest.X, dest.Y);
+                g.DrawRectangle(p, 0, 0, BorderedImage.Width, BorderedImage.Height);
                 g.Dispose();
-
-                scaledImage.Image = BorderedImage;
-                scaledImage.Invalidate();
             }
-          
+            scaledImage.Image = BorderedImage;
+
+
+            widthNUD.Value = width;
+            heightNUD.Value = height;
+            scaledImage.Invalidate();
+        }
+
+        private void ResizeButton_Click(object sender, EventArgs e)
+        {
+            publicVariables.bitplane.ResizeCanvas((int)widthNUD.Value, (int)heightNUD.Value,centerCheckbox.Checked);
+        }
+
+        public void OnPaint(object sender, PaintEventArgs e)
+        {
+            Graphics gfx = e.Graphics;
+            PictureBox pb = (PictureBox)sender;
+
+            Point mousexy = MousePosition;
+            mousexy = pb.PointToClient(mousexy);
+            if (mousexy.X >= 0 && mousexy.X < pb.Width && mousexy.Y >= 0 && mousexy.Y < pb.Height)
+            {
+                // get the color of the pixel under the mouse cursor
+                Color pixelColor = Color.Empty;
+                pixelColor = pb.BackColor;
+                if (pb.Image != null)
+                {
+                    Bitmap bitmap = (Bitmap)pb.Image;
+                    if (mousexy.X >= 0 && mousexy.X < bitmap.Width && mousexy.Y >= 0 && mousexy.Y < bitmap.Height)
+                    {
+                        pixelColor = bitmap.GetPixel(mousexy.X, mousexy.Y);
+                        alignCombobox.BackColor = pixelColor;
+                    }
+                }
+                // set the cursor color to the pixel color
+                Cursor.Current = Cursors.Default;
+                // You can also set the cursor color to the pixel color if you want
+                // For example, you can create a custom cursor with the pixel color and set it as the current cursor
+                // However, this is not implemented in this code snippet
+                // You can use pixelColor for any purpose, such as displaying it in a label or using it for drawing
+
+                // Mouse is within the bounds of the PictureBox
+                // You can perform actions here, such as highlighting the area or showing coordinates
+            }
+            if (pb.Image != null)
+            {
+                //     Pen p = new Pen(Color.Green, 4);
+                ///     Rectangle dest = new Rectangle(0, 0, pb.Image.Width + 8, pb.Image.Height + 8);
+                //    gfx.DrawRectangle(p, dest);
+                //Rectangle imgDest = new Rectangle(4, 4, pb.Image.Width, pb.Image.Height);
+                //gfx.DrawImage(pb.Image, imgDest);
+
+            }
+
+            base.OnPaint(e);
+        }
+
+
+        private void widthNUD_ValueChanged(object sender, EventArgs e)
+        {
+
+            double HeightRatio = (double)publicVariables.bitplane.Height / (double)publicVariables.bitplane.Width;
+
+            if (ratioCheckBox.Checked)
+            {
+                if (Width <= publicVariables.bitplane.Width)
+                    centerCheckbox.Enabled = false;
+                else
+                    centerCheckbox.Enabled = true;
+
+                heightNUD.Value = (int)Math.Round((double)widthNUD.Value * HeightRatio);
+            }
+
+            ((NumericUpDown)sender).Tag = 1;
+            UpdatePreview((int)widthNUD.Value, (int)heightNUD.Value);
+
+            //  if (widthNUD.Tag == "1" && heightNUD.Tag == "1")
+            //  {
+            widthNUD.Tag = "0";
+            heightNUD.Tag = "0";
+            //  scaledImage.Invalidate();
+            //   Invalidate();
+            //  }
         }
 
         private void heightNUD_ValueChanged(object sender, EventArgs e)
@@ -95,22 +168,22 @@ namespace AmigaImageConverter
             double WidthRatio = (double)publicVariables.bitplane.Width / (double)publicVariables.bitplane.Height;
             if (ratioCheckBox.Checked)
             {
+
+                if (Width <= publicVariables.bitplane.Width)
+                    centerCheckbox.Enabled = false;
+                else
+                    centerCheckbox.Enabled = true;
+
                 widthNUD.Value = (int)Math.Round((double)heightNUD.Value * WidthRatio);
             }
-
-
-            Bitmap BorderedImage = new Bitmap((int)widthNUD.Value + 8, (int)heightNUD.Value + 8);
-            BorderedImage.SetResolution(publicVariables.bitplane.bitmap.HorizontalResolution, publicVariables.bitplane.bitmap.VerticalResolution);
-            using (Graphics g = Graphics.FromImage(BorderedImage))
-            {
-                g.Clear(Color.White);
-                g.DrawImage(publicVariables.bitplane.bitmap, 4, 4, publicVariables.bitplane.Width, publicVariables.bitplane.Height);
-                g.DrawRectangle(Pens.Green, 0, 0, BorderedImage.Width - 4, BorderedImage.Height - 4);
-                g.Dispose();
-
-                scaledImage.Image = BorderedImage;
-                scaledImage.Invalidate();
-            }
+            ((NumericUpDown)sender).Tag = 1;
+            UpdatePreview((int)widthNUD.Value, (int)heightNUD.Value);
+            // if (widthNUD.Tag == "1" && heightNUD.Tag == "1")
+            //{
+            widthNUD.Tag = "0";
+            heightNUD.Tag = "0";
+            //    scaledImage.Invalidate();
+            //}    
         }
 
         private void colorBox_Click(object sender, EventArgs e)
@@ -123,16 +196,7 @@ namespace AmigaImageConverter
             }
         }
 
-        private void label1_Click(object sender, EventArgs e)
-        {
 
-        }
-
-        private void scaledImage_Click(object sender, EventArgs e)
-        {
-
-
-        }
 
         private void scaledImage_MouseClick(object sender, MouseEventArgs e)
         {
@@ -192,12 +256,41 @@ namespace AmigaImageConverter
             {
                 // fix the width alignment to 16 pixels
                 case 0:
-                    widthNUD.Value = publicVariables.bitplane.Width % 16 == 0 ? publicVariables.bitplane.Width : publicVariables.bitplane.Width + (16 - (publicVariables.bitplane.Width % 16)); break;
+                    Width = Width % 16 == 0 ? Width : Width + (16 - (Width % 16)); break;
                 case 1:
-                    widthNUD.Value = publicVariables.bitplane.Width % 32 == 0 ? publicVariables.bitplane.Width : publicVariables.bitplane.Width + (32 - (publicVariables.bitplane.Width % 32)); break;
+                    Width = Width % 32 == 0 ? Width : Width + (32 - (Width % 32)); break;
                 case 2:
-                    widthNUD.Value = publicVariables.bitplane.Width % 64 == 0 ? publicVariables.bitplane.Width : publicVariables.bitplane.Width + (64 - (publicVariables.bitplane.Width % 64)); break;
+                    Width = Width % 64 == 0 ? Width : Width + (64 - (Width % 64)); break;
             }
+        }
+
+
+        public void DrawThePicture()
+        {
+            Bitmap BorderedImage = new Bitmap((int)widthNUD.Value + 8, (int)heightNUD.Value + 8);
+
+            BorderedImage.SetResolution(publicVariables.bitplane.bitmap.HorizontalResolution, publicVariables.bitplane.bitmap.VerticalResolution);
+
+            using (Graphics g = Graphics.FromImage(BorderedImage))
+            {
+                g.Clear(colorBox.BackColor);
+                g.DrawImage(publicVariables.bitplane.bitmap, 4, 4, publicVariables.bitplane.Width, publicVariables.bitplane.Height);
+                g.DrawRectangle(Pens.Green, 0, 0, BorderedImage.Width - 4, BorderedImage.Height - 4);
+
+                scaledImage.Image = BorderedImage;
+                //scaledImage.Invalidate();
+            }
+        }
+
+        private void centerCheckbox_Click(object sender, EventArgs e)
+        {
+            CheckBox centerCheckbox = sender as CheckBox;
+
+        }
+
+        private void centerCheckbox_CheckedChanged(object sender, EventArgs e)
+        {
+            UpdatePreview((int)widthNUD.Value, (int)heightNUD.Value);
         }
     }
 }

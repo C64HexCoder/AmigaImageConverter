@@ -116,8 +116,18 @@ namespace AmigaImageConverter
             if (vr.bitplane.bitmap.Width % SpriteWidth != 0 ||
                vr.bitplane.bitmap.Height % SpriteHeight != 0)
             {
-                MessageBox.Show("Sprite sheet is not evenly divisible by the selected parameters.");
-                return;
+                if (MessageBox.Show("Sprite sheet is not evenly divisible by the selected parameters.\n" +
+                    "Do you want to Resize the Image canvas?", "Error", MessageBoxButtons.YesNo, MessageBoxIcon.Error) == DialogResult.Yes)
+                {
+                    ResizeCanvas resizeCanvas = new ResizeCanvas(vr.bitplane.bitmap);
+
+                    if (resizeCanvas.ShowDialog(this) == DialogResult.OK)
+                    {
+                        MessageBox.Show("Image resized successfully. Please click the Slice button again.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    else
+                        return;
+                }
             }
             // i need to decide the best way to slice the sprite when the sheet is divided evenly by the number of sprites.
             int SpriteNum = 0;

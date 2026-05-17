@@ -1521,11 +1521,13 @@ namespace AmigaImageConverter
             {
                 if (item.GetType() == typeof(ToolStripMenuItem))
                 {
-
-                    if (vr.bitplane.bitmap != null)
-                        ((ToolStripMenuItem)item).Enabled = true;
-                    else
-                        ((ToolStripMenuItem)item).Enabled = false;
+                    if (((ToolStripMenuItem)item).Tag != null && ((ToolStripMenuItem)item).Tag.ToString() == "NeedImage")
+                    {
+                        if (vr.bitplane.bitmap != null)
+                            ((ToolStripMenuItem)item).Enabled = true;
+                        else
+                            ((ToolStripMenuItem)item).Enabled = false;
+                    }
                 }
             }
         }
@@ -1658,10 +1660,57 @@ namespace AmigaImageConverter
             ResizeCanvas resizeCanvas = new ResizeCanvas(vr.bitplane.bitmap);
             if (resizeCanvas.ShowDialog() == DialogResult.OK)
             {
-                vr.bitplane.ResizeCanvas((int)resizeCanvas.widthNUD.Value, (int)resizeCanvas.heightNUD.Value, true);
+                //vr.bitplane.ResizeCanvas((int)resizeCanvas.widthNUD.Value, (int)resizeCanvas.heightNUD.Value, true);
                 image.Image = vr.bitplane.bitmap;
                 image.Invalidate();
             }
+        }
+
+        private void sPRTToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            if (vr.bitplane.bitmap == null)
+            {
+                MessageBox.Show("No image loaded!\n" +
+                    "Please load image first.", "Image missing error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            SaveFileDialog loadSpriteDialog = new SaveFileDialog();
+            loadSpriteDialog.Filter = "Sprite Files (*.spr)|*.spr|IFF Files (*.iff)|*.iff|All Files (*.*)|*.*";
+            if (loadSpriteDialog.ShowDialog() == DialogResult.OK)
+            {
+                Sprite sprite = vr.bitplane.CreateSprite();
+
+                if (sprite != null)
+                    IFF.SaveSprite(loadSpriteDialog.FileName, sprite);
+
+            }
+        }
+
+        private void loadSpriteIFFToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog openSpriteDialog = new OpenFileDialog();
+            openSpriteDialog.Filter = "Sprite Files (*.spr)|*.spr|IFF Files (*.iff)|*.iff|All Files (*.*)|*.*";
+            if (openSpriteDialog.ShowDialog() == DialogResult.OK)
+            {
+                string error;
+                Sprite sprite = IFF.LoadSprite(openSpriteDialog.FileName, out error);
+                if (sprite == null)
+                {
+                    MessageBox.Show("Failed to load sprite:\n" + error, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+                else
+                {
+                    image.Image = sprite.bitmap;
+                    vr.bitplane.bitmap = sprite.bitmap;
+                    image.Invalidate();
+                }
+            }
+        }
+
+        private void saveSpriteIFFToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            sPRTToolStripMenuItem1_Click(sender, e);
         }
     }
 }
