@@ -121,15 +121,13 @@ namespace AmigaImageConverter
             toolStripScalingFactorLabel = new System.Windows.Forms.ToolStripStatusLabel();
             process1 = new System.Diagnostics.Process();
             image = new Amiga.ExPictureBox();
-            tabControl1 = new System.Windows.Forms.TabControl();
-            tabPage1 = new System.Windows.Forms.TabPage();
+            tabControl = new System.Windows.Forms.TabControl();
+            imageTabPage = new System.Windows.Forms.TabPage();
             imageGrid1 = new Amiga.ImageGrid();
-            toolStripSeparator14 = new System.Windows.Forms.ToolStripSeparator();
-            loadIFFAsSpriteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             menuStrip1.SuspendLayout();
             statusStrip.SuspendLayout();
-            tabControl1.SuspendLayout();
-            tabPage1.SuspendLayout();
+            tabControl.SuspendLayout();
+            imageTabPage.SuspendLayout();
             SuspendLayout();
             // 
             // menuStrip1
@@ -778,27 +776,26 @@ namespace AmigaImageConverter
             image.VScrollAlignment = Amiga.PictureBox.VerticalScrollBarAlignment.Right;
             image.MouseClick += image_MouseClick;
             // 
-            // tabControl1
+            // tabControl
             // 
-            tabControl1.Controls.Add(tabPage1);
-            tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            tabControl1.Location = new System.Drawing.Point(0, 33);
-            tabControl1.Name = "tabControl1";
-            tabControl1.SelectedIndex = 0;
-            tabControl1.Size = new System.Drawing.Size(1072, 733);
-            tabControl1.TabIndex = 4;
+            tabControl.Controls.Add(imageTabPage);
+            tabControl.Dock = System.Windows.Forms.DockStyle.Fill;
+            tabControl.Location = new System.Drawing.Point(0, 33);
+            tabControl.Name = "tabControl";
+            tabControl.SelectedIndex = 0;
+            tabControl.Size = new System.Drawing.Size(1072, 733);
+            tabControl.TabIndex = 4;
             // 
-            // tabPage1
+            // imageTabPage
             // 
-            tabPage1.Controls.Add(image);
-            tabPage1.Location = new System.Drawing.Point(4, 34);
-            tabPage1.Name = "tabPage1";
-            tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            tabPage1.Size = new System.Drawing.Size(1064, 695);
-            tabPage1.TabIndex = 0;
-            tabPage1.Text = "Image";
-            tabPage1.UseVisualStyleBackColor = true;
-  
+            imageTabPage.Controls.Add(image);
+            imageTabPage.Location = new System.Drawing.Point(4, 34);
+            imageTabPage.Name = "imageTabPage";
+            imageTabPage.Padding = new System.Windows.Forms.Padding(3);
+            imageTabPage.Size = new System.Drawing.Size(1064, 695);
+            imageTabPage.TabIndex = 0;
+            imageTabPage.Text = "Image";
+            imageTabPage.UseVisualStyleBackColor = true;
             // 
             // imageGrid1
             // 
@@ -808,7 +805,6 @@ namespace AmigaImageConverter
             imageGrid1.Size = new System.Drawing.Size(675, 689);
             imageGrid1.TabIndex = 0;
             imageGrid1.Load += imageGrid1_Load;
-      
             // 
             // MainForm
             // 
@@ -816,7 +812,7 @@ namespace AmigaImageConverter
             AutoSize = true;
             AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             ClientSize = new System.Drawing.Size(1072, 798);
-            Controls.Add(tabControl1);
+            Controls.Add(tabControl);
             Controls.Add(menuStrip1);
             Controls.Add(statusStrip);
             DoubleBuffered = true;
@@ -832,8 +828,8 @@ namespace AmigaImageConverter
             menuStrip1.PerformLayout();
             statusStrip.ResumeLayout(false);
             statusStrip.PerformLayout();
-            tabControl1.ResumeLayout(false);
-            tabPage1.ResumeLayout(false);
+            tabControl.ResumeLayout(false);
+            imageTabPage.ResumeLayout(false);
             ResumeLayout(false);
             PerformLayout();
         }
@@ -924,8 +920,8 @@ namespace AmigaImageConverter
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator12;
         private System.Windows.Forms.ToolStripMenuItem loadSpriteAnimationIFFToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem corpMenuItem;
-        private System.Windows.Forms.TabControl tabControl1;
-        private System.Windows.Forms.TabPage tabPage1;
+        private System.Windows.Forms.TabControl tabControl;
+        private System.Windows.Forms.TabPage imageTabPage;
         private System.Windows.Forms.TabPage spritePage;
         private Amiga.ImageGrid imageGrid1;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
