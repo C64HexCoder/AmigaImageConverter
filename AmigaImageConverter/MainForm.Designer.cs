@@ -79,6 +79,8 @@ namespace AmigaImageConverter
             spriteMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             loadSpriteIffToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             saveSpriteIffToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            toolStripSeparator14 = new System.Windows.Forms.ToolStripSeparator();
+            loadIFFAsSpriteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             loadSpriteAnimationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             toolStripSeparator13 = new System.Windows.Forms.ToolStripSeparator();
             cutSpriteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -121,7 +123,6 @@ namespace AmigaImageConverter
             image = new Amiga.ExPictureBox();
             tabControl1 = new System.Windows.Forms.TabControl();
             tabPage1 = new System.Windows.Forms.TabPage();
-            tabPage2 = new System.Windows.Forms.TabPage();
             imageGrid1 = new Amiga.ImageGrid();
             toolStripSeparator14 = new System.Windows.Forms.ToolStripSeparator();
             loadIFFAsSpriteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -129,7 +130,6 @@ namespace AmigaImageConverter
             statusStrip.SuspendLayout();
             tabControl1.SuspendLayout();
             tabPage1.SuspendLayout();
-            tabPage2.SuspendLayout();
             SuspendLayout();
             // 
             // menuStrip1
@@ -224,7 +224,7 @@ namespace AmigaImageConverter
             // iLBMToolStripMenuItem
             // 
             iLBMToolStripMenuItem.Name = "iLBMToolStripMenuItem";
-            iLBMToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
+            iLBMToolStripMenuItem.Size = new System.Drawing.Size(163, 34);
             iLBMToolStripMenuItem.Text = "ILBM";
             iLBMToolStripMenuItem.ToolTipText = "Widly Supported";
             iLBMToolStripMenuItem.Click += iLBMToolStripMenuItem_Click;
@@ -232,7 +232,7 @@ namespace AmigaImageConverter
             // aCBMToolStripMenuItem
             // 
             aCBMToolStripMenuItem.Name = "aCBMToolStripMenuItem";
-            aCBMToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
+            aCBMToolStripMenuItem.Size = new System.Drawing.Size(163, 34);
             aCBMToolStripMenuItem.Text = "ACBM";
             aCBMToolStripMenuItem.ToolTipText = "Faster, Less popular";
             aCBMToolStripMenuItem.Click += aCBMToolStripMenuItem_Click;
@@ -240,7 +240,7 @@ namespace AmigaImageConverter
             // sPRTToolStripMenuItem
             // 
             sPRTToolStripMenuItem.Name = "sPRTToolStripMenuItem";
-            sPRTToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
+            sPRTToolStripMenuItem.Size = new System.Drawing.Size(163, 34);
             sPRTToolStripMenuItem.Text = "SPRT";
             sPRTToolStripMenuItem.Click += sPRTToolStripMenuItem1_Click;
             // 
@@ -473,6 +473,18 @@ namespace AmigaImageConverter
             saveSpriteIffToolStripMenuItem.Size = new System.Drawing.Size(467, 34);
             saveSpriteIffToolStripMenuItem.Text = "Save Sprite IFF (SPRT)";
             saveSpriteIffToolStripMenuItem.Click += saveSpriteIFFToolStripMenuItem_Click;
+            // 
+            // toolStripSeparator14
+            // 
+            toolStripSeparator14.Name = "toolStripSeparator14";
+            toolStripSeparator14.Size = new System.Drawing.Size(464, 6);
+            // 
+            // loadIFFAsSpriteToolStripMenuItem
+            // 
+            loadIFFAsSpriteToolStripMenuItem.Name = "loadIFFAsSpriteToolStripMenuItem";
+            loadIFFAsSpriteToolStripMenuItem.Size = new System.Drawing.Size(467, 34);
+            loadIFFAsSpriteToolStripMenuItem.Text = "Load IFF (ILBM/ACBM) As Sprite";
+            loadIFFAsSpriteToolStripMenuItem.Click += loadIFFAsSpriteToolStripMenuItem_Click;
             // 
             // loadSpriteAnimationToolStripMenuItem
             // 
@@ -769,7 +781,6 @@ namespace AmigaImageConverter
             // tabControl1
             // 
             tabControl1.Controls.Add(tabPage1);
-            tabControl1.Controls.Add(tabPage2);
             tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             tabControl1.Location = new System.Drawing.Point(0, 33);
             tabControl1.Name = "tabControl1";
@@ -787,17 +798,7 @@ namespace AmigaImageConverter
             tabPage1.TabIndex = 0;
             tabPage1.Text = "Image";
             tabPage1.UseVisualStyleBackColor = true;
-            // 
-            // tabPage2
-            // 
-            tabPage2.Controls.Add(imageGrid1);
-            tabPage2.Location = new System.Drawing.Point(4, 34);
-            tabPage2.Name = "tabPage2";
-            tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            tabPage2.Size = new System.Drawing.Size(1064, 695);
-            tabPage2.TabIndex = 1;
-            tabPage2.Text = "Sprite Editor";
-            tabPage2.UseVisualStyleBackColor = true;
+  
             // 
             // imageGrid1
             // 
@@ -807,18 +808,7 @@ namespace AmigaImageConverter
             imageGrid1.Size = new System.Drawing.Size(675, 689);
             imageGrid1.TabIndex = 0;
             imageGrid1.Load += imageGrid1_Load;
-            // 
-            // toolStripSeparator14
-            // 
-            toolStripSeparator14.Name = "toolStripSeparator14";
-            toolStripSeparator14.Size = new System.Drawing.Size(464, 6);
-            // 
-            // loadIFFAsSpriteToolStripMenuItem
-            // 
-            loadIFFAsSpriteToolStripMenuItem.Name = "loadIFFAsSpriteToolStripMenuItem";
-            loadIFFAsSpriteToolStripMenuItem.Size = new System.Drawing.Size(467, 34);
-            loadIFFAsSpriteToolStripMenuItem.Text = "Load IFF (ILBM/ACBM) As Sprite";
-            loadIFFAsSpriteToolStripMenuItem.Click += loadIFFAsSpriteToolStripMenuItem_Click;
+      
             // 
             // MainForm
             // 
@@ -844,7 +834,6 @@ namespace AmigaImageConverter
             statusStrip.PerformLayout();
             tabControl1.ResumeLayout(false);
             tabPage1.ResumeLayout(false);
-            tabPage2.ResumeLayout(false);
             ResumeLayout(false);
             PerformLayout();
         }
@@ -937,7 +926,7 @@ namespace AmigaImageConverter
         private System.Windows.Forms.ToolStripMenuItem corpMenuItem;
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage tabPage1;
-        private System.Windows.Forms.TabPage tabPage2;
+        private System.Windows.Forms.TabPage spritePage;
         private Amiga.ImageGrid imageGrid1;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem loadSpriteIffToolStripMenuItem;
@@ -947,6 +936,7 @@ namespace AmigaImageConverter
         private System.Windows.Forms.ToolStripMenuItem sPRTToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator14;
         private System.Windows.Forms.ToolStripMenuItem loadIFFAsSpriteToolStripMenuItem;
+        private System.Windows.Forms.TabPage commodore64Page;
     }
 }
 

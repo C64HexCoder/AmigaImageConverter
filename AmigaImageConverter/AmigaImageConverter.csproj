@@ -30,9 +30,9 @@
   </PropertyGroup>
   <PropertyGroup>
     <ManifestKeyFile>AmigaImageConverter_TemporaryKey.pfx</ManifestKeyFile>
-    <ApplicationIcon>AmigaImageConverter.ico</ApplicationIcon>
     <PlatformTarget>AnyCPU</PlatformTarget>
     <AllowUnsafeBlocks>True</AllowUnsafeBlocks>
+    <ApplicationIcon>AmigaImageConverter.ico</ApplicationIcon>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <NoWarn>1701;1702;WFO1000;WFO1001;WFO1002</NoWarn>

@@ -1,4 +1,5 @@
 using Amiga;
+using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -95,6 +96,19 @@ namespace AmigaImageConverter
             ButtomPanel.Top = image.Bottom + 2;
             Controls.Add(ButtomPanel);
             addBlitWordComboBox.SelectedIndex = 0;
+
+            if (!IsRegistered(".anim", "AmigaImageConverter.anim"))
+            {
+                FileAssociations.Register(".anim", "AmigaImageConverter.anim",
+                    "Amiga Animation File", @"C:\Icons\anim.ico");
+            }
+
+            if (!IsRegistered(".spr", "AmigaImageConverter.spr"))
+            {
+                FileAssociations.Register(".spr", "AmigaImageConverter.spr",
+                    "Amiga Sprite File", @"C:\Icons\spr.ico");
+            }
+
 
         }
 
@@ -1712,5 +1726,46 @@ namespace AmigaImageConverter
         {
             sPRTToolStripMenuItem1_Click(sender, e);
         }
+
+
+        public static class FileAssociations
+        {
+            public static void Register(string extension, string progId, string description, string iconPath)
+            {
+                string exe = Application.ExecutablePath;
+
+                // שיוך הסיומת ל־ProgID
+                Registry.SetValue($@"HKEY_CURRENT_USER\Software\Classes\{extension}", "", progId);
+
+                // יצירת ProgID
+                Registry.SetValue($@"HKEY_CURRENT_USER\Software\Classes\{progId}", "", description);
+
+                // אייקון
+                Registry.SetValue($@"HKEY_CURRENT_USER\Software\Classes\{progId}\DefaultIcon", "", iconPath);
+
+                // פקודת פתיחה
+                Registry.SetValue(
+                    $@"HKEY_CURRENT_USER\Software\Classes\{progId}\shell\open\command",
+                    "",
+                    $"\"{exe}\" \"%1\""
+                );
+            }
+        }
+
+        public static bool IsRegistered(string extension, string progId)
+        {
+            // אם הסיומת מצביעה כבר על ה־ProgID שלך
+            var extValue = Registry.GetValue(
+                $@"HKEY_CURRENT_USER\Software\Classes\{extension}",
+                "",
+                null);
+
+            if (extValue == null)
+                return false;
+
+            return extValue.ToString() == progId;
+        }
+
+
     }
 }
