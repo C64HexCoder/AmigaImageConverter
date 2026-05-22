@@ -124,8 +124,9 @@ namespace AmigaImageConverter
             tabControl = new System.Windows.Forms.TabControl();
             imageTabPage = new System.Windows.Forms.TabPage();
             spriteTabPage = new System.Windows.Forms.TabPage();
-            imageGrid1 = new Amiga.ImageGrid();
             imageGrid2 = new Amiga.ImageGrid();
+            imageGrid1 = new Amiga.ImageGrid();
+            c64TabPage = new System.Windows.Forms.TabPage();
             menuStrip1.SuspendLayout();
             statusStrip.SuspendLayout();
             tabControl.SuspendLayout();
@@ -783,6 +784,7 @@ namespace AmigaImageConverter
             // 
             tabControl.Controls.Add(imageTabPage);
             tabControl.Controls.Add(spriteTabPage);
+            tabControl.Controls.Add(c64TabPage);
             tabControl.Dock = System.Windows.Forms.DockStyle.Fill;
             tabControl.Location = new System.Drawing.Point(0, 33);
             tabControl.Name = "tabControl";
@@ -811,6 +813,14 @@ namespace AmigaImageConverter
             spriteTabPage.Text = "Sprite";
             spriteTabPage.UseVisualStyleBackColor = true;
             // 
+            // imageGrid2
+            // 
+            imageGrid2.Dock = System.Windows.Forms.DockStyle.Left;
+            imageGrid2.Location = new System.Drawing.Point(0, 0);
+            imageGrid2.Name = "imageGrid2";
+            imageGrid2.Size = new System.Drawing.Size(680, 695);
+            imageGrid2.TabIndex = 0;
+            // 
             // imageGrid1
             // 
             imageGrid1.Dock = System.Windows.Forms.DockStyle.Left;
@@ -820,13 +830,14 @@ namespace AmigaImageConverter
             imageGrid1.TabIndex = 0;
             imageGrid1.Load += imageGrid1_Load;
             // 
-            // imageGrid2
+            // c64TabPage
             // 
-            imageGrid2.Dock = System.Windows.Forms.DockStyle.Left;
-            imageGrid2.Location = new System.Drawing.Point(0, 0);
-            imageGrid2.Name = "imageGrid2";
-            imageGrid2.Size = new System.Drawing.Size(680, 695);
-            imageGrid2.TabIndex = 0;
+            c64TabPage.Location = new System.Drawing.Point(4, 34);
+            c64TabPage.Name = "c64TabPage";
+            c64TabPage.Size = new System.Drawing.Size(1064, 695);
+            c64TabPage.TabIndex = 2;
+            c64TabPage.Text = "C64";
+            c64TabPage.UseVisualStyleBackColor = true;
             // 
             // MainForm
             // 
@@ -958,6 +969,7 @@ namespace AmigaImageConverter
         private System.Windows.Forms.TabPage commodore64Page;
         private System.Windows.Forms.TabPage spriteTabPage;
         private Amiga.ImageGrid imageGrid2;
+        private System.Windows.Forms.TabPage c64TabPage;
     }
 }
 
