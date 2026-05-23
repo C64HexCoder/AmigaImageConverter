@@ -126,8 +126,8 @@ namespace AmigaImageConverter
             spriteTabPage = new System.Windows.Forms.TabPage();
             imageGrid2 = new Amiga.ImageGrid();
             c64TabPage = new System.Windows.Forms.TabPage();
-            imageGrid1 = new Amiga.ImageGrid();
             imageGrid3 = new Amiga.ImageGrid();
+            imageGrid1 = new Amiga.ImageGrid();
             menuStrip1.SuspendLayout();
             statusStrip.SuspendLayout();
             tabControl.SuspendLayout();
@@ -817,9 +817,17 @@ namespace AmigaImageConverter
             // 
             // imageGrid2
             // 
+            imageGrid2.CellBorder = true;
+            imageGrid2.CellsOnX = 16;
+            imageGrid2.CellsOnY = 16;
             imageGrid2.Dock = System.Windows.Forms.DockStyle.Left;
+            imageGrid2.DrawColor = System.Drawing.Color.Blue;
+            imageGrid2.GridImage = null;
+            imageGrid2.LineWidth = 2;
             imageGrid2.Location = new System.Drawing.Point(0, 0);
             imageGrid2.Name = "imageGrid2";
+            imageGrid2.ResolutionX = 16;
+            imageGrid2.ResolutionY = 16;
             imageGrid2.Size = new System.Drawing.Size(680, 695);
             imageGrid2.TabIndex = 0;
             // 
@@ -833,22 +841,39 @@ namespace AmigaImageConverter
             c64TabPage.Text = "C64";
             c64TabPage.UseVisualStyleBackColor = true;
             // 
+            // imageGrid3
+            // 
+            imageGrid3.CellBorder = true;
+            imageGrid3.CellsOnX = 40;
+            imageGrid3.CellsOnY = 25;
+            imageGrid3.Dock = System.Windows.Forms.DockStyle.Left;
+            imageGrid3.DrawColor = System.Drawing.Color.Blue;
+            imageGrid3.GridImage = null;
+            imageGrid3.LineWidth = 2;
+            imageGrid3.Location = new System.Drawing.Point(0, 0);
+            imageGrid3.Name = "imageGrid3";
+            imageGrid3.ResolutionX = 40;
+            imageGrid3.ResolutionY = 25;
+            imageGrid3.Size = new System.Drawing.Size(1068, 695);
+            imageGrid3.TabIndex = 0;
+            imageGrid3.Load += imageGrid3_Load;
+            // 
             // imageGrid1
             // 
+            imageGrid1.CellBorder = true;
+            imageGrid1.CellsOnX = 16;
+            imageGrid1.CellsOnY = 16;
             imageGrid1.Dock = System.Windows.Forms.DockStyle.Left;
+            imageGrid1.DrawColor = System.Drawing.Color.Blue;
+            imageGrid1.GridImage = null;
+            imageGrid1.LineWidth = 2;
             imageGrid1.Location = new System.Drawing.Point(3, 3);
             imageGrid1.Name = "imageGrid1";
+            imageGrid1.ResolutionX = 16;
+            imageGrid1.ResolutionY = 16;
             imageGrid1.Size = new System.Drawing.Size(675, 689);
             imageGrid1.TabIndex = 0;
             imageGrid1.Load += imageGrid1_Load;
-            // 
-            // imageGrid3
-            // 
-            imageGrid3.Dock = System.Windows.Forms.DockStyle.Left;
-            imageGrid3.Location = new System.Drawing.Point(0, 0);
-            imageGrid3.Name = "imageGrid3";
-            imageGrid3.Size = new System.Drawing.Size(687, 695);
-            imageGrid3.TabIndex = 0;
             // 
             // MainForm
             // 

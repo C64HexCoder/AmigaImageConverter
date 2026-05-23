@@ -1766,6 +1766,9 @@ namespace AmigaImageConverter
             return extValue.ToString() == progId;
         }
 
+        private void imageGrid3_Load(object sender, EventArgs e)
+        {
 
+        }
     }
 }
