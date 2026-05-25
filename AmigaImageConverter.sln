@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 17
-VisualStudioVersion = 17.0.31919.166
+# Visual Studio Version 18
+VisualStudioVersion = 18.6.11806.211 stable
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AmigaImageConverter", "AmigaImageConverter\AmigaImageConverter.csproj", "{9A166D5F-6C6E-41AD-AEDC-F23B84949F0B}"
 EndProject
@@ -18,6 +18,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Trees", "Trees\Trees.csproj", "{1497D588-08B5-43B1-8F4E-2BD6F0881296}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sorting", "Sorting\Sorting.csproj", "{B02FE345-1FBA-480F-9974-5C38F55E435B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "C64", "C64\C64.csproj", "{51A73C0D-F36A-4C2F-8E74-40C94E64BC20}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -59,6 +61,14 @@ Global
 		{B02FE345-1FBA-480F-9974-5C38F55E435B}.Release|Any CPU.Build.0 = Release|Any CPU
 		{B02FE345-1FBA-480F-9974-5C38F55E435B}.Release|x64.ActiveCfg = Release|Any CPU
 		{B02FE345-1FBA-480F-9974-5C38F55E435B}.Release|x64.Build.0 = Release|Any CPU
+		{51A73C0D-F36A-4C2F-8E74-40C94E64BC20}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{51A73C0D-F36A-4C2F-8E74-40C94E64BC20}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{51A73C0D-F36A-4C2F-8E74-40C94E64BC20}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{51A73C0D-F36A-4C2F-8E74-40C94E64BC20}.Debug|x64.Build.0 = Debug|Any CPU
+		{51A73C0D-F36A-4C2F-8E74-40C94E64BC20}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{51A73C0D-F36A-4C2F-8E74-40C94E64BC20}.Release|Any CPU.Build.0 = Release|Any CPU
+		{51A73C0D-F36A-4C2F-8E74-40C94E64BC20}.Release|x64.ActiveCfg = Release|Any CPU
+		{51A73C0D-F36A-4C2F-8E74-40C94E64BC20}.Release|x64.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
