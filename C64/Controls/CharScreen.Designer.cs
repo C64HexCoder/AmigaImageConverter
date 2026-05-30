@@ -2,7 +2,7 @@ using System.Drawing;
 
 namespace C64.Controls
 {
-    partial class C64CharScreen
+    partial class CharScreen
     {
         /// <summary>
         /// Required designer variable.
@@ -32,15 +32,16 @@ namespace C64.Controls
         {
             SuspendLayout();
             // 
-            // C64CharScreen
+            // CharScreen
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             CellsOnX = 40;
             CellsOnY = 25;
-            Name = "C64CharScreen";
+            Name = "CharScreen";
             ResolutionX = 40;
             ResolutionY = 25;
-            Size = new Size(626, 415);
+            ShowGrid = false;
+            Size = new Size(634, 419);
             ResumeLayout(false);
         }
 

@@ -4,6 +4,7 @@
     <TargetFramework>net10.0-windows8.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
+    <AllowUnsafeBlocks>True</AllowUnsafeBlocks>
   </PropertyGroup>
 
   <ItemGroup>
@@ -12,12 +13,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\Amiga\Amiga\Amiga.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Compile Update="Controls\C64CharScreen.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
   </ItemGroup>
 
 </Project>
