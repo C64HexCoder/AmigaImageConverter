@@ -173,7 +173,7 @@ namespace AmigaImageConverter
 
                     // If the user selected to reduce colors then we will do it here
 
-                    menuStrip1.Enabled = false;
+                    menuStrip.Enabled = false;
                     switch (loadImageDlg.algorithemCB.SelectedIndex)
                     {
 
@@ -195,7 +195,7 @@ namespace AmigaImageConverter
                                   break;*/
 
                     }
-                    menuStrip1.Enabled = true;
+                    menuStrip.Enabled = true;
 
                 }
                 else  // The image is not true color (24 or 32 bit)

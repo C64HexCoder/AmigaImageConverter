@@ -29,7 +29,7 @@ namespace AmigaImageConverter
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
-            menuStrip1 = new System.Windows.Forms.MenuStrip();
+            menuStrip = new System.Windows.Forms.MenuStrip();
             fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             loadImageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             saveImageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -128,7 +128,8 @@ namespace AmigaImageConverter
             c64TabPage = new System.Windows.Forms.TabPage();
             imageGrid3 = new Amiga.ImageGrid();
             imageGrid1 = new Amiga.ImageGrid();
-            menuStrip1.SuspendLayout();
+            c64ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            menuStrip.SuspendLayout();
             statusStrip.SuspendLayout();
             tabControl.SuspendLayout();
             imageTabPage.SuspendLayout();
@@ -136,16 +137,16 @@ namespace AmigaImageConverter
             c64TabPage.SuspendLayout();
             SuspendLayout();
             // 
-            // menuStrip1
+            // menuStrip
             // 
-            menuStrip1.ImageScalingSize = new System.Drawing.Size(32, 32);
-            menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] { fileToolStripMenuItem, imageToolStripMenuItem, spriteMenuItem, colorsToolStripMenuItem, audioToolStripMenuItem, settingsToolStripMenuItem, booksToolStripMenuItem, toolsToolStripMenuItem, aboutToolStripMenuItem });
-            menuStrip1.Location = new System.Drawing.Point(0, 0);
-            menuStrip1.Name = "menuStrip1";
-            menuStrip1.Padding = new System.Windows.Forms.Padding(4, 2, 0, 2);
-            menuStrip1.Size = new System.Drawing.Size(1072, 33);
-            menuStrip1.TabIndex = 0;
-            menuStrip1.Text = "menuStrip";
+            menuStrip.ImageScalingSize = new System.Drawing.Size(32, 32);
+            menuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] { fileToolStripMenuItem, imageToolStripMenuItem, spriteMenuItem, colorsToolStripMenuItem, audioToolStripMenuItem, c64ToolStripMenuItem, settingsToolStripMenuItem, booksToolStripMenuItem, toolsToolStripMenuItem, aboutToolStripMenuItem });
+            menuStrip.Location = new System.Drawing.Point(0, 0);
+            menuStrip.Name = "menuStrip";
+            menuStrip.Padding = new System.Windows.Forms.Padding(4, 2, 0, 2);
+            menuStrip.Size = new System.Drawing.Size(1072, 33);
+            menuStrip.TabIndex = 0;
+            menuStrip.Text = "menuStrip";
             // 
             // fileToolStripMenuItem
             // 
@@ -826,8 +827,10 @@ namespace AmigaImageConverter
             imageGrid2.LineWidth = 2;
             imageGrid2.Location = new System.Drawing.Point(0, 0);
             imageGrid2.Name = "imageGrid2";
+            imageGrid2.RectangleCells = true;
             imageGrid2.ResolutionX = 16;
             imageGrid2.ResolutionY = 16;
+            imageGrid2.ShowGrid = true;
             imageGrid2.Size = new System.Drawing.Size(680, 695);
             imageGrid2.TabIndex = 0;
             // 
@@ -852,8 +855,10 @@ namespace AmigaImageConverter
             imageGrid3.LineWidth = 2;
             imageGrid3.Location = new System.Drawing.Point(0, 0);
             imageGrid3.Name = "imageGrid3";
+            imageGrid3.RectangleCells = true;
             imageGrid3.ResolutionX = 40;
             imageGrid3.ResolutionY = 25;
+            imageGrid3.ShowGrid = true;
             imageGrid3.Size = new System.Drawing.Size(1068, 695);
             imageGrid3.TabIndex = 0;
             imageGrid3.Load += imageGrid3_Load;
@@ -869,11 +874,19 @@ namespace AmigaImageConverter
             imageGrid1.LineWidth = 2;
             imageGrid1.Location = new System.Drawing.Point(3, 3);
             imageGrid1.Name = "imageGrid1";
+            imageGrid1.RectangleCells = true;
             imageGrid1.ResolutionX = 16;
             imageGrid1.ResolutionY = 16;
+            imageGrid1.ShowGrid = true;
             imageGrid1.Size = new System.Drawing.Size(675, 689);
             imageGrid1.TabIndex = 0;
             imageGrid1.Load += imageGrid1_Load;
+            // 
+            // c64ToolStripMenuItem
+            // 
+            c64ToolStripMenuItem.Name = "c64ToolStripMenuItem";
+            c64ToolStripMenuItem.Size = new System.Drawing.Size(59, 29);
+            c64ToolStripMenuItem.Text = "C64";
             // 
             // MainForm
             // 
@@ -882,19 +895,19 @@ namespace AmigaImageConverter
             AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             ClientSize = new System.Drawing.Size(1072, 798);
             Controls.Add(tabControl);
-            Controls.Add(menuStrip1);
+            Controls.Add(menuStrip);
             Controls.Add(statusStrip);
             DoubleBuffered = true;
             FormBorderStyle = System.Windows.Forms.FormBorderStyle.SizableToolWindow;
             Icon = (System.Drawing.Icon)resources.GetObject("$this.Icon");
-            MainMenuStrip = menuStrip1;
+            MainMenuStrip = menuStrip;
             Margin = new System.Windows.Forms.Padding(1, 2, 1, 2);
             MinimumSize = new System.Drawing.Size(1094, 854);
             Name = "MainForm";
             StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             Text = "Amiga Image Converter";
-            menuStrip1.ResumeLayout(false);
-            menuStrip1.PerformLayout();
+            menuStrip.ResumeLayout(false);
+            menuStrip.PerformLayout();
             statusStrip.ResumeLayout(false);
             statusStrip.PerformLayout();
             tabControl.ResumeLayout(false);
@@ -907,7 +920,7 @@ namespace AmigaImageConverter
 
         #endregion
 
-        private System.Windows.Forms.MenuStrip menuStrip1;
+        private System.Windows.Forms.MenuStrip menuStrip;
         private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem loadImageToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem saveImageAsToolStripMenuItem;
@@ -1008,6 +1021,7 @@ namespace AmigaImageConverter
         private Amiga.ImageGrid imageGrid2;
         private System.Windows.Forms.TabPage c64TabPage;
         private Amiga.ImageGrid imageGrid3;
+        private System.Windows.Forms.ToolStripMenuItem c64ToolStripMenuItem;
     }
 }
 
