@@ -1,10 +1,8 @@
-using System.Drawing;
-
-namespace C64.Controls
+﻿namespace C64.Controls
 {
-    partial class CharScreen
+    partial class Sprite
     {
-        /// <summary>
+        /// <summary> 
         /// Required designer variable.
         /// </summary>
         private System.ComponentModel.IContainer components = null;
@@ -24,23 +22,20 @@ namespace C64.Controls
 
         #region Component Designer generated code
 
-        /// <summary>
-        /// Required method for Designer support - do not modify
+        /// <summary> 
+        /// Required method for Designer support - do not modify 
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent()
         {
             SuspendLayout();
             // 
-            // CharScreen
+            // Sprite
             // 
-            AutoScaleDimensions = new SizeF(10F, 25F);
-            CellsOnX = 40;
-            CellsOnY = 25;
-            Name = "CharScreen";
-         
-            ShowGrid = false;
-            Size = new Size(634, 419);
+            AutoScaleDimensions = new System.Drawing.SizeF(10F, 25F);
+            AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            Name = "Sprite";
+            Size = new System.Drawing.Size(205, 182);
             ResumeLayout(false);
         }
 

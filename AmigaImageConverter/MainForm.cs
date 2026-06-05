@@ -1770,5 +1770,35 @@ namespace AmigaImageConverter
         {
 
         }
+
+        private void loadPRGToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            using (OpenFileDialog openFileDialog = new OpenFileDialog())
+            {
+                openFileDialog.Filter = "Commodore 64 PRG Files (*.prg)|*.prg|All Files (*.*)|*.*";
+                if (openFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    C64.IO.PRG.LoadPRGFile(openFileDialog.FileName);
+                }
+            }
+        }
+
+        private void savePRGToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            using (SaveFileDialog saveFileDialog = new SaveFileDialog())
+            {
+                saveFileDialog.Filter = "Commodore 64 PRG Files (*.prg)|*.prg|All Files (*.*)|*.*";
+                if (saveFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    // C64.IO.PRG.SavePRGFile(saveFileDialog.FileName,0x801,);
+                }
+            }
+        }
+
+        private void spriteEditorToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            C64Sprite spriteEditor = new C64Sprite();
+            spriteEditor.ShowDialog();
+        }
     }
 }

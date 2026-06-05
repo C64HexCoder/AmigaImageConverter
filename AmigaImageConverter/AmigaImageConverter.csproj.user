@@ -24,6 +24,9 @@
     <Compile Update="BlitterLFCalculator.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="C64Sprite.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="ColorOptions.cs">
       <SubType>Form</SubType>
     </Compile>

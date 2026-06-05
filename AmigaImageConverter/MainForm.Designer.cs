@@ -28,6 +28,7 @@ namespace AmigaImageConverter
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             menuStrip = new System.Windows.Forms.MenuStrip();
             fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -100,6 +101,12 @@ namespace AmigaImageConverter
             audioToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             sineWaveGeneratorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             waveGeneratorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            c64ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            loadPRGToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            savePRGToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            toolStripSeparator15 = new System.Windows.Forms.ToolStripSeparator();
+            loadKoalaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            saveKoalaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             settingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             settingsMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             booksToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -126,9 +133,10 @@ namespace AmigaImageConverter
             spriteTabPage = new System.Windows.Forms.TabPage();
             imageGrid2 = new Amiga.ImageGrid();
             c64TabPage = new System.Windows.Forms.TabPage();
-            imageGrid3 = new Amiga.ImageGrid();
+            charScreen2 = new C64.Controls.CharScreen(components);
+            charScreen1 = new C64.Controls.CharScreen(components);
             imageGrid1 = new Amiga.ImageGrid();
-            c64ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            spriteEditorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             menuStrip.SuspendLayout();
             statusStrip.SuspendLayout();
             tabControl.SuspendLayout();
@@ -620,6 +628,44 @@ namespace AmigaImageConverter
             waveGeneratorToolStripMenuItem.Size = new System.Drawing.Size(273, 34);
             waveGeneratorToolStripMenuItem.Text = "Wave Generator";
             // 
+            // c64ToolStripMenuItem
+            // 
+            c64ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] { loadPRGToolStripMenuItem, savePRGToolStripMenuItem, toolStripSeparator15, loadKoalaToolStripMenuItem, saveKoalaToolStripMenuItem, spriteEditorToolStripMenuItem });
+            c64ToolStripMenuItem.Name = "c64ToolStripMenuItem";
+            c64ToolStripMenuItem.Size = new System.Drawing.Size(59, 29);
+            c64ToolStripMenuItem.Text = "C64";
+            // 
+            // loadPRGToolStripMenuItem
+            // 
+            loadPRGToolStripMenuItem.Name = "loadPRGToolStripMenuItem";
+            loadPRGToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
+            loadPRGToolStripMenuItem.Text = "Load PRG";
+            loadPRGToolStripMenuItem.Click += loadPRGToolStripMenuItem_Click;
+            // 
+            // savePRGToolStripMenuItem
+            // 
+            savePRGToolStripMenuItem.Name = "savePRGToolStripMenuItem";
+            savePRGToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
+            savePRGToolStripMenuItem.Text = "Save PRG";
+            savePRGToolStripMenuItem.Click += savePRGToolStripMenuItem_Click;
+            // 
+            // toolStripSeparator15
+            // 
+            toolStripSeparator15.Name = "toolStripSeparator15";
+            toolStripSeparator15.Size = new System.Drawing.Size(267, 6);
+            // 
+            // loadKoalaToolStripMenuItem
+            // 
+            loadKoalaToolStripMenuItem.Name = "loadKoalaToolStripMenuItem";
+            loadKoalaToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
+            loadKoalaToolStripMenuItem.Text = "Load Koala";
+            // 
+            // saveKoalaToolStripMenuItem
+            // 
+            saveKoalaToolStripMenuItem.Name = "saveKoalaToolStripMenuItem";
+            saveKoalaToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
+            saveKoalaToolStripMenuItem.Text = "Save Koala";
+            // 
             // settingsToolStripMenuItem
             // 
             settingsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] { settingsMenuItem });
@@ -836,7 +882,8 @@ namespace AmigaImageConverter
             // 
             // c64TabPage
             // 
-            c64TabPage.Controls.Add(imageGrid3);
+            c64TabPage.Controls.Add(charScreen2);
+            c64TabPage.Controls.Add(charScreen1);
             c64TabPage.Location = new System.Drawing.Point(4, 34);
             c64TabPage.Name = "c64TabPage";
             c64TabPage.Size = new System.Drawing.Size(1064, 695);
@@ -844,24 +891,22 @@ namespace AmigaImageConverter
             c64TabPage.Text = "C64";
             c64TabPage.UseVisualStyleBackColor = true;
             // 
-            // imageGrid3
+            // charScreen2
             // 
-            imageGrid3.CellBorder = true;
-            imageGrid3.CellsOnX = 40;
-            imageGrid3.CellsOnY = 25;
-            imageGrid3.Dock = System.Windows.Forms.DockStyle.Left;
-            imageGrid3.DrawColor = System.Drawing.Color.Blue;
-            imageGrid3.GridImage = null;
-            imageGrid3.LineWidth = 2;
-            imageGrid3.Location = new System.Drawing.Point(0, 0);
-            imageGrid3.Name = "imageGrid3";
-            imageGrid3.RectangleCells = true;
-            imageGrid3.ResolutionX = 40;
-            imageGrid3.ResolutionY = 25;
-            imageGrid3.ShowGrid = true;
-            imageGrid3.Size = new System.Drawing.Size(1068, 695);
-            imageGrid3.TabIndex = 0;
-            imageGrid3.Load += imageGrid3_Load;
+            charScreen2.Dock = System.Windows.Forms.DockStyle.Fill;
+            charScreen2.Location = new System.Drawing.Point(0, 0);
+            charScreen2.Name = "charScreen2";
+            charScreen2.ShowGrid = false;
+            charScreen2.Size = new System.Drawing.Size(1064, 695);
+            charScreen2.TabIndex = 1;
+            // 
+            // charScreen1
+            // 
+            charScreen1.Location = new System.Drawing.Point(415, 176);
+            charScreen1.Name = "charScreen1";
+            charScreen1.ShowGrid = false;
+            charScreen1.Size = new System.Drawing.Size(9, 8);
+            charScreen1.TabIndex = 0;
             // 
             // imageGrid1
             // 
@@ -882,11 +927,12 @@ namespace AmigaImageConverter
             imageGrid1.TabIndex = 0;
             imageGrid1.Load += imageGrid1_Load;
             // 
-            // c64ToolStripMenuItem
+            // spriteEditorToolStripMenuItem
             // 
-            c64ToolStripMenuItem.Name = "c64ToolStripMenuItem";
-            c64ToolStripMenuItem.Size = new System.Drawing.Size(59, 29);
-            c64ToolStripMenuItem.Text = "C64";
+            spriteEditorToolStripMenuItem.Name = "spriteEditorToolStripMenuItem";
+            spriteEditorToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
+            spriteEditorToolStripMenuItem.Text = "Sprite Editor";
+            spriteEditorToolStripMenuItem.Click += spriteEditorToolStripMenuItem_Click;
             // 
             // MainForm
             // 
@@ -1020,8 +1066,15 @@ namespace AmigaImageConverter
         private System.Windows.Forms.TabPage spriteTabPage;
         private Amiga.ImageGrid imageGrid2;
         private System.Windows.Forms.TabPage c64TabPage;
-        private Amiga.ImageGrid imageGrid3;
         private System.Windows.Forms.ToolStripMenuItem c64ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem loadPRGToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem savePRGToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator15;
+        private System.Windows.Forms.ToolStripMenuItem loadKoalaToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem saveKoalaToolStripMenuItem;
+        private C64.Controls.CharScreen charScreen1;
+        private C64.Controls.CharScreen charScreen2;
+        private System.Windows.Forms.ToolStripMenuItem spriteEditorToolStripMenuItem;
     }
 }
 

@@ -11,12 +11,13 @@ using System.Windows.Forms;
 
 namespace C64.Controls
 {
-    public partial class CharScreen : Amiga.ImageGrid
+    public partial class CharScreen : UserControl
     {
         byte[,] charData = new byte[256, 8];
         byte[] screenMap = new byte[1000];
         byte[] colorRam = new byte[1000];
-
+        int CellsOnX = 40;
+        int CellsOnY = 25;
 
         public CharScreen()
         {
@@ -28,6 +29,19 @@ namespace C64.Controls
             container.Add(this);
 
             InitializeComponent();
+        }
+
+        private bool _showGrid = false;
+        [Category("Grid"), Description("Define if the grid lines are visible or not")]
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
+        public bool ShowGrid
+        {
+            get => _showGrid;
+            set
+            {
+                _showGrid = value;
+                Refresh();
+            }
         }
 
         public void ClearScreen()
@@ -159,9 +173,26 @@ namespace C64.Controls
 
         protected override void OnPaint(PaintEventArgs e)
         {
+            int LineWidth = ShowGrid ? 1 : 0;
+            int CellWidth = Width / CellsOnX;
+            int CellHeight = CellWidth;
+
             base.OnPaint(e);
-            DrawScreen();
-            e.Graphics.DrawImage(screeDisplay, 0, 0, screeDisplay.Width, screeDisplay.Height);
+            if (!DesignMode)
+            {
+                DrawScreen();
+                e.Graphics.DrawImage(screeDisplay, 0, 0, screeDisplay.Width, screeDisplay.Height);
+            }
+
+
+            Pen LinePen = new Pen(Color.Black, LineWidth);
+
+            for (int y = 0; y < (Height); y += CellHeight)
+                e.Graphics.DrawLine(LinePen, 0, y, CellWidth * CellsOnX, y);
+
+            for (int x = 0; x < (Width); x += CellWidth)
+                e.Graphics.DrawLine(LinePen, x, 0, x, CellHeight * CellsOnY);
+
         }
     }
 }

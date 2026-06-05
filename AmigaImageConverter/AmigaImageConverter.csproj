@@ -84,6 +84,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Amiga\Amiga\Amiga.csproj" />
+    <ProjectReference Include="..\C64\C64.csproj" />
     <ProjectReference Include="..\Sorting\Sorting.csproj" />
   </ItemGroup>
   <ItemGroup>
