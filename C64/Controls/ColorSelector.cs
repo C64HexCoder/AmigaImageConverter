@@ -11,14 +11,17 @@ using System.Windows.Forms;
 
 namespace C64.Controls
 {
+  
     public partial class ColorSelector : UserControl
     {
         private byte _c64ColorIndex = 0;
+        ColorSelectorEventArgs colorSelectorEventArgs;
         public ColorSelector()
         {
             InitializeComponent();
             Cursor = Cursors.Hand;
         }
+
 
 
         [Category ("C64 Properties"), Description("The index of the color in the C64 palette (0-15)")]
@@ -40,7 +43,7 @@ namespace C64.Controls
         }
 
         [Category ("C64 Events"), Description("Fires when the color selector is clicked")]
-        public event EventHandler ColorSelectorClicked;
+        public event EventHandler<ColorSelectorEventArgs> ColorSelectorClicked;
 
         protected override void OnPaint(PaintEventArgs e)
         {
@@ -61,15 +64,25 @@ namespace C64.Controls
                 };
                 if (colorDialog.ShowDialog() == DialogResult.OK)
                 {
-                    BackColor = C64Palette.MapRGBToC64Color(colorDialog.Color);
+                    C64ColorIndex = C64Palette.MapRGBToC64Index(colorDialog.Color);
                 }
                 // Handle right-click event if needed
             }
             else
             {
-                ColorSelectorClicked?.Invoke(this, EventArgs.Empty);
+                colorSelectorEventArgs = new ColorSelectorEventArgs(_c64ColorIndex);
+                ColorSelectorClicked?.Invoke(this, colorSelectorEventArgs);
             }
         }
 
+    }
+
+    public class ColorSelectorEventArgs : EventArgs
+    {
+        public byte C64ColorIndex { get; }
+        public ColorSelectorEventArgs(byte c64ColorIndex)
+        {
+            C64ColorIndex = c64ColorIndex;
+        }
     }
 }

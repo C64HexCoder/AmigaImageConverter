@@ -33,7 +33,7 @@
             colorSelector3 = new ColorSelector();
             SuspendLayout();
             // 
-            // colorSelector1
+            // spriteColorColorSelector
             // 
             colorSelector1.C64ColorIndex = 0;
             colorSelector1.Location = new System.Drawing.Point(3, 3);
@@ -41,7 +41,7 @@
             colorSelector1.Size = new System.Drawing.Size(113, 53);
             colorSelector1.TabIndex = 0;
             // 
-            // colorSelector2
+            // multiColor1ColorSelector
             // 
             colorSelector2.C64ColorIndex = 0;
             colorSelector2.Location = new System.Drawing.Point(122, 3);
@@ -50,7 +50,7 @@
             colorSelector2.TabIndex = 1;
             colorSelector2.Load += colorSelector2_Load;
             // 
-            // colorSelector3
+            // multiColor2colorSelector
             // 
             colorSelector3.C64ColorIndex = 0;
             colorSelector3.Location = new System.Drawing.Point(241, 3);
