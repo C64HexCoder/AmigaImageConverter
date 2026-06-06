@@ -15,8 +15,13 @@ namespace C64.Graphics
             CCS64           // הגוונים החמים של האמולטור הישן
         }
 
-        static Color[] _activePalette = _vividPalette;
-        public static Color[] ActivePalette => _activePalette;
+        static Color[] _activePalette; 
+        static C64Palette()
+        {
+            // כבר הגדרנו את הפלטה הפעילה כברירת מחדל_v
+            _activePalette = _vividPalette;
+        }
+       
 
         public static readonly Color[] _vividPalette = new Color[16]
         {
@@ -78,6 +83,7 @@ namespace C64.Graphics
             Color.FromArgb(112, 144, 224), // 14: Light Blue
             Color.FromArgb(160, 160, 160)  // 15: Light Grey
         };
+        public static Color[] ActivePalette => _activePalette;
 
         public static Color GetColor(int index)
         {
@@ -100,7 +106,7 @@ namespace C64.Graphics
             }
         }
 
-        public static byte MapRGBToC64Color(Color pcColor)
+        public static byte MapRGBToC64Index(Color pcColor)
         {
             Vector3 targetVector = new Vector3(pcColor.R, pcColor.G, pcColor.B);
             float minDistance = float.MaxValue;
@@ -119,6 +125,26 @@ namespace C64.Graphics
             }
 
             return bestColorIndex; // מחזיר מספר בין 0 ל-15 (אינדקס החומרה של הקומודור)
+        }
+
+        public static Color MapRGBToC64Color(Color pcColor)
+        {
+            Vector3 targetVector = new Vector3(pcColor.R, pcColor.G, pcColor.B);
+            float minDistance = float.MaxValue;
+            Color bestColor = Color.Black;
+
+            for (byte i = 0; i < 16; i++)
+            {
+                Vector3 currentPaletteVector = new Vector3(_activePalette[i].R, _activePalette[i].G, _activePalette[i].B);
+                float distance = Vector3.DistanceSquared(targetVector, currentPaletteVector);
+
+                if (distance < minDistance)
+                {
+                    minDistance = distance;
+                    bestColor = _activePalette[i];
+                }
+            }
+            return bestColor;
         }
     }
 }

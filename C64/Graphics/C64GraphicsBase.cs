@@ -17,7 +17,7 @@ namespace C64.Graphics
         C64Palette C64Colors = new C64Palette();
         protected byte MapRGBToC64Color(Color pcColor)
         {
-           return C64Palette.MapRGBToC64Color(pcColor);      
+           return C64Palette.MapRGBToC64Index(pcColor);      
         }
 
         // 2. החוזה (החלק המופשט) - כל בן חייב לממש אותו בדרך שלו

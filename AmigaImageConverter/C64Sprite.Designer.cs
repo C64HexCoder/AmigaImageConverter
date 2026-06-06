@@ -30,6 +30,7 @@ namespace AmigaImageConverter
         {
             sprite1 = new C64.Controls.Sprite();
             helpProvider1 = new System.Windows.Forms.HelpProvider();
+            spritePalette1 = new C64.Controls.SpritePalette();
             SuspendLayout();
             // 
             // sprite1
@@ -108,11 +109,19 @@ namespace AmigaImageConverter
     };
             sprite1.TabIndex = 0;
             // 
+            // spritePalette1
+            // 
+            spritePalette1.Location = new System.Drawing.Point(12, 439);
+            spritePalette1.Name = "spritePalette1";
+            spritePalette1.Size = new System.Drawing.Size(481, 65);
+            spritePalette1.TabIndex = 1;
+            // 
             // C64Sprite
             // 
             AutoScaleDimensions = new System.Drawing.SizeF(10F, 25F);
             AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            ClientSize = new System.Drawing.Size(800, 450);
+            ClientSize = new System.Drawing.Size(800, 520);
+            Controls.Add(spritePalette1);
             Controls.Add(sprite1);
             Name = "C64Sprite";
             Text = "C64Sprite";
@@ -123,5 +132,6 @@ namespace AmigaImageConverter
 
         private C64.Controls.Sprite sprite1;
         private System.Windows.Forms.HelpProvider helpProvider1;
+        private C64.Controls.SpritePalette spritePalette1;
     }
 }

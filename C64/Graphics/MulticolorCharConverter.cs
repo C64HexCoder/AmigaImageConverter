@@ -59,7 +59,7 @@ namespace C64.Graphics
                                 }
 
                                 // מומר לאינדקס צבע רשמי של הקומודור (0-15) מתוך ה-Class הסטטי שלך
-                                byte c64ColorIndex = C64Palette.MapRGBToC64Color(finalColor);
+                                byte c64ColorIndex = C64Palette.MapRGBToC64Index(finalColor);
 
                                 // משיגים את שני הביטים (00, 01, 10, 11) שמתאימים לצבע הזה בבלוק הנוכחי
                                 byte bitPair = GetBitPairForColor(c64ColorIndex, cx, cy);
