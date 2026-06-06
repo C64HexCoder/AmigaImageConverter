@@ -54,11 +54,6 @@ namespace C64.Controls
             MultiColor2Index = 3;
         }
 
-        private void colorSelector2_Load(object sender, EventArgs e)
-        {
-
-        }
-
         private void spriteColorColorSelector_ColorSelectorClicked(object sender, ColorSelectorEventArgs e)
         {
             SpriteColorIndex = e.C64ColorIndex;

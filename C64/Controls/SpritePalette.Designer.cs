@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             spriteColorColorSelector = new ColorSelector();
-            colorSelector2 = new ColorSelector();
+            multiColor1ColorSelector = new ColorSelector();
             colorSelector3 = new ColorSelector();
             SuspendLayout();
             // 
@@ -42,14 +42,14 @@
             spriteColorColorSelector.TabIndex = 0;
             spriteColorColorSelector.ColorSelectorClicked += spriteColorColorSelector_ColorSelectorClicked;
             // 
-            // colorSelector2
+            // multiColor1ColorSelector
             // 
-            colorSelector2.C64ColorIndex = 0;
-            colorSelector2.Location = new System.Drawing.Point(122, 3);
-            colorSelector2.Name = "colorSelector2";
-            colorSelector2.Size = new System.Drawing.Size(113, 53);
-            colorSelector2.TabIndex = 1;
-            colorSelector2.Load += colorSelector2_Load;
+            multiColor1ColorSelector.C64ColorIndex = 0;
+            multiColor1ColorSelector.Location = new System.Drawing.Point(122, 3);
+            multiColor1ColorSelector.Name = "multiColor1ColorSelector";
+            multiColor1ColorSelector.Size = new System.Drawing.Size(113, 53);
+            multiColor1ColorSelector.TabIndex = 1;
+            multiColor1ColorSelector.ColorSelectorClicked += multiColor1ColorSelector_ColorSelectorClicked;
             // 
             // colorSelector3
             // 
@@ -66,7 +66,7 @@
             AutoSize = true;
             AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             Controls.Add(colorSelector3);
-            Controls.Add(colorSelector2);
+            Controls.Add(multiColor1ColorSelector);
             Controls.Add(spriteColorColorSelector);
             Name = "SpritePalette";
             Size = new System.Drawing.Size(357, 59);
@@ -76,7 +76,7 @@
         #endregion
 
         private ColorSelector spriteColorColorSelector;
-        private ColorSelector colorSelector2;
+        private ColorSelector multiColor1ColorSelector;
         private ColorSelector colorSelector3;
     }
 }
