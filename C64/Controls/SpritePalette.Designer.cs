@@ -30,7 +30,7 @@
         {
             spriteColorColorSelector = new ColorSelector();
             multiColor1ColorSelector = new ColorSelector();
-            colorSelector3 = new ColorSelector();
+            multiColor2colorSelector = new ColorSelector();
             SuspendLayout();
             // 
             // spriteColorColorSelector
@@ -51,13 +51,14 @@
             multiColor1ColorSelector.TabIndex = 1;
             multiColor1ColorSelector.ColorSelectorClicked += multiColor1ColorSelector_ColorSelectorClicked;
             // 
-            // colorSelector3
+            // multiColor2colorSelector
             // 
-            colorSelector3.C64ColorIndex = 0;
-            colorSelector3.Location = new System.Drawing.Point(241, 3);
-            colorSelector3.Name = "colorSelector3";
-            colorSelector3.Size = new System.Drawing.Size(113, 53);
-            colorSelector3.TabIndex = 2;
+            multiColor2colorSelector.C64ColorIndex = 0;
+            multiColor2colorSelector.Location = new System.Drawing.Point(241, 3);
+            multiColor2colorSelector.Name = "multiColor2colorSelector";
+            multiColor2colorSelector.Size = new System.Drawing.Size(113, 53);
+            multiColor2colorSelector.TabIndex = 2;
+            multiColor2colorSelector.ColorSelectorClicked += multiColor2ColorSelector_ColorSelectorClicked;
             // 
             // SpritePalette
             // 
@@ -65,7 +66,7 @@
             AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             AutoSize = true;
             AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            Controls.Add(colorSelector3);
+            Controls.Add(multiColor2colorSelector);
             Controls.Add(multiColor1ColorSelector);
             Controls.Add(spriteColorColorSelector);
             Name = "SpritePalette";
@@ -77,6 +78,6 @@
 
         private ColorSelector spriteColorColorSelector;
         private ColorSelector multiColor1ColorSelector;
-        private ColorSelector colorSelector3;
+        private ColorSelector multiColor2colorSelector;
     }
 }
