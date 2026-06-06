@@ -28,20 +28,21 @@
         /// </summary>
         private void InitializeComponent()
         {
-            colorSelector1 = new ColorSelector();
+            spriteColorColorSelector = new ColorSelector();
             colorSelector2 = new ColorSelector();
             colorSelector3 = new ColorSelector();
             SuspendLayout();
             // 
             // spriteColorColorSelector
             // 
-            colorSelector1.C64ColorIndex = 0;
-            colorSelector1.Location = new System.Drawing.Point(3, 3);
-            colorSelector1.Name = "colorSelector1";
-            colorSelector1.Size = new System.Drawing.Size(113, 53);
-            colorSelector1.TabIndex = 0;
+            spriteColorColorSelector.C64ColorIndex = 0;
+            spriteColorColorSelector.Location = new System.Drawing.Point(3, 3);
+            spriteColorColorSelector.Name = "spriteColorColorSelector";
+            spriteColorColorSelector.Size = new System.Drawing.Size(113, 53);
+            spriteColorColorSelector.TabIndex = 0;
+            spriteColorColorSelector.ColorSelectorClicked += spriteColorColorSelector_ColorSelectorClicked;
             // 
-            // multiColor1ColorSelector
+            // colorSelector2
             // 
             colorSelector2.C64ColorIndex = 0;
             colorSelector2.Location = new System.Drawing.Point(122, 3);
@@ -50,7 +51,7 @@
             colorSelector2.TabIndex = 1;
             colorSelector2.Load += colorSelector2_Load;
             // 
-            // multiColor2colorSelector
+            // colorSelector3
             // 
             colorSelector3.C64ColorIndex = 0;
             colorSelector3.Location = new System.Drawing.Point(241, 3);
@@ -66,7 +67,7 @@
             AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             Controls.Add(colorSelector3);
             Controls.Add(colorSelector2);
-            Controls.Add(colorSelector1);
+            Controls.Add(spriteColorColorSelector);
             Name = "SpritePalette";
             Size = new System.Drawing.Size(357, 59);
             ResumeLayout(false);
@@ -74,7 +75,7 @@
 
         #endregion
 
-        private ColorSelector colorSelector1;
+        private ColorSelector spriteColorColorSelector;
         private ColorSelector colorSelector2;
         private ColorSelector colorSelector3;
     }
