@@ -36,7 +36,7 @@ namespace AmigaImageConverter
             // sprite1
             // 
             sprite1.CellWidthHeight = 20;
-            sprite1.IsMulticolor = false;
+            sprite1.IsMulticolor = true;
             sprite1.Location = new System.Drawing.Point(12, 12);
             sprite1.Name = "sprite1";
             sprite1.Size = new System.Drawing.Size(481, 421);
@@ -111,9 +111,11 @@ namespace AmigaImageConverter
             // 
             // spritePalette1
             // 
+            spritePalette1.AutoSize = true;
+            spritePalette1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             spritePalette1.Location = new System.Drawing.Point(12, 439);
             spritePalette1.Name = "spritePalette1";
-            spritePalette1.Size = new System.Drawing.Size(481, 65);
+            spritePalette1.Size = new System.Drawing.Size(357, 59);
             spritePalette1.TabIndex = 1;
             // 
             // C64Sprite
@@ -126,6 +128,7 @@ namespace AmigaImageConverter
             Name = "C64Sprite";
             Text = "C64Sprite";
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion

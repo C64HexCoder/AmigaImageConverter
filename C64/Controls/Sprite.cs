@@ -17,9 +17,27 @@ namespace C64.Controls
         {
             InitializeComponent();
             DoubleBuffered = true; // להפחית ריצודים בעת הציור
-            SelectedColor = MainColor; // ברירת מחדל לצבע הראשי
+       
+          
+        }
+        public ISpriteColorProvider colorProvider;
+
+        public ISpriteColorProvider ColorProvider
+        {
+            get { return colorProvider; }
+            set
+            {
+                colorProvider = value;
+                //colorProvider.ColorChanged += (s, e) => Invalidate(); // Redraw the control to reflect changes in color provider
+                colorProvider.ColorChanged += HandleOnColorChanged; // Subscribe to the ColorChanged event of the color provider
+                Invalidate();
+            }
         }
 
+        public void HandleOnColorChanged(object sender, EventArgs e)
+        {
+            Invalidate(); // Redraw the control to reflect changes in color provider
+        }
         public enum DrawingMode
         {
             Normal,
@@ -30,101 +48,77 @@ namespace C64.Controls
         }
         private DrawingMode currentDrawingMode = DrawingMode.Normal;
 
-        public struct SpriteColor
-        {
-            public SpriteColor() { }
-            public Color Color
-            {
-                get { return C64Palette.GetColor(Value); }
-                set 
-                {
-                    Value = C64Palette.MapRGBToC64Index(value);
-                }
-            }
-            private byte value;
-            public byte Value
-            {
-                get { return (byte)Value; }
-                set
-                {
-                    if (Value < 0 || Value > 15)
-                        throw new ArgumentOutOfRangeException("Value must be between 0 and 15.");
+       
+         
+        public byte MainColor = 4;
+        public byte MultiColor1 = 2;
+        public byte MainColor2 = 3;
 
-                    Value = value;
-                    Color = C64Palette.GetColor(value);
+        private byte SelectedColor
+        {
+            get
+            {
+                if (ColorProvider != null)
+                {
+                    return (byte)ColorProvider.SelectedSlotIndex;
+                }
+                else
+                {
+                    return MainColor; // ברירת מחדל לצבע הראשי אם אין ספק צבעים
                 }
             }
         }
-         
-        public SpriteColor MainColor = new SpriteColor();
-        public SpriteColor MultiColor1 = new SpriteColor();
-        public SpriteColor MainColor2 = new SpriteColor();
 
-        private SpriteColor SelectedColor = new SpriteColor();
+        internal Color GetColorFromIndex(byte colorIndex)
+        {
+            if (colorProvider != null)
+            {
+                return colorProvider.GetColorForSlot(colorIndex);
+            }
+            else
+            {
+                switch (colorIndex)
+                {
+                    case 0:
+                        return Color.Transparent;
+                        break;
+                    case 1:
+                        return Color.Green;
+                        break;
+                    case 2:
+                        return Color.Blue;
+                        break;
+                    default:
+                        return Color.Magenta; // צבע ברירת מחדל עבור אינדקסים לא מוכרים
+           
+                }
+            }
+        }
+        // 2. החיבור האוטומטי: קורה מעצמו בזמן שהתוכנה עולה
+        protected override void OnCreateControl()
+        {
+            base.OnCreateControl();
 
+            // אם ה-ColorProvider עדיין לא קושר ידנית ב-Properties, והתוכנה רצה כרגע (לא ב-Designer)
+            if (colorProvider == null && !DesignMode && FindForm() != null)
+            {
+                // סורקים את כל הפקדים בטופס ומחפשים מישהו שמממש את ה-Interface שלנו
+                foreach (Control ctrl in FindForm().Controls)
+                {
+                    if (ctrl is ISpriteColorProvider palette)
+                    {
+                        // מצאנו! משדכים אוטומטית
+                        ColorProvider = palette;
+                        break; // מצאנו אחד, מספיק טוב
+                    }
+                }
+            }
+        }
         public void SetDrawingMode(DrawingMode mode)
         {
             currentDrawingMode = mode;
         }
 
-        public void SetSelectedColor(SpriteColor color)
-        {
-            SelectedColor = color;
-        }
-
-        public void SetSelectedColor(byte colorValue)
-        {
-            SelectedColor.Value = colorValue;
-        }
-
-        public void SetSelectedColor(Color color)
-        {
-            SelectedColor.Color = color;
-        }
-
-        public void SetMainColor(byte colorValue)
-        {
-            MainColor.Value = colorValue;
-        }
-
-        public void SetMultiColor1(byte colorValue)
-        {
-            MultiColor1.Value = colorValue;
-        }
-        public void SetMainColor2(byte colorValue)
-        {
-            MainColor2.Value = colorValue;
-        }
-
-        public void SetMainColor(Color color)
-        {
-            MainColor.Color = color;
-        }
-
-        public void SetMultiColor1(Color color)
-        {
-            MultiColor1.Color = color;
-        }
-
-        public void SetMainColor2(Color color)
-        {
-            MainColor2.Color = color;
-        }
-
-        public void SetMainColor(SpriteColor color)
-        {
-            MainColor = color;
-        }
-
-        public void SetMultiColor1(SpriteColor color)
-        {
-            MultiColor1 = color;
-        }
-
-        public void SetMainColor2(SpriteColor color)
-        {
-            MainColor2 = color;
-        }
 
         public void SetSpriteData(byte[] data)
         {
@@ -139,33 +133,12 @@ namespace C64.Controls
             return SpriteData;
         }
 
-        public void SetSpriteColors(byte mainColorValue, byte multiColor1Value, byte mainColor2Value)
-        {
-            SetMainColor(mainColorValue);
-            SetMultiColor1(multiColor1Value);
-            SetMainColor2(mainColor2Value);
-            Invalidate(); // Redraw the control to reflect changes
-        }
-
-        public void SetSpriteColors(Color mainColor, Color multiColor1, Color mainColor2)
-        {
-            SetMainColor(mainColor);
-            SetMultiColor1(multiColor1);
-            SetMainColor2(mainColor2);
-            Invalidate(); // Redraw the control to reflect changes
-        }
-
-        public void SetSpriteColors(SpriteColor mainColor, SpriteColor multiColor1, SpriteColor mainColor2)
-        {
-            SetMainColor(mainColor);
-            SetMultiColor1(multiColor1);
-            SetMainColor2(mainColor2);
-            Invalidate(); // Redraw the control to reflect changes
-        }
 
         public byte[] SpriteData { get; set; } = new byte[64];
 
         private byte cellWidthHeight = 20;
+        private byte MultiColorCellWidth;
+
         [Category("Grid"), Description("The width and height of each cell in pixels.")]
         public byte CellWidthHeight
         {
@@ -219,6 +192,8 @@ namespace C64.Controls
             }
             else
             {
+                MultiColorCellWidth = (byte)(CellWidthHeight * 2);
+
                 for (int x = 0; x < 12; x++)
                 {
 
@@ -234,25 +209,42 @@ namespace C64.Controls
             }
             Width = 24 * CellWidthHeight + 1;
             Height = 21 * CellWidthHeight + 1;
-            for (int i = 0; i < SpriteData.Length; i++)
+
+
+            if (IsMulticolor)
             {
-                byte dataByte = SpriteData[i];
-                int cellX = (i % 3) * 8;
-                int cellY = i / 3;
-                for (int bit = 0; bit < 8; bit++)
-                {
-                    if ((dataByte & (1 << (7 - bit))) != 0)
+                for (int y = 0; y < 21; y++)
+                    for (int x = 0; x < 12; x++)
                     {
-                        int drawX = cellX + bit;
-                        if (IsMulticolor)
+                        byte mColor = (byte)(SpriteData[y * 3 + x / 4] & (3 << (6 - ((x % 4)*2 ))));
+                        mColor >>= (6 - ((x % 4) * 2)); // Shift the color bits to the rightmost position
+                        Brush brush = new SolidBrush(GetColorFromIndex(mColor));
+                        e.Graphics.FillRectangle(brush, x * MultiColorCellWidth, y * CellWidthHeight, MultiColorCellWidth, CellWidthHeight);
+
+
+                    }
+            }
+            else
+            {
+                for (int i = 0; i < SpriteData.Length; i++)
+                {
+                    byte dataByte = SpriteData[i];
+                    int cellX = (i % 3) * 8;
+                    int cellY = i / 3;
+                    for (int bit = 0; bit < 8; bit++)
+                    {
+                        if ((dataByte & (1 << (7 - bit))) != 0)
                         {
-                            drawX /= 2; // In multicolor mode, each cell is effectively 2 pixels wide
+                            int drawX = cellX + bit;
+                            Brush brush = new SolidBrush(GetColorFromIndex(2));
+                            e.Graphics.FillRectangle(brush, drawX * CellWidthHeight, cellY * CellWidthHeight, CellWidthHeight, CellWidthHeight);
                         }
-                        e.Graphics.FillRectangle(Brushes.Black, drawX * CellWidthHeight, cellY * CellWidthHeight, CellWidthHeight, CellWidthHeight);
                     }
                 }
+
             }
         }
+        
 
         private Point? lineStartPoint = null;
         protected override void OnMouseDown(MouseEventArgs e)
@@ -286,19 +278,35 @@ namespace C64.Controls
             if (IsMulticolor)
             {
                 cellX /= 2; // In multicolor mode, each cell is effectively 2 pixels wide
-            }
-            int byteIndex = cellY * 3 + (cellX / 8);
-            int bitIndex = 7 - (cellX % 8);
-            if (byteIndex < SpriteData.Length)
-            {
-                SpriteData[byteIndex] ^= (byte)(1 << bitIndex); // Toggle the bit
+
+                byte mColor = (byte)(SelectedColor << (6 - ((cellX % 4)*2 ))); // Shift the selected color to the correct position
+                //byte mColor = (byte)(SelectedColor << (6 - ((cellX % 4) * 2))); // Shift the selected color to the correct position
+                //mColor = (byte)(3 << (6 - ((cellX % 4) * 2))); // Mask to ensure only the relevant bits are affected
+                byte earaseMask = (byte)~(3 << (6 - ((cellX % 4) * 2))); // Mask to clear the existing color bits for this cell
+                SpriteData[cellY * 3 + (cellX / 4)] &= earaseMask; // Clear the existing color bits for this cell
+                SpriteData[cellY * 3 + (cellX / 4)] |= (byte)mColor; // Toggle the color bits]
                 Invalidate(); // Redraw the control to reflect changes
+
+            }
+            else
+            {
+                int byteIndex = cellY * 3 + (cellX / 8);
+                int bitIndex = 7 - (cellX % 8);
+                if (byteIndex < SpriteData.Length)
+                {
+                    SpriteData[byteIndex] ^= (byte)(1 << bitIndex); // Toggle the bit
+                    Invalidate(); // Redraw the control to reflect changes
+                }
             }
         }
 
         protected override void OnMouseMove(MouseEventArgs e)
         {
             base.OnMouseMove(e);
+
+            if (e.X >= this.Width || e.Y >= this.Height || e.X < 0 || e.Y < 0)
+                return; // Prevent drawing outside the control bounds
+
 
             System.Drawing.Graphics g = CreateGraphics();
 
@@ -323,13 +331,27 @@ namespace C64.Controls
                     if (IsMulticolor)
                     {
                         cellX /= 2; // In multicolor mode, each cell is effectively 2 pixels wide
-                    }
-                    int byteIndex = cellY * 3 + (cellX / 8);
-                    int bitIndex = 7 - (cellX % 8);
-                    if (byteIndex < SpriteData.Length)
-                    {
-                        SpriteData[byteIndex] |= (byte)(1 << bitIndex); // Set the bit
+
+                        if (cellX  < 0 || cellX >= 12 || cellY < 0 || cellY >= 21)
+                            return; // Prevent drawing outside the control bounds
+
+                        byte mColor = (byte)(SelectedColor << (6 - ((cellX % 4) * 2))); // Shift the selected color to the correct position
+                        byte earaseMask = (byte)~(3 << (6 - ((cellX % 4) * 2))); // Mask to clear the existing color bits for this cell
+                        SpriteData[cellY * 3 + (cellX / 4)] &= earaseMask; // Clear the existing color bits for this cell
+                        SpriteData[cellY * 3 + (cellX / 4)] |= (byte)mColor; // Toggle the color bits]
                         Invalidate(); // Redraw the control to reflect changes
+
+  
+                    }
+                    else
+                    {
+                        int byteIndex = cellY * 3 + (cellX / 8);
+                        int bitIndex = 7 - (cellX % 8);
+                        if (byteIndex < SpriteData.Length)
+                        {
+                            SpriteData[byteIndex] |= (byte)(1 << bitIndex); // Set the bit
+                            Invalidate(); // Redraw the control to reflect changes
+                        }
                     }
                 }
             }
@@ -368,6 +390,15 @@ namespace C64.Controls
                 SpriteData[i] = 0;
             }
             Invalidate(); // Redraw the control to reflect changes
+        }
+    }
+
+    class SpriteSelectorEventArgs : EventArgs
+    {
+        public byte ColorIndex { get; }
+        public SpriteSelectorEventArgs(byte colorIndex)
+        {
+            ColorIndex = colorIndex;
         }
     }
 }

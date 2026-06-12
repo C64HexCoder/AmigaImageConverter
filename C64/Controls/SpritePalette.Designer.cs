@@ -31,34 +31,55 @@
             spriteColorColorSelector = new ColorSelector();
             multiColor1ColorSelector = new ColorSelector();
             multiColor2colorSelector = new ColorSelector();
+            backgroundColorSelector = new ColorSelector();
             SuspendLayout();
             // 
             // spriteColorColorSelector
             // 
-            spriteColorColorSelector.C64ColorIndex = 0;
-            spriteColorColorSelector.Location = new System.Drawing.Point(3, 3);
+            spriteColorColorSelector.BackColor = System.Drawing.Color.FromArgb(255, 255, 255);
+            spriteColorColorSelector.C64ColorIndex = 1;
+            spriteColorColorSelector.Location = new System.Drawing.Point(122, 3);
             spriteColorColorSelector.Name = "spriteColorColorSelector";
             spriteColorColorSelector.Size = new System.Drawing.Size(113, 53);
+            spriteColorColorSelector.SlotIndex = 1;
             spriteColorColorSelector.TabIndex = 0;
-            spriteColorColorSelector.ColorSelectorClicked += spriteColorColorSelector_ColorSelectorClicked;
+            spriteColorColorSelector.ColorChanged += OnCoorChanged;
+            spriteColorColorSelector.ColorSelectorClicked += ColorSelectorClicked;
             // 
             // multiColor1ColorSelector
             // 
-            multiColor1ColorSelector.C64ColorIndex = 0;
-            multiColor1ColorSelector.Location = new System.Drawing.Point(122, 3);
+            multiColor1ColorSelector.BackColor = System.Drawing.Color.FromArgb(136, 0, 0);
+            multiColor1ColorSelector.C64ColorIndex = 2;
+            multiColor1ColorSelector.Location = new System.Drawing.Point(241, 3);
             multiColor1ColorSelector.Name = "multiColor1ColorSelector";
             multiColor1ColorSelector.Size = new System.Drawing.Size(113, 53);
+            multiColor1ColorSelector.SlotIndex = 2;
             multiColor1ColorSelector.TabIndex = 1;
-            multiColor1ColorSelector.ColorSelectorClicked += multiColor1ColorSelector_ColorSelectorClicked;
+            multiColor1ColorSelector.ColorChanged += OnCoorChanged;
+            multiColor1ColorSelector.ColorSelectorClicked += ColorSelectorClicked;
             // 
             // multiColor2colorSelector
             // 
-            multiColor2colorSelector.C64ColorIndex = 0;
-            multiColor2colorSelector.Location = new System.Drawing.Point(241, 3);
+            multiColor2colorSelector.BackColor = System.Drawing.Color.FromArgb(170, 255, 238);
+            multiColor2colorSelector.C64ColorIndex = 3;
+            multiColor2colorSelector.Location = new System.Drawing.Point(360, 3);
             multiColor2colorSelector.Name = "multiColor2colorSelector";
             multiColor2colorSelector.Size = new System.Drawing.Size(113, 53);
+            multiColor2colorSelector.SlotIndex = 3;
             multiColor2colorSelector.TabIndex = 2;
-            multiColor2colorSelector.ColorSelectorClicked += multiColor2ColorSelector_ColorSelectorClicked;
+            multiColor2colorSelector.ColorChanged += OnCoorChanged;
+            multiColor2colorSelector.ColorSelectorClicked += ColorSelectorClicked;
+            // 
+            // backgroundColorSelector
+            // 
+            backgroundColorSelector.C64ColorIndex = 0;
+            backgroundColorSelector.Location = new System.Drawing.Point(3, 3);
+            backgroundColorSelector.Name = "backgroundColorSelector";
+            backgroundColorSelector.Size = new System.Drawing.Size(113, 53);
+            backgroundColorSelector.SlotIndex = 0;
+            backgroundColorSelector.TabIndex = 3;
+            backgroundColorSelector.ColorChanged += OnCoorChanged;
+            backgroundColorSelector.ColorSelectorClicked += ColorSelectorClicked;
             // 
             // SpritePalette
             // 
@@ -66,11 +87,12 @@
             AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             AutoSize = true;
             AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            Controls.Add(backgroundColorSelector);
             Controls.Add(multiColor2colorSelector);
             Controls.Add(multiColor1ColorSelector);
             Controls.Add(spriteColorColorSelector);
             Name = "SpritePalette";
-            Size = new System.Drawing.Size(357, 59);
+            Size = new System.Drawing.Size(476, 59);
             ResumeLayout(false);
         }
 
@@ -79,5 +101,6 @@
         private ColorSelector spriteColorColorSelector;
         private ColorSelector multiColor1ColorSelector;
         private ColorSelector multiColor2colorSelector;
+        private ColorSelector backgroundColorSelector;
     }
 }

@@ -11,62 +11,74 @@ using C64.Graphics;
 
 namespace C64.Controls
 {
-    public partial class SpritePalette : UserControl
+    public partial class SpritePalette : UserControl, ISpriteColorProvider
     {
-        byte spriteColorIndex;
-        byte multiColor1Index;
-        byte multiColor2Index;
 
-        byte SpriteColorIndex
+        public byte SelectedSlotIndex { get; set; }
+
+        public Color GetColorForSlot(int slotIndex)
         {
-            get => spriteColorIndex;
-
-            set
+            switch (slotIndex)
             {
-                spriteColorIndex = value;
-                BackColor = C64Palette.GetColor(spriteColorIndex);
+                case 0:
+                    return C64Palette.ActivePalette[backgroundColorSelector.C64ColorIndex];
+                    break;
+                case 1:
+                    return C64Palette.ActivePalette[spriteColorColorSelector.C64ColorIndex];
+                    break;
+                case 2:
+                    return C64Palette.ActivePalette[multiColor1ColorSelector.C64ColorIndex];
+                    break;
+                default:
+                    return C64Palette.ActivePalette[multiColor2colorSelector.C64ColorIndex];
+                    break;
             }
         }
 
-        byte MultiColor1Index 
+        public Color GetSelectedColor()
         {
-            get => multiColor1Index;
-            set
-            {
-                multiColor1Index = value;
-                
-            }
+            return C64Palette.ActivePalette[SelectedSlotIndex];
         }
-        byte MultiColor2Index 
-        {
-            get => multiColor2Index;
-            set
-            {
-                multiColor2Index = value;
-                BackColor = C64Palette.GetColor(multiColor2Index);
-            }
-        }
+
+
+
+
         public SpritePalette()
         {
             InitializeComponent();
-            SpriteColorIndex = 1;
-            MultiColor1Index = 2;
-            MultiColor2Index = 3;
+         
+        }
+        public event EventHandler ColorChanged;
+        private void OnColorChanged()
+        {
+            ColorChanged?.Invoke(this, EventArgs.Empty);
         }
 
-        private void spriteColorColorSelector_ColorSelectorClicked(object sender, ColorSelectorEventArgs e)
+        private void ColorSelectorClicked(object sender, ColorSelectorEventArgs e)
         {
-            SpriteColorIndex = e.C64ColorIndex;
+            ColorSelector cs = (ColorSelector)sender;
+            SelectedSlotIndex = e.SlotIndex;
         }
 
-        private void multiColor1ColorSelector_ColorSelectorClicked(object sender, ColorSelectorEventArgs e)
+        protected override void OnParentChanged(EventArgs e)
         {
-            MultiColor1Index = e.C64ColorIndex;
+            base.OnParentChanged(e);
+
+            if (!DesignMode && Parent != null)
+            {
+                foreach (var control in Parent.Controls)
+                {
+                    if (control is Sprite spr)
+                    {
+                        spr.colorProvider = this;
+                    }
+                }
+            }
         }
 
-        private void multiColor2ColorSelector_ColorSelectorClicked(object sender, ColorSelectorEventArgs e)
+        private void OnCoorChanged(object sender, EventArgs e)
         {
-            MultiColor2Index = e.C64ColorIndex;
+            ColorChanged?.Invoke(this, EventArgs.Empty);
         }
     }
 }
