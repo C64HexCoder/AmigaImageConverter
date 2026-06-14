@@ -15,13 +15,13 @@ namespace C64.Graphics
             CCS64           // הגוונים החמים של האמולטור הישן
         }
 
-        static Color[] _activePalette; 
+        static Color[] _activePalette;
         static C64Palette()
         {
             // כבר הגדרנו את הפלטה הפעילה כברירת מחדל_v
             _activePalette = _vividPalette;
         }
-       
+
 
         public static readonly Color[] _vividPalette = new Color[16]
         {
@@ -85,9 +85,40 @@ namespace C64.Graphics
         };
         public static Color[] ActivePalette => _activePalette;
 
+        enum C64Colors
+        {
+            Black = 0,
+            White = 1,
+            Red = 2,
+            Cyan = 3,
+            Purple = 4,
+            Green = 5,
+            Blue = 6,
+            Yellow = 7,
+            Orange = 8,
+            Brown = 9,
+            LightRed = 10,
+            DarkGray = 11,
+            MediumGray = 12,
+            LightGreen = 13,
+            LightBlue = 14,
+            LightGray = 15
+        }
+        C64Colors c64Colors;
+
+        static string[] ColorNames = {
+            "Black","White","Red","Cyan","Purple","Green","Blue","Yellow","Orange","Brown","Light Red","Dark Gray","Medium Gray","Light Green","light Blue","Light Gray" };
+
+         
+
         public static Color GetColor(int index)
         {
             return _activePalette[index];
+        }
+
+        public static string GetColorName (int index)
+        {
+            return ColorNames[index];
         }
 
         public static void SelectPalette(C64PaletteType type)

@@ -1,4 +1,5 @@
-﻿using C64.Graphics;
+﻿using C64.Dialogs;
+using C64.Graphics;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -72,18 +73,12 @@ namespace C64.Controls
 
             if (e.Button == MouseButtons.Right)
             {
-                ColorDialog colorDialog = new ColorDialog
-                {
-                    AllowFullOpen = true,
-                    FullOpen = true,
-                    Color = BackColor
-                };
-                if (colorDialog.ShowDialog() == DialogResult.OK)
-                {
-                    C64ColorIndex = C64Palette.MapRGBToC64Index(colorDialog.Color);
-                    ColorChanged?.Invoke(this, EventArgs.Empty);
-                }
-                // Handle right-click event if needed
+              PaletteDialog paletteDialog = new PaletteDialog();
+              if (paletteDialog.ShowDialog() == DialogResult.OK)
+              {
+                   C64ColorIndex = paletteDialog.GetSelectedColorIndex(); 
+                   ColorChanged?.Invoke(this, EventArgs.Empty);
+              }
             }
             else
             {
