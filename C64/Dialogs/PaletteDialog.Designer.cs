@@ -45,6 +45,7 @@
             // selectedColorLable
             // 
             selectedColorLable.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            selectedColorLable.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             selectedColorLable.Location = new System.Drawing.Point(0, 488);
             selectedColorLable.Name = "selectedColorLable";
             selectedColorLable.Size = new System.Drawing.Size(457, 57);

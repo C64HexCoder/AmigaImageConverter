@@ -76,7 +76,7 @@ namespace C64.Controls
             }
         }
 
-        private void OnCoorChanged(object sender, EventArgs e)
+        private void OnColorChanged(object sender, EventArgs e)
         {
             ColorChanged?.Invoke(this, EventArgs.Empty);
         }

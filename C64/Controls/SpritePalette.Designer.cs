@@ -43,7 +43,7 @@
             spriteColorColorSelector.Size = new System.Drawing.Size(113, 53);
             spriteColorColorSelector.SlotIndex = 1;
             spriteColorColorSelector.TabIndex = 0;
-            spriteColorColorSelector.ColorChanged += OnCoorChanged;
+            spriteColorColorSelector.ColorChanged += OnColorChanged;
             spriteColorColorSelector.ColorSelectorClicked += ColorSelectorClicked;
             // 
             // multiColor1ColorSelector
@@ -55,7 +55,7 @@
             multiColor1ColorSelector.Size = new System.Drawing.Size(113, 53);
             multiColor1ColorSelector.SlotIndex = 2;
             multiColor1ColorSelector.TabIndex = 1;
-            multiColor1ColorSelector.ColorChanged += OnCoorChanged;
+            multiColor1ColorSelector.ColorChanged += OnColorChanged;
             multiColor1ColorSelector.ColorSelectorClicked += ColorSelectorClicked;
             // 
             // multiColor2colorSelector
@@ -67,7 +67,7 @@
             multiColor2colorSelector.Size = new System.Drawing.Size(113, 53);
             multiColor2colorSelector.SlotIndex = 3;
             multiColor2colorSelector.TabIndex = 2;
-            multiColor2colorSelector.ColorChanged += OnCoorChanged;
+            multiColor2colorSelector.ColorChanged += OnColorChanged;
             multiColor2colorSelector.ColorSelectorClicked += ColorSelectorClicked;
             // 
             // backgroundColorSelector
@@ -78,7 +78,7 @@
             backgroundColorSelector.Size = new System.Drawing.Size(113, 53);
             backgroundColorSelector.SlotIndex = 0;
             backgroundColorSelector.TabIndex = 3;
-            backgroundColorSelector.ColorChanged += OnCoorChanged;
+            backgroundColorSelector.ColorChanged += OnColorChanged;
             backgroundColorSelector.ColorSelectorClicked += ColorSelectorClicked;
             // 
             // SpritePalette
