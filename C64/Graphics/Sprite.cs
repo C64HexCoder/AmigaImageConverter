@@ -62,9 +62,20 @@ namespace C64.Graphics
             }
         }
 
-        public void SaveSpriteAsPRG (ushort address)
+        public void SaveSpriteAsPRG (string filePath,ushort address)
         {
-            
+            Stream stream = new FileStream (filePath, FileMode.Create);
+            BinaryWriter binaryWriter = new BinaryWriter(stream);
+
+            binaryWriter.Write (Endian.Convert(address));
+
+            for (int i = 0; i < TotalBytes; i++)
+            {
+                binaryWriter.Write (RawData[i]);
+            }
+
+            binaryWriter.Flush() ; 
+            binaryWriter.Close();
         }
     }
 }

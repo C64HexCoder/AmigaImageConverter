@@ -1,6 +1,6 @@
 ﻿namespace C64.Controls
 {
-    partial class ColorSelector
+    partial class ByteDisplay
     {
         /// <summary> 
         /// Required designer variable.
@@ -28,18 +28,32 @@
         /// </summary>
         private void InitializeComponent()
         {
+            byteTextBox = new System.Windows.Forms.Label();
             SuspendLayout();
             // 
-            // ColorSelector
+            // byteTextBox
+            // 
+            byteTextBox.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
+            byteTextBox.Location = new System.Drawing.Point(3, 3);
+            byteTextBox.Name = "byteTextBox";
+            byteTextBox.Size = new System.Drawing.Size(88, 31);
+            byteTextBox.TabIndex = 0;
+            byteTextBox.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // ByteDisplay
             // 
             AutoScaleDimensions = new System.Drawing.SizeF(10F, 25F);
             AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            BackColor = System.Drawing.SystemColors.Control;
-            Name = "ColorSelector";
-            Size = new System.Drawing.Size(103, 68);
+            AutoSize = true;
+            AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            Controls.Add(byteTextBox);
+            Name = "ByteDisplay";
+            Size = new System.Drawing.Size(94, 34);
             ResumeLayout(false);
         }
 
         #endregion
+
+        private System.Windows.Forms.Label byteTextBox;
     }
 }

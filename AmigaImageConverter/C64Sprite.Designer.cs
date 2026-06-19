@@ -28,86 +28,21 @@ namespace AmigaImageConverter
         /// </summary>
         private void InitializeComponent()
         {
-            sprite1 = new C64.Controls.Sprite();
+            spriteGrid = new C64.Controls.Sprite();
             helpProvider1 = new System.Windows.Forms.HelpProvider();
             spritePalette1 = new C64.Controls.SpritePalette();
+            multiColorCheckBox = new System.Windows.Forms.CheckBox();
             SuspendLayout();
             // 
-            // sprite1
+            // spriteGrid
             // 
-            sprite1.CellWidthHeight = 20;
-            sprite1.IsMulticolor = true;
-            sprite1.Location = new System.Drawing.Point(12, 12);
-            sprite1.Name = "sprite1";
-            sprite1.Size = new System.Drawing.Size(481, 421);
-            sprite1.SpriteData = new byte[]
-    {
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0
-    };
-            sprite1.TabIndex = 0;
+            spriteGrid.CellWidthHeight = 20;
+            spriteGrid.ColorProvider = null;
+            spriteGrid.IsMulticolor = true;
+            spriteGrid.Location = new System.Drawing.Point(12, 12);
+            spriteGrid.Name = "spriteGrid";
+            spriteGrid.Size = new System.Drawing.Size(481, 421);
+            spriteGrid.TabIndex = 0;
             // 
             // spritePalette1
             // 
@@ -115,16 +50,29 @@ namespace AmigaImageConverter
             spritePalette1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             spritePalette1.Location = new System.Drawing.Point(12, 439);
             spritePalette1.Name = "spritePalette1";
-            spritePalette1.Size = new System.Drawing.Size(357, 59);
+            spritePalette1.SelectedSlotIndex = 0;
+            spritePalette1.Size = new System.Drawing.Size(476, 59);
             spritePalette1.TabIndex = 1;
+            // 
+            // multiColorCheckBox
+            // 
+            multiColorCheckBox.AutoSize = true;
+            multiColorCheckBox.Location = new System.Drawing.Point(523, 12);
+            multiColorCheckBox.Name = "multiColorCheckBox";
+            multiColorCheckBox.Size = new System.Drawing.Size(126, 29);
+            multiColorCheckBox.TabIndex = 2;
+            multiColorCheckBox.Text = "Multi Color";
+            multiColorCheckBox.UseVisualStyleBackColor = true;
+            multiColorCheckBox.CheckedChanged += multiColorCheckBox_CheckedChanged;
             // 
             // C64Sprite
             // 
             AutoScaleDimensions = new System.Drawing.SizeF(10F, 25F);
             AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             ClientSize = new System.Drawing.Size(800, 520);
+            Controls.Add(multiColorCheckBox);
             Controls.Add(spritePalette1);
-            Controls.Add(sprite1);
+            Controls.Add(spriteGrid);
             Name = "C64Sprite";
             Text = "C64Sprite";
             ResumeLayout(false);
@@ -133,8 +81,9 @@ namespace AmigaImageConverter
 
         #endregion
 
-        private C64.Controls.Sprite sprite1;
+        private C64.Controls.Sprite spriteGrid;
         private System.Windows.Forms.HelpProvider helpProvider1;
         private C64.Controls.SpritePalette spritePalette1;
+        private System.Windows.Forms.CheckBox multiColorCheckBox;
     }
 }

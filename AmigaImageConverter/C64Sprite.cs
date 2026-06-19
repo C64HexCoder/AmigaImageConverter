@@ -14,5 +14,10 @@ namespace AmigaImageConverter
         {
             InitializeComponent();
         }
+
+        private void multiColorCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            spriteGrid.IsMulticolor = ((CheckBox)sender).Checked;
+        }
     }
 }

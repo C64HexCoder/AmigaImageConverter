@@ -72,6 +72,7 @@
             // 
             // backgroundColorSelector
             // 
+            backgroundColorSelector.BackColor = System.Drawing.Color.FromArgb(0, 0, 0);
             backgroundColorSelector.C64ColorIndex = 0;
             backgroundColorSelector.Location = new System.Drawing.Point(3, 3);
             backgroundColorSelector.Name = "backgroundColorSelector";

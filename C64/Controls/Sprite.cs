@@ -28,8 +28,11 @@ namespace C64.Controls
             set
             {
                 colorProvider = value;
-                //colorProvider.ColorChanged += (s, e) => Invalidate(); // Redraw the control to reflect changes in color provider
-                colorProvider.ColorChanged += HandleOnColorChanged; // Subscribe to the ColorChanged event of the color provider
+                if (colorProvider != null)
+                {
+                    //colorProvider.ColorChanged += (s, e) => Invalidate(); // Redraw the control to reflect changes in color provider
+                    colorProvider.ColorChanged += HandleOnColorChanged; // Subscribe to the ColorChanged event of the color provider
+                }
                 Invalidate();
             }
         }
@@ -134,6 +137,8 @@ namespace C64.Controls
         }
 
 
+        [Browsable(false)] // מונע מהמאפיין להופיע בכלל בחלון ה-Properties
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)] // אומר ל-Designer לא לכתוב את המערך הזה ב-Designer.cs
         public byte[] SpriteData { get; set; } = new byte[64];
 
         private byte cellWidthHeight = 20;
