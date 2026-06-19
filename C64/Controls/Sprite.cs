@@ -176,7 +176,7 @@ namespace C64.Controls
         {
             base.OnPaint(e);
 
-            Pen borderPen = new Pen(Color.Black, 2);
+            Pen borderPen = new Pen(Color.White, 2);
 
             e.Graphics.FillRectangle(Brushes.White, 0, 0, 24 * CellWidthHeight, 21 * CellWidthHeight);
             //e.Graphics.DrawRectangle(borderPen, 0 , 0 , 24 * CellWidthHeight, 21 * CellWidthHeight);
@@ -185,13 +185,13 @@ namespace C64.Controls
             {
                 for (int x = 0; x < 24; x++)
                 {
-                    e.Graphics.DrawLine(Pens.Black, x * CellWidthHeight, 0, x * CellWidthHeight, 21 * CellWidthHeight);
+                    e.Graphics.DrawLine(Pens.White, x * CellWidthHeight, 0, x * CellWidthHeight, 21 * CellWidthHeight);
                 }
                 e.Graphics.DrawLine(Pens.Black, 24 * CellWidthHeight, 0, 24 * CellWidthHeight, 21 * CellWidthHeight);
 
                 for (int y = 0; y < 21; y++)
                 {
-                    e.Graphics.DrawLine(Pens.Black, 0, y * CellWidthHeight, 24 * CellWidthHeight, y * CellWidthHeight);
+                    e.Graphics.DrawLine(Pens.White, 0, y * CellWidthHeight, 24 * CellWidthHeight, y * CellWidthHeight);
                 }
                 e.Graphics.DrawLine(Pens.Black, 0, 21 * CellWidthHeight, 24 * CellWidthHeight, 21 * CellWidthHeight);
             }
@@ -202,15 +202,15 @@ namespace C64.Controls
                 for (int x = 0; x < 12; x++)
                 {
 
-                    e.Graphics.DrawLine(Pens.Black, x * CellWidthHeight * 2, 0, x * CellWidthHeight * 2, 21 * CellWidthHeight);
+                    e.Graphics.DrawLine(Pens.White, x * CellWidthHeight * 2, 0, x * CellWidthHeight * 2, 21 * CellWidthHeight);
                 }
-                e.Graphics.DrawLine(Pens.Black, 12 * CellWidthHeight * 2, 0, 12 * CellWidthHeight * 2, 21 * CellWidthHeight);
+                e.Graphics.DrawLine(Pens.White, 12 * CellWidthHeight * 2, 0, 12 * CellWidthHeight * 2, 21 * CellWidthHeight);
 
                 for (int y = 0; y < 21; y++)
                 {
-                    e.Graphics.DrawLine(Pens.Black, 0, y * CellWidthHeight, 24 * CellWidthHeight, y * CellWidthHeight);
+                    e.Graphics.DrawLine(Pens.White, 0, y * CellWidthHeight, 24 * CellWidthHeight, y * CellWidthHeight);
                 }
-                e.Graphics.DrawLine(Pens.Black, 0, 21 * CellWidthHeight, 24 * CellWidthHeight, 21 * CellWidthHeight);
+                e.Graphics.DrawLine(Pens.White, 0, 21 * CellWidthHeight, 24 * CellWidthHeight, 21 * CellWidthHeight);
             }
             Width = 24 * CellWidthHeight + 1;
             Height = 21 * CellWidthHeight + 1;
@@ -224,7 +224,7 @@ namespace C64.Controls
                         byte mColor = (byte)(SpriteData[y * 3 + x / 4] & (3 << (6 - ((x % 4)*2 ))));
                         mColor >>= (6 - ((x % 4) * 2)); // Shift the color bits to the rightmost position
                         brush = new SolidBrush(GetColorFromIndex(mColor));
-                        e.Graphics.FillRectangle(brush, x * MultiColorCellWidth, y * CellWidthHeight, MultiColorCellWidth, CellWidthHeight);
+                        e.Graphics.FillRectangle(brush, x * MultiColorCellWidth+1, y * CellWidthHeight+1, MultiColorCellWidth-1, CellWidthHeight-1);
 
 
                     }
@@ -249,7 +249,7 @@ namespace C64.Controls
                             brush = new SolidBrush(GetColorFromIndex(0));
                         }
 
-                        e.Graphics.FillRectangle(brush, drawX * CellWidthHeight, cellY * CellWidthHeight, CellWidthHeight, CellWidthHeight);
+                        e.Graphics.FillRectangle(brush, drawX * CellWidthHeight+1, cellY * CellWidthHeight+1, CellWidthHeight-1, CellWidthHeight-1);
                     }
                 }
 
