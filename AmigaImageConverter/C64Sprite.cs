@@ -13,6 +13,9 @@ namespace AmigaImageConverter
         public C64Sprite()
         {
             InitializeComponent();
+
+            showGridButton.Checked = spriteGrid.ShowGrid;
+            multiColorCheckBox.Checked = spriteGrid.IsMulticolor;
         }
 
         private void multiColorCheckBox_CheckedChanged(object sender, EventArgs e)
