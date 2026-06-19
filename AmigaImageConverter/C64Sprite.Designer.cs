@@ -32,13 +32,14 @@ namespace AmigaImageConverter
             helpProvider1 = new System.Windows.Forms.HelpProvider();
             spritePalette1 = new C64.Controls.SpritePalette();
             multiColorCheckBox = new System.Windows.Forms.CheckBox();
+            clearButton = new System.Windows.Forms.Button();
             SuspendLayout();
             // 
             // spriteGrid
             // 
             spriteGrid.CellWidthHeight = 20;
             spriteGrid.ColorProvider = null;
-            spriteGrid.IsMulticolor = true;
+            spriteGrid.IsMulticolor = false;
             spriteGrid.Location = new System.Drawing.Point(12, 12);
             spriteGrid.Name = "spriteGrid";
             spriteGrid.Size = new System.Drawing.Size(481, 421);
@@ -65,11 +66,22 @@ namespace AmigaImageConverter
             multiColorCheckBox.UseVisualStyleBackColor = true;
             multiColorCheckBox.CheckedChanged += multiColorCheckBox_CheckedChanged;
             // 
+            // clearButton
+            // 
+            clearButton.Location = new System.Drawing.Point(523, 47);
+            clearButton.Name = "clearButton";
+            clearButton.Size = new System.Drawing.Size(112, 34);
+            clearButton.TabIndex = 3;
+            clearButton.Text = "Clear";
+            clearButton.UseVisualStyleBackColor = true;
+            clearButton.Click += clearButton_Click;
+            // 
             // C64Sprite
             // 
             AutoScaleDimensions = new System.Drawing.SizeF(10F, 25F);
             AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             ClientSize = new System.Drawing.Size(800, 520);
+            Controls.Add(clearButton);
             Controls.Add(multiColorCheckBox);
             Controls.Add(spritePalette1);
             Controls.Add(spriteGrid);
@@ -85,5 +97,6 @@ namespace AmigaImageConverter
         private System.Windows.Forms.HelpProvider helpProvider1;
         private C64.Controls.SpritePalette spritePalette1;
         private System.Windows.Forms.CheckBox multiColorCheckBox;
+        private System.Windows.Forms.Button clearButton;
     }
 }

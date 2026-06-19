@@ -215,7 +215,7 @@ namespace C64.Controls
             Width = 24 * CellWidthHeight + 1;
             Height = 21 * CellWidthHeight + 1;
 
-
+            Brush brush;
             if (IsMulticolor)
             {
                 for (int y = 0; y < 21; y++)
@@ -223,7 +223,7 @@ namespace C64.Controls
                     {
                         byte mColor = (byte)(SpriteData[y * 3 + x / 4] & (3 << (6 - ((x % 4)*2 ))));
                         mColor >>= (6 - ((x % 4) * 2)); // Shift the color bits to the rightmost position
-                        Brush brush = new SolidBrush(GetColorFromIndex(mColor));
+                        brush = new SolidBrush(GetColorFromIndex(mColor));
                         e.Graphics.FillRectangle(brush, x * MultiColorCellWidth, y * CellWidthHeight, MultiColorCellWidth, CellWidthHeight);
 
 
@@ -238,12 +238,18 @@ namespace C64.Controls
                     int cellY = i / 3;
                     for (int bit = 0; bit < 8; bit++)
                     {
+                        int drawX = cellX + bit;
+
                         if ((dataByte & (1 << (7 - bit))) != 0)
-                        {
-                            int drawX = cellX + bit;
-                            Brush brush = new SolidBrush(GetColorFromIndex(2));
-                            e.Graphics.FillRectangle(brush, drawX * CellWidthHeight, cellY * CellWidthHeight, CellWidthHeight, CellWidthHeight);
+                        {                   
+                            brush = new SolidBrush(GetColorFromIndex(2));                
                         }
+                        else
+                        {
+                            brush = new SolidBrush(GetColorFromIndex(0));
+                        }
+
+                        e.Graphics.FillRectangle(brush, drawX * CellWidthHeight, cellY * CellWidthHeight, CellWidthHeight, CellWidthHeight);
                     }
                 }
 

@@ -19,5 +19,10 @@ namespace AmigaImageConverter
         {
             spriteGrid.IsMulticolor = ((CheckBox)sender).Checked;
         }
+
+        private void clearButton_Click(object sender, EventArgs e)
+        {
+            spriteGrid.ClearSprite();
+        }
     }
 }
