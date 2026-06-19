@@ -33,15 +33,19 @@ namespace AmigaImageConverter
             spritePalette1 = new C64.Controls.SpritePalette();
             multiColorCheckBox = new System.Windows.Forms.CheckBox();
             clearButton = new System.Windows.Forms.Button();
+            showGridButton = new System.Windows.Forms.CheckBox();
+            saveButton = new System.Windows.Forms.Button();
             SuspendLayout();
             // 
             // spriteGrid
             // 
             spriteGrid.CellWidthHeight = 20;
             spriteGrid.ColorProvider = null;
+            spriteGrid.GridColor = System.Drawing.Color.DarkOrange;
             spriteGrid.IsMulticolor = false;
             spriteGrid.Location = new System.Drawing.Point(12, 12);
             spriteGrid.Name = "spriteGrid";
+            spriteGrid.ShowGrid = true;
             spriteGrid.Size = new System.Drawing.Size(481, 421);
             spriteGrid.TabIndex = 0;
             // 
@@ -68,7 +72,7 @@ namespace AmigaImageConverter
             // 
             // clearButton
             // 
-            clearButton.Location = new System.Drawing.Point(523, 47);
+            clearButton.Location = new System.Drawing.Point(523, 221);
             clearButton.Name = "clearButton";
             clearButton.Size = new System.Drawing.Size(112, 34);
             clearButton.TabIndex = 3;
@@ -76,11 +80,33 @@ namespace AmigaImageConverter
             clearButton.UseVisualStyleBackColor = true;
             clearButton.Click += clearButton_Click;
             // 
+            // showGridButton
+            // 
+            showGridButton.AutoSize = true;
+            showGridButton.Location = new System.Drawing.Point(523, 47);
+            showGridButton.Name = "showGridButton";
+            showGridButton.Size = new System.Drawing.Size(120, 29);
+            showGridButton.TabIndex = 4;
+            showGridButton.Text = "Show Grid";
+            showGridButton.UseVisualStyleBackColor = true;
+            showGridButton.CheckedChanged += showGridButton_CheckedChanged;
+            // 
+            // saveButton
+            // 
+            saveButton.Location = new System.Drawing.Point(676, 474);
+            saveButton.Name = "saveButton";
+            saveButton.Size = new System.Drawing.Size(112, 34);
+            saveButton.TabIndex = 5;
+            saveButton.Text = "Save As ...";
+            saveButton.UseVisualStyleBackColor = true;
+            // 
             // C64Sprite
             // 
             AutoScaleDimensions = new System.Drawing.SizeF(10F, 25F);
             AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             ClientSize = new System.Drawing.Size(800, 520);
+            Controls.Add(saveButton);
+            Controls.Add(showGridButton);
             Controls.Add(clearButton);
             Controls.Add(multiColorCheckBox);
             Controls.Add(spritePalette1);
@@ -98,5 +124,7 @@ namespace AmigaImageConverter
         private C64.Controls.SpritePalette spritePalette1;
         private System.Windows.Forms.CheckBox multiColorCheckBox;
         private System.Windows.Forms.Button clearButton;
+        private System.Windows.Forms.CheckBox showGridButton;
+        private System.Windows.Forms.Button saveButton;
     }
 }

@@ -24,5 +24,10 @@ namespace AmigaImageConverter
         {
             spriteGrid.ClearSprite();
         }
+
+        private void showGridButton_CheckedChanged(object sender, EventArgs e)
+        {
+            spriteGrid.ShowGrid = ((CheckBox)sender).Checked;
+        }
     }
 }

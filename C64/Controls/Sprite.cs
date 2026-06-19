@@ -17,6 +17,7 @@ namespace C64.Controls
         {
             InitializeComponent();
             DoubleBuffered = true; // להפחית ריצודים בעת הציור
+            //ShowGrid = true;
        
           
         }
@@ -37,9 +38,34 @@ namespace C64.Controls
             }
         }
 
+        [Category("Grid")]
+        [Description("Determines whether the pixel grid lines are visible.")]
+        public bool ShowGrid
+        {
+            get => _showGrid;
+            set { _showGrid = value; Invalidate(); }
+        }
+        private bool _showGrid = true; // ברירת מחדל דולקת, כי זה עורך
         public void HandleOnColorChanged(object sender, EventArgs e)
         {
             Invalidate(); // Redraw the control to reflect changes in color provider
+        }
+
+        Pen GridPen = new Pen (Color.White);
+
+        [Category("Grid"),Description("Determines the color of the Grid")]
+        public Color GridColor {
+
+            get
+            {
+                return GridPen.Color;
+            }
+
+            set 
+            {
+                GridPen.Color = value;
+                Invalidate();
+            }
         }
         public enum DrawingMode
         {
@@ -177,40 +203,43 @@ namespace C64.Controls
             base.OnPaint(e);
 
             Pen borderPen = new Pen(Color.White, 2);
-
+            int ShrinkCell = 0;
             e.Graphics.FillRectangle(Brushes.White, 0, 0, 24 * CellWidthHeight, 21 * CellWidthHeight);
             //e.Graphics.DrawRectangle(borderPen, 0 , 0 , 24 * CellWidthHeight, 21 * CellWidthHeight);
-
-            if (!IsMulticolor)
+            if (ShowGrid)
             {
-                for (int x = 0; x < 24; x++)
+                ShrinkCell = 1;
+                if (!IsMulticolor)
                 {
-                    e.Graphics.DrawLine(Pens.White, x * CellWidthHeight, 0, x * CellWidthHeight, 21 * CellWidthHeight);
-                }
-                e.Graphics.DrawLine(Pens.Black, 24 * CellWidthHeight, 0, 24 * CellWidthHeight, 21 * CellWidthHeight);
+                    for (int x = 0; x < 24; x++)
+                    {
+                        e.Graphics.DrawLine(GridPen, x * CellWidthHeight, 0, x * CellWidthHeight, 21 * CellWidthHeight);
+                    }
+                    e.Graphics.DrawLine(GridPen, 24 * CellWidthHeight, 0, 24 * CellWidthHeight, 21 * CellWidthHeight);
 
-                for (int y = 0; y < 21; y++)
+                    for (int y = 0; y < 21; y++)
+                    {
+                        e.Graphics.DrawLine(GridPen, 0, y * CellWidthHeight, 24 * CellWidthHeight, y * CellWidthHeight);
+                    }
+                    e.Graphics.DrawLine(GridPen, 0, 21 * CellWidthHeight, 24 * CellWidthHeight, 21 * CellWidthHeight);
+                }
+                else
                 {
-                    e.Graphics.DrawLine(Pens.White, 0, y * CellWidthHeight, 24 * CellWidthHeight, y * CellWidthHeight);
-                }
-                e.Graphics.DrawLine(Pens.Black, 0, 21 * CellWidthHeight, 24 * CellWidthHeight, 21 * CellWidthHeight);
-            }
-            else
-            {
-                MultiColorCellWidth = (byte)(CellWidthHeight * 2);
+                    MultiColorCellWidth = (byte)(CellWidthHeight * 2);
 
-                for (int x = 0; x < 12; x++)
-                {
+                    for (int x = 0; x < 12; x++)
+                    {
 
-                    e.Graphics.DrawLine(Pens.White, x * CellWidthHeight * 2, 0, x * CellWidthHeight * 2, 21 * CellWidthHeight);
-                }
-                e.Graphics.DrawLine(Pens.White, 12 * CellWidthHeight * 2, 0, 12 * CellWidthHeight * 2, 21 * CellWidthHeight);
+                        e.Graphics.DrawLine(GridPen, x * CellWidthHeight * 2, 0, x * CellWidthHeight * 2, 21 * CellWidthHeight);
+                    }
+                    e.Graphics.DrawLine(GridPen, 12 * CellWidthHeight * 2, 0, 12 * CellWidthHeight * 2, 21 * CellWidthHeight);
 
-                for (int y = 0; y < 21; y++)
-                {
-                    e.Graphics.DrawLine(Pens.White, 0, y * CellWidthHeight, 24 * CellWidthHeight, y * CellWidthHeight);
+                    for (int y = 0; y < 21; y++)
+                    {
+                        e.Graphics.DrawLine(GridPen, 0, y * CellWidthHeight, 24 * CellWidthHeight, y * CellWidthHeight);
+                    }
+                    e.Graphics.DrawLine(GridPen, 0, 21 * CellWidthHeight, 24 * CellWidthHeight, 21 * CellWidthHeight);
                 }
-                e.Graphics.DrawLine(Pens.White, 0, 21 * CellWidthHeight, 24 * CellWidthHeight, 21 * CellWidthHeight);
             }
             Width = 24 * CellWidthHeight + 1;
             Height = 21 * CellWidthHeight + 1;
@@ -224,7 +253,7 @@ namespace C64.Controls
                         byte mColor = (byte)(SpriteData[y * 3 + x / 4] & (3 << (6 - ((x % 4)*2 ))));
                         mColor >>= (6 - ((x % 4) * 2)); // Shift the color bits to the rightmost position
                         brush = new SolidBrush(GetColorFromIndex(mColor));
-                        e.Graphics.FillRectangle(brush, x * MultiColorCellWidth+1, y * CellWidthHeight+1, MultiColorCellWidth-1, CellWidthHeight-1);
+                        e.Graphics.FillRectangle(brush, x * MultiColorCellWidth+ShrinkCell, y * CellWidthHeight+ShrinkCell, MultiColorCellWidth-ShrinkCell, CellWidthHeight-ShrinkCell);
 
 
                     }
@@ -249,7 +278,7 @@ namespace C64.Controls
                             brush = new SolidBrush(GetColorFromIndex(0));
                         }
 
-                        e.Graphics.FillRectangle(brush, drawX * CellWidthHeight+1, cellY * CellWidthHeight+1, CellWidthHeight-1, CellWidthHeight-1);
+                        e.Graphics.FillRectangle(brush, drawX * CellWidthHeight+ShrinkCell, cellY * CellWidthHeight+ShrinkCell, CellWidthHeight-ShrinkCell, CellWidthHeight-ShrinkCell);
                     }
                 }
 
