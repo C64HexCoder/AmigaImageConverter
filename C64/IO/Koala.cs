@@ -5,9 +5,9 @@ using System.IO;
 
 namespace C64.IO
 {
-    internal class Koala
+    internal static class Koala
     {
-        public bool LoadKoalaFile(string filePath,out string error)
+        public static bool LoadKoalaFile(string filePath,out string error)
         {
             try
             {

@@ -35,6 +35,15 @@ namespace AmigaImageConverter
             clearButton = new System.Windows.Forms.Button();
             showGridButton = new System.Windows.Forms.CheckBox();
             saveButton = new System.Windows.Forms.Button();
+            backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
+            groupBox1 = new System.Windows.Forms.GroupBox();
+            bankNumber = new System.Windows.Forms.NumericUpDown();
+            spriteAddressHb = new C64.Controls.HexBox();
+            label1 = new System.Windows.Forms.Label();
+            spriteNumber = new System.Windows.Forms.NumericUpDown();
+            groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)bankNumber).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)spriteNumber).BeginInit();
             SuspendLayout();
             // 
             // spriteGrid
@@ -72,7 +81,7 @@ namespace AmigaImageConverter
             // 
             // clearButton
             // 
-            clearButton.Location = new System.Drawing.Point(523, 221);
+            clearButton.Location = new System.Drawing.Point(523, 373);
             clearButton.Name = "clearButton";
             clearButton.Size = new System.Drawing.Size(112, 34);
             clearButton.TabIndex = 3;
@@ -99,12 +108,64 @@ namespace AmigaImageConverter
             saveButton.TabIndex = 5;
             saveButton.Text = "Save As ...";
             saveButton.UseVisualStyleBackColor = true;
+            saveButton.Click += saveButton_Click;
+            // 
+            // groupBox1
+            // 
+            groupBox1.Controls.Add(bankNumber);
+            groupBox1.Controls.Add(spriteAddressHb);
+            groupBox1.Controls.Add(label1);
+            groupBox1.Controls.Add(spriteNumber);
+            groupBox1.Location = new System.Drawing.Point(523, 92);
+            groupBox1.Name = "groupBox1";
+            groupBox1.Size = new System.Drawing.Size(239, 205);
+            groupBox1.TabIndex = 6;
+            groupBox1.TabStop = false;
+            groupBox1.Text = "Sprite Address";
+            // 
+            // bankNumber
+            // 
+            bankNumber.Location = new System.Drawing.Point(6, 67);
+            bankNumber.Maximum = new decimal(new int[] { 3, 0, 0, 0 });
+            bankNumber.Name = "bankNumber";
+            bankNumber.Size = new System.Drawing.Size(227, 31);
+            bankNumber.TabIndex = 3;
+            bankNumber.ValueChanged += bankNumber_ValueChanged;
+            // 
+            // spriteAddressHb
+            // 
+            spriteAddressHb.AutoSize = true;
+            spriteAddressHb.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            spriteAddressHb.Location = new System.Drawing.Point(57, 141);
+            spriteAddressHb.Name = "spriteAddressHb";
+            spriteAddressHb.Size = new System.Drawing.Size(121, 57);
+            spriteAddressHb.TabIndex = 2;
+            spriteAddressHb.Value = 0;
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Location = new System.Drawing.Point(6, 39);
+            label1.Name = "label1";
+            label1.Size = new System.Drawing.Size(128, 25);
+            label1.TabIndex = 1;
+            label1.Text = "Sprite Number";
+            // 
+            // spriteNumber
+            // 
+            spriteNumber.Location = new System.Drawing.Point(6, 104);
+            spriteNumber.Maximum = new decimal(new int[] { 255, 0, 0, 0 });
+            spriteNumber.Name = "spriteNumber";
+            spriteNumber.Size = new System.Drawing.Size(227, 31);
+            spriteNumber.TabIndex = 0;
+            spriteNumber.ValueChanged += spriteNumber_ValueChanged;
             // 
             // C64Sprite
             // 
             AutoScaleDimensions = new System.Drawing.SizeF(10F, 25F);
             AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             ClientSize = new System.Drawing.Size(800, 520);
+            Controls.Add(groupBox1);
             Controls.Add(saveButton);
             Controls.Add(showGridButton);
             Controls.Add(clearButton);
@@ -113,6 +174,10 @@ namespace AmigaImageConverter
             Controls.Add(spriteGrid);
             Name = "C64Sprite";
             Text = "C64Sprite";
+            groupBox1.ResumeLayout(false);
+            groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)bankNumber).EndInit();
+            ((System.ComponentModel.ISupportInitialize)spriteNumber).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -126,5 +191,11 @@ namespace AmigaImageConverter
         private System.Windows.Forms.Button clearButton;
         private System.Windows.Forms.CheckBox showGridButton;
         private System.Windows.Forms.Button saveButton;
+        private System.ComponentModel.BackgroundWorker backgroundWorker1;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.NumericUpDown spriteNumber;
+        private C64.Controls.HexBox spriteAddressHb;
+        private System.Windows.Forms.NumericUpDown bankNumber;
     }
 }

@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace C64.IO
 {
-    public class PRG
+    public static class PRG
     {
         public static void LoadPRGFile(string filePath)
         {
@@ -25,7 +25,7 @@ namespace C64.IO
         }
 
 
-    public bool SavePRGFile(string filePath, ushort loadAddress, byte[] programData)
+    public static bool SavePRGFile(string filePath, ushort loadAddress, byte[] programData)
 
         {
             try
