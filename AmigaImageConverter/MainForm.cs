@@ -1797,7 +1797,7 @@ namespace AmigaImageConverter
 
         private void spriteEditorToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            C64Sprite spriteEditor = new C64Sprite();
+            C64SpriteEditorDlg spriteEditor = new C64SpriteEditorDlg();
             spriteEditor.ShowDialog();
         }
     }
