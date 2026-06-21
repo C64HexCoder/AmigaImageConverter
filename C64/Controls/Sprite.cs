@@ -28,9 +28,9 @@ namespace C64.Controls
         Right
     }
 
-    public partial class Sprite : UserControl
+    public partial class SpriteCtrl : UserControl
     {
-        public Sprite()
+        public SpriteCtrl()
         {
             InitializeComponent();
             DoubleBuffered = true; // להפחית ריצודים בעת הציור

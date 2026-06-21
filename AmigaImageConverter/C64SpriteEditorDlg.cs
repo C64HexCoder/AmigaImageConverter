@@ -15,7 +15,7 @@ namespace AmigaImageConverter
     public partial class C64SpriteEditorDlg : Form
     {
 
-        List<C64.Graphics.Sprite> sprites = new List<C64.Graphics.Sprite>();
+        List<Sprite> sprites = new List<Sprite>();
 
         UInt16 SpriteAddress = 0;
 
@@ -111,7 +111,7 @@ namespace AmigaImageConverter
 
         private void btnAddSprite_Click(object sender, EventArgs e)
         {
-            C64.Graphics.Sprite sprite = new C64.Graphics.Sprite();
+            Sprite sprite = new Sprite();
             spriteGrid.SpriteData = sprite.RawData;
             sprites.Add(sprite);
 

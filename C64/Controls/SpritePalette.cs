@@ -68,7 +68,7 @@ namespace C64.Controls
             {
                 foreach (var control in Parent.Controls)
                 {
-                    if (control is Sprite spr)
+                    if (control is SpriteCtrl spr)
                     {
                         spr.colorProvider = this;
                     }

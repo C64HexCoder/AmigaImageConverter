@@ -29,7 +29,7 @@ namespace AmigaImageConverter
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
-            spriteGrid = new C64.Controls.Sprite();
+            spriteGrid = new C64.Controls.SpriteCtrl();
             helpProvider1 = new System.Windows.Forms.HelpProvider();
             spritePalette1 = new C64.Controls.SpritePalette();
             multiColorCheckBox = new System.Windows.Forms.CheckBox();
@@ -512,7 +512,7 @@ namespace AmigaImageConverter
 
         #endregion
 
-        private C64.Controls.Sprite spriteGrid;
+        private C64.Controls.SpriteCtrl spriteGrid;
         private System.Windows.Forms.HelpProvider helpProvider1;
         private C64.Controls.SpritePalette spritePalette1;
         private System.Windows.Forms.CheckBox multiColorCheckBox;

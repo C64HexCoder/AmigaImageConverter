@@ -1,6 +1,6 @@
 ﻿namespace C64.Controls
 {
-    partial class Sprite
+    partial class SpriteCtrl
     {
         /// <summary> 
         /// Required designer variable.
