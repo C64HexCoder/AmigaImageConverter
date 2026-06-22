@@ -122,5 +122,20 @@ namespace AmigaImageConverter
             lblStatusMessage.Visible = false;
             messageTimer.Stop();
         }
+
+        private void btnDeleteSprite_Click(object sender, EventArgs e)
+        {
+            sprites.RemoveAt((int)spriteNumber.Value);
+            spriteNumber.Value--;
+        }
+
+        private void btnDuplicate_Click(object sender, EventArgs e)
+        {
+            Sprite tmpSpr = sprites[(int)spriteNumber.Value];
+            sprites.Add((Sprite)tmpSpr);
+            spriteNumber.Value++;
+        }
     }
+    
 }
+

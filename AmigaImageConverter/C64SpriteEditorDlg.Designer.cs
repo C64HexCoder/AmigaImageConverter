@@ -69,7 +69,7 @@ namespace AmigaImageConverter
             deleteSpriteToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             btnAddSprite = new System.Windows.Forms.Button();
             groupBox2 = new System.Windows.Forms.GroupBox();
-            button1 = new System.Windows.Forms.Button();
+            btnDuplicate = new System.Windows.Forms.Button();
             btnDeleteSprite = new System.Windows.Forms.Button();
             groupBox3 = new System.Windows.Forms.GroupBox();
             messageTimer = new System.Windows.Forms.Timer(components);
@@ -429,7 +429,7 @@ namespace AmigaImageConverter
             // 
             // groupBox2
             // 
-            groupBox2.Controls.Add(button1);
+            groupBox2.Controls.Add(btnDuplicate);
             groupBox2.Controls.Add(btnDeleteSprite);
             groupBox2.Controls.Add(btnAddSprite);
             groupBox2.Controls.Add(clearButton);
@@ -440,14 +440,15 @@ namespace AmigaImageConverter
             groupBox2.TabStop = false;
             groupBox2.Text = "Sprite Management";
             // 
-            // button1
+            // btnDuplicate
             // 
-            button1.Location = new System.Drawing.Point(11, 110);
-            button1.Name = "button1";
-            button1.Size = new System.Drawing.Size(112, 34);
-            button1.TabIndex = 19;
-            button1.Text = "Duplicate";
-            button1.UseVisualStyleBackColor = true;
+            btnDuplicate.Location = new System.Drawing.Point(11, 110);
+            btnDuplicate.Name = "btnDuplicate";
+            btnDuplicate.Size = new System.Drawing.Size(112, 34);
+            btnDuplicate.TabIndex = 19;
+            btnDuplicate.Text = "Duplicate";
+            btnDuplicate.UseVisualStyleBackColor = true;
+            btnDuplicate.Click += btnDuplicate_Click;
             // 
             // btnDeleteSprite
             // 
@@ -457,6 +458,7 @@ namespace AmigaImageConverter
             btnDeleteSprite.TabIndex = 18;
             btnDeleteSprite.Text = "Delete Sprite";
             btnDeleteSprite.UseVisualStyleBackColor = true;
+            btnDeleteSprite.Click += btnDeleteSprite_Click;
             // 
             // groupBox3
             // 
@@ -554,7 +556,7 @@ namespace AmigaImageConverter
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label lblStatusMessage;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnDuplicate;
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.Timer messageTimer;
     }
