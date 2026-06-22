@@ -119,7 +119,8 @@ namespace AmigaImageConverter
 
         private void timer_Tick(object sender, EventArgs e)
         {
-
+            lblStatusMessage.Visible = false;
+            messageTimer.Stop();
         }
     }
 }

@@ -72,7 +72,7 @@ namespace AmigaImageConverter
             button1 = new System.Windows.Forms.Button();
             btnDeleteSprite = new System.Windows.Forms.Button();
             groupBox3 = new System.Windows.Forms.GroupBox();
-            timer = new System.Windows.Forms.Timer(components);
+            messageTimer = new System.Windows.Forms.Timer(components);
             groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)bankNumber).BeginInit();
             ((System.ComponentModel.ISupportInitialize)spriteNumber).BeginInit();
@@ -471,11 +471,12 @@ namespace AmigaImageConverter
             groupBox3.TabStop = false;
             groupBox3.Text = "Shifting";
             // 
-            // timer
+            // messageTimer
             // 
-            timer.Tick += timer_Tick;
+            messageTimer.Interval = 3000;
+            messageTimer.Tick += timer_Tick;
             // 
-            // C64Sprite
+            // C64SpriteEditorDlg
             // 
             AutoScaleDimensions = new System.Drawing.SizeF(10F, 25F);
             AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -492,7 +493,7 @@ namespace AmigaImageConverter
             Controls.Add(spritePalette1);
             Controls.Add(spriteGrid);
             Controls.Add(menuStrip1);
-            Name = "C64Sprite";
+            Name = "C64SpriteEditorDlg";
             Text = "C64Sprite";
             groupBox1.ResumeLayout(false);
             groupBox1.PerformLayout();
@@ -555,6 +556,6 @@ namespace AmigaImageConverter
         private System.Windows.Forms.Label lblStatusMessage;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.GroupBox groupBox3;
-        private System.Windows.Forms.Timer timer;
+        private System.Windows.Forms.Timer messageTimer;
     }
 }
