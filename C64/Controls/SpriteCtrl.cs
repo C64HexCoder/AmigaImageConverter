@@ -341,6 +341,7 @@ namespace C64.Controls
             switch (CurrentDrawingState)
             {
                 case DrawingState.Pen:
+                    cellX = isMulticolor ? cellX / 2 : cellX;
 
                     SetCell(cellX, cellY);
                     //Invalidate();
