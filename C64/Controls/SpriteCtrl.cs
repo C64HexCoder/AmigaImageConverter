@@ -311,7 +311,7 @@ namespace C64.Controls
                         Color color = Buffer.GetPixel(x, y);
                         if (color.A != 0x00)
                         {
-                            brush = new SolidBrush(GetColorFromIndex(2));
+                            brush = new SolidBrush(ColorProvider.GetColorForSlot(ColorProvider.SelectedSlotIndex));
                             if (IsMulticolor)
                             {
                                 e.Graphics.FillRectangle(brush, x * MultiColorCellWidth + ShrinkCell, y * CellWidthHeight + ShrinkCell, MultiColorCellWidth - ShrinkCell, CellWidthHeight - ShrinkCell);
@@ -341,7 +341,7 @@ namespace C64.Controls
             switch (CurrentDrawingState)
             {
                 case DrawingState.Pen:
-                    cellX = isMulticolor ? cellX / 2 : cellX;
+                                        cellX = isMulticolor ? cellX / 2 : cellX;
 
                     SetCell(cellX, cellY);
                     //Invalidate();
@@ -403,6 +403,7 @@ namespace C64.Controls
 
             if (e.X >= this.Width || e.Y >= this.Height || e.X < 0 || e.Y < 0)
                 return; // Prevent drawing outside the control bounds
+            Pen drawingPen = new Pen(ColorProvider.GetColorForSlot(ColorProvider.SelectedSlotIndex), 1);
 
 
             System.Drawing.Graphics g = CreateGraphics();
@@ -428,7 +429,7 @@ namespace C64.Controls
                                 BufferGfx.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.None;
                                 BufferGfx.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.NearestNeighbor;
                                 BufferGfx.Clear(Color.Transparent);
-                                BufferGfx.DrawLine(new Pen(Color.White,1),lineStartCell, LineEndCell);
+                                BufferGfx.DrawLine(drawingPen,lineStartCell, LineEndCell);
                                 BufferGfx.Dispose();
                                 Invalidate();
                                 // Implement line drawing logic based on lineStartPoint and current mouse position
@@ -442,7 +443,7 @@ namespace C64.Controls
                             BufferGfx.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.None;
                             BufferGfx.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.NearestNeighbor;
                             BufferGfx.Clear(Color.Transparent);
-                            BufferGfx.DrawRectangle(new Pen(Color.White),lineStartCell.X,lineStartCell.Y,Math.Abs(LineEndCell.X-lineStartCell.X),Math.Abs(LineEndCell.Y-lineStartCell.Y));
+                            BufferGfx.DrawRectangle(drawingPen,lineStartCell.X,lineStartCell.Y,Math.Abs(LineEndCell.X-lineStartCell.X),Math.Abs(LineEndCell.Y-lineStartCell.Y));
                     
                             BufferGfx.Dispose();
                             Invalidate();
