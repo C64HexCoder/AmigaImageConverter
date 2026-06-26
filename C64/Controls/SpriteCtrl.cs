@@ -8,6 +8,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using WinGraphics = System.Drawing.Graphics; // יצירת כינוי מקוצר
+
 
 namespace C64.Controls
 {
@@ -30,6 +32,8 @@ namespace C64.Controls
 
     public partial class SpriteCtrl : UserControl
     {
+        Bitmap Buffer = new Bitmap (24,21);
+
         public SpriteCtrl()
         {
             InitializeComponent();
@@ -85,8 +89,6 @@ namespace C64.Controls
             }
         }
     
-
-        private DrawingState currentDrawingMode = DrawingState.Pen;
 
         [Category("Sprite"),Description("Determine the drawing state of the Sprite Control")]
         public DrawingState CurrentDrawingState { get; set; }
@@ -157,7 +159,7 @@ namespace C64.Controls
         }
         public void SetDrawingMode(DrawingState mode)
         {
-            currentDrawingMode = mode;
+            CurrentDrawingState = mode;
         }
 
 
@@ -214,6 +216,9 @@ namespace C64.Controls
         {
             base.OnPaint(e);
 
+          //  WinGraphics BufferGfx = WinGraphics.FromImage(Buffer);
+         //   BufferGfx.Clear(Color.Transparent);
+        
             Pen borderPen = new Pen(Color.White, 2);
             int ShrinkCell = 0;
             e.Graphics.FillRectangle(Brushes.White, 0, 0, 24 * CellWidthHeight, 21 * CellWidthHeight);
@@ -295,10 +300,38 @@ namespace C64.Controls
                 }
 
             }
+
+
+            int SpriteWidth = IsMulticolor ? 12 : 24;
+            if (IsLineStarted)
+            {
+                for (int y = 0; y < 21; y++)
+                    for (int x = 0; x < SpriteWidth; x++)
+                    {
+                        Color color = Buffer.GetPixel(x, y);
+                        if (color.A != 0x00)
+                        {
+                            brush = new SolidBrush(GetColorFromIndex(2));
+                            if (IsMulticolor)
+                            {
+                                e.Graphics.FillRectangle(brush, x * MultiColorCellWidth + ShrinkCell, y * CellWidthHeight + ShrinkCell, MultiColorCellWidth - ShrinkCell, CellWidthHeight - ShrinkCell);
+
+                            }
+                            else
+                                e.Graphics.FillRectangle(brush, x * CellWidthHeight + ShrinkCell, y * CellWidthHeight + ShrinkCell, CellWidthHeight - ShrinkCell, CellWidthHeight - ShrinkCell);
+                        }
+                    }
+
+            }
+                   
+                
+
         }
 
 
-        private Point? lineStartPoint = null;
+        bool IsLineStarted = false;
+
+        private PointF lineStartCell;
         protected override void OnMouseDown(MouseEventArgs e)
         {
             base.OnMouseDown(e);
@@ -308,9 +341,25 @@ namespace C64.Controls
             switch (CurrentDrawingState)
             {
                 case DrawingState.Pen:
+
                     SetCell(cellX, cellY);
+                    //Invalidate();
                     break;
+                case DrawingState.Line:
+                    cellX = isMulticolor ? cellX / 2 : cellX;
+
+                    lineStartCell = new Point (cellX, cellY);
+                    IsLineStarted = true;
+                    break;
+                case DrawingState.Rectangle:
+                    cellX = isMulticolor ? cellX / 2 : cellX;
+
+                    lineStartCell = new Point (cellX, cellY);
+                    IsLineStarted = true;
+                    break;
+                    
                 case DrawingState.Fill:
+
                     FloodFill(cellX, cellY, SelectedColor);
                     break;
             }
@@ -323,7 +372,7 @@ namespace C64.Controls
             if (IsMulticolor)
             {
 
-                cellX /= 2; // In multicolor mode, each cell is effectively 2 pixels wide
+                //cellX /= 2; // In multicolor mode, each cell is effectively 2 pixels wide
 
                 byte mColor = (byte)(SelectedColor << (6 - ((cellX % 4) * 2))); // Shift the selected color to the correct position
                 //byte mColor = (byte)(SelectedColor << (6 - ((cellX % 4) * 2))); // Shift the selected color to the correct position
@@ -340,12 +389,13 @@ namespace C64.Controls
                 int bitIndex = 7 - (cellX % 8);
                 if (byteIndex < SpriteData.Length)
                 {
-                    SpriteData[byteIndex] ^= (byte)(1 << bitIndex); // Toggle the bit
+                    SpriteData[byteIndex] |= (byte)(1 << bitIndex); // Toggle the bit
                     Invalidate(); // Redraw the control to reflect changes
                 }
             }
         }
 
+        PointF LineEndCell;
         protected override void OnMouseMove(MouseEventArgs e)
         {
             base.OnMouseMove(e);
@@ -360,16 +410,41 @@ namespace C64.Controls
             {
                 int cellX = e.X / CellWidthHeight;
                 int cellY = e.Y / CellWidthHeight;
-                if ((currentDrawingMode != DrawingState.Pen))
+
+                WinGraphics BufferGfx = WinGraphics.FromImage(Buffer);
+
+                if ((CurrentDrawingState != DrawingState.Pen))
                 {
-                    switch (currentDrawingMode)
+                    switch (CurrentDrawingState)
                     {
                         case DrawingState.Line:
-                            if (lineStartPoint.HasValue)
+
+                            if (IsLineStarted)
                             {
+                                if (IsMulticolor) cellX /= 2;
+
+                                LineEndCell = new Point(cellX, cellY);
+                                BufferGfx.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.None;
+                                BufferGfx.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.NearestNeighbor;
+                                BufferGfx.Clear(Color.Transparent);
+                                BufferGfx.DrawLine(new Pen(Color.White,1),lineStartCell, LineEndCell);
+                                BufferGfx.Dispose();
+                                Invalidate();
                                 // Implement line drawing logic based on lineStartPoint and current mouse position
                                 //g.DrawLine(Pens.Red, lineStartPoint.Value.X * CellWidthHeight, lineStartPoint.Value.Y * CellWidthHeight, cellX * CellWidthHeight, cellY * CellWidthHeight);
                             }
+                            break;
+                        case DrawingState.Rectangle:
+                            if (IsMulticolor) cellX /= 2;
+
+                            LineEndCell = new Point(cellX, cellY);
+                            BufferGfx.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.None;
+                            BufferGfx.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.NearestNeighbor;
+                            BufferGfx.Clear(Color.Transparent);
+                            BufferGfx.DrawRectangle(new Pen(Color.White),lineStartCell.X,lineStartCell.Y,Math.Abs(LineEndCell.X-lineStartCell.X),Math.Abs(LineEndCell.Y-lineStartCell.Y));
+                    
+                            BufferGfx.Dispose();
+                            Invalidate();
                             break;
                     }
                 }
@@ -406,19 +481,31 @@ namespace C64.Controls
         protected override void OnMouseUp(MouseEventArgs e)
         {
             base.OnMouseUp(e);
-            if (currentDrawingMode == DrawingState.Line)
+            if (CurrentDrawingState == DrawingState.Line || CurrentDrawingState == DrawingState.Rectangle)
             {
                 // Draw the final line based on the starting point and the current mouse position into the SpriteData
                 int X = e.X / CellWidthHeight;
                 int Y = e.Y / CellWidthHeight;
-                if (IsMulticolor)
+                InjectBufferToSpriteDate();
+
+                IsLineStarted = false;
+            }
+        }
+
+        private void InjectBufferToSpriteDate ()
+        {
+            int SpriteWIdth = IsMulticolor ? 12 : 24;
+
+            for (int y=0; y < 21; y++)
+                for (int x=0; x < SpriteWIdth; x++)
                 {
-                    X /= 2; // In multicolor mode, each cell is effectively 2 pixels wide
+                    if (Buffer.GetPixel(x,y).A != 0x00)
+                    {
+                        SetCell (x,y);
+                    }
                 }
 
-
-                lineStartPoint = null; // Reset line start point after drawing
-            }
+            Invalidate();
         }
 
         private void UpdateSpriteDataFromGrid()
@@ -589,6 +676,8 @@ namespace C64.Controls
             // 4. מרעננים את התצוגה הויזואלית ב-Live
             Invalidate();
         }
+
+       
 
     }
 

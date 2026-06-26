@@ -48,6 +48,7 @@ namespace AmigaImageConverter
             penCB = new System.Windows.Forms.RadioButton();
             drawingModeGB = new System.Windows.Forms.GroupBox();
             tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            lineCB = new System.Windows.Forms.RadioButton();
             fillCB = new System.Windows.Forms.RadioButton();
             btnShiftRight = new System.Windows.Forms.Button();
             btnShiftLeft = new System.Windows.Forms.Button();
@@ -73,6 +74,7 @@ namespace AmigaImageConverter
             btnDeleteSprite = new System.Windows.Forms.Button();
             groupBox3 = new System.Windows.Forms.GroupBox();
             messageTimer = new System.Windows.Forms.Timer(components);
+            rectangleCB = new System.Windows.Forms.RadioButton();
             groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)bankNumber).BeginInit();
             ((System.ComponentModel.ISupportInitialize)spriteNumber).BeginInit();
@@ -258,6 +260,8 @@ namespace AmigaImageConverter
             tableLayoutPanel1.ColumnCount = 2;
             tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            tableLayoutPanel1.Controls.Add(rectangleCB, 1, 1);
+            tableLayoutPanel1.Controls.Add(lineCB, 1, 0);
             tableLayoutPanel1.Controls.Add(fillCB, 0, 1);
             tableLayoutPanel1.Controls.Add(penCB, 0, 0);
             tableLayoutPanel1.Location = new System.Drawing.Point(6, 30);
@@ -267,6 +271,20 @@ namespace AmigaImageConverter
             tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             tableLayoutPanel1.Size = new System.Drawing.Size(221, 90);
             tableLayoutPanel1.TabIndex = 0;
+            // 
+            // lineCB
+            // 
+            lineCB.Appearance = System.Windows.Forms.Appearance.Button;
+            lineCB.AutoSize = true;
+            lineCB.Dock = System.Windows.Forms.DockStyle.Fill;
+            lineCB.Location = new System.Drawing.Point(113, 3);
+            lineCB.Name = "lineCB";
+            lineCB.Size = new System.Drawing.Size(105, 39);
+            lineCB.TabIndex = 9;
+            lineCB.Text = "Line";
+            lineCB.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            lineCB.UseVisualStyleBackColor = true;
+            lineCB.CheckedChanged += lineCB_CheckedChanged;
             // 
             // fillCB
             // 
@@ -478,6 +496,20 @@ namespace AmigaImageConverter
             messageTimer.Interval = 3000;
             messageTimer.Tick += timer_Tick;
             // 
+            // rectangleCB
+            // 
+            rectangleCB.Appearance = System.Windows.Forms.Appearance.Button;
+            rectangleCB.AutoSize = true;
+            rectangleCB.Dock = System.Windows.Forms.DockStyle.Fill;
+            rectangleCB.Location = new System.Drawing.Point(113, 48);
+            rectangleCB.Name = "rectangleCB";
+            rectangleCB.Size = new System.Drawing.Size(105, 39);
+            rectangleCB.TabIndex = 10;
+            rectangleCB.Text = "Rectangle";
+            rectangleCB.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            rectangleCB.UseVisualStyleBackColor = true;
+            rectangleCB.CheckedChanged += rectangleCB_CheckedChanged;
+            // 
             // C64SpriteEditorDlg
             // 
             AutoScaleDimensions = new System.Drawing.SizeF(10F, 25F);
@@ -559,5 +591,7 @@ namespace AmigaImageConverter
         private System.Windows.Forms.Button btnDuplicate;
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.Timer messageTimer;
+        private System.Windows.Forms.RadioButton lineCB;
+        private System.Windows.Forms.RadioButton rectangleCB;
     }
 }

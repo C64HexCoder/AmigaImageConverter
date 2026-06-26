@@ -135,7 +135,17 @@ namespace AmigaImageConverter
             sprites.Add((Sprite)tmpSpr);
             spriteNumber.Value++;
         }
+
+        private void lineCB_CheckedChanged(object sender, EventArgs e)
+        {
+            spriteGrid.CurrentDrawingState = DrawingState.Line;
+        }
+
+        private void rectangleCB_CheckedChanged(object sender, EventArgs e)
+        {
+            spriteGrid.CurrentDrawingState = DrawingState.Rectangle;
+        }
     }
-    
+
 }
 
