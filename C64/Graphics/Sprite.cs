@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
 using System.Text;
+using System.Windows.Forms;
 
 namespace C64.Graphics
 {
@@ -11,9 +12,11 @@ namespace C64.Graphics
         public const int Width = 24;
         public const int Height = 21;
         public const int TotalBytes = 64;
+        private const int C64_SPRITE_SIZE_BYTES = 64;
+
 
         // מערך חד-ממדי קשיח של 64 בתים - בדיוק כמו בחומרה של ה-C64
-        public byte[] RawData { get; private set; } = new byte[TotalBytes];
+        public byte[] RawData { get; set; } = new byte[TotalBytes];
 
         // אינדקסר חכם שמפרק את הביטים של ה-64 בתים ל-X ו-Y פיקסלים עבור הפקד!
         private bool _isMulticolor = false;
@@ -113,7 +116,7 @@ namespace C64.Graphics
             Stream stream = new FileStream (filePath, FileMode.Create);
             BinaryWriter binaryWriter = new BinaryWriter(stream);
 
-            binaryWriter.Write (Endian.Convert(address));
+            binaryWriter.Write (address);
 
             for (int i = 0; i < TotalBytes; i++)
             {
@@ -122,6 +125,17 @@ namespace C64.Graphics
 
             binaryWriter.Flush() ; 
             binaryWriter.Close();
+        }
+
+        public void LoadFromPRG (string filePath)
+        {
+            FileStream fstream = new FileStream (filePath, FileMode.Open);
+            BinaryReader binaryReader = new BinaryReader(fstream);
+
+            ushort address = binaryReader.ReadUInt16();
+            RawData = binaryReader.ReadBytes(C64_SPRITE_SIZE_BYTES);
+            binaryReader.Close();
+            fstream.Close();
         }
         /// <summary>
         /// מייבאת גרפיקה מתוך אובייקט Bitmap של Windows וממירה אותה לאינדקסי צבע (0-3) בספרייט

@@ -30,6 +30,7 @@ namespace C64.Controls
             set
             {
                 hexTextBox.Text = value.ToString("X4");
+                Invalidate();
 
             }
         }

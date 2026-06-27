@@ -48,6 +48,7 @@ namespace AmigaImageConverter
             penCB = new System.Windows.Forms.RadioButton();
             drawingModeGB = new System.Windows.Forms.GroupBox();
             tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            rectangleCB = new System.Windows.Forms.RadioButton();
             lineCB = new System.Windows.Forms.RadioButton();
             fillCB = new System.Windows.Forms.RadioButton();
             btnShiftRight = new System.Windows.Forms.Button();
@@ -58,7 +59,7 @@ namespace AmigaImageConverter
             label2 = new System.Windows.Forms.Label();
             menuStrip1 = new System.Windows.Forms.MenuStrip();
             fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            loadSpriteMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             saveSpriteAsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             importToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -74,7 +75,7 @@ namespace AmigaImageConverter
             btnDeleteSprite = new System.Windows.Forms.Button();
             groupBox3 = new System.Windows.Forms.GroupBox();
             messageTimer = new System.Windows.Forms.Timer(components);
-            rectangleCB = new System.Windows.Forms.RadioButton();
+            insertSpriteBtn = new System.Windows.Forms.Button();
             groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)bankNumber).BeginInit();
             ((System.ComponentModel.ISupportInitialize)spriteNumber).BeginInit();
@@ -272,6 +273,20 @@ namespace AmigaImageConverter
             tableLayoutPanel1.Size = new System.Drawing.Size(221, 90);
             tableLayoutPanel1.TabIndex = 0;
             // 
+            // rectangleCB
+            // 
+            rectangleCB.Appearance = System.Windows.Forms.Appearance.Button;
+            rectangleCB.AutoSize = true;
+            rectangleCB.Dock = System.Windows.Forms.DockStyle.Fill;
+            rectangleCB.Location = new System.Drawing.Point(113, 48);
+            rectangleCB.Name = "rectangleCB";
+            rectangleCB.Size = new System.Drawing.Size(105, 39);
+            rectangleCB.TabIndex = 10;
+            rectangleCB.Text = "Rectangle";
+            rectangleCB.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            rectangleCB.UseVisualStyleBackColor = true;
+            rectangleCB.CheckedChanged += rectangleCB_CheckedChanged;
+            // 
             // lineCB
             // 
             lineCB.Appearance = System.Windows.Forms.Appearance.Button;
@@ -347,6 +362,7 @@ namespace AmigaImageConverter
             numericSpriteNumber.Name = "numericSpriteNumber";
             numericSpriteNumber.Size = new System.Drawing.Size(230, 31);
             numericSpriteNumber.TabIndex = 13;
+            numericSpriteNumber.ValueChanged += numericSpriteNumber_ValueChanged;
             // 
             // label2
             // 
@@ -369,32 +385,33 @@ namespace AmigaImageConverter
             // 
             // fileToolStripMenuItem
             // 
-            fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] { toolStripMenuItem1, saveSpriteAsToolStripMenuItem, toolStripSeparator1, importToolStripMenuItem });
+            fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] { loadSpriteMenuItem, saveSpriteAsToolStripMenuItem, toolStripSeparator1, importToolStripMenuItem });
             fileToolStripMenuItem.Name = "fileToolStripMenuItem";
             fileToolStripMenuItem.Size = new System.Drawing.Size(54, 29);
             fileToolStripMenuItem.Text = "File";
             // 
-            // toolStripMenuItem1
+            // loadSpriteMenuItem
             // 
-            toolStripMenuItem1.Name = "toolStripMenuItem1";
-            toolStripMenuItem1.Size = new System.Drawing.Size(227, 34);
-            toolStripMenuItem1.Text = "Load Sprite";
+            loadSpriteMenuItem.Name = "loadSpriteMenuItem";
+            loadSpriteMenuItem.Size = new System.Drawing.Size(270, 34);
+            loadSpriteMenuItem.Text = "Load Sprite";
+            loadSpriteMenuItem.Click += loadSpriteMenuItem_Click;
             // 
             // saveSpriteAsToolStripMenuItem
             // 
             saveSpriteAsToolStripMenuItem.Name = "saveSpriteAsToolStripMenuItem";
-            saveSpriteAsToolStripMenuItem.Size = new System.Drawing.Size(227, 34);
+            saveSpriteAsToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
             saveSpriteAsToolStripMenuItem.Text = "Save Sprite As";
             // 
             // toolStripSeparator1
             // 
             toolStripSeparator1.Name = "toolStripSeparator1";
-            toolStripSeparator1.Size = new System.Drawing.Size(224, 6);
+            toolStripSeparator1.Size = new System.Drawing.Size(267, 6);
             // 
             // importToolStripMenuItem
             // 
             importToolStripMenuItem.Name = "importToolStripMenuItem";
-            importToolStripMenuItem.Size = new System.Drawing.Size(227, 34);
+            importToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
             importToolStripMenuItem.Text = "Import";
             // 
             // spritesToolStripMenuItem
@@ -447,6 +464,7 @@ namespace AmigaImageConverter
             // 
             // groupBox2
             // 
+            groupBox2.Controls.Add(insertSpriteBtn);
             groupBox2.Controls.Add(btnDuplicate);
             groupBox2.Controls.Add(btnDeleteSprite);
             groupBox2.Controls.Add(btnAddSprite);
@@ -496,19 +514,15 @@ namespace AmigaImageConverter
             messageTimer.Interval = 3000;
             messageTimer.Tick += timer_Tick;
             // 
-            // rectangleCB
+            // insertSpriteBtn
             // 
-            rectangleCB.Appearance = System.Windows.Forms.Appearance.Button;
-            rectangleCB.AutoSize = true;
-            rectangleCB.Dock = System.Windows.Forms.DockStyle.Fill;
-            rectangleCB.Location = new System.Drawing.Point(113, 48);
-            rectangleCB.Name = "rectangleCB";
-            rectangleCB.Size = new System.Drawing.Size(105, 39);
-            rectangleCB.TabIndex = 10;
-            rectangleCB.Text = "Rectangle";
-            rectangleCB.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            rectangleCB.UseVisualStyleBackColor = true;
-            rectangleCB.CheckedChanged += rectangleCB_CheckedChanged;
+            insertSpriteBtn.Location = new System.Drawing.Point(129, 71);
+            insertSpriteBtn.Name = "insertSpriteBtn";
+            insertSpriteBtn.Size = new System.Drawing.Size(112, 34);
+            insertSpriteBtn.TabIndex = 20;
+            insertSpriteBtn.Text = "Insert";
+            insertSpriteBtn.UseVisualStyleBackColor = true;
+            insertSpriteBtn.Click += insertSpriteBtn_Click;
             // 
             // C64SpriteEditorDlg
             // 
@@ -574,7 +588,7 @@ namespace AmigaImageConverter
         private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem saveSpriteAsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem importToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem loadSpriteMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripMenuItem spritesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem addSpriteToolStripMenuItem;
@@ -593,5 +607,6 @@ namespace AmigaImageConverter
         private System.Windows.Forms.Timer messageTimer;
         private System.Windows.Forms.RadioButton lineCB;
         private System.Windows.Forms.RadioButton rectangleCB;
+        private System.Windows.Forms.Button insertSpriteBtn;
     }
 }

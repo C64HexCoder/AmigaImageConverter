@@ -388,9 +388,13 @@ namespace C64.Controls
             {
                 int byteIndex = cellY * 3 + (cellX / 8);
                 int bitIndex = 7 - (cellX % 8);
+                byte earaseMask = (byte)~ (1 << bitIndex);
                 if (byteIndex < SpriteData.Length)
                 {
-                    SpriteData[byteIndex] |= (byte)(1 << bitIndex); // Toggle the bit
+                    if (ColorProvider.SelectedSlotIndex == 0)
+                        SpriteData[byteIndex] &= earaseMask;
+                    else
+                        SpriteData[byteIndex] ^= (byte)(1 << bitIndex); // Toggle the bit
                     Invalidate(); // Redraw the control to reflect changes
                 }
             }
@@ -472,7 +476,11 @@ namespace C64.Controls
                         int bitIndex = 7 - (cellX % 8);
                         if (byteIndex < SpriteData.Length)
                         {
-                            SpriteData[byteIndex] |= (byte)(1 << bitIndex); // Set the bit
+                            if (ColorProvider.SelectedSlotIndex == 0)
+                                SpriteData[byteIndex] &=(byte) ~(1 << bitIndex);
+                            else
+                                SpriteData[byteIndex] |= (byte)(1 << bitIndex); // Set the bit
+
                             Invalidate(); // Redraw the control to reflect changes
                         }
                     }
