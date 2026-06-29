@@ -38,7 +38,6 @@ namespace AmigaImageConverter
             saveButton = new System.Windows.Forms.Button();
             backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             groupBox1 = new System.Windows.Forms.GroupBox();
-            lblStatusMessage = new System.Windows.Forms.Label();
             label4 = new System.Windows.Forms.Label();
             label3 = new System.Windows.Forms.Label();
             bankNumber = new System.Windows.Forms.NumericUpDown();
@@ -71,11 +70,13 @@ namespace AmigaImageConverter
             deleteSpriteToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             btnAddSprite = new System.Windows.Forms.Button();
             groupBox2 = new System.Windows.Forms.GroupBox();
+            insertSpriteBtn = new System.Windows.Forms.Button();
             btnDuplicate = new System.Windows.Forms.Button();
             btnDeleteSprite = new System.Windows.Forms.Button();
             groupBox3 = new System.Windows.Forms.GroupBox();
             messageTimer = new System.Windows.Forms.Timer(components);
-            insertSpriteBtn = new System.Windows.Forms.Button();
+            statusStrip1 = new System.Windows.Forms.StatusStrip();
+            messageStatusBar = new System.Windows.Forms.ToolStripStatusLabel();
             groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)bankNumber).BeginInit();
             ((System.ComponentModel.ISupportInitialize)spriteNumber).BeginInit();
@@ -85,6 +86,7 @@ namespace AmigaImageConverter
             menuStrip1.SuspendLayout();
             groupBox2.SuspendLayout();
             groupBox3.SuspendLayout();
+            statusStrip1.SuspendLayout();
             SuspendLayout();
             // 
             // spriteGrid
@@ -154,7 +156,6 @@ namespace AmigaImageConverter
             // 
             // groupBox1
             // 
-            groupBox1.Controls.Add(lblStatusMessage);
             groupBox1.Controls.Add(label4);
             groupBox1.Controls.Add(label3);
             groupBox1.Controls.Add(bankNumber);
@@ -163,19 +164,10 @@ namespace AmigaImageConverter
             groupBox1.Controls.Add(spriteNumber);
             groupBox1.Location = new System.Drawing.Point(523, 131);
             groupBox1.Name = "groupBox1";
-            groupBox1.Size = new System.Drawing.Size(239, 235);
+            groupBox1.Size = new System.Drawing.Size(239, 204);
             groupBox1.TabIndex = 6;
             groupBox1.TabStop = false;
             groupBox1.Text = "Sprite Address";
-            // 
-            // lblStatusMessage
-            // 
-            lblStatusMessage.Dock = System.Windows.Forms.DockStyle.Bottom;
-            lblStatusMessage.ForeColor = System.Drawing.Color.Red;
-            lblStatusMessage.Location = new System.Drawing.Point(3, 207);
-            lblStatusMessage.Name = "lblStatusMessage";
-            lblStatusMessage.Size = new System.Drawing.Size(233, 25);
-            lblStatusMessage.TabIndex = 6;
             // 
             // label4
             // 
@@ -393,25 +385,25 @@ namespace AmigaImageConverter
             // loadSpriteMenuItem
             // 
             loadSpriteMenuItem.Name = "loadSpriteMenuItem";
-            loadSpriteMenuItem.Size = new System.Drawing.Size(270, 34);
+            loadSpriteMenuItem.Size = new System.Drawing.Size(227, 34);
             loadSpriteMenuItem.Text = "Load Sprite";
             loadSpriteMenuItem.Click += loadSpriteMenuItem_Click;
             // 
             // saveSpriteAsToolStripMenuItem
             // 
             saveSpriteAsToolStripMenuItem.Name = "saveSpriteAsToolStripMenuItem";
-            saveSpriteAsToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
+            saveSpriteAsToolStripMenuItem.Size = new System.Drawing.Size(227, 34);
             saveSpriteAsToolStripMenuItem.Text = "Save Sprite As";
             // 
             // toolStripSeparator1
             // 
             toolStripSeparator1.Name = "toolStripSeparator1";
-            toolStripSeparator1.Size = new System.Drawing.Size(267, 6);
+            toolStripSeparator1.Size = new System.Drawing.Size(224, 6);
             // 
             // importToolStripMenuItem
             // 
             importToolStripMenuItem.Name = "importToolStripMenuItem";
-            importToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
+            importToolStripMenuItem.Size = new System.Drawing.Size(227, 34);
             importToolStripMenuItem.Text = "Import";
             // 
             // spritesToolStripMenuItem
@@ -476,6 +468,16 @@ namespace AmigaImageConverter
             groupBox2.TabStop = false;
             groupBox2.Text = "Sprite Management";
             // 
+            // insertSpriteBtn
+            // 
+            insertSpriteBtn.Location = new System.Drawing.Point(129, 71);
+            insertSpriteBtn.Name = "insertSpriteBtn";
+            insertSpriteBtn.Size = new System.Drawing.Size(112, 34);
+            insertSpriteBtn.TabIndex = 20;
+            insertSpriteBtn.Text = "Insert";
+            insertSpriteBtn.UseVisualStyleBackColor = true;
+            insertSpriteBtn.Click += insertSpriteBtn_Click;
+            // 
             // btnDuplicate
             // 
             btnDuplicate.Location = new System.Drawing.Point(11, 110);
@@ -514,21 +516,30 @@ namespace AmigaImageConverter
             messageTimer.Interval = 3000;
             messageTimer.Tick += timer_Tick;
             // 
-            // insertSpriteBtn
+            // statusStrip1
             // 
-            insertSpriteBtn.Location = new System.Drawing.Point(129, 71);
-            insertSpriteBtn.Name = "insertSpriteBtn";
-            insertSpriteBtn.Size = new System.Drawing.Size(112, 34);
-            insertSpriteBtn.TabIndex = 20;
-            insertSpriteBtn.Text = "Insert";
-            insertSpriteBtn.UseVisualStyleBackColor = true;
-            insertSpriteBtn.Click += insertSpriteBtn_Click;
+            statusStrip1.ImageScalingSize = new System.Drawing.Size(24, 24);
+            statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] { messageStatusBar });
+            statusStrip1.Location = new System.Drawing.Point(0, 579);
+            statusStrip1.Name = "statusStrip1";
+            statusStrip1.Size = new System.Drawing.Size(1136, 32);
+            statusStrip1.TabIndex = 20;
+            statusStrip1.Text = "statusStrip1";
+            // 
+            // messageStatusBar
+            // 
+            messageStatusBar.ForeColor = System.Drawing.Color.Red;
+            messageStatusBar.Name = "messageStatusBar";
+            messageStatusBar.Size = new System.Drawing.Size(155, 25);
+            messageStatusBar.Text = "messageStatusBar";
+            messageStatusBar.Click += toolStripStatusLabel1_Click;
             // 
             // C64SpriteEditorDlg
             // 
             AutoScaleDimensions = new System.Drawing.SizeF(10F, 25F);
             AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            ClientSize = new System.Drawing.Size(1136, 584);
+            ClientSize = new System.Drawing.Size(1136, 611);
+            Controls.Add(statusStrip1);
             Controls.Add(groupBox3);
             Controls.Add(groupBox2);
             Controls.Add(label2);
@@ -555,6 +566,8 @@ namespace AmigaImageConverter
             menuStrip1.PerformLayout();
             groupBox2.ResumeLayout(false);
             groupBox3.ResumeLayout(false);
+            statusStrip1.ResumeLayout(false);
+            statusStrip1.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -601,12 +614,13 @@ namespace AmigaImageConverter
         private System.Windows.Forms.Button btnDeleteSprite;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label lblStatusMessage;
         private System.Windows.Forms.Button btnDuplicate;
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.Timer messageTimer;
         private System.Windows.Forms.RadioButton lineCB;
         private System.Windows.Forms.RadioButton rectangleCB;
         private System.Windows.Forms.Button insertSpriteBtn;
+        private System.Windows.Forms.StatusStrip statusStrip1;
+        private System.Windows.Forms.ToolStripStatusLabel messageStatusBar;
     }
 }

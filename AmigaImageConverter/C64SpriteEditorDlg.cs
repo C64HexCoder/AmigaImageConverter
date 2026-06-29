@@ -88,12 +88,29 @@ namespace AmigaImageConverter
 
         private void spriteNumber_ValueChanged(object sender, EventArgs e)
         {
-            SpriteAddress = (UInt16)(spriteAddressHb.Value = (int)bankNumber.Value * 0x4000 + (byte)spriteNumber.Value * 64);
+            AddressValidationResult avr = ValidateSpriteAddress((int)bankNumber.Value, (byte)spriteNumber.Value);
+            if (avr.IsValid)
+                SpriteAddress = (UInt16)(spriteAddressHb.Value = (int)bankNumber.Value * 0x4000 + (byte)spriteNumber.Value * 64);
+            else
+            {
+                messageStatusBar.Text = avr.WarningMessage;
+                messageStatusBar.Visible = true;
+                messageTimer.Start();
+                if (avr.JumpTo != 0)
+                    spriteNumber.Value = avr.JumpTo;
+            }
         }
 
         private void bankNumber_ValueChanged(object sender, EventArgs e)
         {
-            SpriteAddress = (UInt16)(spriteAddressHb.Value = (int)bankNumber.Value * 0x4000 + (byte)spriteNumber.Value * 64);
+            AddressValidationResult avr = ValidateSpriteAddress((int)bankNumber.Value, (byte)spriteNumber.Value);
+            if (avr.IsValid)
+                SpriteAddress = (UInt16)(spriteAddressHb.Value = (int)bankNumber.Value * 0x4000 + (byte)spriteNumber.Value * 64);
+            else
+            {
+                messageStatusBar.Text = avr.WarningMessage;
+                messageTimer.Start();
+            }
         }
 
         private int CalculateSpriteAddress(byte bank, byte spriteNumber)
@@ -141,14 +158,14 @@ namespace AmigaImageConverter
 
         private void timer_Tick(object sender, EventArgs e)
         {
-            lblStatusMessage.Visible = false;
+            messageStatusBar.Visible = false;
             messageTimer.Stop();
         }
 
         private void btnDeleteSprite_Click(object sender, EventArgs e)
         {
             sprites.RemoveAt((int)spriteNumber.Value);
-            spriteNumber.Value--;
+            //spriteNumber.Value--;
         }
 
         private void btnDuplicate_Click(object sender, EventArgs e)
@@ -188,7 +205,7 @@ namespace AmigaImageConverter
         {
             NumericUpDown numericUpDown = (NumericUpDown)sender;
 
-            if (numericUpDown.Value >=sprites.Count)
+            if (numericUpDown.Value >= sprites.Count)
             {
                 numericUpDown.Value = sprites.Count - 1;
                 SystemSounds.Beep.Play();
@@ -203,6 +220,88 @@ namespace AmigaImageConverter
         {
             Sprite newSprite = new Sprite();
             sprites.Insert(SelectedSprite + 1, newSprite);
+        }
+
+        public struct AddressValidationResult
+        {
+            public bool IsValid { get; set; }
+            public string WarningMessage { get; set; }
+            public byte JumpTo { get; set; }
+        }
+
+        /// <summary>
+        /// Validates the absolute memory address of a sprite based on the VIC bank and its pointer value.
+        /// Checks for critical C64 hardware memory collisions and OS system area overwrites.
+        /// </summary>
+        public static AddressValidationResult ValidateSpriteAddress(int bank, byte pointerValue)
+        {
+            // 1. Calculate absolute memory address
+            // Each VIC-II Bank is 16KB ($4000) and each sprite data block is 64 bytes.
+            int bankBaseAddress = bank * 16384;
+            int spriteOffset = pointerValue * 64;
+            int absoluteAddress = bankBaseAddress + spriteOffset;
+
+            // 2. Hardware and OS Collision Checks
+
+            // Collision A: Zero Page & CPU Stack ($0000 - $03FF)
+            if (absoluteAddress < 1024)
+            {
+                return new AddressValidationResult
+                {
+                    IsValid = false,
+                    WarningMessage = "CRITICAL: Memory collision! Sprite address overwrites CPU Zero Page or Stack area.",
+                    JumpTo = 16
+                };
+            }
+
+            // Collision B: Default Screen RAM ($0400 - $07E7)
+            // Valid for hardware reading, but dangerous since character data will overwrite the sprite pixels
+            if (absoluteAddress >= 1024 && absoluteAddress < 2048)
+            {
+                return new AddressValidationResult
+                {
+                    IsValid = true,
+                    WarningMessage = "WARNING: Sprite shares memory with the default Screen RAM. Typing text will corrupt sprite graphics."
+                };
+            }
+
+            // Collision C: Hardware I/O Registers & Color RAM ($D000 - $DFFF -> 53248 to 57343)
+            // Crucial: The VIC-II chip CANNOT fetch graphic data from $D000-$DFFF in Bank 0 and Bank 2!
+            if (absoluteAddress >= 53248 && absoluteAddress <= 57343)
+            {
+                return new AddressValidationResult
+                {
+                    IsValid = false,
+                    WarningMessage = "HARDWARE ERROR: The VIC-II chip cannot read sprite graphics from the I/O and Color RAM area ($D000-$DFFF)."
+                };
+            }
+
+            // Collision D: Kernel ROM Area ($E000 - $FFFF -> 57344 and above)
+            if (absoluteAddress >= 57344)
+            {
+                return new AddressValidationResult
+                {
+                    IsValid = false,
+                    WarningMessage = "CRITICAL: Address conflict! Sprite memory points to the system Kernel ROM area."
+                };
+            }
+
+            // Address is clean and safely points to open, generic RAM
+            return new AddressValidationResult
+            {
+                IsValid = true,
+                WarningMessage = $"Address ${absoluteAddress:X4} is valid and safe to use."
+            };
+        }
+
+        private void lblStatusMessage_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void toolStripStatusLabel1_Click(object sender, EventArgs e)
+        {
+
         }
     }
 

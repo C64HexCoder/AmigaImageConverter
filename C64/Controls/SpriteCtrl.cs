@@ -394,7 +394,7 @@ namespace C64.Controls
                     if (ColorProvider.SelectedSlotIndex == 0)
                         SpriteData[byteIndex] &= earaseMask;
                     else
-                        SpriteData[byteIndex] ^= (byte)(1 << bitIndex); // Toggle the bit
+                        SpriteData[byteIndex] |= (byte)(1 << bitIndex); // Toggle the bit
                     Invalidate(); // Redraw the control to reflect changes
                 }
             }
