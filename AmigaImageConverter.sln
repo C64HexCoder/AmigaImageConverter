@@ -21,6 +21,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sorting", "Sorting\Sorting.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "C64", "C64\C64.csproj", "{51A73C0D-F36A-4C2F-8E74-40C94E64BC20}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Common", "Common", "{9BE01B66-4F9B-4182-98D4-073CBC480124}"
+	ProjectSection(SolutionItems) = preProject
+		C64\BaseSprite.cs = C64\BaseSprite.cs
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

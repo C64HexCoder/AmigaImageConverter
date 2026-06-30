@@ -7,13 +7,12 @@ using System.Windows.Forms;
 
 namespace C64.Graphics
 {
-    public class Sprite
+    public class Sprite : Common.BaseSprite
     {
-        public const int Width = 24;
-        public const int Height = 21;
         public const int TotalBytes = 64;
         private const int C64_SPRITE_SIZE_BYTES = 64;
 
+        public Sprite () : base (24,21) { }
 
         // מערך חד-ממדי קשיח של 64 בתים - בדיוק כמו בחומרה של ה-C64
         public byte[] RawData { get; set; } = new byte[TotalBytes];
@@ -194,6 +193,12 @@ namespace C64.Graphics
                     }
                 }
             }
+        }
+
+        public override byte[] GetRawBytes()
+        {
+            throw new NotImplementedException();
+
         }
     }
 }

@@ -2,50 +2,29 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace C64
+namespace Common
 {
     public abstract class BaseSprite
     {
-        // משתנים משותפים לכל הספרייטים בעולם
-        public int Width { get; protected set; }
-        public int Height { get; protected set; }
-        public int BitsPerPixel { get; protected set; }
+        // פרופרטיז וירטואליים - מאפשרים ליורשים לשנות את מה שהם מחזירים!
+        public virtual int Width { get; protected set; }
+        public virtual int Height { get; protected set; }
 
-        // מטריצת הפיקסלים הגנרית לתצוגה (מאחסנת אינדקס צבע 0, 1, 2...)
+        // המטריצה האמיתית בזיכרון תמיד בגודל הפיזי המלא
         protected int[,] pixelMatrix;
 
-        protected BaseSprite(int width, int height, int bpp)
+        protected BaseSprite(int maxWidth, int maxHeight)
         {
-            Width = width;
-            Height = height;
-            BitsPerPixel = bpp;
-            pixelMatrix = new int[width, height];
+            pixelMatrix = new int[maxWidth, maxHeight];
         }
 
-        // 🌟 אינדקסר וירטואלי משותף - כולם משתמשים בו כברירת מחדל!
+        // אינדקסר ברירת מחדל פשוט (גישה ישירה אחד-לאחד לפיקסל)
         public virtual int this[int x, int y]
         {
-            get
-            {
-                if (x >= 0 && x < Width && y >= 0 && y < Height)
-                    return pixelMatrix[x, y];
-                return 0;
-            }
-            set
-            {
-                if (x >= 0 && x < Width && y >= 0 && y < Height)
-                    pixelMatrix[x, y] = value;
-            }
+            get { return pixelMatrix[x, y]; }
+            set { pixelMatrix[x, y] = value; }
         }
 
-        // פעולה משותפת שכל ספרייט צריך
-        public virtual void Clear()
-        {
-            Array.Clear(pixelMatrix, 0, pixelMatrix.Length);
-        }
-
-        // 🌟 הפונקציות שחייבות מימוש שונה לחלוטין לפי הברזל של המכשיר
         public abstract byte[] GetRawBytes();
-        public abstract void LoadRawBytes(byte[] data);
     }
 }
