@@ -6,25 +6,10 @@ namespace Common
 {
     public abstract class BaseSprite
     {
-        // פרופרטיז וירטואליים - מאפשרים ליורשים לשנות את מה שהם מחזירים!
-        public virtual int Width { get; protected set; }
-        public virtual int Height { get; protected set; }
+        public abstract int Width { get; }
+        public abstract int Height { get; }
 
-        // המטריצה האמיתית בזיכרון תמיד בגודל הפיזי המלא
-        protected int[,] pixelMatrix;
-
-        protected BaseSprite(int maxWidth, int maxHeight)
-        {
-            pixelMatrix = new int[maxWidth, maxHeight];
-        }
-
-        // אינדקסר ברירת מחדל פשוט (גישה ישירה אחד-לאחד לפיקסל)
-        public virtual int this[int x, int y]
-        {
-            get { return pixelMatrix[x, y]; }
-            set { pixelMatrix[x, y] = value; }
-        }
-
-        public abstract byte[] GetRawBytes();
+        // ה-Grid קורא וכותב פה, ולא מעניין אותו מה קורה בפנים
+        public abstract int this[int x, int y] { get; set; }
     }
 }

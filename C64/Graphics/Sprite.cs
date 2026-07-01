@@ -12,7 +12,8 @@ namespace C64.Graphics
         public const int TotalBytes = 64;
         private const int C64_SPRITE_SIZE_BYTES = 64;
 
-        public Sprite () : base (24,21) { }
+        public override int Width => IsMulticolor ? 12 : 24;
+        public override int Height => 21;
 
         // מערך חד-ממדי קשיח של 64 בתים - בדיוק כמו בחומרה של ה-C64
         public byte[] RawData { get; set; } = new byte[TotalBytes];
@@ -26,7 +27,7 @@ namespace C64.Graphics
         }
 
         // האינדקסר משתנה מ-bool ל-int כדי להחזיר ערך צבע (0-3)
-        public int this[int x, int y]
+        public override int this[int x, int y]
         {
             get
             {
@@ -193,12 +194,6 @@ namespace C64.Graphics
                     }
                 }
             }
-        }
-
-        public override byte[] GetRawBytes()
-        {
-            throw new NotImplementedException();
-
         }
     }
 }
