@@ -29,6 +29,7 @@ namespace AmigaImageConverter
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
+            C64.Graphics.Sprite sprite1 = new C64.Graphics.Sprite();
             spriteGrid = new C64.Controls.SpriteCtrl();
             helpProvider1 = new System.Windows.Forms.HelpProvider();
             spritePalette1 = new C64.Controls.SpritePalette();
@@ -91,10 +92,79 @@ namespace AmigaImageConverter
             // 
             // spriteGrid
             // 
+            sprite1.IsMulticolor = false;
+            sprite1.RawData = new byte[]
+    {
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+    };
+            spriteGrid.ActiveSprite = sprite1;
             spriteGrid.CellWidthHeight = 20;
             spriteGrid.ColorProvider = null;
             spriteGrid.CurrentDrawingState = C64.Controls.DrawingState.Pen;
-            spriteGrid.GridColor = System.Drawing.Color.LawnGreen;
+            spriteGrid.GridColor = System.Drawing.Color.Red;
             spriteGrid.IsMulticolor = false;
             spriteGrid.Location = new System.Drawing.Point(12, 51);
             spriteGrid.Name = "spriteGrid";

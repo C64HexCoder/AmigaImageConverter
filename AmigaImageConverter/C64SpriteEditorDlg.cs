@@ -42,6 +42,7 @@ namespace AmigaImageConverter
             multiColorCheckBox.Checked = spriteGrid.IsMulticolor;
             penCB.Checked = true;
             sprites.Add(new C64.Graphics.Sprite());
+            spriteGrid.ActiveSprite = sprites[0];
         }
 
         private int SelectedSprite
@@ -151,7 +152,6 @@ namespace AmigaImageConverter
         private void btnAddSprite_Click(object sender, EventArgs e)
         {
             Sprite sprite = new Sprite();
-            spriteGrid.SpriteData = sprite.RawData;
             sprites.Add(sprite);
 
         }
@@ -195,7 +195,6 @@ namespace AmigaImageConverter
             if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
                 sprites = Files.LoadSpritesFromPRG(openFileDialog.FileName, out Address);
-                spriteGrid.SpriteData = sprites[SelectedSprite].RawData;
                 SpriteAddress = Address;
             }
             spriteGrid.Invalidate();
@@ -211,7 +210,6 @@ namespace AmigaImageConverter
                 SystemSounds.Beep.Play();
                 return;
             }
-            spriteGrid.SpriteData = sprites[SelectedSprite].RawData;
             spriteGrid.Invalidate();
 
         }
