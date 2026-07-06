@@ -38,11 +38,13 @@ namespace AmigaImageConverter
         {
             InitializeComponent();
 
-            showGridButton.Checked = spriteGrid.ShowGrid;
-            multiColorCheckBox.Checked = spriteGrid.IsMulticolor;
-            penCB.Checked = true;
+
             sprites.Add(new C64.Graphics.Sprite());
             spriteGrid.ActiveSprite = sprites[0];
+            multiColorCheckBox.Checked = spriteGrid.IsMulticolor;
+            showGridButton.Checked = spriteGrid.ShowGrid;
+            penCB.Checked = true;
+
         }
 
         private int SelectedSprite
@@ -51,11 +53,16 @@ namespace AmigaImageConverter
             {
                 return (int)numericSpriteNumber.Value;
             }
+            set
+            {
+                numericSpriteNumber.Value = value;
+            }
 
         }
         private void multiColorCheckBox_CheckedChanged(object sender, EventArgs e)
         {
             spriteGrid.IsMulticolor = ((CheckBox)sender).Checked;
+            spriteGrid.Invalidate();
         }
 
         private void clearButton_Click(object sender, EventArgs e)
@@ -152,7 +159,10 @@ namespace AmigaImageConverter
         private void btnAddSprite_Click(object sender, EventArgs e)
         {
             Sprite sprite = new Sprite();
+            spriteGrid.ActiveSprite = sprite;
             sprites.Add(sprite);
+            numericSpriteNumber.Value = sprites.Count - 1;
+            spriteGrid.Invalidate();
 
         }
 
@@ -164,13 +174,30 @@ namespace AmigaImageConverter
 
         private void btnDeleteSprite_Click(object sender, EventArgs e)
         {
-            sprites.RemoveAt((int)spriteNumber.Value);
+            sprites.RemoveAt(SelectedSprite);
+            if (sprites.Count == 0)
+            {
+                Sprite newSprite = new Sprite();
+                sprites.Add(newSprite);
+                spriteGrid.ActiveSprite = newSprite;
+            }
+            if (SelectedSprite < sprites.Count)
+            {
+                spriteGrid.ActiveSprite = sprites[SelectedSprite];
+            }
+            else
+            {
+                spriteGrid.ActiveSprite = sprites[sprites.Count - 1];
+                SelectedSprite = sprites.Count - 1;
+            }
+
+            spriteGrid.Invalidate();
             //spriteNumber.Value--;
         }
 
         private void btnDuplicate_Click(object sender, EventArgs e)
         {
-            Sprite tmpSpr = sprites[(int)spriteNumber.Value];
+            Sprite tmpSpr = sprites[SelectedSprite];
             sprites.Add((Sprite)tmpSpr);
             spriteNumber.Value++;
         }
@@ -210,6 +237,8 @@ namespace AmigaImageConverter
                 SystemSounds.Beep.Play();
                 return;
             }
+            spriteGrid.ActiveSprite = sprites[(int)numericUpDown.Value];
+            multiColorCheckBox.Checked = sprites[(int)numericUpDown.Value].IsMulticolor;
             spriteGrid.Invalidate();
 
         }
@@ -218,6 +247,8 @@ namespace AmigaImageConverter
         {
             Sprite newSprite = new Sprite();
             sprites.Insert(SelectedSprite + 1, newSprite);
+            SelectedSprite = SelectedSprite + 1;
+            spriteGrid.Invalidate();
         }
 
         public struct AddressValidationResult
@@ -300,6 +331,16 @@ namespace AmigaImageConverter
         private void toolStripStatusLabel1_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void circleRadioBox_CheckedChanged(object sender, EventArgs e)
+        {
+            spriteGrid.CurrentDrawingState = DrawingState.Circle;
+        }
+
+        private void poligonCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            spriteGrid.CurrentDrawingState = DrawingState.Polygon;
         }
     }
 

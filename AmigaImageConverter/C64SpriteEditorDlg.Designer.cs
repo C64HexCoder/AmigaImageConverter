@@ -48,6 +48,8 @@ namespace AmigaImageConverter
             penCB = new System.Windows.Forms.RadioButton();
             drawingModeGB = new System.Windows.Forms.GroupBox();
             tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            poygonCheckBox = new System.Windows.Forms.RadioButton();
+            circleRadioBox = new System.Windows.Forms.RadioButton();
             rectangleCB = new System.Windows.Forms.RadioButton();
             lineCB = new System.Windows.Forms.RadioButton();
             fillCB = new System.Windows.Forms.RadioButton();
@@ -78,6 +80,7 @@ namespace AmigaImageConverter
             messageTimer = new System.Windows.Forms.Timer(components);
             statusStrip1 = new System.Windows.Forms.StatusStrip();
             messageStatusBar = new System.Windows.Forms.ToolStripStatusLabel();
+            spritePreview1 = new C64.Controls.SpritePreview();
             groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)bankNumber).BeginInit();
             ((System.ComponentModel.ISupportInitialize)spriteNumber).BeginInit();
@@ -301,7 +304,7 @@ namespace AmigaImageConverter
             penCB.Dock = System.Windows.Forms.DockStyle.Fill;
             penCB.Location = new System.Drawing.Point(3, 3);
             penCB.Name = "penCB";
-            penCB.Size = new System.Drawing.Size(104, 39);
+            penCB.Size = new System.Drawing.Size(104, 35);
             penCB.TabIndex = 7;
             penCB.Text = "Pen";
             penCB.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -311,38 +314,70 @@ namespace AmigaImageConverter
             // drawingModeGB
             // 
             drawingModeGB.Controls.Add(tableLayoutPanel1);
-            drawingModeGB.Location = new System.Drawing.Point(523, 361);
+            drawingModeGB.Location = new System.Drawing.Point(779, 207);
             drawingModeGB.Name = "drawingModeGB";
-            drawingModeGB.Size = new System.Drawing.Size(233, 126);
+            drawingModeGB.Size = new System.Drawing.Size(233, 172);
             drawingModeGB.TabIndex = 8;
             drawingModeGB.TabStop = false;
             drawingModeGB.Text = "Drawing Mode";
             // 
             // tableLayoutPanel1
             // 
+            tableLayoutPanel1.AutoSize = true;
             tableLayoutPanel1.ColumnCount = 2;
             tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            tableLayoutPanel1.Controls.Add(poygonCheckBox, 1, 2);
+            tableLayoutPanel1.Controls.Add(circleRadioBox, 0, 2);
             tableLayoutPanel1.Controls.Add(rectangleCB, 1, 1);
             tableLayoutPanel1.Controls.Add(lineCB, 1, 0);
             tableLayoutPanel1.Controls.Add(fillCB, 0, 1);
             tableLayoutPanel1.Controls.Add(penCB, 0, 0);
             tableLayoutPanel1.Location = new System.Drawing.Point(6, 30);
             tableLayoutPanel1.Name = "tableLayoutPanel1";
-            tableLayoutPanel1.RowCount = 2;
-            tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            tableLayoutPanel1.Size = new System.Drawing.Size(221, 90);
+            tableLayoutPanel1.RowCount = 3;
+            tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            tableLayoutPanel1.Size = new System.Drawing.Size(221, 123);
             tableLayoutPanel1.TabIndex = 0;
+            // 
+            // poygonCheckBox
+            // 
+            poygonCheckBox.Appearance = System.Windows.Forms.Appearance.Button;
+            poygonCheckBox.AutoSize = true;
+            poygonCheckBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            poygonCheckBox.Location = new System.Drawing.Point(113, 85);
+            poygonCheckBox.Name = "poygonCheckBox";
+            poygonCheckBox.Size = new System.Drawing.Size(105, 35);
+            poygonCheckBox.TabIndex = 12;
+            poygonCheckBox.Text = "Polygon";
+            poygonCheckBox.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            poygonCheckBox.UseVisualStyleBackColor = true;
+            poygonCheckBox.CheckedChanged += poligonCheckBox_CheckedChanged;
+            // 
+            // circleRadioBox
+            // 
+            circleRadioBox.Appearance = System.Windows.Forms.Appearance.Button;
+            circleRadioBox.AutoSize = true;
+            circleRadioBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            circleRadioBox.Location = new System.Drawing.Point(3, 85);
+            circleRadioBox.Name = "circleRadioBox";
+            circleRadioBox.Size = new System.Drawing.Size(104, 35);
+            circleRadioBox.TabIndex = 11;
+            circleRadioBox.Text = "Circle";
+            circleRadioBox.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            circleRadioBox.UseVisualStyleBackColor = true;
+            circleRadioBox.CheckedChanged += circleRadioBox_CheckedChanged;
             // 
             // rectangleCB
             // 
             rectangleCB.Appearance = System.Windows.Forms.Appearance.Button;
             rectangleCB.AutoSize = true;
             rectangleCB.Dock = System.Windows.Forms.DockStyle.Fill;
-            rectangleCB.Location = new System.Drawing.Point(113, 48);
+            rectangleCB.Location = new System.Drawing.Point(113, 44);
             rectangleCB.Name = "rectangleCB";
-            rectangleCB.Size = new System.Drawing.Size(105, 39);
+            rectangleCB.Size = new System.Drawing.Size(105, 35);
             rectangleCB.TabIndex = 10;
             rectangleCB.Text = "Rectangle";
             rectangleCB.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -356,7 +391,7 @@ namespace AmigaImageConverter
             lineCB.Dock = System.Windows.Forms.DockStyle.Fill;
             lineCB.Location = new System.Drawing.Point(113, 3);
             lineCB.Name = "lineCB";
-            lineCB.Size = new System.Drawing.Size(105, 39);
+            lineCB.Size = new System.Drawing.Size(105, 35);
             lineCB.TabIndex = 9;
             lineCB.Text = "Line";
             lineCB.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -368,9 +403,9 @@ namespace AmigaImageConverter
             fillCB.Appearance = System.Windows.Forms.Appearance.Button;
             fillCB.AutoSize = true;
             fillCB.Dock = System.Windows.Forms.DockStyle.Fill;
-            fillCB.Location = new System.Drawing.Point(3, 48);
+            fillCB.Location = new System.Drawing.Point(3, 44);
             fillCB.Name = "fillCB";
-            fillCB.Size = new System.Drawing.Size(104, 39);
+            fillCB.Size = new System.Drawing.Size(104, 35);
             fillCB.TabIndex = 8;
             fillCB.Text = "Fill";
             fillCB.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -574,7 +609,7 @@ namespace AmigaImageConverter
             groupBox3.Controls.Add(btnShiftRight);
             groupBox3.Controls.Add(btnShiftLeft);
             groupBox3.Controls.Add(btnShiftDown);
-            groupBox3.Location = new System.Drawing.Point(774, 201);
+            groupBox3.Location = new System.Drawing.Point(532, 341);
             groupBox3.Name = "groupBox3";
             groupBox3.Size = new System.Drawing.Size(249, 162);
             groupBox3.TabIndex = 19;
@@ -604,11 +639,19 @@ namespace AmigaImageConverter
             messageStatusBar.Text = "messageStatusBar";
             messageStatusBar.Click += toolStripStatusLabel1_Click;
             // 
+            // spritePreview1
+            // 
+            spritePreview1.Location = new System.Drawing.Point(788, 366);
+            spritePreview1.Name = "spritePreview1";
+            spritePreview1.Size = new System.Drawing.Size(224, 210);
+            spritePreview1.TabIndex = 21;
+            // 
             // C64SpriteEditorDlg
             // 
             AutoScaleDimensions = new System.Drawing.SizeF(10F, 25F);
             AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             ClientSize = new System.Drawing.Size(1136, 611);
+            Controls.Add(spritePreview1);
             Controls.Add(statusStrip1);
             Controls.Add(groupBox3);
             Controls.Add(groupBox2);
@@ -623,12 +666,14 @@ namespace AmigaImageConverter
             Controls.Add(spriteGrid);
             Controls.Add(menuStrip1);
             Name = "C64SpriteEditorDlg";
+            StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             Text = "C64Sprite";
             groupBox1.ResumeLayout(false);
             groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)bankNumber).EndInit();
             ((System.ComponentModel.ISupportInitialize)spriteNumber).EndInit();
             drawingModeGB.ResumeLayout(false);
+            drawingModeGB.PerformLayout();
             tableLayoutPanel1.ResumeLayout(false);
             tableLayoutPanel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)numericSpriteNumber).EndInit();
@@ -692,5 +737,8 @@ namespace AmigaImageConverter
         private System.Windows.Forms.Button insertSpriteBtn;
         private System.Windows.Forms.StatusStrip statusStrip1;
         private System.Windows.Forms.ToolStripStatusLabel messageStatusBar;
+        private System.Windows.Forms.RadioButton poygonCheckBox;
+        private System.Windows.Forms.RadioButton circleRadioBox;
+        private C64.Controls.SpritePreview spritePreview1;
     }
 }
