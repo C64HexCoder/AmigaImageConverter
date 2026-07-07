@@ -169,6 +169,7 @@ namespace AmigaImageConverter
             spriteGrid.CurrentDrawingState = C64.Controls.DrawingState.Pen;
             spriteGrid.GridColor = System.Drawing.Color.Red;
             spriteGrid.IsMulticolor = false;
+            spriteGrid.IsMultiColor = false;
             spriteGrid.Location = new System.Drawing.Point(12, 51);
             spriteGrid.Name = "spriteGrid";
             spriteGrid.ShowGrid = true;
@@ -219,7 +220,7 @@ namespace AmigaImageConverter
             // 
             // saveButton
             // 
-            saveButton.Location = new System.Drawing.Point(1012, 538);
+            saveButton.Location = new System.Drawing.Point(1012, 542);
             saveButton.Name = "saveButton";
             saveButton.Size = new System.Drawing.Size(112, 34);
             saveButton.TabIndex = 5;
@@ -641,9 +642,9 @@ namespace AmigaImageConverter
             // 
             // spritePreview1
             // 
-            spritePreview1.Location = new System.Drawing.Point(788, 366);
+            spritePreview1.Location = new System.Drawing.Point(785, 366);
             spritePreview1.Name = "spritePreview1";
-            spritePreview1.Size = new System.Drawing.Size(224, 210);
+            spritePreview1.Size = new System.Drawing.Size(218, 218);
             spritePreview1.TabIndex = 21;
             // 
             // C64SpriteEditorDlg
