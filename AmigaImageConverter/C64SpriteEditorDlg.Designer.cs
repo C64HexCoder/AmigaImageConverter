@@ -220,7 +220,7 @@ namespace AmigaImageConverter
             // 
             // saveButton
             // 
-            saveButton.Location = new System.Drawing.Point(1012, 542);
+            saveButton.Location = new System.Drawing.Point(1012, 531);
             saveButton.Name = "saveButton";
             saveButton.Size = new System.Drawing.Size(112, 34);
             saveButton.TabIndex = 5;
@@ -642,9 +642,9 @@ namespace AmigaImageConverter
             // 
             // spritePreview1
             // 
-            spritePreview1.Location = new System.Drawing.Point(785, 366);
+            spritePreview1.Location = new System.Drawing.Point(832, 366);
             spritePreview1.Name = "spritePreview1";
-            spritePreview1.Size = new System.Drawing.Size(218, 218);
+            spritePreview1.Size = new System.Drawing.Size(124, 124);
             spritePreview1.TabIndex = 21;
             // 
             // C64SpriteEditorDlg

@@ -159,7 +159,7 @@ namespace AmigaImageConverter
                     //bitmaps.Add(SprBmp);
 
 
-                    Sprite sprite = slicedBitplane.CreateSprite(sourceRec.Width, sourceRec.Height);
+                    Sprite sprite = slicedBitplane.CreateSprite();
                     sprite.Name = spriteNameTxtbox.Text != "" ? spriteNameTxtbox.Text + SpriteNum++.ToString() : "SpriteName";
 
                     sprites.Add(sprite);
