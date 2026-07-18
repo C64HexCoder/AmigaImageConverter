@@ -75,18 +75,12 @@ namespace AmigaImageConverter
             // imageBox
             // 
             imageBox.AutoCenter = false;
-            imageBox.AutoScaleImageBox = false;
-            imageBox.HrizontalScrollBar = null;
             imageBox.Image = null;
             imageBox.Location = new System.Drawing.Point(12, 12);
             imageBox.MaxImageScale = 4;
             imageBox.MouseWheelZoom = false;
             imageBox.Name = "imageBox";
-            imageBox.OriginalImage = null;
-            imageBox.ScaleFactor = 1;
-            imageBox.ScaleFactorFloat = 1F;
             imageBox.Size = new System.Drawing.Size(736, 519);
-            imageBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
             imageBox.TabIndex = 3;
             imageBox.TabStop = false;
             imageBox.VerticalScrollBar = null;

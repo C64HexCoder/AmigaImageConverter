@@ -88,20 +88,14 @@ namespace AmigaImageConverter
             // spriteCutPreviewIB
             // 
             spriteCutPreviewIB.AutoCenter = false;
-            spriteCutPreviewIB.AutoScaleImageBox = false;
             spriteCutPreviewIB.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            spriteCutPreviewIB.HrizontalScrollBar = null;
             spriteCutPreviewIB.Image = null;
-            spriteCutPreviewIB.LimitMouseWeelZoom = false;
             spriteCutPreviewIB.Location = new System.Drawing.Point(6, 353);
             spriteCutPreviewIB.MaxImageScale = 4;
             spriteCutPreviewIB.MouseWheelZoom = false;
             spriteCutPreviewIB.Name = "spriteCutPreviewIB";
-            spriteCutPreviewIB.OriginalImage = null;
             spriteCutPreviewIB.ScaleFactor = 1;
-            spriteCutPreviewIB.ScaleFactorFloat = 1F;
             spriteCutPreviewIB.Size = new System.Drawing.Size(213, 270);
-            spriteCutPreviewIB.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             spriteCutPreviewIB.TabIndex = 15;
             spriteCutPreviewIB.TabStop = false;
             spriteCutPreviewIB.VerticalScrollBar = null;

@@ -15,7 +15,6 @@ namespace AmigaImageConverter
             imageBox.Image = vr.bitplane.bitmap;
             float multiFactor = pallete.Height / imageBox.Image.Height;
             imageBox.ScaleFactor = (int)Math.Round(multiFactor);
-            imageBox.ScaleImage();
             pallete.Left = imageBox.Right + 2;
             swapBt.Left = pallete.Right - swapBt.Width;
         }

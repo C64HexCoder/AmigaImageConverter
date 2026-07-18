@@ -64,16 +64,13 @@ namespace AmigaImageConverter
             // image
             // 
             image.AutoCenter = false;
-            image.AutoScaleImageBox = false;
-            image.HrizontalScrollBar = null;
             image.Image = null;
             image.Location = new System.Drawing.Point(3, 3);
             image.MaxImageScale = 4;
             image.MouseWheelZoom = false;
             image.Name = "image";
-            image.OriginalImage = null;
+          
             image.ScaleFactor = 1;
-            image.ScaleFactorFloat = 1F;
             image.Size = new System.Drawing.Size(504, 650);
             image.TabIndex = 0;
             image.TabStop = false;
@@ -106,19 +103,13 @@ namespace AmigaImageConverter
             // 
             spritePreviewIB.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
             spritePreviewIB.AutoCenter = true;
-            spritePreviewIB.AutoScaleImageBox = false;
             spritePreviewIB.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            spritePreviewIB.HrizontalScrollBar = null;
             spritePreviewIB.Image = null;
             spritePreviewIB.Location = new System.Drawing.Point(3, 3);
             spritePreviewIB.MaxImageScale = 4;
             spritePreviewIB.MouseWheelZoom = true;
             spritePreviewIB.Name = "spritePreviewIB";
-            spritePreviewIB.OriginalImage = null;
-            spritePreviewIB.ScaleFactor = 2;
-            spritePreviewIB.ScaleFactorFloat = 1F;
             spritePreviewIB.Size = new System.Drawing.Size(270, 305);
-            spritePreviewIB.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
             spritePreviewIB.TabIndex = 6;
             spritePreviewIB.TabStop = false;
             spritePreviewIB.VerticalScrollBar = null;

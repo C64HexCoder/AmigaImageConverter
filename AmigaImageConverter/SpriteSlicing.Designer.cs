@@ -136,7 +136,6 @@ namespace AmigaImageConverter
             sprImageBox.Location = new System.Drawing.Point(6, 303);
             sprImageBox.Name = "sprImageBox";
             sprImageBox.Size = new System.Drawing.Size(213, 317);
-            sprImageBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             sprImageBox.TabIndex = 7;
             sprImageBox.TabStop = false;
             sprImageBox.Click += sprImageBox_Click;

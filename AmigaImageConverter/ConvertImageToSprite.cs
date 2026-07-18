@@ -134,11 +134,9 @@ namespace AmigaImageConverter
             NumericUpDown numericUpDown = (NumericUpDown)sender;
             if (sprites.Count > 0)
             {
-                ScaleFactor = spritePreviewIB.ScaleFactor;
+                ScaleFactor = (int)Math.Floor(spritePreviewIB.ScaleFactor);
                 spritePreviewIB.Image = sprites[(int)numericUpDown.Value].bitmap;
-                spritePreviewIB.OriginalImage = null;
 
-                spritePreviewIB.ScaleImage(ScaleFactor);
                 spritePreviewIB.Left = (sidePael.Width - spritePreviewIB.Width) / 2;
             }
         }
@@ -193,7 +191,6 @@ namespace AmigaImageConverter
             sprites = sprite.SplitSprite(spritesPerImage);
             spriteNum.Value = 0;
             spritePreviewIB.Image = sprites[0].bitmap;
-            spritePreviewIB.OriginalImage = null;
             spritePreviewIB.AutoScale();
             spritePreviewIB.Left = (sidePael.Width - spritePreviewIB.Width) / 2;
 

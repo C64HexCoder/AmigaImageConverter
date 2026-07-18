@@ -1410,7 +1410,7 @@ namespace AmigaImageConverter
 
         private void image_ScaleEvent(object sender, Amiga.ImageBox.ScalingEventArgs e)
         {
-            vr.imageScalingFactoer = e.ScaleFactoer;
+            vr.imageScalingFactoer = (int)Math.Round(e.ScaleFactor);
             if (formState == FormState.SpriteSplit)
             {
                 spriteSlicing.Update();

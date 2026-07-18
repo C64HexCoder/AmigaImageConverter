@@ -51,7 +51,6 @@ namespace AmigaImageConverter
             this.pictureBox.Margin = new System.Windows.Forms.Padding(2);
             this.pictureBox.Name = "pictureBox";
             this.pictureBox.ScaleFactor = 2;
-            this.pictureBox.ScaleFactorFloat = 1F;
             this.pictureBox.Size = new System.Drawing.Size(642, 350);
             this.pictureBox.TabIndex = 2;
             this.pictureBox.TabStop = false;

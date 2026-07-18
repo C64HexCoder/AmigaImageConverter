@@ -18,8 +18,7 @@ namespace AmigaImageConverter
         {
             float ScaleFactor = ((float)pictureBox.Height / (float)vr.bitplane.Mask.Height);
             pictureBox.Image = vr.bitplane.Mask;
-            pictureBox.ScaleImage(ScaleFactor);
-            pictureBox.SizeMode = PictureBoxSizeMode.AutoSize;
+            pictureBox.SizeMode = Amiga.PictureBox.PictureBoxSizeMode.AutoSize;
             saveBtn.Left = pictureBox.Right - saveBtn.Width;
         }
 

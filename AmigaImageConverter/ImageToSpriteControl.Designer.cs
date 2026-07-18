@@ -1,4 +1,4 @@
-﻿namespace AmigaImageConverter
+namespace AmigaImageConverter
 {
     partial class ImageToSpriteControl
     {
@@ -79,19 +79,14 @@
             // 
             spritePreviewIB.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
             spritePreviewIB.AutoCenter = false;
-            spritePreviewIB.AutoScaleImageBox = false;
             spritePreviewIB.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            spritePreviewIB.HrizontalScrollBar = null;
             spritePreviewIB.Image = null;
             spritePreviewIB.Location = new System.Drawing.Point(3, 3);
             spritePreviewIB.MaxImageScale = 4;
             spritePreviewIB.MouseWheelZoom = true;
             spritePreviewIB.Name = "spritePreviewIB";
-            spritePreviewIB.OriginalImage = null;
             spritePreviewIB.ScaleFactor = 2;
-            spritePreviewIB.ScaleFactorFloat = 1F;
             spritePreviewIB.Size = new System.Drawing.Size(340, 513);
-            spritePreviewIB.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
             spritePreviewIB.TabIndex = 6;
             spritePreviewIB.TabStop = false;
             spritePreviewIB.VerticalScrollBar = null;
