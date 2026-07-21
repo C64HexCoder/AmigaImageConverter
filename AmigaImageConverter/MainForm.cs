@@ -212,7 +212,7 @@ namespace AmigaImageConverter
                 // if image after scaling using ScalingFactor is to bit to fit on screen then....
 
 
-
+            
 
 
 
