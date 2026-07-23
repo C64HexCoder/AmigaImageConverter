@@ -59,6 +59,18 @@ namespace AmigaImageConverter
             }
 
         }
+
+        private String SpriteName
+        {
+            get
+            {
+                return spriteNameTextBox.Text;
+            }
+            set
+            {
+                spriteNameTextBox.Text = value;
+            }
+        }
         private void multiColorCheckBox_CheckedChanged(object sender, EventArgs e)
         {
             spriteGrid.IsMulticolor = ((CheckBox)sender).Checked;
@@ -78,18 +90,20 @@ namespace AmigaImageConverter
         private void saveButton_Click(object sender, EventArgs e)
         {
             SaveFileDialog savePRG = new SaveFileDialog();
-            savePRG.Filter = "C64 PRG|*.prg|Binary BIN|*.bin"; savePRG.Title = "Saving Sprite as PRG";
+            savePRG.Filter = "C64 PRG|*.prg|Binary BIN|*.bin|Assembly ASM|*.asm"; savePRG.Title = "Saving Sprite As...";
             if (savePRG.ShowDialog() == DialogResult.OK)
             {
                 switch (savePRG.FilterIndex)
                 {
-                    case 0:
+                    case 1:
                         Files.SaveSpritesAsPRG(savePRG.FileName, sprites, SpriteAddress);
                         break;
-                    case 1:
-                        int i = 0; // Place holder
+                    case 2:
+                        Files.SaveSpritesAsBinary(savePRG.FileName, sprites);
                         break;
-
+                    case 3:
+                        Files.SaveSpritesAsAssembly(savePRG.FileName, sprites, SpriteName);
+                        break;
                 }
             }
         }
@@ -174,6 +188,15 @@ namespace AmigaImageConverter
 
         private void btnDeleteSprite_Click(object sender, EventArgs e)
         {
+            DeleteSprite();
+
+            spriteGrid.Invalidate();
+            //spriteNumber.Value--;
+        }
+
+
+        private void DeleteSprite()
+        {
             sprites.RemoveAt(SelectedSprite);
             if (sprites.Count == 0)
             {
@@ -191,13 +214,11 @@ namespace AmigaImageConverter
                 SelectedSprite = sprites.Count - 1;
             }
 
-            spriteGrid.Invalidate();
-            //spriteNumber.Value--;
+            //spriteGrid.Invalidate();
         }
-
         private void btnDuplicate_Click(object sender, EventArgs e)
         {
-            Sprite tmpSpr = sprites[SelectedSprite];
+            Sprite tmpSpr = sprites[SelectedSprite].Clone();
             sprites.Add((Sprite)tmpSpr);
             spriteNumber.Value++;
         }
@@ -224,6 +245,7 @@ namespace AmigaImageConverter
                 sprites = Files.LoadSpritesFromPRG(openFileDialog.FileName, out Address);
                 SpriteAddress = Address;
             }
+            spriteGrid.ActiveSprite = sprites[0];
             spriteGrid.Invalidate();
         }
 
@@ -239,6 +261,7 @@ namespace AmigaImageConverter
             }
             spriteGrid.ActiveSprite = sprites[(int)numericUpDown.Value];
             multiColorCheckBox.Checked = sprites[(int)numericUpDown.Value].IsMulticolor;
+            spriteGrid.IsMulticolor = false;
             spriteGrid.Invalidate();
 
         }
@@ -341,6 +364,63 @@ namespace AmigaImageConverter
         private void poligonCheckBox_CheckedChanged(object sender, EventArgs e)
         {
             spriteGrid.CurrentDrawingState = DrawingState.Polygon;
+        }
+
+        private void clearSpriteToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            spriteGrid.ClearSprite();
+        }
+
+        private void deleteSpriteToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            DeleteSprite();
+        }
+
+        private void addSpriteToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            btnAddSprite_Click(sender, e);
+        }
+
+        private void deleteSpriteToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            btnDeleteSprite_Click(sender, e);
+        }
+
+        private void clearSpriteToolStripMenuItem_Click_1(object sender, EventArgs e)
+        {
+            spriteGrid.ClearSprite();
+        }
+
+        private void duplicateToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            duplicateToolStripMenuItem_Click(sender, e);
+        }
+
+        private void insertToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            insertSpriteBtn_Click(sender, e);
+        }
+
+        private void importToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Bitmap importedBitmap = null;
+            imageFileDialog.Filter = "All Image Files|*.bmp;*.png;*.jpg;*.jpeg;*.gif|Bitmap Files|*.bmp|PNG Files|*.png|JPEG Files|*.jpg;*.jpeg|GIF Files|*.gif";
+
+            if (imageFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                try
+                {
+                    importedBitmap = new Bitmap(imageFileDialog.FileName);
+                    sprites[SelectedSprite].ImportFromBitmap(importedBitmap, true);
+                    spriteGrid.Invalidate();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Error importing image: {ex.Message}", "Import Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+
+
+            }
         }
     }
 

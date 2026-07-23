@@ -59,7 +59,7 @@ namespace AmigaImageConverter
             btnShiftDown = new System.Windows.Forms.Button();
             numericSpriteNumber = new System.Windows.Forms.NumericUpDown();
             label2 = new System.Windows.Forms.Label();
-            menuStrip1 = new System.Windows.Forms.MenuStrip();
+            menuStrip = new System.Windows.Forms.MenuStrip();
             fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             loadSpriteMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             saveSpriteAsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -68,9 +68,9 @@ namespace AmigaImageConverter
             spritesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             addSpriteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             deleteSpriteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            toolsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             clearSpriteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            deleteSpriteToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            duplicateToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            insertToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             btnAddSprite = new System.Windows.Forms.Button();
             groupBox2 = new System.Windows.Forms.GroupBox();
             insertSpriteBtn = new System.Windows.Forms.Button();
@@ -81,13 +81,16 @@ namespace AmigaImageConverter
             statusStrip1 = new System.Windows.Forms.StatusStrip();
             messageStatusBar = new System.Windows.Forms.ToolStripStatusLabel();
             spritePreview1 = new C64.Controls.SpritePreview();
+            spriteNameTextBox = new System.Windows.Forms.TextBox();
+            spriteNameLabel = new System.Windows.Forms.Label();
+            imageFileDialog = new System.Windows.Forms.OpenFileDialog();
             groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)bankNumber).BeginInit();
             ((System.ComponentModel.ISupportInitialize)spriteNumber).BeginInit();
             drawingModeGB.SuspendLayout();
             tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)numericSpriteNumber).BeginInit();
-            menuStrip1.SuspendLayout();
+            menuStrip.SuspendLayout();
             groupBox2.SuspendLayout();
             groupBox3.SuspendLayout();
             statusStrip1.SuspendLayout();
@@ -180,7 +183,7 @@ namespace AmigaImageConverter
             // 
             spritePalette1.AutoSize = true;
             spritePalette1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            spritePalette1.Location = new System.Drawing.Point(12, 506);
+            spritePalette1.Location = new System.Drawing.Point(12, 491);
             spritePalette1.Name = "spritePalette1";
             spritePalette1.SelectedSlotIndex = 0;
             spritePalette1.Size = new System.Drawing.Size(476, 59);
@@ -220,7 +223,7 @@ namespace AmigaImageConverter
             // 
             // saveButton
             // 
-            saveButton.Location = new System.Drawing.Point(1012, 531);
+            saveButton.Location = new System.Drawing.Point(1012, 591);
             saveButton.Name = "saveButton";
             saveButton.Size = new System.Drawing.Size(112, 34);
             saveButton.TabIndex = 5;
@@ -317,7 +320,7 @@ namespace AmigaImageConverter
             drawingModeGB.Controls.Add(tableLayoutPanel1);
             drawingModeGB.Location = new System.Drawing.Point(779, 207);
             drawingModeGB.Name = "drawingModeGB";
-            drawingModeGB.Size = new System.Drawing.Size(233, 172);
+            drawingModeGB.Size = new System.Drawing.Size(233, 168);
             drawingModeGB.TabIndex = 8;
             drawingModeGB.TabStop = false;
             drawingModeGB.Text = "Drawing Mode";
@@ -471,15 +474,15 @@ namespace AmigaImageConverter
             label2.TabIndex = 14;
             label2.Text = "Sprite Number";
             // 
-            // menuStrip1
+            // menuStrip
             // 
-            menuStrip1.ImageScalingSize = new System.Drawing.Size(24, 24);
-            menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] { fileToolStripMenuItem, spritesToolStripMenuItem, toolsToolStripMenuItem });
-            menuStrip1.Location = new System.Drawing.Point(0, 0);
-            menuStrip1.Name = "menuStrip1";
-            menuStrip1.Size = new System.Drawing.Size(1136, 33);
-            menuStrip1.TabIndex = 16;
-            menuStrip1.Text = "menuStrip1";
+            menuStrip.ImageScalingSize = new System.Drawing.Size(24, 24);
+            menuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] { fileToolStripMenuItem, spritesToolStripMenuItem });
+            menuStrip.Location = new System.Drawing.Point(0, 0);
+            menuStrip.Name = "menuStrip";
+            menuStrip.Size = new System.Drawing.Size(1136, 33);
+            menuStrip.TabIndex = 16;
+            menuStrip.Text = "menuStrip1";
             // 
             // fileToolStripMenuItem
             // 
@@ -491,30 +494,31 @@ namespace AmigaImageConverter
             // loadSpriteMenuItem
             // 
             loadSpriteMenuItem.Name = "loadSpriteMenuItem";
-            loadSpriteMenuItem.Size = new System.Drawing.Size(227, 34);
+            loadSpriteMenuItem.Size = new System.Drawing.Size(270, 34);
             loadSpriteMenuItem.Text = "Load Sprite";
             loadSpriteMenuItem.Click += loadSpriteMenuItem_Click;
             // 
             // saveSpriteAsToolStripMenuItem
             // 
             saveSpriteAsToolStripMenuItem.Name = "saveSpriteAsToolStripMenuItem";
-            saveSpriteAsToolStripMenuItem.Size = new System.Drawing.Size(227, 34);
+            saveSpriteAsToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
             saveSpriteAsToolStripMenuItem.Text = "Save Sprite As";
             // 
             // toolStripSeparator1
             // 
             toolStripSeparator1.Name = "toolStripSeparator1";
-            toolStripSeparator1.Size = new System.Drawing.Size(224, 6);
+            toolStripSeparator1.Size = new System.Drawing.Size(267, 6);
             // 
             // importToolStripMenuItem
             // 
             importToolStripMenuItem.Name = "importToolStripMenuItem";
-            importToolStripMenuItem.Size = new System.Drawing.Size(227, 34);
+            importToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
             importToolStripMenuItem.Text = "Import";
+            importToolStripMenuItem.Click += importToolStripMenuItem_Click;
             // 
             // spritesToolStripMenuItem
             // 
-            spritesToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] { addSpriteToolStripMenuItem, deleteSpriteToolStripMenuItem });
+            spritesToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] { addSpriteToolStripMenuItem, deleteSpriteToolStripMenuItem, clearSpriteToolStripMenuItem, duplicateToolStripMenuItem, insertToolStripMenuItem });
             spritesToolStripMenuItem.Name = "spritesToolStripMenuItem";
             spritesToolStripMenuItem.Size = new System.Drawing.Size(82, 29);
             spritesToolStripMenuItem.Text = "Sprites";
@@ -524,31 +528,35 @@ namespace AmigaImageConverter
             addSpriteToolStripMenuItem.Name = "addSpriteToolStripMenuItem";
             addSpriteToolStripMenuItem.Size = new System.Drawing.Size(215, 34);
             addSpriteToolStripMenuItem.Text = "Add Sprite";
+            addSpriteToolStripMenuItem.Click += addSpriteToolStripMenuItem_Click;
             // 
             // deleteSpriteToolStripMenuItem
             // 
             deleteSpriteToolStripMenuItem.Name = "deleteSpriteToolStripMenuItem";
             deleteSpriteToolStripMenuItem.Size = new System.Drawing.Size(215, 34);
             deleteSpriteToolStripMenuItem.Text = "Delete Sprite";
-            // 
-            // toolsToolStripMenuItem
-            // 
-            toolsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] { clearSpriteToolStripMenuItem, deleteSpriteToolStripMenuItem1 });
-            toolsToolStripMenuItem.Name = "toolsToolStripMenuItem";
-            toolsToolStripMenuItem.Size = new System.Drawing.Size(69, 29);
-            toolsToolStripMenuItem.Text = "Tools";
+            deleteSpriteToolStripMenuItem.Click += deleteSpriteToolStripMenuItem_Click;
             // 
             // clearSpriteToolStripMenuItem
             // 
             clearSpriteToolStripMenuItem.Name = "clearSpriteToolStripMenuItem";
             clearSpriteToolStripMenuItem.Size = new System.Drawing.Size(215, 34);
             clearSpriteToolStripMenuItem.Text = "Clear Sprite";
+            clearSpriteToolStripMenuItem.Click += clearSpriteToolStripMenuItem_Click_1;
             // 
-            // deleteSpriteToolStripMenuItem1
+            // duplicateToolStripMenuItem
             // 
-            deleteSpriteToolStripMenuItem1.Name = "deleteSpriteToolStripMenuItem1";
-            deleteSpriteToolStripMenuItem1.Size = new System.Drawing.Size(215, 34);
-            deleteSpriteToolStripMenuItem1.Text = "Delete Sprite";
+            duplicateToolStripMenuItem.Name = "duplicateToolStripMenuItem";
+            duplicateToolStripMenuItem.Size = new System.Drawing.Size(215, 34);
+            duplicateToolStripMenuItem.Text = "Duplicate";
+            duplicateToolStripMenuItem.Click += duplicateToolStripMenuItem_Click;
+            // 
+            // insertToolStripMenuItem
+            // 
+            insertToolStripMenuItem.Name = "insertToolStripMenuItem";
+            insertToolStripMenuItem.Size = new System.Drawing.Size(215, 34);
+            insertToolStripMenuItem.Text = "Insert";
+            insertToolStripMenuItem.Click += insertToolStripMenuItem_Click;
             // 
             // btnAddSprite
             // 
@@ -626,7 +634,7 @@ namespace AmigaImageConverter
             // 
             statusStrip1.ImageScalingSize = new System.Drawing.Size(24, 24);
             statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] { messageStatusBar });
-            statusStrip1.Location = new System.Drawing.Point(0, 579);
+            statusStrip1.Location = new System.Drawing.Point(0, 628);
             statusStrip1.Name = "statusStrip1";
             statusStrip1.Size = new System.Drawing.Size(1136, 32);
             statusStrip1.TabIndex = 20;
@@ -642,16 +650,34 @@ namespace AmigaImageConverter
             // 
             // spritePreview1
             // 
-            spritePreview1.Location = new System.Drawing.Point(832, 366);
+            spritePreview1.Location = new System.Drawing.Point(785, 366);
             spritePreview1.Name = "spritePreview1";
-            spritePreview1.Size = new System.Drawing.Size(124, 124);
+            spritePreview1.Size = new System.Drawing.Size(218, 218);
             spritePreview1.TabIndex = 21;
+            // 
+            // spriteNameTextBox
+            // 
+            spriteNameTextBox.Location = new System.Drawing.Point(532, 598);
+            spriteNameTextBox.Name = "spriteNameTextBox";
+            spriteNameTextBox.Size = new System.Drawing.Size(230, 31);
+            spriteNameTextBox.TabIndex = 22;
+            // 
+            // spriteNameLabel
+            // 
+            spriteNameLabel.AutoSize = true;
+            spriteNameLabel.Location = new System.Drawing.Point(532, 564);
+            spriteNameLabel.Name = "spriteNameLabel";
+            spriteNameLabel.Size = new System.Drawing.Size(110, 25);
+            spriteNameLabel.TabIndex = 23;
+            spriteNameLabel.Text = "Sprite Name";
             // 
             // C64SpriteEditorDlg
             // 
             AutoScaleDimensions = new System.Drawing.SizeF(10F, 25F);
             AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            ClientSize = new System.Drawing.Size(1136, 611);
+            ClientSize = new System.Drawing.Size(1136, 660);
+            Controls.Add(spriteNameLabel);
+            Controls.Add(spriteNameTextBox);
             Controls.Add(spritePreview1);
             Controls.Add(statusStrip1);
             Controls.Add(groupBox3);
@@ -665,7 +691,7 @@ namespace AmigaImageConverter
             Controls.Add(multiColorCheckBox);
             Controls.Add(spritePalette1);
             Controls.Add(spriteGrid);
-            Controls.Add(menuStrip1);
+            Controls.Add(menuStrip);
             Name = "C64SpriteEditorDlg";
             StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             Text = "C64Sprite";
@@ -678,8 +704,8 @@ namespace AmigaImageConverter
             tableLayoutPanel1.ResumeLayout(false);
             tableLayoutPanel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)numericSpriteNumber).EndInit();
-            menuStrip1.ResumeLayout(false);
-            menuStrip1.PerformLayout();
+            menuStrip.ResumeLayout(false);
+            menuStrip.PerformLayout();
             groupBox2.ResumeLayout(false);
             groupBox3.ResumeLayout(false);
             statusStrip1.ResumeLayout(false);
@@ -713,7 +739,7 @@ namespace AmigaImageConverter
         private System.Windows.Forms.Button btnShiftDown;
         private System.Windows.Forms.NumericUpDown numericSpriteNumber;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.MenuStrip menuStrip1;
+        private System.Windows.Forms.MenuStrip menuStrip;
         private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem saveSpriteAsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem importToolStripMenuItem;
@@ -722,9 +748,6 @@ namespace AmigaImageConverter
         private System.Windows.Forms.ToolStripMenuItem spritesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem addSpriteToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem deleteSpriteToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem toolsToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem clearSpriteToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem deleteSpriteToolStripMenuItem1;
         private System.Windows.Forms.Button btnAddSprite;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.Button btnDeleteSprite;
@@ -741,5 +764,11 @@ namespace AmigaImageConverter
         private System.Windows.Forms.RadioButton poygonCheckBox;
         private System.Windows.Forms.RadioButton circleRadioBox;
         private C64.Controls.SpritePreview spritePreview1;
+        private System.Windows.Forms.TextBox spriteNameTextBox;
+        private System.Windows.Forms.Label spriteNameLabel;
+        private System.Windows.Forms.ToolStripMenuItem clearSpriteToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem duplicateToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem insertToolStripMenuItem;
+        private System.Windows.Forms.OpenFileDialog imageFileDialog;
     }
 }
