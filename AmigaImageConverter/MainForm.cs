@@ -185,8 +185,7 @@ namespace AmigaImageConverter
                             break;
                         case 2:
 
-                            mc.ProgressBarChanged += MedianCutProgressBar;
-                            vr.bitplane.bitmap = mc.Quanitize(bmp, loadImageDlg.ImageNumOfColors);
+                            vr.bitplane.bitmap = MedianCut.Quantize(bmp, loadImageDlg.ImageNumOfColors);
                             //vr.bitplane.bitmap = mc.ReduceColors(bmp,loadImageDlg.ImageNumOfColors);
                             break;
                             /*  case 3:
@@ -272,12 +271,12 @@ namespace AmigaImageConverter
             ImageLoaded?.Invoke(this, loadImageEventArgs);
         }
 
-        public void MedianCutProgressBar(object sender, MedianCut.ProgressBarEventArgs e)
+      /*  public void MedianCutProgressBar(object sender, MedianCut.ProgressBarEventArgs e)
         {
             toolStripProgressBar.Minimum = e.Min;
             toolStripProgressBar.Maximum = e.Max;
             toolStripProgressBar.Value = e.Position;
-        }
+        }*/
 
         private void ProgressBarEvent(object sender, KMeansQuant.ProgressBarEventArgs e)
         {
