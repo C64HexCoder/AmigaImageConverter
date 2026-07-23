@@ -178,7 +178,7 @@ namespace AmigaImageConverter
                     {
 
                         case 0:
-                            vr.bitplane.bitmap = await Task.Run(() => KMeansQuant.ReduceColors12bitRGB(bmp, loadImageDlg.ImageNumOfColors));
+                            vr.bitplane.bitmap = await Task.Run(() => KMeansQuant.ReduceColors(bmp, loadImageDlg.ImageNumOfColors));
                             break;
                         case 1:
                             vr.bitplane.bitmap = OctreeQuantization.ReduceColors(bmp, loadImageDlg.ImageNumOfColors, OctreeQuantization.Algorithem.CloseColorsAndLessUsed);
